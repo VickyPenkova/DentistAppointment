@@ -12219,23 +12219,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Marto\\.nuget\\packages\\": {},
+    "C:\\Users\\simeo\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Marto\\nbu_dentist\\DentistAppointment\\DentistAppointment\\DentistAppointment.csproj",
+      "projectUniqueName": "C:\\Users\\simeo\\DentistAppointment\\DentistAppointment\\DentistAppointment.csproj",
       "projectName": "DentistAppointment",
-      "projectPath": "C:\\Users\\Marto\\nbu_dentist\\DentistAppointment\\DentistAppointment\\DentistAppointment.csproj",
-      "packagesPath": "C:\\Users\\Marto\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Marto\\nbu_dentist\\DentistAppointment\\DentistAppointment\\obj\\",
+      "projectPath": "C:\\Users\\simeo\\DentistAppointment\\DentistAppointment\\DentistAppointment.csproj",
+      "packagesPath": "C:\\Users\\simeo\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\simeo\\DentistAppointment\\DentistAppointment\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\Marto\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\simeo\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
