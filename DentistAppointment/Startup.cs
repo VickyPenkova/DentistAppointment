@@ -12,6 +12,8 @@ using Microsoft.EntityFrameworkCore;
 using DentistAppointment.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using DentistAppointment.Services.Abstraction;
+using DentistAppointment.Services;
 
 namespace DentistAppointment
 {
@@ -39,7 +41,8 @@ namespace DentistAppointment
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddDefaultIdentity<IdentityUser>()
                 .AddEntityFrameworkStores<DentistAppointmentDbContext>();
-
+            services.AddScoped<IUsersService, UsersService>();
+            services.AddScoped<IDentistsService, DentistsService>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 

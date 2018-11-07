@@ -10,7 +10,8 @@ namespace DentistAppointment.Data.Models
     public class Event : BaseModel<int>
     {
         public string Description { get; set; }
-        public DateTime Date { get; set; }
+        public DateTime StartDate { get; set; }
+        public DateTime EndDate { get; set; }
         [ForeignKey("DentistID")]
         public int DentistId { get; set; }
         public Dentist Dentist { get; set; }
