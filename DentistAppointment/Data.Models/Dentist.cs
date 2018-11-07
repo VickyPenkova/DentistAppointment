@@ -14,7 +14,7 @@ namespace DentistAppointment.Data.Models
         public string Type { get; set; }
         public TimeSpan WorkTimeStart { get; set; }
         public TimeSpan WorkTimeEnd { get; set; }
-        public DateTime WorkDays { get; set; }
+        public int WorkDays { get; set; }
         public User User { get; set; }
         public List<Event> Events { get; set; }
     }
