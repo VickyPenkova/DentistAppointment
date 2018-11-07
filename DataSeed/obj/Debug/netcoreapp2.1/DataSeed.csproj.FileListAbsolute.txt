@@ -15,3 +15,9 @@ C:\Users\simeo\DentistAppointment\DataSeed\bin\Debug\netcoreapp2.1\DentistAppoin
 C:\Users\simeo\DentistAppointment\DataSeed\obj\Debug\netcoreapp2.1\DataSeed.csproj.CopyComplete
 C:\Users\simeo\DentistAppointment\DataSeed\obj\Debug\netcoreapp2.1\DataSeed.dll
 C:\Users\simeo\DentistAppointment\DataSeed\obj\Debug\netcoreapp2.1\DataSeed.pdb
+D:\Vicky\DentistAppointment\DataSeed\obj\Debug\netcoreapp2.1\DataSeed.csprojResolveAssemblyReference.cache
+D:\Vicky\DentistAppointment\DataSeed\obj\Debug\netcoreapp2.1\DataSeed.csproj.CoreCompileInputs.cache
+D:\Vicky\DentistAppointment\DataSeed\obj\Debug\netcoreapp2.1\DataSeed.AssemblyInfoInputs.cache
+D:\Vicky\DentistAppointment\DataSeed\obj\Debug\netcoreapp2.1\DataSeed.AssemblyInfo.cs
+D:\Vicky\DentistAppointment\DataSeed\obj\Debug\netcoreapp2.1\DataSeed.dll
+D:\Vicky\DentistAppointment\DataSeed\obj\Debug\netcoreapp2.1\DataSeed.pdb
