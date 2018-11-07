@@ -28,7 +28,7 @@ namespace DentistAppointment.Data
         {
             return Db.Find(id);
         }
-
+        
         public virtual void Add(T entity)
         {
             Db.Add(entity);
