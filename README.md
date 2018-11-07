@@ -10,4 +10,4 @@ Project setup:
 7. Updata-Database
 
 CI:
-[![Build status](https://ci.appveyor.com/api/projects/status/p8lk795haoqon1gs?svg=true)](https://ci.appveyor.com/project/VickyPenkova/payitforward)
+https://ci.appveyor.com/api/projects/status/p8lk795haoqon1gs?svg=true
