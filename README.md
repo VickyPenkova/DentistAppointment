@@ -1,4 +1,4 @@
-# DentistAppointment
+# DentistAppointment  [![Build status](https://ci.appveyor.com/api/projects/status/p8lk795haoqon1gs/branch/develop?svg=true)](https://ci.appveyor.com/project/VickyPenkova/payitforward/branch/develop)
 
 Project setup:
 1. Build the project
@@ -10,4 +10,4 @@ Project setup:
 7. Updata-Database
 
 
-[![Build status](https://ci.appveyor.com/api/projects/status/p8lk795haoqon1gs/branch/develop?svg=true)](https://ci.appveyor.com/project/VickyPenkova/payitforward/branch/develop)
+
