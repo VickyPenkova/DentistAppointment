@@ -14,7 +14,6 @@ namespace DentistAppointment.Data.Models
         public User User { get; set; }
         [ForeignKey("BlacklistedID")]
         public string BlacklistedId { get; set; }
-        [NotMapped]
         public User Blacklisted { get; set; }
     }
 }

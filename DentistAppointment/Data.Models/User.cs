@@ -21,6 +21,7 @@ namespace DentistAppointment.Data.Models
         public Dentist Dentist { get; set; }
         public List<Review> Reviews { get; set; }
         public List<Reservation> Reservations { get; set; }
+        [InverseProperty("Blacklisted")]
         public List<Blacklist> Blacklist { get; set; }
         public List<Comment> Comments { get; set; }
     }
