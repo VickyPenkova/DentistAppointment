@@ -67,3 +67,4 @@ D:\Vicky\DentistAppointment\DentistAppointment\obj\Debug\netcoreapp2.1\DentistAp
 D:\Vicky\DentistAppointment\DentistAppointment\obj\Debug\netcoreapp2.1\DentistAppointment.dll
 D:\Vicky\DentistAppointment\DentistAppointment\obj\Debug\netcoreapp2.1\DentistAppointment.pdb
 D:\Vicky\DentistAppointment\DentistAppointment\obj\Debug\netcoreapp2.1\DentistAppointment.csproj.CopyComplete
+D:\Vicky\DentistAppointment\DentistAppointment\obj\Debug\netcoreapp2.1\DentistAppointment.csprojResolveAssemblyReference.cache
