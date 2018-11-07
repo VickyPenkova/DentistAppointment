@@ -4,14 +4,16 @@ using DentistAppointment.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DentistAppointment.Data.Migrations
 {
     [DbContext(typeof(DentistAppointmentDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20181107125131_WorkDaysType")]
+    partial class WorkDaysType
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -30,8 +32,6 @@ namespace DentistAppointment.Data.Migrations
                     b.Property<string>("UserId");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("BlacklistedId");
 
                     b.HasIndex("UserId");
 
@@ -88,13 +88,11 @@ namespace DentistAppointment.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<DateTime>("Date");
+
                     b.Property<int>("DentistId");
 
                     b.Property<string>("Description");
-
-                    b.Property<DateTime>("EndDate");
-
-                    b.Property<DateTime>("StartDate");
 
                     b.HasKey("Id");
 
@@ -319,7 +317,7 @@ namespace DentistAppointment.Data.Migrations
                 {
                     b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
 
-                    b.Property<int?>("DentistId");
+                    b.Property<int>("DentistId");
 
                     b.Property<long>("EGN");
 
@@ -344,12 +342,8 @@ namespace DentistAppointment.Data.Migrations
 
             modelBuilder.Entity("DentistAppointment.Data.Models.Blacklist", b =>
                 {
-                    b.HasOne("DentistAppointment.Data.Models.User", "Blacklisted")
-                        .WithMany("Blacklist")
-                        .HasForeignKey("BlacklistedId");
-
                     b.HasOne("DentistAppointment.Data.Models.User", "User")
-                        .WithMany()
+                        .WithMany("Blacklist")
                         .HasForeignKey("UserId");
                 });
 
@@ -441,7 +435,8 @@ namespace DentistAppointment.Data.Migrations
                 {
                     b.HasOne("DentistAppointment.Data.Models.Dentist", "Dentist")
                         .WithOne("User")
-                        .HasForeignKey("DentistAppointment.Data.Models.User", "DentistId");
+                        .HasForeignKey("DentistAppointment.Data.Models.User", "DentistId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }
