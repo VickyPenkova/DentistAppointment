@@ -1,0 +1,198 @@
+﻿@{
+    Layout = null;//removes the defaut design of asp.net core
+}
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="author" content="" />
+    <!-- Stylesheets
+    ============================================= -->
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,400i,700|Raleway:300,400,500,600,700|Crete+Round:400i" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="../../css/bootstrap.css" type="text/css" />
+    <link rel="stylesheet" href="../../style.css" type="text/css" />
+    <link rel="stylesheet" href="../../css/font-icons.css" type="text/css" />
+    <link rel="stylesheet" href="../../css/animate.css" type="text/css" />
+
+    <link rel="stylesheet" href="../../css/responsive.css" type="text/css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Document Title
+    ============================================= -->
+    <title>Rate medical manipulation</title>
+    <!-- Favicon
+    ============================================= -->
+    <link rel="apple-touch-icon" sizes="57x57" href="../../images/favicon/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="../../images/favicon/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="../../images/favicon/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="../../images/favicon/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="../../images/favicon/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="../../images/favicon/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="../../images/favicon/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="../../../images/favicon/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../../images/favicon/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="../../images/favicon/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../../images/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="../../images/favicon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../../images/favicon/favicon-16x16.png">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="../../images/favicon/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
+<body class="stretched sticky-responsive-menu">
+    <!-- Document Wrapper
+    ============================================= -->
+    <div id="wrapper" class="clearfix light-background">
+        <!-- Header
+        ============================================= -->
+        <header id="header">
+            <div id="header-wrap">
+                <div class="container clearfix">
+                    <div id="primary-menu-trigger"><i class="icon-reorder"></i></div>
+                    <!-- Logo
+                    ============================================= -->
+                    <div id="logo">
+                        <a href="../Patient/patientHomePage.html" class="standard-logo" data-dark-logo="../../images/icons/molar-inside-a-shield-green.png"><img src="../../images/icons/molar-inside-a-shield-green.png" alt="Denstist Logo"></a>
+                        <a href="../Patient/patientHomePage.html" class="retina-logo" data-dark-logo="../../images/icons/molar-inside-a-shield-green.png"><img src="../../images/icons/molar-inside-a-shield-green.png" alt="Denstist Logo"></a>
+                    </div>
+                    <!-- #logo end -->
+                    <!-- Primary Navigation
+                    ============================================= -->
+                    <nav id="primary-menu">
+                        <ul>
+                            <li class="current">
+                                <a href="../Patient/patientHomePage.html"><div>My Profile</div></a>
+                            </li>
+                            <li class="current">
+                                <a href="../Patient/patientFindDoctor.html"><div>Find a Doctor</div></a>
+                            </li>
+                            <li class="current">
+                                <a href="../Patient/patientAppointments.html"><div>My Appointments</div></a>
+                            </li>
+                            <li class="accent-background">
+                                <a href="../Patient/patientMedicalManipulationsHistory.html"><div>Medical Manipulations History</div></a>
+                            </li>
+                            <li class="current">
+                                <a href="loggedOut.html"><div><i class="icon-line2-logout"></i>Log Out</div></a>
+                            </li>
+                        </ul>
+                    </nav><!-- #primary-menu end -->
+                </div>
+            </div>
+        </header><!-- #header end -->
+    </div><!-- #wrapper end -->
+    <!-- Content
+    ============================================= -->
+    <section id="content">
+        <div class="content-wrap">
+            <div class="container clearfix">
+                <div id="actualContent">
+                    <div class="row">
+                        <div class="col-12 bottommargin">
+                            <div class="row team team-list clearfix">
+                                <div class="team-image col-sm-12 col-md-6 col-lg-6">
+                                    <img class="rounded-circle center-image-user" style="width: 150px;" src="../../images/icons/female-dentist.png" alt="Male User">
+                                </div>
+                                <div class="team-desc col-sm-12 col-md-6 col-lg-6">
+                                    <div class="user-names">
+                                        <h4 class="pr-2" id="firstName">FirstNameDoctor</h4>
+                                        <h4 id="lastName">LastNameDoctor</h4>
+                                        <span id="gender">Female</span>
+                                        <h5 id="typeOfDentist">Ortodonth</h5>
+                                    </div>
+                                    <div class="topmargin-sm nobottommargin"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="divider divider-center"><i class="icon-pencil"></i></div>
+                    <h4>Please rate your medical manipulation:</h4>
+                    <form action="#" method="post" class="nobottommargin">
+                        <div class="bottommargin-sm">
+                            <label for="">Please select how satisfied you were with the punctuality of your doctor</label>
+                            <select id="punctuality" class="select-1 form-control" style="width:100%;">
+                                <option value="1">Very dissatisfied</option>
+                                <option value="2">Dissatisfied</option>
+                                <option value="3">Okay</option>
+                                <option value="4">Satisfied</option>
+                                <option value="5">Very Satisfied</option>
+                            </select>
+                        </div>
+                        <div class="bottommargin-sm">
+                            <label for="">Please select how satisfied you were with the examination process</label>
+                            <select id="examination" class="select-1 form-control" style="width:100%;">
+                                <option value="1">Very dissatisfied</option>
+                                <option value="2">Dissatisfied</option>
+                                <option value="3">Okay</option>
+                                <option value="4">Satisfied</option>
+                                <option value="5">Very Satisfied</option>
+                            </select>
+                        </div>
+                        <div class="bottommargin-sm">
+                            <label for="">Additional Comment</label>
+                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                        </div>
+                    </form>
+                    <h4>Final grade: <span id="finalGrade"></span></h4>
+                    <a href="#" id="submit" class="button button-3d button-rounded accent-background">
+                        <i class="icon-ok"></i>Submit
+                    </a>
+                </div>
+
+
+                <div id="sucessMessage">
+                    <h3 class="alert alert-success">Your report has been submittet succesfully!</h3>
+                    <a href="../Patient/patientHomePage.html" class="button button-3d button-rounded accent-background">
+                        <i class="icon-line-rewind"></i>Back to your home page
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Go To Top
+    ============================================= -->
+    <div id="gotoTop" class="icon-angle-up"></div>
+    <!-- External JavaScripts
+    ============================================= -->
+    <script src="../../js/jquery.js"></script>
+    <script src="../../js/plugins.js"></script>
+    <!-- Footer Scripts
+    ============================================= -->
+    <script src="../../js/functions.js"></script>
+    <script>
+        $(document).ready(function () {
+            var totalGrade = 0;
+            var prevPunc = 0;
+            var prevExam = 0;
+
+            $('#punctuality').on('change', function () {
+                var value = parseInt($(this).val(), 10);
+                totalGrade -= prevPunc;
+                totalGrade += value;
+                prevPunc = value;
+                console.log(totalGrade);
+                $('#finalGrade').text("");
+                $('#finalGrade').text(totalGrade);
+
+            });
+
+            $('#examination').on('change', function () {
+                var value = parseInt($(this).val());
+                totalGrade -= prevExam;
+                totalGrade += value;
+                prevExam = value;
+                $('#finalGrade').text("");
+                $('#finalGrade').text(totalGrade);
+            });
+
+            $("#submit").click(function () {
+                $("#actualContent").hide();
+                $("#sucessMessage").show();
+
+            });
+
+        });
+    </script>
+
+</body>
+</html>
