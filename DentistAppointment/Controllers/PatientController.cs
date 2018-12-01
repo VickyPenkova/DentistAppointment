@@ -11,6 +11,13 @@ namespace DentistAppointment.Controllers
     //[Authorize]
     public class PatientController:Controller
     {
+        // Default page fot patient log in
+        [AllowAnonymous]
+        public IActionResult index()
+        {
+            return View();
+        }
+
         [AllowAnonymous]
         public IActionResult forgottenPass()
         {
@@ -33,7 +40,6 @@ namespace DentistAppointment.Controllers
         }
         public IActionResult patientBooking()
         {
-            //return View("/Views/Patient/PatientBoking.cshtml");
             return View();
         }
         public IActionResult patientCheckDocument()
@@ -70,10 +76,16 @@ namespace DentistAppointment.Controllers
         {
             return View();
         }
-        [AllowAnonymous]
-        public IActionResult index()
+
+        public IActionResult Privacy()
         {
             return View();
+        }
+
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        public IActionResult Error()
+        {
+            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }
 }

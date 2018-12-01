@@ -6,6 +6,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="Views\Patient\loggedOut.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Views\Dentist\index.cshtml" />
+    <None Include="Views\Patient\index.cshtml" />
+    <None Include="Views\Patient\loggedOut.cshtml" />
     <None Include="wwwroot\FrontEnd\css\animate.css" />
     <None Include="wwwroot\FrontEnd\css\bootstrap.css" />
     <None Include="wwwroot\FrontEnd\css\calendar.css" />
@@ -33,7 +40,6 @@
     <None Include="wwwroot\FrontEnd\css\fonts\Simple-Line-Icons.woff" />
     <None Include="wwwroot\FrontEnd\css\magnific-popup.css" />
     <None Include="wwwroot\FrontEnd\css\responsive.css" />
-    <None Include="wwwroot\FrontEnd\dentistIndex.html" />
     <None Include="wwwroot\FrontEnd\dentistStyle.css" />
     <None Include="wwwroot\FrontEnd\images\1.jpg" />
     <None Include="wwwroot\FrontEnd\images\2.jpg" />
@@ -86,7 +92,6 @@
     <None Include="wwwroot\FrontEnd\images\icons\submenu.png" />
     <None Include="wwwroot\FrontEnd\images\logOutBackground.jpg" />
     <None Include="wwwroot\FrontEnd\images\registerBackground.jpg" />
-    <None Include="wwwroot\FrontEnd\index.html" />
     <None Include="wwwroot\FrontEnd\inspiration\824bc335090143.56e944ab5d34c.jpg" />
     <None Include="wwwroot\FrontEnd\inspiration\CUBE_dental_clinic_logo_final-02.jpg" />
     <None Include="wwwroot\FrontEnd\js\components\bs-select.js" />
@@ -98,6 +103,7 @@
     <None Include="wwwroot\FrontEnd\js\jquery.calendario.js" />
     <None Include="wwwroot\FrontEnd\js\jquery.js" />
     <None Include="wwwroot\FrontEnd\js\plugins.js" />
+    <None Include="wwwroot\FrontEnd\style.css" />
   </ItemGroup>
 
   <ItemGroup>

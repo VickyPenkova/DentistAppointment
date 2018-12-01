@@ -8,13 +8,14 @@
     <meta name="author" content="" />
     <!-- Stylesheets
     ============================================= -->
-    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,400i,700|Raleway:300,400,500,600,700|Crete+Round:400i" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" href="../../css/bootstrap.css" type="text/css" />
-    <link rel="stylesheet" href="../../style.css" type="text/css" />
-    <link rel="stylesheet" href="../../css/font-icons.css" type="text/css" />
-    <link rel="stylesheet" href="../../css/animate.css" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,400i,700|Raleway:300,400,500,600,700|Crete+Round:400i" 
+		  rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="~/FrontEnd/css/bootstrap.css" type="text/css" />
+    <link rel="stylesheet" href="~/FrontEnd/style.css" type="text/css" />
+    <link rel="stylesheet" href="~/FrontEnd/css/font-icons.css" type="text/css" />
+    <link rel="stylesheet" href="~/FrontEnd/css/animate.css" type="text/css" />
 
-    <link rel="stylesheet" href="../css/responsive.css" type="text/css" />
+    <link rel="stylesheet" href="~/FrontEnd/css/responsive.css" type="text/css" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <!-- Document Title
     ============================================= -->
@@ -51,8 +52,12 @@
                     <!-- Logo
                     ============================================= -->
                     <div id="logo">
-                        <a href="../Patient/patientHomePage.html" class="standard-logo" data-dark-logo="../images/icons/molar-inside-a-shield-green.png"><img src="../../images/icons/molar-inside-a-shield-green.png" alt="Denstist Logo"></a>
-                        <a href="../Patient/patientHomePage.html" class="retina-logo" data-dark-logo="../images/icons/molar-inside-a-shield-green.png"><img src="../../images/icons/molar-inside-a-shield-green.png" alt="Denstist Logo"></a>
+                        <a href="/Patient/patientHomePage/patientHomePage.html" class="standard-logo" 
+						   data-dark-logo="../images/icons/molar-inside-a-shield-green.png">
+						<img src="~/FrontEnd/images/icons/molar-inside-a-shield-green.png" alt="Denstist Logo"></a>
+                        <a href="../Patient/patientHomePage.html" class="retina-logo" 
+						   data-dark-logo="../images/icons/molar-inside-a-shield-green.png">
+							<img src="~/FrontEnd/images/icons/molar-inside-a-shield-green.png" alt="Denstist Logo"></a>
                     </div>
                     <!-- #logo end -->
                     <!-- Primary Navigation
@@ -60,19 +65,19 @@
                     <nav id="primary-menu">
                         <ul>
                             <li class="current">
-                                <a href="../Patient/patientHomePage.html"><div>My Profile</div></a>
+                                <a href="/Patient/patientHomePage/patientHomePage.html"><div>My Profile</div></a>
                             </li>
                             <li class="current">
-                                <a href="../Patient/patientFindDoctor.html"><div>Find a Doctor</div></a>
+                                <a href="/Patient/patientFindDoctor/patientFindDoctor.html"><div>Find a Doctor</div></a>
                             </li>
                             <li class="accent-background">
-                                <a href="../Patient/patientAppointments.html"><div>My Appointments</div></a>
+                                <a href="/Patient/patientAppointments/patientAppointments.html"><div>My Appointments</div></a>
                             </li>
                             <li class="current">
-                                <a href="../Patient/patientMedicalManipulationsHistory.html"><div>Medical Manipulations History</div></a>
+                                <a href="/Patient/patientMedicalManipulationsHistory/patientMedicalManipulationsHistory.html"><div>Medical Manipulations History</div></a>
                             </li>
                             <li class="current">
-                                <a href="loggedOut.html"><div><i class="icon-line2-logout"></i>Log Out</div></a>
+                                <a href="/Patient/loggedOut/loggedOut.html"><div><i class="icon-line2-logout"></i>Log Out</div></a>
                             </li>
                         </ul>
                     </nav><!-- #primary-menu end -->
@@ -109,11 +114,15 @@
                                             <div class="modal-body">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h4 class="modal-title" id="myModalLabel">Your booking has been made!</h4>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                        <h4 class="modal-title" id="myModalLabel">
+															Your booking has been made!</h4>
+                                                        <button type="button" class="close" data-dismiss="modal" 
+																aria-hidden="true">&times;
+														</button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        <p class="nobottommargin">You booked an appointment! You can cancel your appointments up to one hour before the booked hour. In order to macke changes to your current bookings, see the menu "My appointments".</p>
+                                                        <p class="nobottommargin">You booked an appointment! 
+														You can cancel your appointments up to one hour before the booked hour. In order to macke changes to your current bookings, see the menu "My appointments".</p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -126,17 +135,24 @@
                                 <td>8:00-8:30</td>
                                 <td>Doctor Doctor</td>
                                 <td>
-                                    <button class="btn aviableBtn button-mini button-rounded m-0 accent-background light-text" data-toggle="modal" data-target=".bs-example-modal-sm"><i class="icon-line-play"></i><span>Cancel appointment</span></button>
-                                    <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                                    <button class="btn aviableBtn button-mini button-rounded m-0 accent-background light-text" 
+											data-toggle="modal" data-target=".bs-example-modal-sm"><i class="icon-line-play">
+												 </i><span>Cancel appointment</span></button>
+                                    <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" 
+										 aria-labelledby="mySmallModalLabel" aria-hidden="true">
                                         <div class="modal-dialog modal-sm">
                                             <div class="modal-body">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
                                                         <h4 class="modal-title" id="myModalLabel">Your booking has been made!</h4>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                        <button type="button" class="close" data-dismiss="modal" 
+																aria-hidden="true">&times;</button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        <p class="nobottommargin">You booked an appointment! You can cancel your appointments up to one hour before the booked hour. In order to macke changes to your current bookings, see the menu "My appointments".</p>
+                                                        <p class="nobottommargin">You booked an appointment! 
+														You can cancel your appointments up to one hour before the booked hour.
+														In order to macke changes to your current bookings, 
+														see the menu "My appointments".</p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -149,17 +165,23 @@
                                 <td>8:00-8:30</td>
                                 <td>Doctor Doctor</td>
                                 <td>
-                                    <button class="btn aviableBtn button-mini button-rounded m-0 accent-background light-text" data-toggle="modal" data-target=".bs-example-modal-sm"><i class="icon-line-play"></i><span>Cancel appointment</span></button>
-                                    <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                                    <button class="btn aviableBtn button-mini button-rounded m-0 accent-background light-text" 
+											data-toggle="modal" data-target=".bs-example-modal-sm"><i class="icon-line-play">
+												 </i><span>Cancel appointment</span></button>
+                                    <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" 
+										 aria-labelledby="mySmallModalLabel" aria-hidden="true">
                                         <div class="modal-dialog modal-sm">
                                             <div class="modal-body">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h4 class="modal-title" id="myModalLabel">Your appointment has been canceled!</h4>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                        <h4 class="modal-title" id="myModalLabel">
+														Your appointment has been canceled!</h4>
+                                                        <button type="button" class="close" data-dismiss="modal" 
+																aria-hidden="true">&times;</button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        <p class="nobottommargin">The appointment that you selected has been canceled!</p>
+                                                        <p class="nobottommargin">The appointment that you selected has 
+														been canceled!</p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -190,7 +212,9 @@
                                 <td>8:00-8:30</td>
                                 <td>Doctor Doctor</td>
                                 <td>
-                                    <a href="../Patient/patientMedicalManipulationsHistory.html" class="button button-3d  button-small button-rounded button-dirtygreen"> <i class="icon-folder-check"></i> Check Manipulation</a>
+                                    <a href="/Patient/patientMedicalManipulationsHistory/patientMedicalManipulationsHistory.html" 
+									   class="button button-3d  button-small button-rounded button-dirtygreen">
+									<i class="icon-folder-check"></i> Check Manipulation</a>
                                 </td>
                             </tr>
                             <tr>
@@ -198,7 +222,9 @@
                                 <td>8:00-8:30</td>
                                 <td>Doctor Doctor</td>
                                 <td>
-                                    <a href="../../pages/Patient/medicalManipulationsHistory.html" class="button button-3d  button-small button-rounded button-dirtygreen"> <i class="icon-folder-check"></i> Check Manipulation</a>
+                                    <a href="/Patient/medicalManipulationsHistory/medicalManipulationsHistory.html" 
+									   class="button button-3d  button-small button-rounded button-dirtygreen">
+									<i class="icon-folder-check"></i> Check Manipulation</a>
                                 </td>
                             </tr>
                             <tr>
@@ -206,7 +232,9 @@
                                 <td>8:00-8:30</td>
                                 <td>Doctor Doctor</td>
                                 <td>
-                                    <a href="../../pages/Patient/medicalManipulationsHistory.html" class="button button-3d  button-small button-rounded button-dirtygreen"> <i class="icon-folder-check"></i> Check Manipulation</a>
+                                    <a href="/Patient/medicalManipulationsHistory/medicalManipulationsHistory.html" 
+									   class="button button-3d  button-small button-rounded button-dirtygreen">
+									<i class="icon-folder-check"></i> Check Manipulation</a>
                                 </td>
                             </tr>
                         </tbody>
@@ -221,11 +249,11 @@
     <div id="gotoTop" class="icon-angle-up"></div>
     <!-- External JavaScripts
     ============================================= -->
-    <script src="../../js/jquery.js"></script>
-    <script src="../../js/plugins.js"></script>
+    <script src="~/FrontEnd/js/jquery.js"></script>
+    <script src="~/FrontEnd/js/plugins.js"></script>
     <!-- Footer Scripts
     ============================================= -->
-    <script src="../../js/functions.js"></script>
+    <script src="~/FrontEnd/js/functions.js"></script>
     <script>
         $(document).ready(function () {
             $(".aviableBtn").click(function () {
