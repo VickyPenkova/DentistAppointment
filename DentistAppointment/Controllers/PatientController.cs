@@ -21,6 +21,12 @@ namespace DentistAppointment.Controllers
         {
             return View();
         }
+
+        public IActionResult patientHomePage()
+        {
+            return View();
+        }
+
         public IActionResult patientAppointments()
         {
             return View();
@@ -46,10 +52,7 @@ namespace DentistAppointment.Controllers
         {
             return View();
         }
-        public IActionResult patientHomePage()
-        {
-            return View();
-        }
+
         public IActionResult patientMedicalManipulationsHistory()
         {
             return View();
