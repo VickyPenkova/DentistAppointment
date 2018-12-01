@@ -8,68 +8,69 @@ using System.Threading.Tasks;
 
 namespace DentistAppointment.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public class PatientController:Controller
     {
         [AllowAnonymous]
         public IActionResult forgottenPass()
         {
-            return View("Views/pages/Patient/forgottenPass.cshtml");
+            return View();
         }
         [AllowAnonymous]
         public IActionResult loggedOut()
         {
-            return View("Views/pages/Patient/loggedOut.cshtml");
+            return View();
         }
         public IActionResult patientAppointments()
         {
-            return View("Views/pages/Patient/patientAppointments.cshtml");
+            return View();
         }
-        public IActionResult patientBoking()
+        public IActionResult patientBooking()
         {
-            return View("Views/pages/Patient/patientBooking.cshtml");
+            //return View("/Views/Patient/PatientBoking.cshtml");
+            return View();
         }
         public IActionResult patientCheckDocument()
         {
-            return View("Views/pages/Patient/patientCheckDocument.cshtml");
+            return View();
         }
         public IActionResult patientDentistHomePage()
         {
-            return View("Views/pages/Patient/patientDentistHomePage.cshtml");
+            return View();
         }
         public IActionResult patientEditInfo()
         {
-            return View("Views/pages/Patient/patientEditInfo.cshtml");
+            return View();
         }
         public IActionResult patientFindDoctor()
         {
-            return View("Views/pages/Patient/patientFindDoctor.cshtml");
+            return View();
         }
         public IActionResult patientHomePage()
         {
-            return View("Views/pages/Patient/patientHomePage.cshtml");
+            return View();
         }
         public IActionResult patientMedicalManipulationsHistory()
         {
-            return View("Views/pages/Patient/patientMedicalManipulationsHistory.cshtml");
+            return View();
         }
         public IActionResult patientOnFirstLogIn()
         {
-            return View("Views/pages/Patient/patientOnFirstLogIn.cshtml");
+            return View();
         }
         public IActionResult patientRateAppointment()
         {
-            return View("Views/pages/Patient/patientRateAppointment.cshtml");
+            return View();
         }
         [AllowAnonymous]
         public IActionResult registerPatient()
         {
-            return View("Views/pages/Patient/registerPatient.cshtml");
+            return View();
         }
         [AllowAnonymous]
         public IActionResult index()
         {
-            return View("Views/index.cshtml");
+            return View();
         }
     }
 }

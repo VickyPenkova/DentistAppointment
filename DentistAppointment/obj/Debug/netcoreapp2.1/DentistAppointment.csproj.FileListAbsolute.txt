@@ -110,6 +110,7 @@ D:\Vicky\DentistAppointment\DentistAppointment\bin\Debug\netcoreapp2.1\DentistAp
 D:\Vicky\DentistAppointment\DentistAppointment\bin\Debug\netcoreapp2.1\DentistAppointment.pdb
 D:\Vicky\DentistAppointment\DentistAppointment\bin\Debug\netcoreapp2.1\DentistAppointment.Views.dll
 D:\Vicky\DentistAppointment\DentistAppointment\bin\Debug\netcoreapp2.1\DentistAppointment.Views.pdb
+D:\Vicky\DentistAppointment\DentistAppointment\obj\Debug\netcoreapp2.1\DentistAppointment.csprojResolveAssemblyReference.cache
 D:\Vicky\DentistAppointment\DentistAppointment\obj\Debug\netcoreapp2.1\DentistAppointment.csproj.CoreCompileInputs.cache
 D:\Vicky\DentistAppointment\DentistAppointment\obj\Debug\netcoreapp2.1\DentistAppointment.RazorAssemblyInfo.cache
 D:\Vicky\DentistAppointment\DentistAppointment\obj\Debug\netcoreapp2.1\DentistAppointment.RazorAssemblyInfo.cs
@@ -124,6 +125,18 @@ D:\Vicky\DentistAppointment\DentistAppointment\obj\Debug\netcoreapp2.1\Razor\Vie
 D:\Vicky\DentistAppointment\DentistAppointment\obj\Debug\netcoreapp2.1\Razor\Views\Home\Contact.g.cshtml.cs
 D:\Vicky\DentistAppointment\DentistAppointment\obj\Debug\netcoreapp2.1\Razor\Views\Home\Index.g.cshtml.cs
 D:\Vicky\DentistAppointment\DentistAppointment\obj\Debug\netcoreapp2.1\Razor\Views\Home\Privacy.g.cshtml.cs
+D:\Vicky\DentistAppointment\DentistAppointment\obj\Debug\netcoreapp2.1\Razor\Views\Patient\forgottenPass.g.cshtml.cs
+D:\Vicky\DentistAppointment\DentistAppointment\obj\Debug\netcoreapp2.1\Razor\Views\Patient\patientAppointments.g.cshtml.cs
+D:\Vicky\DentistAppointment\DentistAppointment\obj\Debug\netcoreapp2.1\Razor\Views\Patient\patientBooking.g.cshtml.cs
+D:\Vicky\DentistAppointment\DentistAppointment\obj\Debug\netcoreapp2.1\Razor\Views\Patient\patientCheckDocument.g.cshtml.cs
+D:\Vicky\DentistAppointment\DentistAppointment\obj\Debug\netcoreapp2.1\Razor\Views\Patient\patientDentistHomePage.g.cshtml.cs
+D:\Vicky\DentistAppointment\DentistAppointment\obj\Debug\netcoreapp2.1\Razor\Views\Patient\patientEditInfo.g.cshtml.cs
+D:\Vicky\DentistAppointment\DentistAppointment\obj\Debug\netcoreapp2.1\Razor\Views\Patient\patientFindDoctor.g.cshtml.cs
+D:\Vicky\DentistAppointment\DentistAppointment\obj\Debug\netcoreapp2.1\Razor\Views\Patient\patientHomePage.g.cshtml.cs
+D:\Vicky\DentistAppointment\DentistAppointment\obj\Debug\netcoreapp2.1\Razor\Views\Patient\patientMedicalManipulationsHistory.g.cshtml.cs
+D:\Vicky\DentistAppointment\DentistAppointment\obj\Debug\netcoreapp2.1\Razor\Views\Patient\patientOnFirstLogIn.g.cshtml.cs
+D:\Vicky\DentistAppointment\DentistAppointment\obj\Debug\netcoreapp2.1\Razor\Views\Patient\patientRateAppointment.g.cshtml.cs
+D:\Vicky\DentistAppointment\DentistAppointment\obj\Debug\netcoreapp2.1\Razor\Views\Patient\registerPatient.g.cshtml.cs
 D:\Vicky\DentistAppointment\DentistAppointment\obj\Debug\netcoreapp2.1\Razor\Views\Shared\Error.g.cshtml.cs
 D:\Vicky\DentistAppointment\DentistAppointment\obj\Debug\netcoreapp2.1\Razor\Views\Shared\_CookieConsentPartial.g.cshtml.cs
 D:\Vicky\DentistAppointment\DentistAppointment\obj\Debug\netcoreapp2.1\Razor\Views\Shared\_Layout.g.cshtml.cs
@@ -137,4 +150,3 @@ D:\Vicky\DentistAppointment\DentistAppointment\obj\Debug\netcoreapp2.1\DentistAp
 D:\Vicky\DentistAppointment\DentistAppointment\obj\Debug\netcoreapp2.1\DentistAppointment.dll
 D:\Vicky\DentistAppointment\DentistAppointment\obj\Debug\netcoreapp2.1\DentistAppointment.pdb
 D:\Vicky\DentistAppointment\DentistAppointment\obj\Debug\netcoreapp2.1\DentistAppointment.csproj.CopyComplete
-D:\Vicky\DentistAppointment\DentistAppointment\obj\Debug\netcoreapp2.1\DentistAppointment.csprojResolveAssemblyReference.cache
