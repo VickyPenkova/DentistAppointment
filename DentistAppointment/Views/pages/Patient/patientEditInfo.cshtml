@@ -1,0 +1,155 @@
+﻿@{
+    Layout = null;//removes the defaut design of asp.net core
+}
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="author" content="" />
+    <!-- Stylesheets
+    ============================================= -->
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,400i,700|Raleway:300,400,500,600,700|Crete+Round:400i" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="../../css/bootstrap.css" type="text/css" />
+    <link rel="stylesheet" href="../../style.css" type="text/css" />
+    <link rel="stylesheet" href="../../css/font-icons.css" type="text/css" />
+    <link rel="stylesheet" href="../../css/animate.css" type="text/css" />
+    <!-- Bootstrap Select CSS -->
+    <link rel="stylesheet" href="../../css/components/bs-select.css" type="text/css" />
+    <link rel="stylesheet" href="../../css/responsive.css" type="text/css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Document Title
+    ============================================= -->
+    <title>Edit Patient Info</title>
+    <!-- Favicon
+    ============================================= -->
+    <link rel="apple-touch-icon" sizes="57x57" href="../../images/favicon/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="../../images/favicon/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="../../images/favicon/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="../../images/favicon/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="../../images/favicon/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="../../images/favicon/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="../../images/favicon/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="../../images/favicon/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../../images/favicon/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="../../images/favicon/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../../images/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="../../images/favicon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../../images/favicon/favicon-16x16.png">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="../../images/favicon/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
+<body class="stretched sticky-responsive-menu dark">
+    <!-- Document Wrapper
+    ============================================= -->
+    <div id="wrapper" class="clearfix">
+        <!-- Header
+        ============================================= -->
+        <header id="header">
+            <div id="header-wrap">
+                <div class="container clearfix">
+                    <div id="primary-menu-trigger"><i class="icon-reorder"></i></div>
+                    <!-- Logo
+                    ============================================= -->
+                    <div id="logo">
+                        <a href="../Patient/patientHomePage.html" class="standard-logo" data-dark-logo="../../images/icons/molar-inside-a-shield-green.png"><img src="../../images/icons/molar-inside-a-shield-green.png" alt="Denstist Logo"></a>
+                        <a href="../Patient/patientHomePage.html" class="retina-logo" data-dark-logo="../../images/icons/molar-inside-a-shield-green.png"><img src="../../images/icons/molar-inside-a-shield-green.png" alt="Denstist Logo"></a>
+                    </div>
+                    <!-- #logo end -->
+                    <!-- Primary Navigation
+                    ============================================= -->
+                    <nav id="primary-menu">
+                        <ul>
+                            <li class="accent-background">
+                                <a href="../Patient/patientHomePage.html"><div>My Profile</div></a>
+                            </li>
+                            <li class="current">
+                                <a href="../Patient/patientFindDoctor.html"><div>Find a Doctor</div></a>
+                            </li>
+                            <li class="current">
+                                <a href="../Patient/patientAppointments.html"><div>My Appointments</div></a>
+                            </li>
+                            <li class="current">
+                                <a href="../Patient/patientMedicalManipulationsHistory.html"><div>Medical Manipulations History</div></a>
+                            </li>
+                            <li class="current">
+                                <a href="loggedOut.html"><div><i class="icon-line2-logout"></i>Log Out</div></a>
+                            </li>
+                        </ul>
+                    </nav><!-- #primary-menu end -->
+                </div>
+            </div>
+        </header><!-- #header end -->
+    </div><!-- #wrapper end -->
+    <!-- Content
+    ============================================= -->
+    <section id="content">
+        <div class="content-wrap">
+            <div class="container clearfix">
+                <div id="section-couple" class="heading-block title-center page-section">
+                    <h2>Edit User Profile</h2>
+                </div>
+                <div class="row">
+                    <div class="col-12 bottommargin">
+                        <div class="row team team-list clearfix">
+                            <div class="team-image col-sm-12 col-md-6 col-lg-6">
+                                <img class="rounded-circle center-image-user" style="width: 150px;" src="../../images/icons/male-user.png" alt="Male User">
+                            </div>
+                            <div class="team-desc col-sm-12 col-md-6 col-lg-6">
+                                <div class="user-names">
+                                    <h4 class="pr-2" id="firstName">
+                                        <input type="text" value="" class="form-control" placeholder="FirstName" />
+                                    </h4>
+                                    <h4 id="lastName">
+                                        <input type="text" value="" class="form-control" placeholder="LastName" />
+                                    </h4>
+                                    <div class="white-section pt-4 mb-4">
+                                        <select class="select-1 form-control" style="width:100%;">
+                                            <option value="Male">Male</option>
+                                            <option value="Female">Female</option>
+                                            <option value="Other">Other</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="user-email">
+                                    <h4 class="inlineBlock-elements">Email:</h4>
+                                    <input type="text" value="" class="form-control" placeholder="somethingsomething@gmail.com" />
+                                </div>
+                                <div class="user-egn">
+                                    <h4 class="inlineBlock-elements">EGN:</h4>
+                                    <input type="text" value="" class="form-control" placeholder="9804152635" />
+                                </div>
+                                <div class="user-address">
+                                    <h4 class="inlineBlock-elements">Address:</h4>
+                                    <input type="text" value="" class="form-control" placeholder="In the middle of nowhere, Nowhere, Earth" />
+                                </div>
+                                <div class="user-edit">
+                                    <a class="button button-3d button-black mt-5 ml-0 accent-background" href="../Patient/patientHomePage.html">Save Changes</a>
+                                </div>
+                                <div class="topmargin-sm nobottommargin"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Go To Top
+    ============================================= -->
+    <div id="gotoTop" class="icon-angle-up"></div>
+    <!-- External JavaScripts
+    ============================================= -->
+    <script src="../../js/jquery.js"></script>
+    <script src="../../js/plugins.js"></script>
+    <!-- Bootstrap Select Plugin -->
+    <script src="../../js/components/bs-select.js"></script>
+    <!-- Footer Scripts
+    ============================================= -->
+    <script src="../../js/functions.js"></script>
+    <!-- Star Rating Plugin -->
+    <script src="../../js/components/bs-select.js"></script>
+
+</body>
+</html>
