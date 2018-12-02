@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+<Project Sdk="Microsoft.NET.Sdk.Web" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
@@ -6,18 +6,110 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Data\Migrations\20181101152256_FixDentistIdReservation.cs" />
-    <Compile Remove="Data\Migrations\20181101152256_FixDentistIdReservation.Designer.cs" />
+    <Content Remove="Views\Patient\loggedOut.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Views\Dentist\index.cshtml" />
+    <None Include="Views\Patient\index.cshtml" />
+    <None Include="Views\Patient\loggedOut.cshtml" />
+    <None Include="wwwroot\FrontEnd\css\animate.css" />
+    <None Include="wwwroot\FrontEnd\css\bootstrap.css" />
+    <None Include="wwwroot\FrontEnd\css\calendar.css" />
+    <None Include="wwwroot\FrontEnd\css\components\bs-rating.css" />
+    <None Include="wwwroot\FrontEnd\css\components\bs-select.css" />
+    <None Include="wwwroot\FrontEnd\css\components\select-boxes.css" />
+    <None Include="wwwroot\FrontEnd\css\dark.css" />
+    <None Include="wwwroot\FrontEnd\css\font-icons.css" />
+    <None Include="wwwroot\FrontEnd\css\fonts\font-icons-snapchat.eot" />
+    <None Include="wwwroot\FrontEnd\css\fonts\font-icons-snapchat.svg" />
+    <None Include="wwwroot\FrontEnd\css\fonts\font-icons-snapchat.ttf" />
+    <None Include="wwwroot\FrontEnd\css\fonts\font-icons-snapchat.woff" />
+    <None Include="wwwroot\FrontEnd\css\fonts\font-icons.eot" />
+    <None Include="wwwroot\FrontEnd\css\fonts\font-icons.svg" />
+    <None Include="wwwroot\FrontEnd\css\fonts\font-icons.ttf" />
+    <None Include="wwwroot\FrontEnd\css\fonts\font-icons.woff" />
+    <None Include="wwwroot\FrontEnd\css\fonts\lined-icons.eot" />
+    <None Include="wwwroot\FrontEnd\css\fonts\lined-icons.svg" />
+    <None Include="wwwroot\FrontEnd\css\fonts\lined-icons.ttf" />
+    <None Include="wwwroot\FrontEnd\css\fonts\lined-icons.woff" />
+    <None Include="wwwroot\FrontEnd\css\fonts\Simple-Line-Icons.dev.svg" />
+    <None Include="wwwroot\FrontEnd\css\fonts\Simple-Line-Icons.eot" />
+    <None Include="wwwroot\FrontEnd\css\fonts\Simple-Line-Icons.svg" />
+    <None Include="wwwroot\FrontEnd\css\fonts\Simple-Line-Icons.ttf" />
+    <None Include="wwwroot\FrontEnd\css\fonts\Simple-Line-Icons.woff" />
+    <None Include="wwwroot\FrontEnd\css\magnific-popup.css" />
+    <None Include="wwwroot\FrontEnd\css\responsive.css" />
+    <None Include="wwwroot\FrontEnd\dentistStyle.css" />
+    <None Include="wwwroot\FrontEnd\images\1.jpg" />
+    <None Include="wwwroot\FrontEnd\images\2.jpg" />
+    <None Include="wwwroot\FrontEnd\images\3.jpg" />
+    <None Include="wwwroot\FrontEnd\images\bg1.jpg" />
+    <None Include="wwwroot\FrontEnd\images\bg10.jpg" />
+    <None Include="wwwroot\FrontEnd\images\bg8.jpg" />
+    <None Include="wwwroot\FrontEnd\images\business-care-chair-305566.jpg" />
+    <None Include="wwwroot\FrontEnd\images\business-care-chair-532786.jpg" />
+    <None Include="wwwroot\FrontEnd\images\care-chair-clean-305567.jpg" />
+    <None Include="wwwroot\FrontEnd\images\eventBackground.jpg" />
+    <None Include="wwwroot\FrontEnd\images\favicon\android-icon-144x144.png" />
+    <None Include="wwwroot\FrontEnd\images\favicon\android-icon-192x192.png" />
+    <None Include="wwwroot\FrontEnd\images\favicon\android-icon-36x36.png" />
+    <None Include="wwwroot\FrontEnd\images\favicon\android-icon-48x48.png" />
+    <None Include="wwwroot\FrontEnd\images\favicon\android-icon-72x72.png" />
+    <None Include="wwwroot\FrontEnd\images\favicon\android-icon-96x96.png" />
+    <None Include="wwwroot\FrontEnd\images\favicon\apple-icon-114x114.png" />
+    <None Include="wwwroot\FrontEnd\images\favicon\apple-icon-120x120.png" />
+    <None Include="wwwroot\FrontEnd\images\favicon\apple-icon-144x144.png" />
+    <None Include="wwwroot\FrontEnd\images\favicon\apple-icon-152x152.png" />
+    <None Include="wwwroot\FrontEnd\images\favicon\apple-icon-180x180.png" />
+    <None Include="wwwroot\FrontEnd\images\favicon\apple-icon-57x57.png" />
+    <None Include="wwwroot\FrontEnd\images\favicon\apple-icon-60x60.png" />
+    <None Include="wwwroot\FrontEnd\images\favicon\apple-icon-72x72.png" />
+    <None Include="wwwroot\FrontEnd\images\favicon\apple-icon-76x76.png" />
+    <None Include="wwwroot\FrontEnd\images\favicon\apple-icon-precomposed.png" />
+    <None Include="wwwroot\FrontEnd\images\favicon\apple-icon.png" />
+    <None Include="wwwroot\FrontEnd\images\favicon\browserconfig.xml" />
+    <None Include="wwwroot\FrontEnd\images\favicon\favicon-16x16.png" />
+    <None Include="wwwroot\FrontEnd\images\favicon\favicon-32x32.png" />
+    <None Include="wwwroot\FrontEnd\images\favicon\favicon-96x96.png" />
+    <None Include="wwwroot\FrontEnd\images\favicon\favicon.ico" />
+    <None Include="wwwroot\FrontEnd\images\favicon\ms-icon-144x144.png" />
+    <None Include="wwwroot\FrontEnd\images\favicon\ms-icon-150x150.png" />
+    <None Include="wwwroot\FrontEnd\images\favicon\ms-icon-310x310.png" />
+    <None Include="wwwroot\FrontEnd\images\favicon\ms-icon-70x70.png" />
+    <None Include="wwwroot\FrontEnd\images\firstLogInBackground.jpg" />
+    <None Include="wwwroot\FrontEnd\images\forgottenPassBackground.jpg" />
+    <None Include="wwwroot\FrontEnd\images\genericDentistImage.jpg" />
+    <None Include="wwwroot\FrontEnd\images\homepageBackground.jpg" />
+    <None Include="wwwroot\FrontEnd\images\icons\female-dentist.png" />
+    <None Include="wwwroot\FrontEnd\images\icons\female-user.png" />
+    <None Include="wwwroot\FrontEnd\images\icons\male-dentist.png" />
+    <None Include="wwwroot\FrontEnd\images\icons\male-user.png" />
+    <None Include="wwwroot\FrontEnd\images\icons\molar-inside-a-shield-green.png" />
+    <None Include="wwwroot\FrontEnd\images\icons\molar-inside-a-shield-orange.png" />
+    <None Include="wwwroot\FrontEnd\images\icons\molar-inside-a-shield.png" />
+    <None Include="wwwroot\FrontEnd\images\icons\molar-inside-a-shield.svg" />
+    <None Include="wwwroot\FrontEnd\images\icons\submenu.png" />
+    <None Include="wwwroot\FrontEnd\images\logOutBackground.jpg" />
+    <None Include="wwwroot\FrontEnd\images\registerBackground.jpg" />
+    <None Include="wwwroot\FrontEnd\inspiration\824bc335090143.56e944ab5d34c.jpg" />
+    <None Include="wwwroot\FrontEnd\inspiration\CUBE_dental_clinic_logo_final-02.jpg" />
+    <None Include="wwwroot\FrontEnd\js\components\bs-select.js" />
+    <None Include="wwwroot\FrontEnd\js\components\select-boxes.js" />
+    <None Include="wwwroot\FrontEnd\js\components\selectsplitter.js" />
+    <None Include="wwwroot\FrontEnd\js\components\star-rating.js" />
+    <None Include="wwwroot\FrontEnd\js\events-data.js" />
+    <None Include="wwwroot\FrontEnd\js\functions.js" />
+    <None Include="wwwroot\FrontEnd\js\jquery.calendario.js" />
+    <None Include="wwwroot\FrontEnd\js\jquery.js" />
+    <None Include="wwwroot\FrontEnd\js\plugins.js" />
+    <None Include="wwwroot\FrontEnd\style.css" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.5" PrivateAssets="All" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Views\Dentist\" />
   </ItemGroup>
 
 </Project>

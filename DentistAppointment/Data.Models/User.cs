@@ -17,10 +17,11 @@ namespace DentistAppointment.Data.Models
         public long HealthCard { get; set; }
         public long EGN { get; set; }
         [ForeignKey("DentistID")]
-        public int DentistId { get; set; }
+        public int? DentistId { get; set; }
         public Dentist Dentist { get; set; }
         public List<Review> Reviews { get; set; }
         public List<Reservation> Reservations { get; set; }
+        [InverseProperty("Blacklisted")]
         public List<Blacklist> Blacklist { get; set; }
         public List<Comment> Comments { get; set; }
     }
