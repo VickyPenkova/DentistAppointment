@@ -290,3 +290,5 @@ __pycache__/
 # Ignoring bin and obj folders
 bin
 obj
+DentistAppointment/obj/
+DentistAppointment/bin/
