@@ -7,5 +7,6 @@ namespace DentistAppointment.Services.Abstraction
 {
     interface IUsersService
     {
+
     }
 }

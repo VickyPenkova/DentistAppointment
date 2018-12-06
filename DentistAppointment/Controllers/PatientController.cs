@@ -5,7 +5,7 @@ using System.Diagnostics;
 
 namespace DentistAppointment.Controllers
 {
-    //[Authorize]
+    [Authorize]
     public class PatientController:Controller
     {
         // Default page fot patient log in
