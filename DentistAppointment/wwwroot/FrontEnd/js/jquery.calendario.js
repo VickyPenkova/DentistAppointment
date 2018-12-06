@@ -8,7 +8,7 @@
  * Copyright 2012, Codrops
  * http://www.codrops.com
  */
-$( document ).ready(function() {
+$( document ).ready(function() {  
     var cal = $( '#calendar' ).calendario( {
         onDayClick : function( $el, $contentEl, dateProperties ) {
 

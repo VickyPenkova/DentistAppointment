@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+    <head>
+
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+        <meta name="author" content="" />
+
+        <!-- Stylesheets
+============================================= -->
+        <link href="https://fonts.googleapis.com/css?family=Lato:300,400,400i,700|Raleway:300,400,500,600,700|Crete+Round:400i" rel="stylesheet" type="text/css" />
+        <link rel="stylesheet" href="../../css/bootstrap.css" type="text/css" />
+        <link rel="stylesheet" href="../../dentistStyle.css" type="text/css" />
+        <link rel="stylesheet" href="../../css/font-icons.css" type="text/css" />
+        <link rel="stylesheet" href="../../css/animate.css" type="text/css" />
+
+        <link rel="stylesheet" href="../../css/calendarDentist.css" type="text/css" />
+
+        <link rel="stylesheet" href="../../css/responsive.css" type="text/css" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+        <!-- Document Title
+============================================= -->
+        <title>Evets</title>
+
+        <!-- Favicon
+============================================= -->
+
+        <link rel="apple-touch-icon" sizes="57x57" href="../../images/favicon/apple-icon-57x57.png">
+        <link rel="apple-touch-icon" sizes="60x60" href="../../images/favicon/apple-icon-60x60.png">
+        <link rel="apple-touch-icon" sizes="72x72" href="../../images/favicon/apple-icon-72x72.png">
+        <link rel="apple-touch-icon" sizes="76x76" href="../../images/favicon/apple-icon-76x76.png">
+        <link rel="apple-touch-icon" sizes="114x114" href="../../images/favicon/apple-icon-114x114.png">
+        <link rel="apple-touch-icon" sizes="120x120" href="../../images/favicon/apple-icon-120x120.png">
+        <link rel="apple-touch-icon" sizes="144x144" href="../../images/favicon/apple-icon-144x144.png">
+        <link rel="apple-touch-icon" sizes="152x152" href="../../images/favicon/apple-icon-152x152.png">
+        <link rel="apple-touch-icon" sizes="180x180" href="../../images/favicon/apple-icon-180x180.png">
+        <link rel="icon" type="image/png" sizes="192x192"  href="../../images/favicon/android-icon-192x192.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="../../images/favicon/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="96x96" href="../../images/favicon/favicon-96x96.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="../../images/favicon/favicon-16x16.png">
+        <meta name="msapplication-TileColor" content="#ffffff">
+        <meta name="msapplication-TileImage" content="../../images/favicon/ms-icon-144x144.png">
+        <meta name="theme-color" content="#ffffff">
+    </head>
+
+    <body class="stretched sticky-responsive-menu">
+
+        <!-- Document Wrapper
+============================================= -->
+        <div id="wrapper" class="clearfix light-background">
+
+            <!-- Header
+============================================= -->
+            <header id="header">
+
+                <div id="header-wrap">
+
+                    <div class="container clearfix">
+
+                        <div id="primary-menu-trigger"><i class="icon-reorder"></i></div>
+
+                        <!-- Logo
+============================================= -->
+                        <div id="logo">
+                            <a href="../Dentist/dentistHomePage.html" class="standard-logo" data-dark-logo="../../images/icons/molar-inside-a-shield-orange.png"><img src="../../images/icons/molar-inside-a-shield-orange.png" alt="Denstist Logo"></a>
+                            <a href="../Dentist/dentistHomePage.html"  class="retina-logo" data-dark-logo="../../images/icons/molar-inside-a-shield-orange.png"><img src="../../images/icons/molar-inside-a-shield-orange.png" alt="Denstist Logo"></a>
+                        </div>
+                        <!-- #logo end -->
+
+                        <!-- Primary Navigation
+============================================= -->
+                        <nav id="primary-menu">
+
+                            <ul>
+                                <li class="current"><a href="../Dentist/dentistHomePage.html"><div>My Profile</div></a>
+                                </li>
+                                <li class="current"><a href="../Dentist/dentistFindAPatient.html"><div>Find a Patient</div></a>
+                                </li>
+                                <li class="accent-background"><a href="../Dentist/dentistEvents.html">Events</a></li>
+                                <li class="current"><a href="../Dentist/dentistAppointments.html"><div>My Appointments</div></a>
+                                </li>
+                                <li class="current"><a href="../Dentist/dentistDocumentManipulation.html"><div>Medical Manipulations History</div></a>
+                                </li>
+                                <li class="current"><a href="loggedOut.html"><div><i class="icon-line2-logout"></i>Log Out</div></a>
+                                </li>
+                            </ul>
+
+                        </nav><!-- #primary-menu end -->
+
+                    </div>
+
+                </div>
+
+            </header><!-- #header end -->
+
+            <!-- Content
+============================================= -->
+
+            <section id="content">
+
+                <div class="content-wrap">
+
+                    <div class="parallax header-stick bottommargin-lg" style="padding: 60px 0; background-image: url('../../images/dentistCalendar.jpg'); height: auto;" data-bottom-top="background-position:0px 0px;" data-top-bottom="background-position:0px -500px;">
+
+                        <div class="container clearfix">
+
+                            <div class="events-calendar">
+                                <div class="events-calendar-header clearfix">
+                                    <h2 class="light-text">Events Overview</h2>
+                                    <h3 class="calendar-month-year light-text">
+                                        <span id="calendar-month" class="calendar-month light-text"></span>
+                                        <span id="calendar-year" class="calendar-year light-text"></span>
+                                        <nav>
+                                            <span id="calendar-prev" class="calendar-prev"><i class="icon-chevron-left"></i></span>
+                                            <span id="calendar-next" class="calendar-next"><i class="icon-chevron-right"></i></span>
+                                            <span id="calendar-current" class="calendar-current" title="Got to current date"><i class="icon-reload"></i></span>
+                                        </nav>
+                                    </h3>
+                                </div>
+                                <div id="calendar" class="fc-calendar-container"></div>
+                            </div>
+
+
+                        </div>
+
+                    </div>
+
+                    <div class="container clearfix">
+
+                        <div id="timeTable">
+                            <h5>Date: <span id="selectedDate">Text</span></h5>
+                            <h5>Time Table</h5>
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Hours</th>
+                                        <th>Availability</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>8:00-8:30</td>
+                                        <td>Name Of Patient</td>
+                                        <td>
+                                            <button class="btn accent-background light-text aviableBtn" data-toggle="modal" data-target=".bs-example-modal-sm"><i class="icon-line-circle-cross"></i><span> Cancel</span></button>
+
+                                            <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog modal-sm">
+                                                    <div class="modal-body">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h4 class="modal-title" id="myModalLabel">You canceled this appointment!</h4>
+                                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <p class="nobottommargin">The appointment you selected has been canceled!You can see all your upcomming appointments in the "My appointments section"!</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>8:30-9:00</td>
+                                        <td>Name Of Patient</td>
+                                        <td>
+                                            <button class="btn accent-background light-text aviableBtn" data-toggle="modal" data-target=".bs-example-modal-sm"><i class="icon-line-circle-cross"></i><span> Cancel</span></button>
+
+                                            <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog modal-sm">
+                                                    <div class="modal-body">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h4 class="modal-title" id="myModalLabel">You canceled this appointment!</h4>
+                                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <p class="nobottommargin">The appointment you selected has been canceled!You can see all your upcomming appointments in the "My appointments section"!</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div></td>
+                                    </tr>
+                                    <tr>
+                                        <td>9:00-9:30</td>
+                                        <td>Name Of Patient</td>
+                                        <td>
+                                            <button class="btn accent-background light-text aviableBtn" data-toggle="modal" data-target=".bs-example-modal-sm"><i class="icon-line-circle-cross"></i><span> Cancel</span></button>
+
+
+                                            <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog modal-sm">
+                                                    <div class="modal-body">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h4 class="modal-title" id="myModalLabel">You canceled this appointment!</h4>
+                                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <p class="nobottommargin">The appointment you selected has been canceled!You can see all your upcomming appointments in the "My appointments section"!</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div></td>
+                                    </tr>
+                                    <tr>
+                                        <td>9:30-10:00</td>
+                                        <td>Name Of Patient</td>
+                                        <td>
+                                            <button class="btn accent-background light-text aviableBtn" data-toggle="modal" data-target=".bs-example-modal-sm"><i class="icon-line-circle-cross"></i><span> Cancel</span></button>
+
+                                            <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog modal-sm">
+                                                    <div class="modal-body">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h4 class="modal-title" id="myModalLabel">You canceled this appointment!</h4>
+                                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <p class="nobottommargin">The appointment you selected has been canceled!You can see all your upcomming appointments in the "My appointments section"!</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div></td>
+                                    </tr>
+                                    <tr>
+                                        <td>10:00-10:30</td>
+                                        <td>Name Of Patient</td>
+                                        <td>
+                                            <button class="btn accent-background light-text aviableBtn" data-toggle="modal" data-target=".bs-example-modal-sm"><i class="icon-line-circle-cross"></i><span> Cancel</span></button>
+
+
+                                            <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog modal-sm">
+                                                    <div class="modal-body">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h4 class="modal-title" id="myModalLabel">You canceled this appointment!</h4>
+                                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <p class="nobottommargin">The appointment you selected has been canceled!You can see all your upcomming appointments in the "My appointments section"!</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div></td>
+                                    </tr>
+                                    <tr>
+                                        <td>10:30-11:00</td>
+                                        <td></td>
+                                        <td><button class="btn button-green light-text aviableBtn" ><i class="icon-line-play"></i><span>Aviable</span></button>
+
+                                            <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog modal-sm">
+                                                    <div class="modal-body">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h4 class="modal-title" id="myModalLabel">You canceled this appointment!</h4>
+                                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <p class="nobottommargin">The appointment you selected has been canceled!You can see all your upcomming appointments in the "My appointments section"!</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+
+                        </div>
+
+                    </div>
+                    <div class="container clearfix">
+                        <div class="divider divider-center"><i class="icon-circle-blank"></i></div>
+                        <div class="center">
+
+                            <a class="button button-3d button-black mt-4 mb-4 ml-0 accent-background" href="../../pages/Dentist/dentistAddEvent.html"><i class="icon-line-circle-plus"></i>Add Event</a>
+                        </div>
+
+
+                        <div class="divider divider-center"><i class="icon-circle-blank"></i></div>
+
+                        <h3>Upcoming Events</h3>
+
+                        <div id="posts" class="events small-thumbs">
+
+                            <div class="entry clearfix">
+                                <div class="entry-image">
+                                    <img src="../../images/forgottenPassBackground.jpg" alt="Inventore voluptates velit totam ipsa tenetur">
+                                    <div class="entry-date">10<span>Apr</span></div>
+                                </div>
+                                <div class="entry-c">
+                                    <div class="entry-title">
+                                        <h2><a href="#">Event Title</a></h2>
+                                    </div>
+                                    <ul class="entry-meta clearfix">
+                                        <li><a href="#"><i class="icon-time"></i> 11:00 - 19:00</a></li>
+                                        <li><a href="#"><i class="icon-map-marker2"></i> Melbourne, Australia</a></li>
+                                    </ul>
+                                    <div class="entry-content">
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione, voluptatem, dolorem animi nisi autem blanditiis enim culpa reiciendis et explicabo tenetur voluptate rerum molestiae eaque possimus exercitationem eligendi fuga.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="entry clearfix">
+                                <div class="entry-image">
+                                    <img src="../../images/forgottenPassBackground.jpg" alt="Inventore voluptates velit totam ipsa tenetur">
+                                    <div class="entry-date">10<span>Apr</span></div>
+                                </div>
+                                <div class="entry-c">
+                                    <div class="entry-title">
+                                        <h2><a href="#">Event Title</a></h2>
+                                    </div>
+                                    <ul class="entry-meta clearfix">
+                                        <li><a href="#"><i class="icon-time"></i> 11:00 - 19:00</a></li>
+                                        <li><a href="#"><i class="icon-map-marker2"></i> Melbourne, Australia</a></li>
+                                    </ul>
+                                    <div class="entry-content">
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione, voluptatem, dolorem animi nisi autem blanditiis enim culpa reiciendis et explicabo tenetur voluptate rerum molestiae eaque possimus exercitationem eligendi fuga.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="entry clearfix">
+                                <div class="entry-image">
+                                    <img src="../../images/forgottenPassBackground.jpg" alt="Inventore voluptates velit totam ipsa tenetur">
+                                    <div class="entry-date">10<span>Apr</span></div>
+                                </div>
+                                <div class="entry-c">
+                                    <div class="entry-title">
+                                        <h2><a href="#">Event Title</a></h2>
+                                    </div>
+                                    <ul class="entry-meta clearfix">
+                                        <li><a href="#"><i class="icon-time"></i> 11:00 - 19:00</a></li>
+                                        <li><a href="#"><i class="icon-map-marker2"></i> Melbourne, Australia</a></li>
+                                    </ul>
+                                    <div class="entry-content">
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione, voluptatem, dolorem animi nisi autem blanditiis enim culpa reiciendis et explicabo tenetur voluptate rerum molestiae eaque possimus exercitationem eligendi fuga.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="entry clearfix">
+                                <div class="entry-image">
+                                    <img src="../../images/forgottenPassBackground.jpg" alt="Inventore voluptates velit totam ipsa tenetur">
+                                    <div class="entry-date">10<span>Apr</span></div>
+                                </div>
+                                <div class="entry-c">
+                                    <div class="entry-title">
+                                        <h2><a href="#">Event Title</a></h2>
+                                    </div>
+                                    <ul class="entry-meta clearfix">
+                                        <li><a href="#"><i class="icon-time"></i> 11:00 - 19:00</a></li>
+                                        <li><a href="#"><i class="icon-map-marker2"></i> Melbourne, Australia</a></li>
+                                    </ul>
+                                    <div class="entry-content">
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione, voluptatem, dolorem animi nisi autem blanditiis enim culpa reiciendis et explicabo tenetur voluptate rerum molestiae eaque possimus exercitationem eligendi fuga.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section><!-- #content end -->
+
+        </div><!-- #wrapper end -->
+        <!-- Go To Top
+============================================= -->
+        <div id="gotoTop" class="icon-angle-up"></div>
+
+        <!-- External JavaScripts
+============================================= -->
+        <script src="../../js/jquery.js"></script>
+        <script src="../../js/plugins.js"></script>
+
+        <script src="../../js/events-data.js"></script>
+        <script src="../../js/jquery.calendarioDentist.js"></script>
+
+        <!-- Footer Scripts
+============================================= -->
+        <script src="../../js/functions.js"></script>
+
+
+
+    </body>
+</html>

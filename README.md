@@ -9,5 +9,13 @@ Project setup:
 6. Build Solution
 7. Updata-Database
 
+Data Seed:
+ For'Update-Database' you should:
+1. 'git pull origin develop'
+2. Build solution
+3. For'Start Up Project' -> "DataSeed" and for 'DefaultProject' -> 'DentistAppointment'
+4. 'PM> Update-Database'
+5. Run project 'DataSeed'
+
 
 
