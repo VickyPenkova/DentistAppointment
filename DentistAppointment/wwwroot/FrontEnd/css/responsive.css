@@ -1777,3 +1777,16 @@ Retina CSS
     }
 
 }
+@media (max-width: 426px) {
+    .split{
+        
+        height:50% ;
+        width:100% ;
+    
+    }
+    .right{
+        top:50%;
+        
+    }
+    
+}
