@@ -70,7 +70,7 @@ namespace DentistAppointment
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Patient}/{action=Index}/{id?}");
+                    template: "{controller=Patient}/{action=mainEntrance}/{id?}");
             });
         }
     }
