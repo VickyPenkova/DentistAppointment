@@ -1,122 +1,96 @@
-﻿@{Layout = null;}
+﻿@model LogInViewModel
+
 <!DOCTYPE html>
 <html dir="ltr" lang="en-US">
 <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="author" content="SemiColonWeb" />
+   
+    <!-- Favicon
+    ============================================= -->
+    <link rel="apple-touch-icon" sizes="57x57" href="~/FrontEnd/images/favicon/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="~/FrontEnd/images/favicon/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="~/FrontEnd/images/favicon/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="~/FrontEnd/images/favicon/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="~/FrontEnd/images/favicon/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="~/FrontEnd/images/favicon/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="~/FrontEnd/images/favicon/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="~/FrontEnd/images/favicon/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="~/FrontEnd/images/favicon/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="~/FrontEnd/images/favicon/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="~/FrontEnd/images/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="~/FrontEnd/images/favicon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="~/FrontEnd/images/favicon/favicon-16x16.png">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="~/FrontEnd/images/favicon/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
 
-	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-	<meta name="author" content="SemiColonWeb" />
-
-	<!-- Stylesheets
-	============================================= -->
-	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,400i,700|Raleway:300,400,500,600,700|Crete+Round:400i" rel="stylesheet"
-		  type="text/css" />
-	<link rel="stylesheet" href="~/FrontEnd/css/bootstrap.css" type="text/css" />
-	<link rel="stylesheet" href="~/FrontEnd/style.css" type="text/css" />
-	<link rel="stylesheet" href="~/FrontEnd/css/animate.css" type="text/css" />
-
-	<link rel="stylesheet" href="~/FrontEnd/css/responsive.css" type="text/css" />
-	<meta name="viewport" content="width=device-width, initial-scale=1" />
-
-	<!-- Favicon
-	============================================= -->
-
-	<link rel="apple-touch-icon" sizes="57x57" href="~/FrontEnd/images/favicon/apple-icon-57x57.png">
-	<link rel="apple-touch-icon" sizes="60x60" href="~/FrontEnd/images/favicon/apple-icon-60x60.png">
-	<link rel="apple-touch-icon" sizes="72x72" href="~/FrontEnd/images/favicon/apple-icon-72x72.png">
-	<link rel="apple-touch-icon" sizes="76x76" href="~/FrontEnd/images/favicon/apple-icon-76x76.png">
-	<link rel="apple-touch-icon" sizes="114x114" href="~/FrontEnd/images/favicon/apple-icon-114x114.png">
-	<link rel="apple-touch-icon" sizes="120x120" href="~/FrontEnd/images/favicon/apple-icon-120x120.png">
-	<link rel="apple-touch-icon" sizes="144x144" href="~/FrontEnd/images/favicon/apple-icon-144x144.png">
-	<link rel="apple-touch-icon" sizes="152x152" href="~/FrontEnd/images/favicon/apple-icon-152x152.png">
-	<link rel="apple-touch-icon" sizes="180x180" href="~/FrontEnd/images/favicon/apple-icon-180x180.png">
-	<link rel="icon" type="image/png" sizes="192x192" href="~/FrontEnd/images/favicon/android-icon-192x192.png">
-	<link rel="icon" type="image/png" sizes="32x32" href="~/FrontEnd/images/favicon/favicon-32x32.png">
-	<link rel="icon" type="image/png" sizes="96x96" href="~/FrontEnd/images/favicon/favicon-96x96.png">
-	<link rel="icon" type="image/png" sizes="16x16" href="~/FrontEnd/images/favicon/favicon-16x16.png">
-	<meta name="msapplication-TileColor" content="#ffffff">
-	<meta name="msapplication-TileImage" content="~/FrontEnd/images/favicon/ms-icon-144x144.png">
-	<meta name="theme-color" content="#ffffff">
-
-
-	<!-- Document Title
-	============================================= -->
-	<title>Client Log In</title>
-
+    <!-- Document Title
+    ============================================= -->
+    <title>Client Log In</title>
 </head>
-
-    <body class="stretched">
-
-        <!-- Document Wrapper
-============================================= -->
-        <div id="wrapper" class="clearfix">
-
-            <!-- Content
-============================================= -->
-            <section id="content">
-
-                <div class="content-wrap nopadding">
-
-                    <div class="section nopadding nomargin" style="width: 100%; height: 100%; position: absolute; left: 0; top: 0; 
+<body class="stretched">
+    <!-- Document Wrapper
+    ============================================= -->
+    <div id="wrapper" class="clearfix">
+        <!-- Content
+        ============================================= -->
+        <section id="content">
+            <div class="content-wrap nopadding">
+                <div class="section nopadding nomargin" style="width: 100%; height: 100%; position: absolute; left: 0; top: 0;
 						background: url('/FrontEnd/images/homepageBackground.jpg') center center no-repeat; background-size: cover;"></div>
+                <div class="section nobg full-screen nopadding nomargin">
+                    <div class="container-fluid vertical-middle divcenter clearfix">
+                        <div class="center">
+                            <a href="/Patient/index"><img src="~/FrontEnd/images/icons/molar-inside-a-shield.png" alt="Dentist system logo"></a>
+                        </div>
+                        <div class="card divcenter noradius noborder" style="max-width: 400px; background-color: rgba(255,255,255,0.93);">
+                            <div class="card-body" style="padding: 40px;">
+                                <form asp-controller="Patient" asp-action="index" asp-route-returnurl="@ViewData["ReturnUrl"]" id="login-form" name="login-form" class="nobottommargin" method="post">
+                                    <h3>Login to your Account</h3>
+                                    <div asp-validation-summary="All" class="text-danger" class="col_full">
+                                        <label asp-for="Email">Email:</label>
+                                        <input asp-for="Email" type="email" value="" class="form-control" />
+                                        <span asp-validation-for="Email" class="text-danger"></span>
+                                    </div>
 
-                    <div class="section nobg full-screen nopadding nomargin">
-                        <div class="container-fluid vertical-middle divcenter clearfix">
+                                    <div asp-validation-summary="All" class="text-danger" class="col_full">
+                                        <label asp-for="Password">Password:</label>
+                                        <input asp-for="Password" type="password" value="" class="form-control" />
+                                        <span asp-validation-for="Password" class="text-danger"></span>
+                                    </div>
+                                    <div class="col_full nobottommargin">
+                                        <a class="button button-3d button-black col-12 center"
+                                           href="/Patient/patientOnFirstLogIn">Login</a>
+                                        <a class="button button-3d button-black col-12 center"
+                                           href="/Patient/registerPatient">Register</a>
 
-                            <div class="center">
-                                <a href="index.html"><img src="~/FrontEnd/images/icons/molar-inside-a-shield.png" alt="Dentist system logo"></a>
+                                    </div>
+                                    <div class="col_full nobottommargin">
+                                        <a href="/Patient/forgottenPass" class="fright">Forgot Password?</a>
+                                    </div>
+                                    <input name="__RequestVerificationToken" type="hidden" value="<removed for brevity>" />
+                                </form>
+                                @section Scripts {
+                                    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+                                }
                             </div>
-
-                            <div class="card divcenter noradius noborder" style="max-width: 400px; background-color: rgba(255,255,255,0.93);">
-                                <div class="card-body" style="padding: 40px;">
-                                    <form id="login-form" name="login-form" class="nobottommargin" action="#" method="post">
-                                        <h3>Login to your Account</h3>
-
-                                        <div class="col_full">
-                                            <label for="login-form-username">Email:</label>
-                                            <input type="text" id="login-form-email" name="login-form-email" value="" class="form-control" />
-                                        </div>
-
-                                        <div class="col_full">
-                                            <label for="login-form-password">Password:</label>
-                                            <input type="password" id="login-form-password" name="login-form-password" value="" class="form-control" />
-                                        </div>
-
-                                        <div class="col_full nobottommargin">
-                                             <a class="button button-3d button-black col-12 center" 
-												href="/Patient/patientOnFirstLogIn/patientOnFirstLogIn.html">Login</a>
-                                           <a class="button button-3d button-black col-12 center" 
-											  href="/Patient/registerPatient/registerPatient.html">Register</a>
-                                       
-                                        </div>
-                                        <div class="col_full nobottommargin">
-                                            <a href="/Patient/forgottenPass/forgottenPass.html" class="fright">Forgot Password?</a>
-                                        </div>
-
-                                    </form>
-                                </div>
-                            </div>
-
                         </div>
                     </div>
-
                 </div>
+            </div>
+        </section><!-- #content end -->
+    </div><!-- #wrapper end -->
+    <!-- Go To Top
+    ============================================= -->
+    <div id="gotoTop" class="icon-angle-up"></div>
+    <!-- External JavaScripts
+    ============================================= -->
+    <script src="~/FrontEnd/js/jquery.js"></script>
+    <script src="~/FrontEnd/js/plugins.js"></script>
+    <!-- Footer Scripts
+    ============================================= -->
+    <script src="~/FrontEnd/js/functions.js"></script>
 
-            </section><!-- #content end -->
-
-        </div><!-- #wrapper end -->
-
-        <!-- Go To Top
-============================================= -->
-        <div id="gotoTop" class="icon-angle-up"></div>
-
-        <!-- External JavaScripts
-============================================= -->
-        <script src="~/FrontEnd/js/jquery.js"></script>
-        <script src="~/FrontEnd/js/plugins.js"></script>
-
-        <!-- Footer Scripts
-============================================= -->
-        <script src="~/FrontEnd/js/functions.js"></script>
-
-    </body>
+</body>
 </html>

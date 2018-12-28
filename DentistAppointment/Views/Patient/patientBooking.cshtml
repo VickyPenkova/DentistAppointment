@@ -1,23 +1,8 @@
-﻿@{
-    Layout = null;//removes the defaut design of asp.net core
-}
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html dir="ltr" lang="en-US">
 <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <meta name="author" content="DinBot Solutions" />
-    <!-- Stylesheets
-    ============================================= -->
-    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,400i,700|Raleway:300,400,500,600,700|Crete+Round:400i" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" href="~/FrontEnd/css/bootstrap.css" type="text/css" />
-    <link rel="stylesheet" href="~/FrontEnd/style.css" type="text/css" />
-    <link rel="stylesheet" href="~/FrontEnd/css/font-icons.css" type="text/css" />
-    <link rel="stylesheet" href="~/FrontEnd/css/animate.css" type="text/css" />
-
-    <link rel="stylesheet" href="~/FrontEnd/css/calendar.css" type="text/css" />
-
-    <link rel="stylesheet" href="~/FrontEnd/css/responsive.css" type="text/css" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <!-- Document Title
     ============================================= -->
     <title>Book Appointment</title>
@@ -54,11 +39,11 @@
                     ============================================= -->
 
                     <div id="logo">
-                        <a href="patientHomePage/patientHomePage.cshtml" class="standard-logo" 
+                        <a href="/Patient/patientHomePage" class="standard-logo" 
 						   data-dark-logo="~/FrontEnd/images/icons/molar-inside-a-shield-green.png">
 							<img src="~/FrontEnd/images/icons/molar-inside-a-shield-green.png" alt="Denstist Logo">
 						</a>
-                        <a href="patientHomePage/patientHomePage.cshtml" class="retina-logo" 
+                        <a href="/Patient/patientHomePage" class="retina-logo" 
 						   data-dark-logo="~/FrontEnd/images/icons/molar-inside-a-shield-green.png">
 						<img src="~/FrontEnd/images/icons/molar-inside-a-shield-green.png" alt="Denstist Logo">
 						</a>
@@ -69,19 +54,19 @@
                     <nav id="primary-menu">
                         <ul>
                             <li class="current">
-                                <a href="patientHomePage/patientHomePage.cshtml"><div>My Profile</div></a>
+                                <a href="/Patient/patientHomePage"><div>My Profile</div></a>
                             </li>
                             <li class="accent-background">
-                                <a href="patientFindDoctor/patientFindDoctor.cshtml"><div>Find a Doctor</div></a>
+                                <a href="/Patient/patientFindDoctor"><div>Find a Doctor</div></a>
                             </li>
                             <li class="current">
-                                <a href="patientAppointments/patientAppointments.cshtml"><div>My Appointments</div></a>
+                                <a href="/Patient/patientAppointments"><div>My Appointments</div></a>
                             </li>
                             <li class="current">
-                                <a href="patientMedicalManipulationsHistory/patientMedicalManipulationsHistory.cshtml"><div>Medical Manipulations History</div></a>
+                                <a href="/Patient/patientMedicalManipulationsHistory"><div>Medical Manipulations History</div></a>
                             </li>
                             <li class="current">
-                                <a href="loggedOut/loggedOut.cshtml"><div><i class="icon-line2-logout"></i>Log Out</div></a>
+                                <a href="/Patient/loggedOut"><div><i class="icon-line2-logout"></i>Log Out</div></a>
                             </li>
                         </ul>
                     </nav><!-- #primary-menu end -->
@@ -93,7 +78,7 @@
     ============================================= -->
     <section id="content">
         <div class="content-wrap">
-            <div class="parallax header-stick bottommargin-lg" style="padding: 60px 0; background-image: url('/FrontEnd/images/eventBackground.jpg'); height: auto;" data-bottom-top="background-position:0px 0px;" data-top-bottom="background-position:0px -500px;">
+            <div class="parallax header-stick bottommargin-lg" style="padding: 60px 0; background-image: url('~/FrontEnd/images/eventBackground.jpg'); height: auto;" data-bottom-top="background-position:0px 0px;" data-top-bottom="background-position:0px -500px;">
                 <div class="container clearfix">
                     <div class="events-calendar">
                         <div class="events-calendar-header clearfix">

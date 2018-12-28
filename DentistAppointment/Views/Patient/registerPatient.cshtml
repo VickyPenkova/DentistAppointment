@@ -1,22 +1,10 @@
 ﻿@model RegisterViewModel
-@{
-    Layout = null;//removes the defaut design of asp.net core
-}
 
 <!DOCTYPE html>
 <html dir="ltr" lang="en-US">
 <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <meta name="author" content="SemiColonWeb" />
-    <!-- Stylesheets
-    ============================================= -->
-    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,400i,700|Raleway:300,400,500,600,700|Crete+Round:400i" rel="stylesheet" 
-		  type="text/css" />
-    <link rel="stylesheet" href="~/FrontEnd/css/bootstrap.css" type="text/css" />
-    <link rel="stylesheet" href="~/FrontEnd/style.css" type="text/css" />
-    <link rel="stylesheet" href="~/FrontEnd/css/animate.css" type="text/css" />
-    <link rel="stylesheet" href="~/FrontEnd/css/responsive.css" type="text/css" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <!-- Favicon
     ============================================= -->
     <link rel="apple-touch-icon" sizes="57x57" href="~/FrontEnd/images/favicon/apple-icon-57x57.png">
@@ -57,24 +45,28 @@
                         </div>
                         <div class="card divcenter noradius noborder" style="max-width: 400px; background-color: rgba(255,255,255,0.93);">
                             <div class="card-body" style="padding: 40px;">
-                                <form id="login-form" name="login-form" class="nobottommargin" action="#" method="post">
+                                <form asp-controller="Patient" asp-action="registerPatient" asp-route-returnurl="@ViewData["ReturnUrl"]" id="login-form" name="login-form" class="nobottommargin" method="post">
                                     <div id="formWrapper">
                                         <h3>Create your account!</h3>
-                                        <div class="col_full">
-                                            <label>First Name:</label>
-                                            <input type="text" value="" class="form-control" />
+                                        <div asp-validation-summary="All" class="text-danger" class="col_full">
+                                            <label asp-for="FirstName">First Name:</label>
+                                            <input asp-for="FirstName" type="text" value="" class="form-control" />
+                                            <span asp-validation-for="FirstName" class="text-danger"></span>
+                                            </div>
+                                        <div asp-validation-summary="All" class="text-danger" class="col_full">
+                                            <label asp-for="LastName">Last Name:</label>
+                                            <input asp-for="LastName" type="text" value="" class="form-control" />
+                                            <span asp-validation-for="LastName" class="text-danger"></span>
                                         </div>
-                                        <div class="col_full">
-                                            <label>Last Name:</label>
-                                            <input type="text" value="" class="form-control" />
+                                        <div asp-validation-summary="All" class="text-danger" class="col_full">
+                                            <label asp-for="Email">Email:</label>
+                                            <input asp-for="Email" type="email" value="" class="form-control" />
+                                            <span asp-validation-for="Email" class="text-danger"></span>
                                         </div>
-                                        <div class="col_full">
-                                            <label>Email:</label>
-                                            <input type="email" value="" class="form-control" />
-                                        </div>
-                                        <div class="col_full">
-                                            <label>Password:</label>
-                                            <input type="password" value="" class="form-control" />
+                                        <div asp-validation-summary="All" class="text-danger" class="col_full">
+                                            <label asp-for="Password">Password:</label>
+                                            <input asp-for="Password" type="password" value="" class="form-control" />
+                                            <span asp-validation-for="Password" class="text-danger"></span>
                                         </div>
                                     </div>
                                     <div class="center">
@@ -82,10 +74,15 @@
                                     </div>
                                     <div class="col_full nobottommargin">
                                         <a class="button button-3d button-black col-12 center" id="btnRegister">Register</a>
-										<a class="button button-3d button-black col-12 center" href="/Patient/" id="btnToHome" 
-										   style="display:none;">To the home page</a>
+                                        <a class="button button-3d button-black col-12 center" href="/Patient/" id="btnToHome"
+                                           style="display:none;">To the home page</a>
                                     </div>
+                                    <input name="__RequestVerificationToken" type="hidden" value="<removed for brevity>" />
                                 </form>
+                               
+                                @section Scripts {
+                                    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+                                }
                             </div>
                         </div>
                     </div>
