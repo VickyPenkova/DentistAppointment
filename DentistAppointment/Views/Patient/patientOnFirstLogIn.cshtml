@@ -1,23 +1,11 @@
-﻿@{
-    Layout = null;//removes the defaut design of asp.net core
-}
+﻿@model PatientFirstLogInViewModel
+
 <!DOCTYPE html>
 <html dir="ltr" lang="en-US">
 <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <meta name="author" content="SemiColonWeb" />
-    <!-- Stylesheets
-    ============================================= -->
-    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,400i,700|Raleway:300,400,500,600,700|Crete+Round:400i" 
-		  rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" href="~/FrontEnd/css/bootstrap.css" type="text/css" />
-    <link rel="stylesheet" href="~/FrontEnd/style.css" type="text/css" />
-    <link rel="stylesheet" href="~/FrontEnd/css/animate.css" type="text/css" />
 
-    <!-- Bootstrap Select CSS -->
-    <link rel="stylesheet" href="~/FrontEnd/css/components/bs-select.css" type="text/css" />
-    <link rel="stylesheet" href="~/FrontEnd/css/responsive.css" type="text/css" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <!-- Favicon
     ============================================= -->
     <link rel="apple-touch-icon" sizes="57x57" href="~/FrontEnd/images/favicon/apple-icon-57x57.png">
@@ -36,7 +24,6 @@
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="~/FrontEnd/images/favicon/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
-
     <!-- Document Title
     ============================================= -->
     <title>Some additional information</title>
@@ -49,40 +36,45 @@
         ============================================= -->
         <section id="content">
             <div class="content-wrap nopadding">
-                <div class="section nopadding nomargin" style="width: 100%; height: 100%; position: absolute; left: 0; top: 0; 
+                <div class="section nopadding nomargin" style="width: 100%; height: 100%; position: absolute; left: 0; top: 0;
 					background: url('/FrontEnd/images/forgottenPassBackground.jpg') center center no-repeat; background-size: cover;"></div>
                 <div class="section nobg full-screen nopadding nomargin">
                     <div class="container-fluid vertical-middle divcenter clearfix">
                         <div class="center">
-                            <a href="/Patient/index.cshtml"><img src="~/FrontEnd/images/icons/molar-inside-a-shield.png" alt="Dentist system logo"></a>
+                            <a href="/Patient/index"><img src="~/FrontEnd/images/icons/molar-inside-a-shield.png" alt="Dentist system logo"></a>
                         </div>
                         <div class="card divcenter noradius noborder" style="max-width: 550px; background-color: rgba(255,255,255,0.93);">
                             <div class="card-body" style="padding: 40px;">
                                 <form id="login-form" name="login-form" class="nobottommargin" action="#" method="post">
                                     <div id="formWrapper">
                                         <h3>We would require some additional information to complete your registration!"</h3>
+                                        <div asp-validation-summary="All" class="text-danger"></div>
                                         <div class="col_full">
-                                            <label>Gender</label>
-                                            <select class="selectpicker col-12 " style="height: calc(2.25rem + 2px); 
+                                            <label asp-for="Gender">Gender</label>
+                                            <select class="selectpicker col-12 " style="height: calc(2.25rem + 2px);
 												border-radius: 3px; margin-bottom:10px;" title="Please choose">
                                                 <option>Male</option>
                                                 <option>Female</option>
                                                 <option>Other</option>
                                             </select>
-                                            <label>Unique citizenship number (EGN)</label>
-                                            <input type="text" value="" class="form-control" />
-                                            <label>Address</label>
-                                            <input type="text" value="" class="form-control" />
+                                            <label asp-for="EGN">Unique citizenship number (EGN)</label>
+                                            <input asp-for="EGN" type="text" value="" class="form-control" />
+                                            <span asp-validation-for="EGN" class="text-danger"></span>
+                                            <label asp-for="Address">Address</label>
+                                            <input asp-for="Address" type="text" value="" class="form-control" />
+                                            <span asp-validation-for="Address" class="text-danger"></span>
                                         </div>
                                     </div>
                                     <div class="center">
                                         <h3 id="message" class="text-success"></h3>
                                     </div>
                                     <div class="col_full nobottommargin">
+                                        <!--- <button type="submit" class="button button-3d button-black col-12 center" id="btnContinue">Continue</button>-->
                                         <a class="button button-3d button-black col-12 center" id="btnContinue">Continue</a>
                                         <a class="button button-3d button-black col-12 center"
-										   href="/Patient/patientHomePage/patientHomePage.cshtml" id="btnToHome" style="display:none;">
-											To your home page</a>
+                                           href="/Patient/patientHomePage" id="btnToHome" style="display:none;">
+                                            To your home page
+                                        </a>
                                     </div>
                                 </form>
                             </div>
@@ -104,7 +96,6 @@
     <script src="~/FrontEnd/js/functions.js"></script>
     <!-- Bootstrap Select Plugin -->
     <script src="~/FrontEnd/js/components/bs-select.js"></script>
-
     <!-- After a successfull data entry
     ============================================= -->
     <script>
@@ -121,3 +112,7 @@
     </script>
 </body>
 </html>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

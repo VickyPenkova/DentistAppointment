@@ -1,22 +1,9 @@
-﻿@{
-    Layout = null;//removes the defaut design of asp.net core
-}
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html dir="ltr" lang="en-US">
 <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <meta name="author" content="" />
-    <!-- Stylesheets
-    ============================================= -->
-    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,400i,700|Raleway:300,400,500,600,700|Crete+Round:400i" 
-		  rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" href="~/FrontEnd/css/bootstrap.css" type="text/css" />
-    <link rel="stylesheet" href="~/FrontEnd/style.css" type="text/css" />
-    <link rel="stylesheet" href="~/FrontEnd/css/font-icons.css" type="text/css" />
-    <link rel="stylesheet" href="~/FrontEnd/css/animate.css" type="text/css" />
-
-    <link rel="stylesheet" href="~/FrontEnd/css/responsive.css" type="text/css" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    
     <!-- Document Title
     ============================================= -->
     <title>Medical Manipulations</title>
@@ -52,11 +39,11 @@
                     <!-- Logo
                     ============================================= -->
                     <div id="logo">
-                        <a href="/Patient/patientHomePage/patientHomePage.cshtml" class="standard-logo" 
+                        <a href="/Patient/patientHomePage" class="standard-logo" 
 						   data-dark-logo="~/FrontEnd/images/icons/molar-inside-a-shield-green.png">
 							<img src="~/FrontEnd/images/icons/molar-inside-a-shield-green.png" alt="Denstist Logo">
 						</a>
-                        <a href="/Patient/patientHomePage/patientHomePage.cshtml" class="retina-logo" 
+                        <a href="/Patient/patientHomePage" class="retina-logo" 
 						   data-dark-logo="~/FrontEnd/images/icons/molar-inside-a-shield-green.png">
 							<img src="~/FrontEnd/images/icons/molar-inside-a-shield-green.png" alt="Denstist Logo">
 						</a>
@@ -67,21 +54,21 @@
                     <nav id="primary-menu">
                         <ul>
                             <li class="current">
-                                <a href="/Patient/patientHomePage/patientHomePage.cshtml"><div>My Profile</div></a>
+                                <a href="/Patient/patientHomePage"><div>My Profile</div></a>
                             </li>
                             <li class="current">
-                                <a href="/Patient/patientFindDoctor/patientFindDoctor.cshtml"><div>Find a Doctor</div></a>
+                                <a href="/Patient/patientFindDoctor"><div>Find a Doctor</div></a>
                             </li>
                             <li class="current">
-                                <a href="/Patient/patientAppointments/patientAppointments.cshtml"><div>My Appointments</div></a>
+                                <a href="/Patient/patientAppointments"><div>My Appointments</div></a>
                             </li>
                             <li class="accent-background">
-                                <a href="/Patient/patientMedicalManipulationsHistory/patientMedicalManipulationsHistory.cshtml">
+                                <a href="/Patient/patientMedicalManipulationsHistory">
 									<div>Medical Manipulations History</div>
 								</a>
                             </li>
                             <li class="current">
-                                <a href="/Patient/loggedOut/loggedOut.cshtml"><div><i class="icon-line2-logout"></i>Log Out</div></a>
+                                <a href="/Patient/loggedOut"><div><i class="icon-line2-logout"></i>Log Out</div></a>
                             </li>
                         </ul>
                     </nav><!-- #primary-menu end -->
@@ -112,7 +99,7 @@
                                 <td>8:00-8:30</td>
                                 <td>Doctor Doctor</td>
                                 <td>
-                                    <a href="/Patient/patientRateAppointment/patientRateAppointment.cshtml" id="submit" 
+                                    <a href="/Patient/patientRateAppointment" id="submit" 
 									   class="btn aviableBtn button-rounded m-0 accent-background light-text button-mini">
                                         <i class="icon-line-open"></i><span>Rate appointment</span>
                                     </a>
@@ -123,7 +110,7 @@
                                 <td>8:00-8:30</td>
                                 <td>Doctor Doctor</td>
                                 <td>
-                                    <a href="/Patient/patientRateAppointment/patientRateAppointment.cshtml" id="submit" 
+                                    <a href="/Patient/patientRateAppointment" id="submit" 
 									   class="btn aviableBtn button-rounded m-0 accent-background light-text button-mini">
                                         <i class="icon-line-open"></i><span>Rate appointment</span>
                                     </a>
@@ -134,7 +121,7 @@
                                 <td>8:00-8:30</td>
                                 <td>Doctor Doctor</td>
                                 <td>
-                                    <a href="/Patient/patientRateAppointment/patientRateAppointment.cshtml" id="submit" 
+                                    <a href="/Patient/patientRateAppointment" id="submit" 
 									   class="btn aviableBtn button-rounded m-0 accent-background light-text button-mini">
                                         <i class="icon-line-open"></i><span>Rate appointment</span>
                                     </a>
@@ -162,7 +149,7 @@
                                 <td>8:00-8:30</td>
                                 <td>Doctor Doctor</td>
                                 <td>
-                                    <a href="/Patient/patientCheckDocument/patientCheckDocument.cshtml" 
+                                    <a href="/Patient/patientCheckDocument" 
 									   class="button button-3d  button-small button-rounded button-dirtygreen">
 									<i class="icon-folder-check"></i> Check Manipulation Document</a>
                                 </td>
@@ -172,7 +159,7 @@
                                 <td>8:00-8:30</td>
                                 <td>Doctor Doctor</td>
                                 <td>
-                                    <a href="/Patient/patientCheckDocument/patientCheckDocument.cshtml" 
+                                    <a href="/Patient/patientCheckDocument" 
 									   class="button button-3d button-small button-rounded button-dirtygreen">
 									<i class="icon-folder-check"></i> Check Manipulation Document</a>
                                 </td>
@@ -182,7 +169,7 @@
                                 <td>8:00-8:30</td>
                                 <td>Doctor Doctor</td>
                                 <td>
-                                    <a href="/Patient/patientCheckDocument/patientCheckDocument.cshtml" class="button button-3d  button-small button-rounded button-dirtygreen"> <i class="icon-folder-check"></i> Check Manipulation Document</a>
+                                    <a href="/Patient/patientCheckDocument" class="button button-3d  button-small button-rounded button-dirtygreen"> <i class="icon-folder-check"></i> Check Manipulation Document</a>
                                 </td>
                             </tr>
                         </tbody>
