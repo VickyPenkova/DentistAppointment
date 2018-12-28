@@ -1,11 +1,16 @@
 ﻿using DentistAppointment.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using System;
+using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace DentistAppointment.Controllers
 {
-    [Authorize]
+   //[Authorize]
     public class PatientController:Controller
     {
         // Default page fot patient log in
@@ -14,7 +19,10 @@ namespace DentistAppointment.Controllers
         {
             return View();
         }
-
+        public IActionResult mainEntrance()
+        {
+            return View();
+        }
         [AllowAnonymous]
         public IActionResult forgottenPass()
         {
@@ -69,6 +77,7 @@ namespace DentistAppointment.Controllers
             return View();
         }
         [AllowAnonymous]
+       // [Route("Patient/registerPatient")]
         public IActionResult registerPatient()
         {
             return View();

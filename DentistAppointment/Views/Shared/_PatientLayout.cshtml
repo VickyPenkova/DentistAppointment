@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <environment include="Development">
+        <!-- Stylesheets for Patient
+    ============================================= -->
+        <link href="https://fonts.googleapis.com/css?family=Lato:300,400,400i,700|Raleway:300,400,500,600,700|Crete+Round:400i"
+              rel="stylesheet" type="text/css" />
+        <link rel="stylesheet" href="~/FrontEnd/css/bootstrap.css" type="text/css" />
+        <link rel="stylesheet" href="~/FrontEnd/style.css" type="text/css" />
+        <link rel="stylesheet" href="~/FrontEnd/css/font-icons.css" type="text/css" />
+        <link rel="stylesheet" href="~/FrontEnd/css/animate.css" type="text/css" />
+        <!-- Star Rating CSS -->
+        <link rel="stylesheet" href="~/FrontEnd/css/components/bs-rating.css" type="text/css" />
+
+        <link rel="stylesheet" href="~/FrontEnd/css/responsive.css" type="text/css" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+        <!-- Bootstrap Select CSS -->
+        <link rel="stylesheet" href="~/FrontEnd/css/components/bs-select.css" type="text/css" />
+        <link rel="stylesheet" href="~/FrontEnd/css/responsive.css" type="text/css" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+        <!-- Select-Boxes CSS -->
+        <link rel="stylesheet" href="~/FrontEnd/css/components/select-boxes.css" type="text/css" />
+        <link rel="stylesheet" href="~/FrontEnd/css/responsive.css" type="text/css" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+    </environment>
+</head>
+<body>
+    <partial name="_CookieConsentPartial" />
+
+    <div class="container body-content">
+        @RenderBody()
+    </div>
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>
