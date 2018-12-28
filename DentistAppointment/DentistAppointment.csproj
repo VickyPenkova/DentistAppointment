@@ -6,13 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Remove="Views\Patient\loggedOut.cshtml" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Include="Views\Dentist\index.cshtml" />
-    <None Include="Views\Patient\index.cshtml" />
-    <None Include="Views\Patient\loggedOut.cshtml" />
     <None Include="wwwroot\FrontEnd\css\animate.css" />
     <None Include="wwwroot\FrontEnd\css\bootstrap.css" />
     <None Include="wwwroot\FrontEnd\css\calendar.css" />
@@ -107,9 +101,17 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="6.0.0" />
+    <PackageReference Include="EntityFramework" Version="6.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.5" PrivateAssets="All" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="Views\Patient\mainEntrance.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
   </ItemGroup>
 
 </Project>
