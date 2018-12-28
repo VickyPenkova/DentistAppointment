@@ -69,6 +69,7 @@ namespace DentistAppointment.Areas.Identity.Pages.Account
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
             returnUrl = returnUrl ?? Url.Content("~/Patient/patientOnFirstLogIn");
+
             if (ModelState.IsValid)
             {
                 var user = new DentistAppointment.Data.Models.User
