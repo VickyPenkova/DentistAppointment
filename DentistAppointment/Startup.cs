@@ -39,7 +39,7 @@ namespace DentistAppointment
             services.AddDbContext<DentistAppointmentDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDefaultIdentity<IdentityUser>()
+            services.AddDefaultIdentity<DentistAppointment.Data.Models.User>()
                 .AddEntityFrameworkStores<DentistAppointmentDbContext>();
             services.AddScoped<IUsersService, UsersService>();
             services.AddScoped<IDentistsService, DentistsService>();
