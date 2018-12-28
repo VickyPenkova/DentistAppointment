@@ -6,32 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Remove="Views\Dentist\dentistAppointments.cshtml" />
-    <Content Remove="Views\Dentist\dentistCheckDocument.cshtml" />
-    <Content Remove="Views\Dentist\dentistDocumentManipulation.cshtml" />
-    <Content Remove="Views\Dentist\dentistEditInfo.cshtml" />
-    <Content Remove="Views\Dentist\dentistFindAPatient.cshtml" />
-    <Content Remove="Views\Dentist\dentistForgottenPass.cshtml" />
-    <Content Remove="Views\Dentist\dentistHomePage.cshtml" />
-    <Content Remove="Views\Dentist\dentistMedicalManipulations.cshtml" />
-    <Content Remove="Views\Dentist\dentistOnFirstLogIn.cshtml" />
-    <Content Remove="Views\Dentist\dentistPatientHomePage.cshtml" />
-    <Content Remove="Views\Patient\loggedOut.cshtml" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="Views\Dentist\dentistAppointments.cshtml" />
-    <None Include="Views\Dentist\dentistCheckDocument.cshtml" />
-    <None Include="Views\Dentist\dentistDocumentManipulation.cshtml" />
-    <None Include="Views\Dentist\dentistEditInfo.cshtml" />
-    <None Include="Views\Dentist\dentistFindAPatient.cshtml" />
-    <None Include="Views\Dentist\dentistForgottenPass.cshtml" />
-    <None Include="Views\Dentist\dentistHomePage.cshtml" />
-    <None Include="Views\Dentist\dentistMedicalManipulations.cshtml" />
-    <None Include="Views\Dentist\dentistOnFirstLogIn.cshtml" />
-    <None Include="Views\Dentist\dentistPatientHomePage.cshtml" />
     <None Include="Views\Dentist\index.cshtml" />
-    <None Include="Views\Patient\loggedOut.cshtml" />
     <None Include="wwwroot\FrontEnd\css\animate.css" />
     <None Include="wwwroot\FrontEnd\css\bootstrap.css" />
     <None Include="wwwroot\FrontEnd\css\calendar.css" />
@@ -126,9 +101,17 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="6.0.0" />
+    <PackageReference Include="EntityFramework" Version="6.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.5" PrivateAssets="All" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="Views\Patient\mainEntrance.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
   </ItemGroup>
 
 </Project>

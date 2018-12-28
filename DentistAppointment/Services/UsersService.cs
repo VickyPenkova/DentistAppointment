@@ -1,38 +1,55 @@
-﻿using DentistAppointment.Data;
+﻿using AutoMapper;
+using DentistAppointment.Data;
 using DentistAppointment.Data.Models;
+using DentistAppointment.DTOs;
 using DentistAppointment.Services.Abstraction;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace DentistAppointment.Services
-{       
+{
     public class UsersService : IUsersService
     {
-        private readonly GenericRepository<User, string> usersRepo;
-        private readonly GenericRepository<Dentist, int> dentistRepo;
-
-        public UsersService(GenericRepository<User, string> usersRepo)
+        private readonly IRepository<DentistAppointment.Data.Models.User, string> usersRepo;
+        private readonly IMapper mapper;
+        
+        public IEnumerable<UserDTO> GetUsers(int count)
         {
-            this.usersRepo = usersRepo;
-        }
-
-        // Login page that checks if the user is a Dentist or a Patient
-        public Object isTheUserDentist(string password)
-        {
-            var dentistId = this.usersRepo
+            var usersFromDb = this.usersRepo
                 .GetAll()
-                .FirstOrDefault(p => p.PasswordHash == password).DentistId;
+                .Take(count)
+                .ToList();
 
-            // If there is a dentist id than the user is dentist
-            if(dentistId != null)
-            {
-                return true;
-            }else
-            {
-                return false;
-            }
+            List<UserDTO> users = new List<UserDTO>();
+
+            users = this.mapper.Map<List<UserDTO>>(usersFromDb);
+
+            return users;
         }
 
+        
+        public UserDTO GetUserById(string userId)
+        {
+            var userFromDb = this.usersRepo
+                .GetById(userId);
+
+            return this.mapper.Map<UserDTO>(userFromDb);
+        }
+        public IEnumerable<UserDTO> GetUserInfo(string userId)
+        {
+            var user = this.usersRepo.GetAll()
+                .Include(model => model.FirstName)
+                .Include(model => model.LastName)
+                .Include(model => model.Email)
+                .Include(model => model.Gender)
+                .Include(model => model.EGN)
+               // .Include(model => model.Address)
+                .FirstOrDefault(u => u.Id == userId);
+            var userInfo = user.FirstName;
+
+            return this.mapper.Map<List<UserDTO>>(user);
+        }
     }
 }
