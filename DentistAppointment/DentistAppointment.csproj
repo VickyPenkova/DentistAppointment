@@ -31,7 +31,6 @@
     <None Include="Views\Dentist\dentistOnFirstLogIn.cshtml" />
     <None Include="Views\Dentist\dentistPatientHomePage.cshtml" />
     <None Include="Views\Dentist\index.cshtml" />
-    <None Include="Views\Patient\index.cshtml" />
     <None Include="Views\Patient\loggedOut.cshtml" />
     <None Include="wwwroot\FrontEnd\css\animate.css" />
     <None Include="wwwroot\FrontEnd\css\bootstrap.css" />
