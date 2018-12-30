@@ -14,7 +14,13 @@ namespace DentistAppointment.Services
     {
         private readonly IRepository<DentistAppointment.Data.Models.User, string> usersRepo;
         private readonly IMapper mapper;
-        
+
+        public UsersService(IRepository<User, string> usersRepo, IMapper mapper)
+        {
+            this.usersRepo = usersRepo;
+            this.mapper = mapper;
+        }
+
         public IEnumerable<UserDTO> GetUsers(int count)
         {
             var usersFromDb = this.usersRepo
@@ -30,13 +36,19 @@ namespace DentistAppointment.Services
         }
 
         
-        public UserDTO GetUserById(string userId)
+        public User GetUserById(string userId)
         {
-            var userFromDb = this.usersRepo
+            return this.usersRepo
                 .GetById(userId);
 
-            return this.mapper.Map<UserDTO>(userFromDb);
+            //return this.mapper.Map<UserDTO>(userFromDb);
         }
+
+        public IEnumerable<User> GetAllUsers()
+        {
+            return usersRepo.GetAll();
+        }
+
         public IEnumerable<UserDTO> GetUserInfo(string userId)
         {
             var user = this.usersRepo.GetAll()

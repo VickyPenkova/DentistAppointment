@@ -1,16 +1,71 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using DentistAppointment.Data.Models;
+using DentistAppointment.Models.CommentsViewModel;
+using DentistAppointment.Models.DentistViewModel;
+using DentistAppointment.Services;
+using DentistAppointment.Services.Abstraction;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace DentistAppointment.Controllers
 {
     public class DentistController : Controller
     {
+        private readonly IHttpContextAccessor httpaccessor;
+        private readonly IUsersService usersService;
+        private readonly IDentistsService dentistsService;
+        private readonly ICommentsService commentsService;
+        private readonly UserManager<User> userManager;
+        private readonly IMapper mapper;
+
+        public DentistController(
+            IUsersService usersService,
+            IDentistsService dentistsService,
+            ICommentsService commentsService,
+            IHttpContextAccessor httpContextAccessor,
+            IMapper mapper,
+            UserManager<User> userManager)
+        {
+            this.usersService = usersService;
+            this.dentistsService = dentistsService;
+            this.httpaccessor = httpContextAccessor;
+            this.commentsService = commentsService;
+            this.mapper = mapper;
+            this.userManager = userManager;
+        }
+
         public IActionResult index()
         {
             return View();
+        }
+
+        private string GetCurrentUserId() => this.userManager.GetUserId(HttpContext.User);
+
+        public IActionResult dentistHomePage()
+        {
+
+            string userId = GetCurrentUserId();
+            var dentist = this.dentistsService
+                .GetAllDentists().FirstOrDefault(user => user.User.Id == userId);
+            var comments = commentsService.GetAllCommentsOfDentist(dentist.Id).ToList();
+
+            var viewModel = new DentistHomePageViewModel()
+            {
+                User = this.usersService.GetAllUsers().FirstOrDefault(x => x.Dentist == dentist),
+                Address = dentist.Address,
+                Type = dentist.Type,
+                Rating = dentist.User.Rating,
+                Comments = comments
+            };
+
+            return View(viewModel);
         }
 
         public IActionResult dentistAppointments()
@@ -39,11 +94,6 @@ namespace DentistAppointment.Controllers
         }
 
         public IActionResult dentistForgottenPass()
-        {
-            return View();
-        }
-
-        public IActionResult dentistHomePage()
         {
             return View();
         }

@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using DentistAppointment.Data.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DentistAppointment.Data
 {
-    public abstract class GenericRepository<T, TKey> :
+    public class GenericRepository<T, TKey> :
         IRepository<T, TKey> where T : class
     {
         public GenericRepository(DentistAppointmentDbContext context)

@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace DentistAppointment.Data
 {
-    interface IRepository<T, TKey> where T : class
+    public interface IRepository<T, TKey> where T : class
     {
         IQueryable<T> GetAll();
         T GetById(TKey id);
