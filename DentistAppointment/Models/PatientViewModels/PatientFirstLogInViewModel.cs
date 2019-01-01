@@ -7,7 +7,7 @@ using System.Linq;
 using System.Security.Policy;
 using System.Threading.Tasks;
 
-namespace DentistAppointment.Models
+namespace DentistAppointment.Models.PatientViewModel
 {
     public class PatientFirstLogInViewModel
     {

@@ -9,23 +9,48 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
+using Microsoft.AspNetCore.Http;
+using DentistAppointment.Services.Abstraction;
+using Microsoft.AspNetCore.Identity;
+using AutoMapper;
+using DentistAppointment.Data.Models;
+using DentistAppointment.Models.PatientViewModel;
 
 namespace DentistAppointment.Controllers
 {
    [Authorize]
     public class PatientController:Controller
     {
+        private readonly IHttpContextAccessor httpaccessor;
+        private readonly IUsersService usersService;
+        private readonly IDentistsService dentistsService;
+        private readonly ICommentsService commentsService;
+        private readonly UserManager<User> userManager;
+        private readonly IMapper mapper;
+
+        public PatientController(
+            IUsersService usersService,
+            IDentistsService dentistsService,
+            ICommentsService commentsService,
+            IHttpContextAccessor httpContextAccessor,
+            IMapper mapper,
+            UserManager<User> userManager)
+        {
+            this.usersService = usersService;
+            this.dentistsService = dentistsService;
+            this.httpaccessor = httpContextAccessor;
+            this.commentsService = commentsService;
+            this.mapper = mapper;
+            this.userManager = userManager;
+        }
+
         // Default page fot patient log in
         [AllowAnonymous]
         public IActionResult index()
         {
             return View();
         }
-        [AllowAnonymous]
-        public IActionResult mainEntrance()
-        {
-            return View();
-        }
+
         [AllowAnonymous]
         public IActionResult forgottenPass()
         {
@@ -36,10 +61,27 @@ namespace DentistAppointment.Controllers
         {
             return View();
         }
-
+        private string GetCurrentUserId() => this.userManager.GetUserId(HttpContext.User);
         public IActionResult patientHomePage()
         {
-            return View();
+             string userId = GetCurrentUserId();
+            var user = this.usersService.GetAllUsers().FirstOrDefault(u => u.Id == userId);
+           // var comments = commentsService.GetAllCommentsOfPatient(user.Id).ToList();
+
+            var viewModel = new PatientHomePageViewModel()
+            {
+                User = this.usersService.GetAllUsers().FirstOrDefault(u => u.Id == userId),
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                Gender = user.Gender,
+                 Rating=user.Rating,
+                 Email = user.Email,
+                // Comments=comments,
+                 EGN = user.EGN
+
+             };
+
+             return View(viewModel);
         }
 
         public IActionResult patientAppointments()
@@ -60,7 +102,21 @@ namespace DentistAppointment.Controllers
         }
         public IActionResult patientEditInfo()
         {
-            return View();
+            string userId = GetCurrentUserId();
+            var user = this.usersService.GetAllUsers().FirstOrDefault(u => u.Id == userId);
+
+            var viewModel = new PatientEditInfoViewModel()
+            {
+                User = this.usersService.GetAllUsers().FirstOrDefault(u => u.Id == userId),
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                Gender = user.Gender,
+                Email = user.Email,
+                EGN = user.EGN
+
+            };
+
+            return View(viewModel);
         }
         public IActionResult patientFindDoctor()
         {
@@ -80,7 +136,6 @@ namespace DentistAppointment.Controllers
             return View();
         }
         [AllowAnonymous]
-       // [Route("Patient/registerPatient")]
         public IActionResult registerPatient()
         {
             return View();

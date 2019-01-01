@@ -1,13 +1,15 @@
-﻿using System;
+﻿using DentistAppointment.Data.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace DentistAppointment.Models
+namespace DentistAppointment.Models.PatientViewModel
 {
-    public class PatientHomePageViewModel
+    public class PatientEditInfoViewModel
     {
+        public User User { get; set; }
         public string FirstName { get; set; }
        
         public string Gender { get; set; }
@@ -16,8 +18,7 @@ namespace DentistAppointment.Models
        
         public string Email { get; set; }
        
-        public string EGN { get; set; }
-        
-        public string Address { get; set; }
+        public long EGN { get; set; }
+
     }
 }

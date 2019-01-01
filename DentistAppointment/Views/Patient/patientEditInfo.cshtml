@@ -1,9 +1,10 @@
-﻿<!DOCTYPE html>
+﻿@model DentistAppointment.Models.PatientViewModel.PatientEditInfoViewModel
+<!DOCTYPE html>
 <html dir="ltr" lang="en-US">
 <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <meta name="author" content="" />
-   
+
     <!-- Document Title
     ============================================= -->
     <title>Edit Patient Info</title>
@@ -39,12 +40,14 @@
                     <!-- Logo
                     ============================================= -->
                     <div id="logo">
-                        <a href="/Patient/patientHomePage" class="standard-logo" 
-						   data-dark-logo="/FrontEnd/images/icons/molar-inside-a-shield-green.png">
-						<img src="/FrontEnd/images/icons/molar-inside-a-shield-green.png" alt="Denstist Logo"></a>
-                        <a href="/Patient/patientHomePage" class="retina-logo" 
-						   data-dark-logo="/FrontEnd/images/icons/molar-inside-a-shield-green.png">
-						<img src="/FrontEnd/images/icons/molar-inside-a-shield-green.png" alt="Denstist Logo"></a>
+                        <a href="/Patient/patientHomePage" class="standard-logo"
+                           data-dark-logo="/FrontEnd/images/icons/molar-inside-a-shield-green.png">
+                            <img src="/FrontEnd/images/icons/molar-inside-a-shield-green.png" alt="Denstist Logo">
+                        </a>
+                        <a href="/Patient/patientHomePage" class="retina-logo"
+                           data-dark-logo="/FrontEnd/images/icons/molar-inside-a-shield-green.png">
+                            <img src="/FrontEnd/images/icons/molar-inside-a-shield-green.png" alt="Denstist Logo">
+                        </a>
                     </div>
                     <!-- #logo end -->
                     <!-- Primary Navigation
@@ -62,11 +65,11 @@
                             </li>
                             <li class="current">
                                 <a href="/Patient/patientMedicalManipulationsHistory">
-									<div>Medical Manipulations History</div>
-								</a>
+                                    <div>Medical Manipulations History</div>
+                                </a>
                             </li>
                             <li class="current">
-                                <a href="/Patient/loggedOut"><div><i class="icon-line2-logout"></i>Log Out</div></a>
+                                <a asp-area="Identity" asp-page="/Account/Logout"><div><i class="icon-line2-logout"></i>Log Out</div></a>
                             </li>
                         </ul>
                     </nav><!-- #primary-menu end -->
@@ -86,16 +89,16 @@
                     <div class="col-12 bottommargin">
                         <div class="row team team-list clearfix">
                             <div class="team-image col-sm-12 col-md-6 col-lg-6">
-                                <img class="rounded-circle center-image-user" style="width: 150px;" 
-									 src="~/FrontEnd/images/icons/male-user.png" alt="Male User">
+                                <img class="rounded-circle center-image-user" style="width: 150px;"
+                                     src="~/FrontEnd/images/icons/male-user.png" alt="Male User">
                             </div>
                             <div class="team-desc col-sm-12 col-md-6 col-lg-6">
                                 <div class="user-names">
                                     <h4 class="pr-2" id="firstName">
-                                        <input type="text" value="" class="form-control" placeholder="FirstName" />
+                                        <input type="text" value=@Model.FirstName class="form-control" placeholder="FirstName" />
                                     </h4>
                                     <h4 id="lastName">
-                                        <input type="text" value="" class="form-control" placeholder="LastName" />
+                                        <input type="text" value=@Model.LastName class="form-control" placeholder="LastName" />
                                     </h4>
                                     <div class="white-section pt-4 mb-4">
                                         <select class="select-1 form-control" style="width:100%;">
@@ -107,19 +110,15 @@
                                 </div>
                                 <div class="user-email">
                                     <h4 class="inlineBlock-elements">Email:</h4>
-                                    <input type="text" value="" class="form-control" placeholder="somethingsomething@gmail.com" />
+                                    <input type="text" value=@Model.Email class="form-control" placeholder="somethingsomething@gmail.com" />
                                 </div>
                                 <div class="user-egn">
                                     <h4 class="inlineBlock-elements">EGN:</h4>
-                                    <input type="text" value="" class="form-control" placeholder="9804152635" />
-                                </div>
-                                <div class="user-address">
-                                    <h4 class="inlineBlock-elements">Address:</h4>
-                                    <input type="text" value="" class="form-control" placeholder="In the middle of nowhere, Nowhere, Earth" />
+                                    <input type="text" value=@Model.EGN class="form-control" placeholder="9804152635" />
                                 </div>
                                 <div class="user-edit">
-                                    <a class="button button-3d button-black mt-5 ml-0 accent-background" 
-									   href="/Patient/patientHomePage">Save Changes</a>
+                                    <a class="button button-3d button-black mt-5 ml-0 accent-background"
+                                       href="/Patient/patientHomePage">Save Changes</a>
                                 </div>
                                 <div class="topmargin-sm nobottommargin"></div>
                             </div>
@@ -130,7 +129,6 @@
             </div>
         </div>
     </section>
-
     <!-- Go To Top
     ============================================= -->
     <div id="gotoTop" class="icon-angle-up"></div>
@@ -145,6 +143,5 @@
     <script src="~/FrontEnd/js/functions.js"></script>
     <!-- Star Rating Plugin -->
     <script src="~/FrontEnd/js/components/bs-select.js"></script>
-
 </body>
 </html>
