@@ -46,7 +46,7 @@ namespace DentistAppointment.Services
 
         public IEnumerable<User> GetAllUsers()
         {
-            return usersRepo.GetAll();
+            return usersRepo.GetAll().Include(user => user.Dentist);
         }
 
         public IEnumerable<UserDTO> GetUserInfo(string userId)

@@ -3,6 +3,7 @@ using DentistAppointment.Data.Models;
 using DentistAppointment.Services.Abstraction;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -13,15 +14,18 @@ namespace DentistAppointment.Services
         private readonly IRepository<Dentist, int> dentistsRepo;
         private readonly IRepository<User, string> usersRepo;
         private readonly IRepository<Comment, int> commentsRepo;
+        private readonly IRepository<Event, int> eventsRepo;
 
         public CommentsService(
             IRepository<Dentist, int> dentistsRepo,
             IRepository<User, string> usersRepo,
-            IRepository<Comment, int> commentsRepo)
+            IRepository<Comment, int> commentsRepo,
+            IRepository<Event, int> eventsRepo)
         {
             this.dentistsRepo = dentistsRepo;
             this.usersRepo = usersRepo;
             this.commentsRepo = commentsRepo;
+            this.eventsRepo = eventsRepo;
         }
 
         public IEnumerable<Comment> GetAllComments()
@@ -31,9 +35,16 @@ namespace DentistAppointment.Services
 
         public IEnumerable<Comment> GetAllCommentsOfDentist(int dentistId)
         {
-            return commentsRepo
+            var events = this.eventsRepo
                 .GetAll()
-                .Where(comments => comments.User.DentistId == dentistId);
+                .Where(x => x.DentistId == dentistId).ToList();
+            var commentsForDentist = new List<Comment>();
+            foreach(var e in events){
+                commentsForDentist.AddRange(commentsRepo
+                .GetAll()
+               .Where(c => c.EventId == e.Id).ToList());
+            }
+            return commentsForDentist;
         }
 
         public string GetContentOfComment(int commentId)

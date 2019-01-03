@@ -59,6 +59,7 @@ namespace DentistAppointment
             services.AddScoped<IUsersService, UsersService>();
             services.AddScoped<IDentistsService, DentistsService>();
             services.AddScoped<ICommentsService, CommentsService>();
+            services.AddScoped<IReviewsService, ReviewsService>();
             services.AddAutoMapper();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
