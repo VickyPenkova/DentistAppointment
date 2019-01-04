@@ -22,6 +22,8 @@ namespace DentistAppointment.Controllers
         private readonly IUsersService usersService;
         private readonly IDentistsService dentistsService;
         private readonly ICommentsService commentsService;
+        // marto
+        private readonly IReviewsService reviewsService;
         private readonly UserManager<User> userManager;
         private readonly IMapper mapper;
 
@@ -29,6 +31,8 @@ namespace DentistAppointment.Controllers
             IUsersService usersService,
             IDentistsService dentistsService,
             ICommentsService commentsService,
+            // marto
+            IReviewsService reviewsService,
             IHttpContextAccessor httpContextAccessor,
             IMapper mapper,
             UserManager<User> userManager)
@@ -37,6 +41,8 @@ namespace DentistAppointment.Controllers
             this.dentistsService = dentistsService;
             this.httpaccessor = httpContextAccessor;
             this.commentsService = commentsService;
+            // marto
+            this.reviewsService = reviewsService;
             this.mapper = mapper;
             this.userManager = userManager;
         }
@@ -55,14 +61,18 @@ namespace DentistAppointment.Controllers
             var dentist = this.dentistsService
                 .GetAllDentists().FirstOrDefault(user => user.User.Id == userId);
             var comments = commentsService.GetAllCommentsOfDentist(dentist.Id).ToList();
-
+            // marto
+            var reviews = reviewsService.GetAllByDentist(dentist.Id).ToList();
+            
             var viewModel = new DentistHomePageViewModel()
             {
                 User = this.usersService.GetAllUsers().FirstOrDefault(x => x.Dentist == dentist),
                 Address = dentist.Address,
                 Type = dentist.Type,
                 Rating = dentist.User.Rating,
-                Comments = comments
+                Comments = comments,
+                // marto
+                Reviews = reviews
             };
 
             return View(viewModel);

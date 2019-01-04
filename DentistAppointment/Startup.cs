@@ -56,6 +56,8 @@ namespace DentistAppointment
             // Application services are registered into the DI container here
             services.AddScoped<DentistAppointmentDbContext>();
             services.TryAdd(ServiceDescriptor.Scoped(typeof(IRepository<,>), typeof(GenericRepository<,>)));
+            // marto
+            services.AddScoped(typeof(Data.Models.ReviewRepository));
             services.AddScoped<IUsersService, UsersService>();
             services.AddScoped<IDentistsService, DentistsService>();
             services.AddScoped<ICommentsService, CommentsService>();

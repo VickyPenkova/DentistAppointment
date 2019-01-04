@@ -29,8 +29,8 @@ namespace DataSeed
             AddRoles();
             SeedUsers();
             SeedDentists();
-            SeedReviews();
             SeedReservations();
+            SeedReviews();
             SeedEvents();
             SeedComments();
             SeedBlacklist();
@@ -184,27 +184,39 @@ namespace DataSeed
             {
                 new Dbmodel.Review
                 {
-                    User = users.FirstOrDefault(u => u.Email == "stanimir@gmail.com"),
+                    User = users.FirstOrDefault(u => u.Email == "peter@gmail.com"),
                     Content = "Great service. Real professional",
-                    Date = DateTime.Now
+                    Date = DateTime.Now,
+                    Reservation = context.Reservations.Where(r => r.Dentist.User.Email == "ivan@gmail.com" && 
+                                                                  r.User.Email == "peter@gmail.com").ToList()[0],
+                    Rating = 5
                 },
                 new Dbmodel.Review
                 {
-                    User = users.FirstOrDefault(u => u.Email == "ivan@gmail.com"),
+                    User = users.FirstOrDefault(u => u.Email == "george@gmail.com"),
                     Content = "Not satisfied. There was pain during manipulation",
-                    Date = new DateTime(2018, 10, 31)
+                    Date = new DateTime(2018, 10, 31),
+                    Reservation = context.Reservations.Where(r => r.Dentist.User.Email == "ivan@gmail.com" &&
+                                                                  r.User.Email == "george@gmail.com").ToList()[0],
+                    Rating = 1
                 },
                 new Dbmodel.Review
                 {
                     User = users.FirstOrDefault(u => u.Email == "ivan@gmail.com"),
-                    Content = "Expensive an unprofessional service",
-                    Date = new DateTime(2018, 11, 1)
+                    Content = "Great customer",
+                    Date = new DateTime(2018, 11, 1),
+                    Reservation = context.Reservations.Where(r => r.User.Email == "peter@gmail.com" &&
+                                                                  r.Dentist.User.Email == "ivan@gmail.com").ToList()[0],
+                    Rating = 5
                 },
                 new Dbmodel.Review
                 {
                     User = users.FirstOrDefault(u => u.Email == "peter@gmail.com"),
-                    Content = "Good client",
-                    Date = DateTime.Now
+                    Content = "Quality service from this dentist",
+                    Date = DateTime.Now,
+                    Reservation = context.Reservations.Where(r => r.Dentist.User.Email == "stanimir@gmail.com" &&
+                                                                  r.User.Email == "peter@gmail.com").ToList()[0],
+                    Rating = 3.5f
                 }
             };
 

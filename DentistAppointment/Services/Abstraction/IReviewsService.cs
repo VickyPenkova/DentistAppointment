@@ -10,6 +10,7 @@ namespace DentistAppointment.Services.Abstraction
     {
         IEnumerable<Review> GetAllReviews();
         IEnumerable<Review> GetAllByUser(int dentistId);
+        IEnumerable<Review> GetAllByDentist(int dentistId);
         string GetContentOfReview(int reviewId);
     }
 }
