@@ -25,14 +25,12 @@ namespace DentistAppointment.Controllers
         private readonly IHttpContextAccessor httpaccessor;
         private readonly IUsersService usersService;
         private readonly IDentistsService dentistsService;
-        private readonly ICommentsService commentsService;
         private readonly UserManager<User> userManager;
         private readonly IMapper mapper;
 
         public PatientController(
             IUsersService usersService,
             IDentistsService dentistsService,
-            ICommentsService commentsService,
             IHttpContextAccessor httpContextAccessor,
             IMapper mapper,
             UserManager<User> userManager)
@@ -40,7 +38,6 @@ namespace DentistAppointment.Controllers
             this.usersService = usersService;
             this.dentistsService = dentistsService;
             this.httpaccessor = httpContextAccessor;
-            this.commentsService = commentsService;
             this.mapper = mapper;
             this.userManager = userManager;
         }
@@ -101,15 +98,14 @@ namespace DentistAppointment.Controllers
             string userId = GetCurrentUserId();
             var dentist = this.dentistsService
                 .GetAllDentists().FirstOrDefault(user => user.User.Id == userId);
-            var comments = commentsService.GetAllCommentsOfDentist(dentist.Id).ToList();
 
             var viewModel = new PatientDentistHomePageViewModel()
             {
                 User = this.usersService.GetAllUsers().FirstOrDefault(x => x.Dentist == dentist),
                 Address = dentist.Address,
                 Type = dentist.Type,
-                Rating = dentist.User.Rating,
-                Comments = comments
+                Rating = dentist.User.Rating
+             
             };
 
             return View(viewModel);

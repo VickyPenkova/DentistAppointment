@@ -41,9 +41,10 @@ namespace DentistAppointment
             services.AddDbContext<DentistAppointmentDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
-            //services.AddDefaultIdentity<DentistAppointment.Data.Models.User>()
-            //    .AddEntityFrameworkStores<DentistAppointmentDbContext>();
-            services.AddIdentity<DentistAppointment.Data.Models.User, IdentityRole>(options =>
+            services.AddDefaultIdentity<DentistAppointment.Data.Models.User>()
+                    .AddEntityFrameworkStores<DentistAppointmentDbContext>();
+
+            /*services.AddIdentity<DentistAppointment.Data.Models.User, IdentityRole>(options =>
             {
                 options.Password.RequireDigit = false;
                 options.Password.RequireLowercase = false;
@@ -51,7 +52,7 @@ namespace DentistAppointment
                 options.Password.RequiredLength = 6;
             })
             .AddEntityFrameworkStores<DentistAppointmentDbContext>()
-            .AddDefaultTokenProviders();
+            .AddDefaultTokenProviders();*/
 
             // Application services are registered into the DI container here
             services.AddScoped<DentistAppointmentDbContext>();
