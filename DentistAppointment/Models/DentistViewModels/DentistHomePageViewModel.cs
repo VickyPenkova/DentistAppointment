@@ -12,7 +12,7 @@ namespace DentistAppointment.Models.DentistViewModel
         public User User { get; set; }
         public string Type { get; set; }
         public string Address { get; set; }
-        public IEnumerable<Comment> Comments { get; set; }
+        public IEnumerable<Review> Reviews { get; set; }
         public double Rating { get; set; }
     }
 }

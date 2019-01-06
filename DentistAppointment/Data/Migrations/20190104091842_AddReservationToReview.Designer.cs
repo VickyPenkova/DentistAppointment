@@ -4,14 +4,16 @@ using DentistAppointment.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DentistAppointment.Data.Migrations
 {
     [DbContext(typeof(DentistAppointmentDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190104091842_AddReservationToReview")]
+    partial class AddReservationToReview
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -135,8 +137,6 @@ namespace DentistAppointment.Data.Migrations
                     b.Property<string>("Content");
 
                     b.Property<DateTime>("Date");
-
-                    b.Property<float>("Rating");
 
                     b.Property<int>("ReservationId");
 

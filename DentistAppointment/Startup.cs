@@ -41,9 +41,9 @@ namespace DentistAppointment
             services.AddDbContext<DentistAppointmentDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDefaultIdentity<DentistAppointment.Data.Models.User>()
-               .AddEntityFrameworkStores<DentistAppointmentDbContext>();
-           /* services.AddIdentity<DentistAppointment.Data.Models.User, IdentityRole>(options =>
+            //services.AddDefaultIdentity<DentistAppointment.Data.Models.User>()
+            //    .AddEntityFrameworkStores<DentistAppointmentDbContext>();
+            services.AddIdentity<DentistAppointment.Data.Models.User, IdentityRole>(options =>
             {
                 options.Password.RequireDigit = false;
                 options.Password.RequireLowercase = false;
@@ -51,14 +51,16 @@ namespace DentistAppointment
                 options.Password.RequiredLength = 6;
             })
             .AddEntityFrameworkStores<DentistAppointmentDbContext>()
-            .AddDefaultTokenProviders();*/
+            .AddDefaultTokenProviders();
 
             // Application services are registered into the DI container here
             services.AddScoped<DentistAppointmentDbContext>();
             services.TryAdd(ServiceDescriptor.Scoped(typeof(IRepository<,>), typeof(GenericRepository<,>)));
+            // marto
+            services.AddScoped(typeof(Data.Models.ReviewRepository));
             services.AddScoped<IUsersService, UsersService>();
             services.AddScoped<IDentistsService, DentistsService>();
-            services.AddScoped<ICommentsService, CommentsService>();
+            services.AddScoped<IReviewsService, ReviewsService>();
             services.AddAutoMapper();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
