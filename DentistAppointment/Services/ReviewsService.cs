@@ -34,13 +34,8 @@ namespace DentistAppointment.Services
         {
             var reservations = this.reservationsRepo
                 .GetAll()
+                .Include(x => x.User)
                 .Where(x => x.DentistId == dentistId).ToList();
-            var users = new List<User>();
-            foreach(Reservation r in reservations)
-            {
-                users.AddRange(usersRepo.GetAll().Where(u => u.Id == r.UserId));
-            }
-
             var reviewsForDentist = new List<Review>();
 
             foreach (var r in reservations)
@@ -48,11 +43,10 @@ namespace DentistAppointment.Services
                 reviewsForDentist.AddRange(reviewsRepo
                 .GetAll()
                 .Include(x => x.User)
-               .Where(c => c.ReservationId == r.Id).ToList());
+                .Where(c => c.ReservationId == r.Id && c.User.DentistId == null).ToList());
             }
 
-            //return reviewsForDentist;
-            return this.reviewsRepo.GetByDentistId(dentistId);
+            return reviewsForDentist;
         }
 
         public IEnumerable<Review> GetAllReviews()
