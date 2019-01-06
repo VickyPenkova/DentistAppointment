@@ -10,7 +10,7 @@ namespace DentistAppointment.Services.Abstraction
     public interface IUsersService
     {
         IEnumerable<User> GetAllUsers();
-        Guid Edit(Guid id, UserDTO user);
+        void Edit(User user);
         User GetUserById(string userId);
     }
 }

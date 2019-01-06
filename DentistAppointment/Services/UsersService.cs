@@ -67,12 +67,10 @@ namespace DentistAppointment.Services
 
             return this.mapper.Map<List<UserDTO>>(user);
         }
-        public Guid Edit(Guid id, UserDTO user)
+        public void Edit(User user)
         {
-            this.usersRepo.Update(id, this.mapper.Map<User>(user));
-            this.usersRepo.Save();
-
-            return user.Id;
+            usersRepo.Update(user);
+            usersRepo.Save();
         }
         public IEnumerable<Reservation> GetAllReservationsOfDentist(int dentistId)
         {

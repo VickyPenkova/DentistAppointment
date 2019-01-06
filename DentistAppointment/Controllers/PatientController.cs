@@ -115,7 +115,7 @@ namespace DentistAppointment.Controllers
             return View(viewModel);
         }
         [HttpPost]
-       [ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken]
         public async Task<ActionResult> patientEditInfo(PatientEditInfoViewModel editModel, Guid id)
         {
              string userId = GetCurrentUserId();
@@ -146,7 +146,7 @@ namespace DentistAppointment.Controllers
                     Email = user.Email,
                     EGN = user.EGN
                 };
-                this.usersService.Edit(id, userDto);
+                //this.usersService.Edit(id, userDto);
             }
 
             return this.RedirectToAction("patientHomePage", "Patient");
@@ -160,20 +160,35 @@ namespace DentistAppointment.Controllers
         {
             return View();
         }
-        public IActionResult patientOnFirstLogIn()
+        [HttpGet]
+        public IActionResult patientOnFirstLogIn(String returnurl = null)
         {
             string userId = GetCurrentUserId();
             var user = this.usersService.GetAllUsers().FirstOrDefault(u => u.Id == userId);
 
-            var viewModel = new PatientFirstLogInViewModel()
+            var model = new PatientFirstLogInViewModel()
             {
-               
-                //Gender = user.Gender,
- 
-                EGN = user.EGN
-
+                Gender = user.Gender,
+                EGN = user.EGN.ToString()
             };
-            return View(viewModel);
+            return View(model);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult patientOnFirstLogin(PatientFirstLogInViewModel model)
+        {
+            string userId = GetCurrentUserId();
+            var user = this.usersService.GetAllUsers().FirstOrDefault(u => u.Id == userId);
+
+            if (ModelState.IsValid)
+            {
+                user.EGN = Int64.Parse(model.EGN);
+                user.Gender = model.Gender;
+                usersService.Edit(user);
+
+                return RedirectToAction("patientHomePage", "Patient");
+            }
+            return View(model);
         }
         public IActionResult patientRateAppointment()
         {
