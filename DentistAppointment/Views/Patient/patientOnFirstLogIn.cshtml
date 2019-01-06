@@ -50,7 +50,7 @@
                                         <h3>We would require some additional information to complete your registration!"</h3>
                                         <div asp-validation-summary="All" class="text-danger"></div>
                                         <div class="col_full">
-                                            <label asp-for="Gender">Gender</label>
+                                            <label asp-for="Gender" value=@Model.EGN>Gender</label>
                                             <select class="selectpicker col-12 " style="height: calc(2.25rem + 2px);
 												border-radius: 3px; margin-bottom:10px;" title="Please choose">
                                                 <option>Male</option>
@@ -60,9 +60,7 @@
                                             <label asp-for="EGN">Unique citizenship number (EGN)</label>
                                             <input asp-for="EGN" type="text" value="" class="form-control" />
                                             <span asp-validation-for="EGN" class="text-danger"></span>
-                                            <label asp-for="Address">Address</label>
-                                            <input asp-for="Address" type="text" value="" class="form-control" />
-                                            <span asp-validation-for="Address" class="text-danger"></span>
+                                            
                                         </div>
                                     </div>
                                     <div class="center">

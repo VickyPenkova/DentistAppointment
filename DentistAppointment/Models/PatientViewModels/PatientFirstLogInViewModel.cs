@@ -1,5 +1,6 @@
 ﻿using DentistAppointment.Data.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -11,17 +12,18 @@ namespace DentistAppointment.Models.PatientViewModel
 {
     public class PatientFirstLogInViewModel
     {
-       
-            [Display(Name = "Gender")]
-            public string Gender { get; set; }
-            [Required]
+        public IEnumerable<string> Gender { get; set; }
+
+        public List<SelectListItem> GenderTypes { get; } = new List<SelectListItem>
+        {
+            new SelectListItem { Value = "1", Text = "Male" },
+            new SelectListItem { Value = "2", Text = "Female" },
+            new SelectListItem { Value = "3", Text = "Other"},
+
+         };
+        [Required]
             [StringLength(10, MinimumLength = 10, ErrorMessage = "The {0} must be at least {2} and must be at max {1} characters long.")]
-            [Display(Name = "EGN")]
-            public string EGN { get; set; }
-            [Required]
-            [StringLength(30, MinimumLength = 10, ErrorMessage = "The {0} must be at max {1} characters long.")]
-            [Display(Name = "Address")]
-            public string Address { get; set; }
-      
+            public long EGN { get; set; }
+           
     }
 }
