@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -12,9 +13,10 @@ namespace DentistAppointment.Data.Models
         {
         }
 
-        public virtual IEnumerable<Review> GetByDentistId(int id)
+        public virtual IQueryable<Review> GetByDentistId(int id)
         {
-            return Db.Where(review => review.Reservation.DentistId == id).ToList();
+            return Db.Include(x => x.User)
+                .Where(review => review.Reservation.DentistId == id && review.User.DentistId == null);
         }
     }
 }

@@ -184,7 +184,7 @@ namespace DataSeed
             {
                 new Dbmodel.Review
                 {
-                    User = users.FirstOrDefault(u => u.Email == "peter@gmail.com"),
+                    User = context.Users.FirstOrDefault(u => u.Email == "peter@gmail.com"),
                     Content = "Great service. Real professional",
                     Date = DateTime.Now,
                     Reservation = context.Reservations.Where(r => r.Dentist.User.Email == "ivan@gmail.com" && 
@@ -193,7 +193,7 @@ namespace DataSeed
                 },
                 new Dbmodel.Review
                 {
-                    User = users.FirstOrDefault(u => u.Email == "george@gmail.com"),
+                    User = context.Users.FirstOrDefault(u => u.Email == "george@gmail.com"),
                     Content = "Not satisfied. There was pain during manipulation",
                     Date = new DateTime(2018, 10, 31),
                     Reservation = context.Reservations.Where(r => r.Dentist.User.Email == "ivan@gmail.com" &&
@@ -202,7 +202,7 @@ namespace DataSeed
                 },
                 new Dbmodel.Review
                 {
-                    User = users.FirstOrDefault(u => u.Email == "ivan@gmail.com"),
+                    User = context.Users.FirstOrDefault(u => u.Email == "ivan@gmail.com"),
                     Content = "Great customer",
                     Date = new DateTime(2018, 11, 1),
                     Reservation = context.Reservations.Where(r => r.User.Email == "peter@gmail.com" &&
@@ -211,7 +211,7 @@ namespace DataSeed
                 },
                 new Dbmodel.Review
                 {
-                    User = users.FirstOrDefault(u => u.Email == "peter@gmail.com"),
+                    User = context.Users.FirstOrDefault(u => u.Email == "peter@gmail.com"),
                     Content = "Quality service from this dentist",
                     Date = DateTime.Now,
                     Reservation = context.Reservations.Where(r => r.Dentist.User.Email == "stanimir@gmail.com" &&
@@ -235,21 +235,21 @@ namespace DataSeed
             {
                 new Dbmodel.Reservation
                 {
-                    User = users.FirstOrDefault(u => u.Email == "peter@gmail.com"),
+                    User = context.Users.FirstOrDefault(u => u.Email == "peter@gmail.com"),
                     Dentist = dentists.FirstOrDefault(u => u.Type == "Orthodontist"),
                     Manipulation = "Filling of 6C",
                     Date = DateTime.Now
                 },
                 new Dbmodel.Reservation
                 {
-                    User = users.FirstOrDefault(u => u.Email == "george@gmail.com"),
+                    User = context.Users.FirstOrDefault(u => u.Email == "george@gmail.com"),
                     Dentist = dentists.FirstOrDefault(u => u.Type == "Orthodontist"),
                     Manipulation = "Extraction of upper left wise tooth",
                     Date = new DateTime(2018, 10, 15)
                 },
                 new Dbmodel.Reservation
                 {
-                    User = users.FirstOrDefault(u => u.Email == "peter@gmail.com"),
+                    User = context.Users.FirstOrDefault(u => u.Email == "peter@gmail.com"),
                     Dentist = dentists.FirstOrDefault(u => u.Type == "Surgeon"),
                     Manipulation = "Bridge between the front 2 and 3",
                     Date = new DateTime(2018, 11, 2)

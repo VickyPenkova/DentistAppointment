@@ -59,5 +59,11 @@ namespace DentistAppointment.Services
                 .Include(dentist => dentist.Dentist)
                 .Where(d => d.DentistId == dentistId));
         }
+
+        public void Edit(User user)
+        {
+            this.usersRepo.Update(user);
+            this.usersRepo.Save();
+        }
     }
 }
