@@ -21,11 +21,7 @@ namespace DentistAppointment.Controllers
         {
             return View();
         }
-        [AllowAnonymous]
-        public IActionResult mainEntrance()
-        {
-            return View();
-        }
+
         [AllowAnonymous]
         public IActionResult forgottenPass()
         {
@@ -80,7 +76,6 @@ namespace DentistAppointment.Controllers
             return View();
         }
         [AllowAnonymous]
-       // [Route("Patient/registerPatient")]
         public IActionResult registerPatient()
         {
             return View();

@@ -14,6 +14,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using DentistAppointment.Services.Abstraction;
 using DentistAppointment.Services;
+using AutoMapper;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 
 namespace DentistAppointment
 {
@@ -39,10 +41,28 @@ namespace DentistAppointment
             services.AddDbContext<DentistAppointmentDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDefaultIdentity<DentistAppointment.Data.Models.User>()
-                .AddEntityFrameworkStores<DentistAppointmentDbContext>();
+            //services.AddDefaultIdentity<DentistAppointment.Data.Models.User>()
+            //    .AddEntityFrameworkStores<DentistAppointmentDbContext>();
+            services.AddIdentity<DentistAppointment.Data.Models.User, IdentityRole>(options =>
+            {
+                options.Password.RequireDigit = false;
+                options.Password.RequireLowercase = false;
+                options.Password.RequireUppercase = false;
+                options.Password.RequiredLength = 6;
+            })
+            .AddEntityFrameworkStores<DentistAppointmentDbContext>()
+            .AddDefaultTokenProviders();
+
+            // Application services are registered into the DI container here
+            services.AddScoped<DentistAppointmentDbContext>();
+            services.TryAdd(ServiceDescriptor.Scoped(typeof(IRepository<,>), typeof(GenericRepository<,>)));
+            // marto
+            services.AddScoped(typeof(Data.Models.ReviewRepository));
             services.AddScoped<IUsersService, UsersService>();
             services.AddScoped<IDentistsService, DentistsService>();
+            services.AddScoped<ICommentsService, CommentsService>();
+            services.AddScoped<IReviewsService, ReviewsService>();
+            services.AddAutoMapper();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
@@ -70,7 +90,7 @@ namespace DentistAppointment
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Patient}/{action=mainEntrance}/{id?}");
+                    template: "{controller=Home}/{action=index}/{id?}");
             });
         }
     }

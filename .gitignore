@@ -288,5 +288,7 @@ __pycache__/
 *.xsd.cs
 
 # Ignoring bin and obj folders
-bin
-obj
+bin/
+obj/
+DentistAppointment/obj/
+DentistAppointment/bin/

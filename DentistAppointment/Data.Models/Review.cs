@@ -14,5 +14,9 @@ namespace DentistAppointment.Data.Models
         public User User { get; set; }
         public string Content { get; set; }
         public DateTime Date { get; set; }
+        [ForeignKey("ReservationID")]
+        public int ReservationId { get; set; }
+        public Reservation Reservation { get; set; }
+        public float Rating { get; set; }
     }
 }

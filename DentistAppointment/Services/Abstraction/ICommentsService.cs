@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace DentistAppointment.Services.Abstraction
 {
-    public interface IUsersService
+    public interface ICommentsService
     {
-        IEnumerable<User> GetAllUsers();
+        IEnumerable<Comment> GetAllComments();
+        IEnumerable<Comment> GetAllCommentsOfDentist(int dentistId);
+        string GetContentOfComment(int commentId);
     }
 }

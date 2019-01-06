@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
+using DentistAppointment.Common;
 
 namespace DentistAppointment.Areas.Identity.Pages.Account
 {
@@ -66,20 +67,32 @@ namespace DentistAppointment.Areas.Identity.Pages.Account
             ReturnUrl = returnUrl;
         }
 
-        public async Task<IActionResult> OnPostAsync(string returnUrl = null)
+        public async Task<IActionResult> OnPostAsync()
         {
-         
-            returnUrl = returnUrl ?? Url.Content("~/Patient/patientHomePage");
-
             if (ModelState.IsValid)
             {
                 // This doesn't count login failures towards account lockout
                 // To enable password failures to trigger account lockout, set lockoutOnFailure: true
                 var result = await _signInManager.PasswordSignInAsync(Input.Email, Input.Password, Input.RememberMe, lockoutOnFailure: true);
-                if (result.Succeeded)
+                var user = await _signInManager.UserManager.FindByEmailAsync(Input.Email);
+               
+                if(result.Succeeded)
                 {
-                    _logger.LogInformation("User logged in.");
-                    return LocalRedirect(returnUrl);
+                    if (user.DentistId != null)
+                    {
+                        _logger.LogInformation("Dentist logged in.");
+                        return LocalRedirect("~/Dentist/dentistHomePage");
+                    }
+                    else if (user.DentistId == null)
+                    {
+                        _logger.LogInformation("User logged in.");
+                        return LocalRedirect("~/Patient/patientHomePage");
+                    }
+                    else if (await _signInManager.UserManager.IsInRoleAsync(user, 
+                        GlobalConstants.AdminRole))
+                    {
+                        return LocalRedirect("~/Home/index");
+                    }
                 }
                 if (result.IsLockedOut)
                 {
@@ -91,6 +104,7 @@ namespace DentistAppointment.Areas.Identity.Pages.Account
                     ModelState.AddModelError(string.Empty, "Invalid login attempt.");
                     return Page();
                 }
+                
             }
 
             // If we got this far, something failed, redisplay form
