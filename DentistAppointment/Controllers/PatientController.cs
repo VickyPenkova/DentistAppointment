@@ -15,6 +15,7 @@ using Microsoft.AspNetCore.Identity;
 using AutoMapper;
 using DentistAppointment.Data.Models;
 using DentistAppointment.Models.PatientViewModel;
+using DentistAppointment.DTOs;
 
 namespace DentistAppointment.Controllers
 {
@@ -66,15 +67,14 @@ namespace DentistAppointment.Controllers
         {
              string userId = GetCurrentUserId();
             var user = this.usersService.GetAllUsers().FirstOrDefault(u => u.Id == userId);
-           // var comments = commentsService.GetAllCommentsOfPatient(user.Id).ToList();
+            //var comments = commentsService.GetAllCommentsOfPatient(user.Id).ToList();
 
             var viewModel = new PatientHomePageViewModel()
             {
-                User = this.usersService.GetAllUsers().FirstOrDefault(u => u.Id == userId),
                 FirstName = user.FirstName,
                 LastName = user.LastName,
                 Gender = user.Gender,
-                 Rating=user.Rating,
+                 Rating = user.Rating,
                  Email = user.Email,
                 // Comments=comments,
                  EGN = user.EGN
@@ -98,25 +98,58 @@ namespace DentistAppointment.Controllers
         }
         public IActionResult patientDentistHomePage()
         {
-            return View();
-        }
-        public IActionResult patientEditInfo()
-        {
             string userId = GetCurrentUserId();
-            var user = this.usersService.GetAllUsers().FirstOrDefault(u => u.Id == userId);
+            var dentist = this.dentistsService
+                .GetAllDentists().FirstOrDefault(user => user.User.Id == userId);
+            var comments = commentsService.GetAllCommentsOfDentist(dentist.Id).ToList();
 
-            var viewModel = new PatientEditInfoViewModel()
+            var viewModel = new PatientDentistHomePageViewModel()
             {
-                User = this.usersService.GetAllUsers().FirstOrDefault(u => u.Id == userId),
-                FirstName = user.FirstName,
-                LastName = user.LastName,
-                Gender = user.Gender,
-                Email = user.Email,
-                EGN = user.EGN
-
+                User = this.usersService.GetAllUsers().FirstOrDefault(x => x.Dentist == dentist),
+                Address = dentist.Address,
+                Type = dentist.Type,
+                Rating = dentist.User.Rating,
+                Comments = comments
             };
 
             return View(viewModel);
+        }
+        [HttpPost]
+       [ValidateAntiForgeryToken]
+        public async Task<ActionResult> patientEditInfo(PatientEditInfoViewModel editModel, Guid id)
+        {
+             string userId = GetCurrentUserId();
+             var user = this.usersService.GetAllUsers().FirstOrDefault(u => u.Id == userId);
+
+             var viewModel = new PatientEditInfoViewModel()
+             {
+                 FirstName = user.FirstName,
+                 LastName = user.LastName,
+                // Gender = user.Gender,
+                 Email = user.Email,
+                 EGN = user.EGN
+
+             };
+
+            if (user == null)
+            {
+                return this.Content("Story not found.");
+            }
+
+            if (this.ModelState.IsValid)
+            {
+                var userDto = new UserDTO()
+                {
+                    FirstName = user.FirstName,
+                    LastName = user.LastName,
+                    //user.Gender = editViewModel.Gender,
+                    Email = user.Email,
+                    EGN = user.EGN
+                };
+                this.usersService.Edit(id, userDto);
+            }
+
+            return this.RedirectToAction("patientHomePage", "Patient");
         }
         public IActionResult patientFindDoctor()
         {
@@ -129,7 +162,18 @@ namespace DentistAppointment.Controllers
         }
         public IActionResult patientOnFirstLogIn()
         {
-            return View();
+            string userId = GetCurrentUserId();
+            var user = this.usersService.GetAllUsers().FirstOrDefault(u => u.Id == userId);
+
+            var viewModel = new PatientFirstLogInViewModel()
+            {
+               
+                //Gender = user.Gender,
+ 
+                EGN = user.EGN
+
+            };
+            return View(viewModel);
         }
         public IActionResult patientRateAppointment()
         {

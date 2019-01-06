@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DentistAppointment.Data.Models;
 
 namespace DentistAppointment.Data
 {
@@ -13,5 +14,6 @@ namespace DentistAppointment.Data
         void Delete(T entity);
         void Update(T entity);
         void Save();
+        void Update(Guid id, User user);
     }
 }

@@ -1,4 +1,6 @@
 ﻿@model DentistAppointment.Models.PatientViewModel.PatientEditInfoViewModel
+
+
 <!DOCTYPE html>
 <html dir="ltr" lang="en-US">
 <head>
@@ -93,32 +95,37 @@
                                      src="~/FrontEnd/images/icons/male-user.png" alt="Male User">
                             </div>
                             <div class="team-desc col-sm-12 col-md-6 col-lg-6">
+                                <div asp-validation-summary="All" class="text-danger"></div>
                                 <div class="user-names">
                                     <h4 class="pr-2" id="firstName">
-                                        <input type="text" value=@Model.FirstName class="form-control" placeholder="FirstName" />
+                                        <input asp-for="FirstName" type="text" value=@Model.FirstName class="form-control" placeholder="FirstName" />
+                                        <span asp-validation-for="FirstName" class="text-danger"></span>
                                     </h4>
                                     <h4 id="lastName">
-                                        <input type="text" value=@Model.LastName class="form-control" placeholder="LastName" />
+                                        <input asp-for="LastName" type="text" value=@Model.LastName class="form-control" placeholder="LastName" />
+                                        <span asp-validation-for="LastName" class="text-danger"></span>
                                     </h4>
                                     <div class="white-section pt-4 mb-4">
-                                        <select class="select-1 form-control" style="width:100%;">
-                                            <option value="Male">Male</option>
-                                            <option value="Female">Female</option>
-                                            <option value="Other">Other</option>
+                                        <select asp-for="Gender" class="select-1 form-control"value=@Model.Gender style="width:100%;">
+                                            <option value="1">Male</option>
+                                            <option value="2">Female</option>
+                                            <option value="3">Other</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="user-email">
                                     <h4 class="inlineBlock-elements">Email:</h4>
-                                    <input type="text" value=@Model.Email class="form-control" placeholder="somethingsomething@gmail.com" />
+                                    <input asp-for="Email" type="text" value=@Model.Email class="form-control" placeholder="somethingsomething@gmail.com" />
+                                    <span asp-validation-for="Email" class="text-danger"></span>
                                 </div>
                                 <div class="user-egn">
                                     <h4 class="inlineBlock-elements">EGN:</h4>
-                                    <input type="text" value=@Model.EGN class="form-control" placeholder="9804152635" />
+                                    <input asp-for="EGN" type="text" value=@Model.EGN class="form-control" placeholder="9804152635" />
+                                    <span asp-validation-for="EGN" class="text-danger"></span>
                                 </div>
                                 <div class="user-edit">
                                     <a class="button button-3d button-black mt-5 ml-0 accent-background"
-                                       href="/Patient/patientHomePage">Save Changes</a>
+                                       href="/Patient/patientHomePage" value=@Model.User>Save Changes</a>
                                 </div>
                                 <div class="topmargin-sm nobottommargin"></div>
                             </div>
@@ -145,3 +152,6 @@
     <script src="~/FrontEnd/js/components/bs-select.js"></script>
 </body>
 </html>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

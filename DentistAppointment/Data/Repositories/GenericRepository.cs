@@ -44,6 +44,10 @@ namespace DentistAppointment.Data
         {
             Db.Update(entity);
         }
+        public virtual void Update(Guid id, User user)
+        {
+            Db.Update(entity);
+        }
 
         public virtual void Save()
         {

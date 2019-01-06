@@ -10,6 +10,7 @@ namespace DentistAppointment.Services.Abstraction
     {
         IEnumerable<Comment> GetAllComments();
         IEnumerable<Comment> GetAllCommentsOfDentist(int dentistId);
+        IEnumerable<Comment> GetAllCommentsOfPatient(int userId);
         string GetContentOfComment(int commentId);
     }
 }

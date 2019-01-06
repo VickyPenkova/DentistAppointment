@@ -13,15 +13,18 @@ namespace DentistAppointment.Services
         private readonly IRepository<Dentist, int> dentistsRepo;
         private readonly IRepository<User, string> usersRepo;
         private readonly IRepository<Comment, int> commentsRepo;
+        private readonly IRepository<Event, int> eventsRepo;
 
         public CommentsService(
             IRepository<Dentist, int> dentistsRepo,
             IRepository<User, string> usersRepo,
-            IRepository<Comment, int> commentsRepo)
+            IRepository<Comment, int> commentsRepo,
+            IRepository<Event, int> eventsRepo)
         {
             this.dentistsRepo = dentistsRepo;
             this.usersRepo = usersRepo;
             this.commentsRepo = commentsRepo;
+            this.eventsRepo = eventsRepo;
         }
 
         public IEnumerable<Comment> GetAllComments()
@@ -31,17 +34,33 @@ namespace DentistAppointment.Services
 
         public IEnumerable<Comment> GetAllCommentsOfDentist(int dentistId)
         {
-            return commentsRepo
+            var events = this.eventsRepo
                 .GetAll()
-                .Where(comments => comments.User.DentistId == dentistId);
+                .Where(x => x.DentistId == dentistId).ToList();
+            var commentsForDentist = new List<Comment>();
+            foreach (var e in events)
+            {
+                commentsForDentist.AddRange(commentsRepo
+                .GetAll()
+               .Where(c => c.EventId == e.Id).ToList());
+            }
+            return commentsForDentist;
         }
-      /*  //Comments for patient
+        //Comments for patient
         public IEnumerable<Comment> GetAllCommentsOfPatient(int userId)
         {
-            return commentsRepo
+            var events = this.eventsRepo
                 .GetAll()
-                .Where(comments => comments.User.UserId == userId);
-        }*/
+                .Where(u => u.Id == userId).ToList();
+            var commentsForUser = new List<Comment>();
+            foreach (var e in events)
+            {
+                commentsForUser.AddRange(commentsRepo
+                .GetAll()
+               .Where(c => c.EventId == e.Id).ToList());
+            }
+            return commentsForUser;
+        }
         public string GetContentOfComment(int commentId)
         {
             return commentsRepo.GetById(commentId).Content;
