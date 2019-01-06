@@ -21,7 +21,6 @@ namespace DentistAppointment.Controllers
         private readonly IHttpContextAccessor httpaccessor;
         private readonly IUsersService usersService;
         private readonly IDentistsService dentistsService;
-        private readonly ICommentsService commentsService;
         // marto
         private readonly IReviewsService reviewsService;
         private readonly UserManager<User> userManager;
@@ -30,7 +29,6 @@ namespace DentistAppointment.Controllers
         public DentistController(
             IUsersService usersService,
             IDentistsService dentistsService,
-            ICommentsService commentsService,
             // marto
             IReviewsService reviewsService,
             IHttpContextAccessor httpContextAccessor,
@@ -40,7 +38,6 @@ namespace DentistAppointment.Controllers
             this.usersService = usersService;
             this.dentistsService = dentistsService;
             this.httpaccessor = httpContextAccessor;
-            this.commentsService = commentsService;
             // marto
             this.reviewsService = reviewsService;
             this.mapper = mapper;
@@ -60,20 +57,25 @@ namespace DentistAppointment.Controllers
             string userId = GetCurrentUserId();
             var dentist = this.dentistsService
                 .GetAllDentists().FirstOrDefault(user => user.User.Id == userId);
-            var comments = commentsService.GetAllCommentsOfDentist(dentist.Id).ToList();
-            // marto
             var reviews = reviewsService.GetAllByDentist(dentist.Id).ToList();
-            
+            float rating = 0;
+
+            foreach(Review r in reviews)
+            {
+                rating += r.Rating;
+            }
+
             var viewModel = new DentistHomePageViewModel()
             {
                 User = this.usersService.GetAllUsers().FirstOrDefault(x => x.Dentist == dentist),
                 Address = dentist.Address,
                 Type = dentist.Type,
-                Rating = dentist.User.Rating,
-                Comments = comments,
+                Rating = rating,
                 // marto
                 Reviews = reviews
             };
+
+            Console.WriteLine(reviews);
 
             return View(viewModel);
         }
