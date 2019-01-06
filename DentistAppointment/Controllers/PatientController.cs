@@ -9,12 +9,42 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
+using Microsoft.AspNetCore.Http;
+using DentistAppointment.Services.Abstraction;
+using Microsoft.AspNetCore.Identity;
+using AutoMapper;
+using DentistAppointment.Data.Models;
+using DentistAppointment.Models.PatientViewModel;
+using DentistAppointment.DTOs;
 
 namespace DentistAppointment.Controllers
 {
    [Authorize]
     public class PatientController:Controller
     {
+        private readonly IHttpContextAccessor httpaccessor;
+        private readonly IUsersService usersService;
+        private readonly IDentistsService dentistsService;
+        private readonly ICommentsService commentsService;
+        private readonly UserManager<User> userManager;
+        private readonly IMapper mapper;
+
+        public PatientController(
+            IUsersService usersService,
+            IDentistsService dentistsService,
+            ICommentsService commentsService,
+            IHttpContextAccessor httpContextAccessor,
+            IMapper mapper,
+            UserManager<User> userManager)
+        {
+            this.usersService = usersService;
+            this.dentistsService = dentistsService;
+            this.httpaccessor = httpContextAccessor;
+            this.commentsService = commentsService;
+            this.mapper = mapper;
+            this.userManager = userManager;
+        }
+
         // Default page fot patient log in
         [AllowAnonymous]
         public IActionResult index()
@@ -32,10 +62,26 @@ namespace DentistAppointment.Controllers
         {
             return View();
         }
-
+        private string GetCurrentUserId() => this.userManager.GetUserId(HttpContext.User);
         public IActionResult patientHomePage()
         {
-            return View();
+             string userId = GetCurrentUserId();
+            var user = this.usersService.GetAllUsers().FirstOrDefault(u => u.Id == userId);
+            //var comments = commentsService.GetAllCommentsOfPatient(user.Id).ToList();
+
+            var viewModel = new PatientHomePageViewModel()
+            {
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                Gender = user.Gender,
+                 Rating = user.Rating,
+                 Email = user.Email,
+                // Comments=comments,
+                 EGN = user.EGN
+
+             };
+
+             return View(viewModel);
         }
 
         public IActionResult patientAppointments()
@@ -52,11 +98,58 @@ namespace DentistAppointment.Controllers
         }
         public IActionResult patientDentistHomePage()
         {
-            return View();
+            string userId = GetCurrentUserId();
+            var dentist = this.dentistsService
+                .GetAllDentists().FirstOrDefault(user => user.User.Id == userId);
+            var comments = commentsService.GetAllCommentsOfDentist(dentist.Id).ToList();
+
+            var viewModel = new PatientDentistHomePageViewModel()
+            {
+                User = this.usersService.GetAllUsers().FirstOrDefault(x => x.Dentist == dentist),
+                Address = dentist.Address,
+                Type = dentist.Type,
+                Rating = dentist.User.Rating,
+                Comments = comments
+            };
+
+            return View(viewModel);
         }
-        public IActionResult patientEditInfo()
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> patientEditInfo(PatientEditInfoViewModel editModel, Guid id)
         {
-            return View();
+             string userId = GetCurrentUserId();
+             var user = this.usersService.GetAllUsers().FirstOrDefault(u => u.Id == userId);
+
+             var viewModel = new PatientEditInfoViewModel()
+             {
+                 FirstName = user.FirstName,
+                 LastName = user.LastName,
+                // Gender = user.Gender,
+                 Email = user.Email,
+                 EGN = user.EGN
+
+             };
+
+            if (user == null)
+            {
+                return this.Content("Story not found.");
+            }
+
+            if (this.ModelState.IsValid)
+            {
+                var userDto = new UserDTO()
+                {
+                    FirstName = user.FirstName,
+                    LastName = user.LastName,
+                    //user.Gender = editViewModel.Gender,
+                    Email = user.Email,
+                    EGN = user.EGN
+                };
+                //this.usersService.Edit(id, userDto);
+            }
+
+            return this.RedirectToAction("patientHomePage", "Patient");
         }
         public IActionResult patientFindDoctor()
         {
@@ -67,9 +160,35 @@ namespace DentistAppointment.Controllers
         {
             return View();
         }
-        public IActionResult patientOnFirstLogIn()
+        [HttpGet]
+        public IActionResult patientOnFirstLogIn(String returnurl = null)
         {
-            return View();
+            string userId = GetCurrentUserId();
+            var user = this.usersService.GetAllUsers().FirstOrDefault(u => u.Id == userId);
+
+            var model = new PatientFirstLogInViewModel()
+            {
+                Gender = user.Gender,
+                EGN = user.EGN.ToString()
+            };
+            return View(model);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult patientOnFirstLogin(PatientFirstLogInViewModel model)
+        {
+            string userId = GetCurrentUserId();
+            var user = this.usersService.GetAllUsers().FirstOrDefault(u => u.Id == userId);
+
+            if (ModelState.IsValid)
+            {
+                user.EGN = Int64.Parse(model.EGN);
+                user.Gender = model.Gender;
+                usersService.Edit(user);
+
+                return RedirectToAction("patientHomePage", "Patient");
+            }
+            return View(model);
         }
         public IActionResult patientRateAppointment()
         {

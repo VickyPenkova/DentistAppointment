@@ -1,199 +1,171 @@
-﻿@model DentistAppointment.Models.DentistViewModels.DentistEditInfoViewModel
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html dir="ltr" lang="en-US">
-<head>
+    <head>
 
-    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    <meta name="author" content="" />
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+        <meta name="author" content="" />
 
-    <!-- Stylesheets
-    ============================================= -->
-    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,400i,700|Raleway:300,400,500,600,700|Crete+Round:400i" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" href="~/FrontEnd/css/bootstrap.css" type="text/css" />
-    <link rel="stylesheet" href="~/FrontEnd/dentistStyle.css" type="text/css" />
-    <link rel="stylesheet" href="~/FrontEnd/css/font-icons.css" type="text/css" />
-    <link rel="stylesheet" href="~/FrontEnd/css/animate.css" type="text/css" />
+       
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <!-- Bootstrap Select CSS -->
-    <link rel="stylesheet" href="~/FrontEnd/css/components/bs-select.css" type="text/css" />
+        <!-- Document Title
+============================================= -->
+        <title>Edit Dentist Info</title>
 
-    <link rel="stylesheet" href="~/FrontEnd/css/responsive.css" type="text/css" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <!-- Favicon
+============================================= -->
 
-    <!-- Document Title
-    ============================================= -->
-    <title>Edit Dentist Info</title>
+        <link rel="apple-touch-icon" sizes="57x57" href="~/FrontEnd/images/favicon/apple-icon-57x57.png">
+        <link rel="apple-touch-icon" sizes="60x60" href="~/FrontEnd/images/favicon/apple-icon-60x60.png">
+        <link rel="apple-touch-icon" sizes="72x72" href="~/FrontEnd/images/favicon/apple-icon-72x72.png">
+        <link rel="apple-touch-icon" sizes="76x76" href="~/FrontEnd/images/favicon/apple-icon-76x76.png">
+        <link rel="apple-touch-icon" sizes="114x114" href="~/FrontEnd/images/favicon/apple-icon-114x114.png">
+        <link rel="apple-touch-icon" sizes="120x120" href="~/FrontEnd/images/favicon/apple-icon-120x120.png">
+        <link rel="apple-touch-icon" sizes="144x144" href="~/FrontEnd/images/favicon/apple-icon-144x144.png">
+        <link rel="apple-touch-icon" sizes="152x152" href="~/FrontEnd/images/favicon/apple-icon-152x152.png">
+        <link rel="apple-touch-icon" sizes="180x180" href="~/FrontEnd/images/favicon/apple-icon-180x180.png">
+        <link rel="icon" type="image/png" sizes="192x192"  href="~/FrontEnd/images/favicon/android-icon-192x192.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="~/FrontEnd/images/favicon/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="96x96" href="~/FrontEnd/images/favicon/favicon-96x96.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="~/FrontEnd/images/favicon/favicon-16x16.png">
+        <meta name="msapplication-TileColor" content="#ffffff">
+        <meta name="msapplication-TileImage" content="~/FrontEnd/images/favicon/ms-icon-144x144.png">
+        <meta name="theme-color" content="#ffffff">
+    </head>
 
-    <!-- Favicon
-    ============================================= -->
+    <body class="stretched sticky-responsive-menu dark">
 
-    <link rel="apple-touch-icon" sizes="57x57" href="/FrontEnd/images/favicon/apple-icon-57x57.png">
-    <link rel="apple-touch-icon" sizes="60x60" href="/FrontEnd/images/favicon/apple-icon-60x60.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="/FrontEnd/images/favicon/apple-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="/FrontEnd/images/favicon/apple-icon-76x76.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="/FrontEnd/images/favicon/apple-icon-114x114.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="/FrontEnd/images/favicon/apple-icon-120x120.png">
-    <link rel="apple-touch-icon" sizes="144x144" href="/FrontEnd/images/favicon/apple-icon-144x144.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="/FrontEnd/images/favicon/apple-icon-152x152.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="/FrontEnd/images/favicon/apple-icon-180x180.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="/FrontEnd/images/favicon/android-icon-192x192.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/FrontEnd/images/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="96x96" href="/FrontEnd/images/favicon/favicon-96x96.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/FrontEnd/images/favicon/favicon-16x16.png">
-    <meta name="msapplication-TileColor" content="#ffffff">
-    <meta name="msapplication-TileImage" content="/FrontEnd/images/favicon/ms-icon-144x144.png">
-    <meta name="theme-color" content="#ffffff">
-</head>
+        <!-- Document Wrapper
+============================================= -->
+        <div id="wrapper" class="clearfix">
 
-<body class="stretched sticky-responsive-menu dark">
+            <!-- Header
+============================================= -->
+            <header id="header">
 
-    <!-- Document Wrapper
-    ============================================= -->
-    <div id="wrapper" class="clearfix">
+                <div id="header-wrap">
 
-        <!-- Header
-        ============================================= -->
-        <header id="header">
+                    <div class="container clearfix">
 
-            <div id="header-wrap">
+                        <div id="primary-menu-trigger"><i class="icon-reorder"></i></div>
+
+                        <!-- Logo
+============================================= -->
+                        <div id="logo">
+                            <a href="/Dentist/dentistHomePage" class="standard-logo" data-dark-logo="~/FrontEnd/images/icons/molar-inside-a-shield-orange.png"><img src="~/FrontEnd/images/icons/molar-inside-a-shield-orange.png" alt="Denstist Logo"></a>
+                            <a href="/Dentist/dentistHomePage" class="retina-logo" data-dark-logo="~/FrontEnd/images/icons/molar-inside-a-shield-orange.png"><img src="~/FrontEnd/images/icons/molar-inside-a-shield-orange.png" alt="Denstist Logo"></a>
+                        </div>
+                        <!-- #logo end -->
+
+                        <!-- Primary Navigation
+============================================= -->
+                        <nav id="primary-menu">
+
+                            <ul>
+                                <li class="accent-background"><a href="/Dentist/dentistHomePage"><div>My Profile</div></a>
+                                </li>
+                                <li class="current"><a href="/Dentist/dentistFindAPatient"><div>Find a Patient</div></a>
+                                </li>
+                                <li class="current"><a href="/Dentist/dentistEvents">Events</a></li>
+                                <li class="current"><a href="/Dentist/dentistAppointments"><div>My Appointments</div></a>
+                                </li>
+                                <li class="current"><a href="/Dentist/dentistMedicalManipulations"><div>Medical Manipulations History</div></a>
+                                </li>
+                                <li class="current">
+                                    <a asp-area="Identity" asp-page="/Account/Logout"><div><i class="icon-line2-logout"></i>Log Out</div></a>
+                                </li>
+                            </ul>
+
+                        </nav><!-- #primary-menu end -->
+
+                    </div>
+
+                </div>
+
+            </header><!-- #header end -->
+
+        </div><!-- #wrapper end -->
+
+        <!-- Content
+============================================= -->
+        <section id="content">
+
+            <div class="content-wrap">
 
                 <div class="container clearfix">
 
-                    <div id="primary-menu-trigger"><i class="icon-reorder"></i></div>
-
-                    <!-- Logo
-                    ============================================= -->
-                    <div id="logo">
-                        <a href="/Patient/patientHomePage" class="standard-logo" data-dark-logo="/FrontEnd/images/icons/molar-inside-a-shield-orange.png"><img src="~/FrontEnd/images/icons/molar-inside-a-shield-orange.png" alt="Denstist Logo"></a>
-                        <a href="/Patient/patientHomePage" class="retina-logo" data-dark-logo="/FrontEnd/images/icons/molar-inside-a-shield-orange.png"><img src="~/FrontEnd/images/icons/molar-inside-a-shield-orange.png" alt="Denstist Logo"></a>
+                    <div id="section-couple" class="heading-block title-center page-section">
+                        <h2>Edit User Profile</h2>
                     </div>
-                    <!-- #logo end -->
-                    <!-- Primary Navigation
-                    ============================================= -->
-                    <nav id="primary-menu">
 
-                        <ul>
-                            <li class="accent-background">
-                                <a href="/Dentist/dentistHomePage"><div>My Profile</div></a>
-                            </li>
-                            <li class="current">
-                                <a href="/Dentist/dentistFindAPatient"><div>Find a Patient</div></a>
-                            </li>
-                            <li class="current"><a href="/Dentist/dentistEvents">Events</a></li>
-                            <li class="current">
-                                <a href="/Dentist/dentistAppointments"><div>My Appointments</div></a>
-                            </li>
-                            <li class="current">
-                                <a href="/Dentist/dentistMedicalManipulations"><div>Medical Manipulations History</div></a>
-                            </li>
-                            <li class="current">
-                                <a asp-area="Identity" asp-page="/Account/Logout"><div><i class="icon-line2-logout"></i>Log Out</div></a>
-                            </li>
-                        </ul>
+                    <div class="row">
+                        <div class="col-12 bottommargin">
+                            <div class="row team team-list clearfix">
+                                <div class="team-image col-sm-12 col-md-6 col-lg-6">
+                                    <img class="rounded-circle center-image-user" style="width: 150px;" src="~/FrontEnd/images/icons/female-dentist.png" alt="Male User">
+                                </div>
+                                <div class="team-desc col-sm-12 col-md-6 col-lg-6">
+                                    <div class="user-names">
+                                        <h4 class="pr-2" id="firstName">
+                                            <input type="text" value="" class="form-control" placeholder="FirstName"/>
+                                        </h4>
+                                        <h4 id="lastName">
+                                            <input type="text" value="" class="form-control" placeholder="LastName"/>
+                                        </h4>
+                                        <div class="white-section pt-4">
+                                            <select class="select-1 form-control" style="width:100%;">
+                                                <option value= "Male">Male</option>
+                                                <option value= "Female">Female</option>
+                                                <option value= "Other">Other</option>
+                                            </select>
+                                        </div>
+                                    </div>
 
-                    </nav><!-- #primary-menu end -->
+                                    <div class="user-email"><h4 class="inlineBlock-elements">Email:</h4> 
+                                        <input type="text" value="" class="form-control" placeholder="somethingsomething@gmail.com"/>
+                                    </div>
 
-                </div>
+                                    <div class="user-egn"><h4 class="inlineBlock-elements">EGN:</h4> 
+                                        <input type="text" value="" class="form-control" placeholder="9804152635"/>
+                                    </div>
 
-            </div>
+                                    <div class="user-address"><h4 class="inlineBlock-elements">Address:</h4> 
+                                        <input type="text" value="" class="form-control" placeholder="In the middle of nowhere, Nowhere, Earth"/>
+                                    </div>
+                                    <div class="user-edit"><a class="button button-3d button-black mt-5 ml-0 accent-background" href="/Dentist/dentistHomePage">Save Changes</a>
+                                    </div>
 
-        </header><!-- #header end -->
-
-    </div><!-- #wrapper end -->
-    <!-- Content
-    ============================================= -->
-    <section id="content">
-
-        <div class="content-wrap">
-
-            <div class="container clearfix">
-
-                <div id="section-couple" class="heading-block title-center page-section">
-                    <h2>Edit User Profile</h2>
-                </div>
-
-                <div class="row">
-                    <div class="col-12 bottommargin">
-                        <div class="row team team-list clearfix">
-                            <div class="team-image col-sm-12 col-md-6 col-lg-6">
-                                <img class="rounded-circle center-image-user" style="width: 150px;" src="~/FrontEnd/images/icons/female-dentist.png" alt="Male User">
+                                    <div class="topmargin-sm nobottommargin"></div>
+                                </div>
                             </div>
-
-                            <form asp-route-returnUrl="@ViewData["ReturnUrl"]" class="form-horizontal team-desc col-sm-12 col-md-6 col-lg-6" method="post">
-                                <div class="form-group">
-                                    <h4 id="firstName" class="inlineBlock-elements">First Name:</h4>
-                                    <input asp-for="@Model.FirstName" class="form-control" />
-                                    <span asp-validation-for="@Model.FirstName" class="text-danger"></span>
-                                </div>
-                                <div class="form-group">
-                                    <h4 class="inlineBlock-elements" id="lastName">Last Name:</h4>
-                                    <input asp-for="@Model.LastName" class="form-control" />
-                                    <span asp-validation-for="@Model.LastName" class="text-danger"></span>
-                                </div>
-                                
-                                <div class="white-section pt-4">
-                                    <h4 class="inlineBlock-elements">Gender:</h4>
-                                    @Html.DropDownListFor(model => model.Gender, Model.GenderTypes, new
-                                    {
-                                        @class = "select-1 form-control",
-                                        style = "width:100%; "
-                                    })
-                                </div>
-                                <div class="form-group">
-                                    <div class="user-email">
-                                        <h4 class="inlineBlock-elements">Email:</h4>
-                                        <input asp-for="@Model.Email" class="form-control" />
-                                        <span asp-validation-for="@Model.LastName" class="text-danger"></span>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="user-egn">
-                                        <h4 class="inlineBlock-elements">EGN:</h4>
-                                        <input asp-for="@Model.EGN" class="form-control" />
-                                        <span asp-validation-for="@Model.EGN" class="text-danger"></span>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="user-edit">
-                                        <button type="submit" class="button button-3d button-black mt-5 ml-0 accent-background">Save Changes</button>
-                                       
-                                    </div>
-                                </div>
-                            </form>
-
-
-
-                        <div class="topmargin-sm nobottommargin"></div>
+                        </div>
                     </div>
+                    <div class="clear"></div>
                 </div>
-                <div class="clear"></div>
             </div>
-        </div>
-    </section>
+        </section>
 
 
 
-    <!-- Go To Top
-    ============================================= -->
-    <div id="gotoTop" class="icon-angle-up"></div>
+        <!-- Go To Top
+============================================= -->
+        <div id="gotoTop" class="icon-angle-up"></div>
 
-    <!-- External JavaScripts
-    ============================================= -->
-    <script src="~/FrontEnd/js/jquery.js"></script>
-    <script src="~/FrontEnd/js/plugins.js"></script>
-    <!-- Bootstrap Select Plugin -->
-    <script src="~/FrontEnd/js/components/bs-select.js"></script>
+        <!-- External JavaScripts
+============================================= -->
+        <script src="~/FrontEnd/js/jquery.js"></script>
+        <script src="~/FrontEnd/js/plugins.js"></script>
+        <!-- Bootstrap Select Plugin -->
+        <script src="~/FrontEnd/js/components/bs-select.js"></script>
 
-    <!-- Footer Scripts
-    ============================================= -->
-    <script src="~/FrontEnd/js/functions.js"></script>
+        <!-- Footer Scripts
+============================================= -->
+        <script src="~/FrontEnd/js/functions.js"></script>
 
-    <!-- Star Rating Plugin -->
-    <script src="~/FrontEnd/js/components/bs-select.js"></script>
-    @section Scripts {
-        @await Html.PartialAsync("_ValidationScriptsPartial")
-    }
+        <!-- Star Rating Plugin -->
+        <script src="~/FrontEnd/js/components/bs-select.js"></script>
 
 
-</body>
+
+    </body>
 </html>

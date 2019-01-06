@@ -1,11 +1,9 @@
-﻿@model PatientFirstLogInViewModel
-
+﻿@model DentistAppointment.Models.PatientViewModel.PatientFirstLogInViewModel
 <!DOCTYPE html>
 <html dir="ltr" lang="en-US">
 <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <meta name="author" content="SemiColonWeb" />
-
     <!-- Favicon
     ============================================= -->
     <link rel="apple-touch-icon" sizes="57x57" href="~/FrontEnd/images/favicon/apple-icon-57x57.png">
@@ -45,32 +43,22 @@
                         </div>
                         <div class="card divcenter noradius noborder" style="max-width: 550px; background-color: rgba(255,255,255,0.93);">
                             <div class="card-body" style="padding: 40px;">
-                                <form id="login-form" name="login-form" class="nobottommargin" action="#" method="post">
+                                <form asp-route-returnUrl="@ViewData["ReturnUrl"]" id="login-form" name="login-form" class="nobottommargin" method="post">
                                     <div id="formWrapper">
                                         <h3>We would require some additional information to complete your registration!"</h3>
-                                        <div asp-validation-summary="All" class="text-danger"></div>
                                         <div class="col_full">
-                                            <label asp-for="Gender">Gender</label>
-                                            <select class="selectpicker col-12 " style="height: calc(2.25rem + 2px);
-												border-radius: 3px; margin-bottom:10px;" title="Please choose">
-                                                <option>Male</option>
-                                                <option>Female</option>
-                                                <option>Other</option>
-                                            </select>
+                                            @Html.DropDownListFor(model => model.Gender, Model.GenderTypes, new { @class= "selectpicker col-12 ",
+                                            style = "height: calc(2.25rem + 2px); border - radius: 3px; margin - bottom:10px; ", @title= "Please choose"})
                                             <label asp-for="EGN">Unique citizenship number (EGN)</label>
-                                            <input asp-for="EGN" type="text" value="" class="form-control" />
+                                            <input asp-for="EGN" type="text" value="@Model.EGN" class="form-control" />
                                             <span asp-validation-for="EGN" class="text-danger"></span>
-                                            <label asp-for="Address">Address</label>
-                                            <input asp-for="Address" type="text" value="" class="form-control" />
-                                            <span asp-validation-for="Address" class="text-danger"></span>
                                         </div>
                                     </div>
                                     <div class="center">
                                         <h3 id="message" class="text-success"></h3>
                                     </div>
                                     <div class="col_full nobottommargin">
-                                        <!--- <button type="submit" class="button button-3d button-black col-12 center" id="btnContinue">Continue</button>-->
-                                        <a class="button button-3d button-black col-12 center" id="btnContinue">Continue</a>
+                                        <button type="submit" class="button button-3d button-black col-12 center" id="btnContinue">Continue</button>
                                         <a class="button button-3d button-black col-12 center"
                                            href="/Patient/patientHomePage" id="btnToHome" style="display:none;">
                                             To your home page
@@ -99,7 +87,7 @@
     <!-- After a successfull data entry
     ============================================= -->
     <script>
-        $(document).ready(function () {
+        /*$(document).ready(function () {
             $("#btnContinue").click(function () {
                 $("#message").text("Thank you! You can access your profile now!");
                 $("#btnContinue").css("display", "none");
@@ -108,11 +96,10 @@
             })
 
         });
-
+        */
     </script>
 </body>
 </html>
-
 @section Scripts {
-    <partial name="_ValidationScriptsPartial" />
+    @await Html.PartialAsync("_ValidationScriptsPartial")
 }
