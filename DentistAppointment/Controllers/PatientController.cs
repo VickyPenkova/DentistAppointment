@@ -25,6 +25,7 @@ namespace DentistAppointment.Controllers
         private readonly IHttpContextAccessor httpaccessor;
         private readonly IUsersService usersService;
         private readonly IDentistsService dentistsService;
+        private readonly IReservationsService reservationsService;
         private readonly UserManager<User> userManager;
         private readonly IMapper mapper;
 
@@ -32,11 +33,13 @@ namespace DentistAppointment.Controllers
             IUsersService usersService,
             IDentistsService dentistsService,
             IHttpContextAccessor httpContextAccessor,
+            IReservationsService reservationsService,
             IMapper mapper,
             UserManager<User> userManager)
         {
             this.usersService = usersService;
             this.dentistsService = dentistsService;
+            this.reservationsService = reservationsService;
             this.httpaccessor = httpContextAccessor;
             this.mapper = mapper;
             this.userManager = userManager;
@@ -87,7 +90,14 @@ namespace DentistAppointment.Controllers
         }
         public IActionResult patientBooking()
         {
-            return View();
+            // HARDCODE
+            int DENTIST_ID = 1;
+
+            var model = new PatientBookingModel()
+            {
+                WorkHours = reservationsService.GetDentistWorkHoursForDay(1, new DateTime(2019, 1, 8))
+            };
+            return View(model);
         }
         public IActionResult patientCheckDocument()
         {

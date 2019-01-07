@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@model DentistAppointment.Models.PatientViewModel.PatientBookingModel
+<!DOCTYPE html>
 <html dir="ltr" lang="en-US">
 <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
@@ -110,32 +111,12 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach (var workHour in Model.WorkHours)
+                            {
                             <tr>
-                                <td>8:00-8:30</td>
+                                <td>@workHour.Start.ToString(@"hh\:mm") - @workHour.End.ToString(@"hh\:mm")</td>
                                 <td>
-                                    <button class="btn accent-background light-text aviableBtn" data-toggle="modal" data-target=".bs-example-modal-sm"><i class="icon-line-play"></i><span>Aviable</span></button>
-                                    <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog modal-sm">
-                                            <div class="modal-body">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h4 class="modal-title" id="myModalLabel">Your booking has been made!</h4>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <p class="nobottommargin">You booked an appointment! You can cancel your appointments up to one hour before the booked hour. In order to macke changes to your current bookings, see the menu "My appointments".</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>8:30-9:00</td>
-                                <td>
-                                    <button class="btn accent-background light-text aviableBtn" data-toggle="modal" data-target=".bs-example-modal-sm"><i class="icon-line-play"></i><span>Aviable</span></button>
+                                    <button disable="@workHour.Available" class="btn accent-background light-text aviableBtn" data-toggle="modal" data-target=".bs-example-modal-sm"><i class="icon-line-play"></i><span>Available</span></button>
                                     <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
                                         <div class="modal-dialog modal-sm">
                                             <div class="modal-body">
@@ -153,90 +134,7 @@
                                     </div>
                                 </td>
                             </tr>
-                            <tr>
-                                <td>9:00-9:30</td>
-                                <td>
-                                    <button class="btn accent-background light-text aviableBtn" data-toggle="modal" data-target=".bs-example-modal-sm"><i class="icon-line-play"></i><span>Aviable</span></button>
-                                    <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog modal-sm">
-                                            <div class="modal-body">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h4 class="modal-title" id="myModalLabel">Your booking has been made!</h4>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <p class="nobottommargin">You booked an appointment! You can cancel your appointments up to one hour before the booked hour. In order to macke changes to your current bookings, see the menu "My appointments".</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>9:30-10:00</td>
-                                <td>
-                                    <button class="btn accent-background light-text aviableBtn" data-toggle="modal" data-target=".bs-example-modal-sm"><i class="icon-line-play"></i><span>Aviable</span></button>
-                                    <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog modal-sm">
-                                            <div class="modal-body">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h4 class="modal-title" id="myModalLabel">Your booking has been made!</h4>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <p class="nobottommargin">You booked an appointment! You can cancel your appointments up to one hour before the booked hour. In order to macke changes to your current bookings, see the menu "My appointments".</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>10:00-10:30</td>
-                                <td>
-                                    <button class="btn accent-background light-text aviableBtn" data-toggle="modal" data-target=".bs-example-modal-sm"><i class="icon-line-play"></i><span>Aviable</span></button>
-                                    <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog modal-sm">
-                                            <div class="modal-body">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h4 class="modal-title" id="myModalLabel">Your booking has been made!</h4>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <p class="nobottommargin">You booked an appointment! You can cancel your appointments up to one hour before the booked hour. In order to macke changes to your current bookings, see the menu "My appointments".</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>10:30-11:00</td>
-                                <td>
-                                    <button class="btn accent-background light-text aviableBtn" data-toggle="modal" data-target=".bs-example-modal-sm"><i class="icon-line-play"></i><span>Aviable</span></button>
-                                    <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog modal-sm">
-                                            <div class="modal-body">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h4 class="modal-title" id="myModalLabel">Your booking has been made!</h4>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <p class="nobottommargin">You booked an appointment! You can cancel your appointments up to one hour before the booked hour. In order to macke changes to your current bookings, see the menu "My appointments".</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
+                            }
                         </tbody>
                     </table>
                 </div>

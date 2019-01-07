@@ -123,7 +123,7 @@ namespace DataSeed
                     Type = "Orthodontist",
                     WorkTimeStart = new TimeSpan(8, 0, 0),
                     WorkTimeEnd = new TimeSpan(13, 0, 0),
-                    WorkDays = 42
+                    WorkDays = 42 // Monday, Wednesday, Friday
                 },
                 new Dbmodel.Dentist
                 {
