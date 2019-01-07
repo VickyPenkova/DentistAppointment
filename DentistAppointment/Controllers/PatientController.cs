@@ -90,14 +90,23 @@ namespace DentistAppointment.Controllers
         }
         public IActionResult patientBooking()
         {
+            var model = new PatientBookingModel()
+            {
+                WorkHours = reservationsService.GetDentistWorkHoursForDay(1, DateTime.Now)
+            };
+            return View(model);
+        }
+        [HttpPost]
+        public IActionResult workHoursForDay(int year, int month, int day)
+        {
             // HARDCODE
             int DENTIST_ID = 1;
 
             var model = new PatientBookingModel()
             {
-                WorkHours = reservationsService.GetDentistWorkHoursForDay(1, new DateTime(2019, 1, 7))
+                WorkHours = reservationsService.GetDentistWorkHoursForDay(1, new DateTime(year, month, day))
             };
-            return View(model);
+            return PartialView(model);
         }
         public IActionResult patientCheckDocument()
         {

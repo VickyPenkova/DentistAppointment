@@ -1,0 +1,36 @@
+﻿@*
+    Partial view for choosing appointment. Below calendar in booking page
+*@
+@model DentistAppointment.Models.PatientViewModel.PatientBookingModel
+@foreach (var workHour in Model.WorkHours)
+{
+    <tr>
+        <td>@workHour.Start.ToString(@"hh\:mm") - @workHour.End.ToString(@"hh\:mm")</td>
+        <td>
+            @if (workHour.Available)
+            {
+                <button class="btn accent-background light-text aviableBtn" data-toggle="modal" data-target=".bs-example-modal-sm"><i class="icon-line-play"></i><span>Available</span></button>
+                <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-sm">
+                        <div class="modal-body">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title" id="myModalLabel">Your booking has been made!</h4>
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                </div>
+                                <div class="modal-body">
+                                    <p class="nobottommargin">You booked an appointment! You can cancel your appointments up to one hour before the booked hour. In order to macke changes to your current bookings, see the menu "My appointments".</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <button class="btn light-text aviableBtn button-red disabled" data-target=".bs-example-modal-sm"><i class="icon-line-circle-cross"></i><span></span></button>
+            }
+
+        </td>
+    </tr>
+}

@@ -33,9 +33,14 @@ namespace DentistAppointment.Services
             
             if (workDays.Contains(date.DayOfWeek))
             {
+                DateTime currDateTime;
+                bool available;
                 for (TimeSpan start = dentist.WorkTimeStart; start < dentist.WorkTimeEnd; start += GlobalConstants.DentistAppointmentLength)
                 {
-                    workHours.Add(new DentistWorkHourDTO(start, start + GlobalConstants.DentistAppointmentLength, true));
+                    currDateTime = new DateTime(date.Year, date.Month, date.Day, start.Hours, start.Minutes, start.Seconds);
+                    // If reservations count for current datetime is 0, hour is available
+                    available = reservationsRepo.GetAll().Where(r => r.Date == currDateTime && r.DentistId == dentistId).Count() == 0;
+                    workHours.Add(new DentistWorkHourDTO(start, start + GlobalConstants.DentistAppointmentLength, available));
                 }
             }
             return workHours;
