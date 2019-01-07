@@ -95,7 +95,7 @@ namespace DentistAppointment.Controllers
 
             var model = new PatientBookingModel()
             {
-                WorkHours = reservationsService.GetDentistWorkHoursForDay(1, new DateTime(2019, 1, 8))
+                WorkHours = reservationsService.GetDentistWorkHoursForDay(1, new DateTime(2019, 1, 7))
             };
             return View(model);
         }
