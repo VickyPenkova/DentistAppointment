@@ -8,6 +8,8 @@ namespace DentistAppointment.Models.PatientViewModel
 {
     public class PatientBookingModel
     {
-        public IEnumerable<DentistWorkHourDTO> WorkHours { get; set; }
+        public List<DentistWorkHourDTO> WorkHours { get; set; }
+        public DateTime Start { get; set; }
+        public DateTime Date { get; set; }
     }
 }

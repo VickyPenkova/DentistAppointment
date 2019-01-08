@@ -24,7 +24,7 @@ namespace DentistAppointment.Services
             this.dentistRepo = dentistRepo;
         }
         
-        public IEnumerable<DentistWorkHourDTO> GetDentistWorkHoursForDay(int dentistId, DateTime date)
+        public List<DentistWorkHourDTO> GetDentistWorkHoursForDay(int dentistId, DateTime date)
         {
             Dentist dentist = dentistRepo.GetById(dentistId);
             List<DayOfWeek> workDays = GetDentistWorkDays(dentist);
@@ -40,7 +40,7 @@ namespace DentistAppointment.Services
                     currDateTime = new DateTime(date.Year, date.Month, date.Day, start.Hours, start.Minutes, start.Seconds);
                     // If reservations count for current datetime is 0, hour is available
                     available = reservationsRepo.GetAll().Where(r => r.Date == currDateTime && r.DentistId == dentistId).Count() == 0;
-                    workHours.Add(new DentistWorkHourDTO(start, start + GlobalConstants.DentistAppointmentLength, available));
+                    workHours.Add(new DentistWorkHourDTO(start, start + GlobalConstants.DentistAppointmentLength, date, available));
                 }
             }
             return workHours;
@@ -68,6 +68,18 @@ namespace DentistAppointment.Services
                 }
             }
             return workDays;
+        }
+
+        public void MakeReservation(string userId, int dentistId, DateTime date)
+        {
+            Reservation reservation = new Reservation()
+            {
+                UserId = userId,
+                DentistId = dentistId,
+                Date = date
+            };
+            reservationsRepo.Add(reservation);
+            reservationsRepo.Save();
         }
 
     }

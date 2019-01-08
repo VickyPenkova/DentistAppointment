@@ -71,9 +71,9 @@ $( document ).ready(function() {
             'December': 12
         }
 
-        day = $(this).text().split(" ")[0];
-        month = months[$('#calendar-month').html()];
-        year = $('#calendar-year').html()
+        var day = $(this).text().split(" ")[0];
+        var month = months[$('#calendar-month').html()];
+        var year = $('#calendar-year').html()
         $.ajax({
             url: "/Patient/workHoursForDay",
             method: "post",
@@ -394,9 +394,9 @@ $( document ).ready(function() {
                     'December': 12
                 }
 
-                day = $(this).text().split(" ")[0];
-                month = months[$('#calendar-month').html()];
-                year = $('#calendar-year').html();
+                var day = $(this).text().split(" ")[0];
+                var month = months[$('#calendar-month').html()];
+                var year = $('#calendar-year').html();
                 $.ajax({
                     url: "/Patient/workHoursForDay",
                     method: "post",

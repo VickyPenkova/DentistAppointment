@@ -9,6 +9,7 @@ namespace DentistAppointment.Services.Abstraction
 {
     public interface IReservationsService
     {
-        IEnumerable<DentistWorkHourDTO> GetDentistWorkHoursForDay(int dentistId, DateTime date);
+        List<DentistWorkHourDTO> GetDentistWorkHoursForDay(int dentistId, DateTime date);
+        void MakeReservation(string userId, int dentistId, DateTime date);
     }
 }
