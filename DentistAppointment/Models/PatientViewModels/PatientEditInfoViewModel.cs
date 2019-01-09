@@ -30,7 +30,7 @@ namespace DentistAppointment.Models.PatientViewModel
         [EmailAddress]
         public string Email { get; set; }
         [StringLength(10, MinimumLength = 10, ErrorMessage = "The {0} must be at least {2} and must be at max {1} characters long.")]
-        public long EGN { get; set; }
+        public string EGN { get; set; }
 
     }
 }

@@ -46,22 +46,24 @@
 							background-size: cover;"></div>
                 <div class="section nobg full-screen nopadding nomargin">
                     <div class="container-fluid vertical-middle divcenter clearfix">
-                        <div class="center">
-                            <a  asp-area="Identity" asp-page="/Account/Login">
-                                <img src="~/FrontEnd/images/icons/molar-inside-a-shield.png" alt="Dentist system logo">
-                            </a>
-                        </div>
-                        <div class="card divcenter noradius noborder" style="max-width: 400px; background-color: rgba(255,255,255,0.93);">
-                            <div class="card-body text-center" style="padding: 40px;">
-
-                                <div id="formWrapper ">
-                                    <h3>You logged out successfully!</h3>
-                                    <a asp-area="Identity" asp-page="/Account/Login" class="button button-3d button-rounded accent-background">
-                                        <i class="icon-line-rewind"></i>Back to the home page
-                                    </a>
+                        <form >
+                            <div class="center">
+                                <a asp-area="Identity" asp-page="/Account/Login">
+                                    <img src="~/FrontEnd/images/icons/molar-inside-a-shield.png" alt="Dentist system logo">
+                                </a>
+                            </div>
+                            <div class="card divcenter noradius noborder" style="max-width: 400px; background-color: rgba(255,255,255,0.93);">
+                                <div class="card-body text-center" style="padding: 40px;">
+                                    
+                                        <div id="formWrapper ">
+                                            <h3>You logged out successfully!</h3>
+                                            <button type="submit" class="button button-3d button-black col-12 center" asp-area="Identity" asp-page="/Account/Login">
+                                                <i class="icon-line-rewind"></i>Back to the home page
+                                            </button>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
-                        </div>
                     </div>
                 </div>
             </div>

@@ -22,6 +22,7 @@ namespace DentistAppointment.Models.PatientViewModel
 
         public long EGN { get; set; }
         public Dentist Dentist{ get; set; }
+        public IEnumerable<Review> Reviews { get; set; }
 
         public IEnumerable<Comment> Comments { get; set; }
         public double Rating { get; set; }

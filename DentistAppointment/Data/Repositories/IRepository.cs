@@ -14,6 +14,5 @@ namespace DentistAppointment.Data
         void Delete(T entity);
         void Update(T entity);
         void Save();
-        void Update(Guid id, User user);
     }
 }

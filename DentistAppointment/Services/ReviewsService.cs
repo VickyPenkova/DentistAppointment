@@ -25,11 +25,6 @@ namespace DentistAppointment.Services
             this.reservationsRepo = reservationsRepo;
         }
 
-        public IEnumerable<Review> GetAllByUser(int dentistId)
-        {
-            throw new NotImplementedException();
-        }
-
         public IEnumerable<Review> GetAllByDentist(int dentistId)
         {
             var reservations = this.reservationsRepo
@@ -48,6 +43,24 @@ namespace DentistAppointment.Services
 
             return reviewsForDentist;
         }
+        public IEnumerable<Review> GetAllByUser(string userId)
+        {
+            var reservations = this.reservationsRepo
+                .GetAll()
+                .Include(x => x.User.Dentist)
+                .Where(x => x.UserId == userId).ToList();
+            var reviewsForUser = new List<Review>();
+
+            foreach (var r in reservations)
+            {
+                reviewsForUser.AddRange(reviewsRepo
+                .GetAll()
+                .Include(x => x.User.Dentist)
+                .Where(c => c.ReservationId == r.Id && c.UserId == null).ToList());
+            }
+
+            return reviewsForUser;
+        }
 
         public IEnumerable<Review> GetAllReviews()
         {
@@ -55,6 +68,10 @@ namespace DentistAppointment.Services
         }
 
         public string GetContentOfReview(int reviewId)
+        {
+            throw new NotImplementedException();
+        }
+        public string GetContentOfReview(string reviewId)
         {
             throw new NotImplementedException();
         }

@@ -14,17 +14,22 @@ namespace DentistAppointment.Services
         private readonly IRepository<User, string> usersRepo;
         private readonly IRepository<Comment, int> commentsRepo;
         private readonly IRepository<Event, int> eventsRepo;
+        private readonly IRepository<Review, int> reservationsRepo;
+        private readonly ReviewRepository reviewsRepo;
 
         public CommentsService(
             IRepository<Dentist, int> dentistsRepo,
             IRepository<User, string> usersRepo,
             IRepository<Comment, int> commentsRepo,
-            IRepository<Event, int> eventsRepo)
+            IRepository<Event, int> eventsRepo,
+            ReviewRepository reviewsRepo)
         {
             this.dentistsRepo = dentistsRepo;
             this.usersRepo = usersRepo;
             this.commentsRepo = commentsRepo;
             this.eventsRepo = eventsRepo;
+            this.reservationsRepo = reservationsRepo;
+            this.reviewsRepo = reviewsRepo;
         }
 
         public IEnumerable<Comment> GetAllComments()
@@ -47,23 +52,21 @@ namespace DentistAppointment.Services
             return commentsForDentist;
         }
         //Comments for patient
-        public IEnumerable<Comment> GetAllCommentsOfPatient(int userId)
+      /*  public IEnumerable<Comment> GetAllCommentsOfPatient(string userId)
         {
-            var events = this.eventsRepo
-                .GetAll()
-                .Where(u => u.Id == userId).ToList();
+            var reservations = this.reservationsRepo
+                 .GetAll()
+                 .Where(x => x.UserId == userId).ToList();
             var commentsForUser = new List<Comment>();
-            foreach (var e in events)
+
+            foreach (var r in reservations)
             {
                 commentsForUser.AddRange(commentsRepo
                 .GetAll()
-               .Where(c => c.EventId == e.Id).ToList());
+                 .Where(c => c.UserId == r.Id).ToList());
+               
             }
-            return commentsForUser;
-        }
-        public string GetContentOfComment(int commentId)
-        {
-            return commentsRepo.GetById(commentId).Content;
-        }
+                return commentsForUser;
+        }*/
     }
 }
