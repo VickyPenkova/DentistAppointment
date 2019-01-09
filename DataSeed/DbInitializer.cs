@@ -213,10 +213,19 @@ namespace DataSeed
                 {
                     User = context.Users.FirstOrDefault(u => u.Email == "peter@gmail.com"),
                     Content = "Quality service from this dentist",
-                    Date = DateTime.Now,
+                    Date =new  DateTime(2019, 1, 7),
                     Reservation = context.Reservations.Where(r => r.Dentist.User.Email == "stanimir@gmail.com" &&
                                                                   r.User.Email == "peter@gmail.com").ToList()[0],
                     Rating = 3.5f
+                },
+                new Dbmodel.Review
+                {
+                    User = context.Users.FirstOrDefault(u => u.Email == "stanimir@gmail.com"),
+                    Content = "Very patient patient",
+                    Date = new DateTime(2018, 12, 2),
+                    Reservation = context.Reservations.Where(r => r.User.Email == "peter@gmail.com" &&
+                                                                  r.Dentist.User.Email == "stanimir@gmail.com").ToList()[0],
+                    Rating = 4
                 }
             };
 
@@ -309,6 +318,8 @@ namespace DataSeed
                     Event = events.FirstOrDefault(),
                     Content = "Good quality service. Just in time needed."
                 }
+               
+
             };
 
             context.Comments.AddRange(comments);

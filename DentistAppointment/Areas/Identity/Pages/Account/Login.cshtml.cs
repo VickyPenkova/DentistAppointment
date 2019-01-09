@@ -60,7 +60,7 @@ namespace DentistAppointment.Areas.Identity.Pages.Account
             returnUrl = returnUrl ?? Url.Content("~/Patient/patientOnFirstLogIn");
 
             // Clear the existing external cookie to ensure a clean login process
-            await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
+            await this.HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
 
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
 
