@@ -25,18 +25,21 @@ namespace DentistAppointment.Controllers
         private readonly IHttpContextAccessor httpaccessor;
         private readonly IUsersService usersService;
         private readonly IDentistsService dentistsService;
+        private readonly IReviewsService reviewsService;
         private readonly UserManager<User> userManager;
         private readonly IMapper mapper;
 
         public PatientController(
             IUsersService usersService,
             IDentistsService dentistsService,
+             IReviewsService reviewsService,
             IHttpContextAccessor httpContextAccessor,
             IMapper mapper,
             UserManager<User> userManager)
         {
             this.usersService = usersService;
             this.dentistsService = dentistsService;
+            this.reviewsService = reviewsService;
             this.httpaccessor = httpContextAccessor;
             this.mapper = mapper;
             this.userManager = userManager;
@@ -49,36 +52,34 @@ namespace DentistAppointment.Controllers
             return View();
         }
 
-        [AllowAnonymous]
-        public IActionResult forgottenPass()
-        {
-            return View();
-        }
-        [AllowAnonymous]
-        public IActionResult loggedOut()
-        {
-            return View();
-        }
         private string GetCurrentUserId() => this.userManager.GetUserId(HttpContext.User);
         public IActionResult patientHomePage()
         {
-             string userId = GetCurrentUserId();
+            string userId = GetCurrentUserId();
             var user = this.usersService.GetAllUsers().FirstOrDefault(u => u.Id == userId);
-            //var comments = commentsService.GetAllCommentsOfPatient(user.Id).ToList();
+            var reviews = reviewsService.GetAllByUser(user.Id).ToList();
+            float rating = 0;
+            foreach (Review r in reviews)
+            {
+                rating += r.Rating / reviews.Count;
+            }
 
             var viewModel = new PatientHomePageViewModel()
             {
+                User = this.usersService.GetAllUsers().FirstOrDefault(),
                 FirstName = user.FirstName,
                 LastName = user.LastName,
                 Gender = user.Gender,
-                 Rating = user.Rating,
                  Email = user.Email,
-                // Comments=comments,
-                 EGN = user.EGN
+                 EGN = user.EGN,
+                Rating = rating,
+                Reviews = reviews
 
-             };
+            };
+            Console.WriteLine(reviews);
+            
+            return View(viewModel);
 
-             return View(viewModel);
         }
 
         public IActionResult patientAppointments()
@@ -98,51 +99,57 @@ namespace DentistAppointment.Controllers
             string userId = GetCurrentUserId();
             var dentist = this.dentistsService
                 .GetAllDentists().FirstOrDefault(user => user.User.Id == userId);
+            var reviews = reviewsService.GetAllByDentist(dentist.Id).ToList();
+            float rating = 0;
+            foreach (Review r in reviews)
+            {
+                rating += r.Rating / reviews.Count;
+            }
 
             var viewModel = new PatientDentistHomePageViewModel()
             {
                 User = this.usersService.GetAllUsers().FirstOrDefault(x => x.Dentist == dentist),
                 Address = dentist.Address,
                 Type = dentist.Type,
-                Rating = dentist.User.Rating
-             
+                Rating = rating,
+                Reviews = reviews
+            };
+            Console.WriteLine(reviews);
+
+            return View(viewModel);
+            
+        }
+        [HttpGet]
+        public IActionResult patientEditInfo(string returnUrl = null)
+        {
+            string userId = GetCurrentUserId();
+            var user = this.usersService.GetAllUsers().FirstOrDefault(u => u.Id == userId);
+            var viewModel = new PatientEditInfoViewModel()
+            {
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                EGN = user.EGN.ToString(),
+                Email = user.Email,
+                Gender = user.Gender
             };
 
             return View(viewModel);
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> patientEditInfo(PatientEditInfoViewModel editModel, Guid id)
+        public IActionResult patientEditInfo(PatientEditInfoViewModel model)
         {
-             string userId = GetCurrentUserId();
-             var user = this.usersService.GetAllUsers().FirstOrDefault(u => u.Id == userId);
-
-             var viewModel = new PatientEditInfoViewModel()
-             {
-                 FirstName = user.FirstName,
-                 LastName = user.LastName,
-                // Gender = user.Gender,
-                 Email = user.Email,
-                 EGN = user.EGN
-
-             };
-
-            if (user == null)
-            {
-                return this.Content("Story not found.");
-            }
+            var user = this.usersService.GetAllUsers().FirstOrDefault(x => x.Id == GetCurrentUserId());
 
             if (this.ModelState.IsValid)
             {
-                var userDto = new UserDTO()
-                {
-                    FirstName = user.FirstName,
-                    LastName = user.LastName,
-                    //user.Gender = editViewModel.Gender,
-                    Email = user.Email,
-                    EGN = user.EGN
-                };
-                //this.usersService.Edit(id, userDto);
+                user.FirstName = model.FirstName;
+                user.LastName = model.LastName;
+                user.Email = model.Email;
+                user.EGN = Int64.Parse(model.EGN);
+                user.Gender = model.Gender;
+
+                this.dentistsService.Edit(user);
             }
 
             return this.RedirectToAction("patientHomePage", "Patient");
