@@ -88,8 +88,16 @@
                         <div class="col-12 bottommargin">
                             <div class="row team team-list clearfix">
                                 <div class="team-image col-sm-12 col-md-6 col-lg-6">
-                                    <img class="rounded-circle center-image-user" style="width: 150px;"
-                                         src="~/FrontEnd/images/icons/male-user.png"  alt="Male User">
+                                    @if (Model.Gender == "Female")
+                                    {
+                                        <img class="rounded-circle center-image-user" style="width: 150px;"
+                                             src="~/FrontEnd/images/icons/female-user.png" alt="Female User">
+                                    }
+                                    else
+                                    {
+                                        <img class="rounded-circle center-image-user" style="width: 150px;"
+                                             src="~/FrontEnd/images/icons/male-user.png" alt="Male User">
+                                    }
                                 </div>
                                 <div class="team-desc col-sm-12 col-md-6 col-lg-6">
                                     <div class="user-names">
