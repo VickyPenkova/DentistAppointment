@@ -5,7 +5,6 @@ using DentistAppointment.Services.Abstraction;
 using DentistAppointment.Common;
 using System;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq;
 
 namespace DentistAppointment.Services
