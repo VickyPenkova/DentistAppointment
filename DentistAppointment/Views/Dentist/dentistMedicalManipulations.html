@@ -21,7 +21,7 @@
 
         <!-- Document Title
 ============================================= -->
-        <title>Document Manipulation</title>
+        <title>Medical Manipulation History</title>
 
         <!-- Favicon
 ============================================= -->
@@ -84,7 +84,7 @@
                                     <a href="../Dentist/dentistAppointments.html"><div>My Appointments</div></a>
                                 </li>
                                 <li class="accent-background">
-                                    <a href="../Dentist/dentistMedicalManipulations.html"><div>Medical Manipulations History</div></a>
+                                    <a href="../Dentist/dentistMedicalManipulationsHistory.html"><div>Medical Manipulations History</div></a>
                                 </li>
                                 <li class="current">
                                     <a asp-area="Identity" asp-page="/Account/Logout"><div><i class="icon-line2-logout"></i>Log Out</div></a>
@@ -109,82 +109,96 @@
 
                 <div class="container clearfix">
 
-                    <div id="actualContent">
-                        <div class="row">
-                            <div class="col-12 bottommargin">
-                                <div class="row team team-list clearfix">
-                                    <div class="team-image col-sm-12 col-md-6 col-lg-6">
-                                        <img class="rounded-circle center-image-user" style="width: 150px;" src="../../images/icons/male-user.png" alt="Male User">
-                                    </div>
-                                    <div class="team-desc col-sm-12 col-md-6 col-lg-6">
-                                        <div class="user-names">
-                                            <h4 class="pr-2" id="firstName">FirstNamePatient</h4>
-                                            <h4 id="lastName">LastNamePatient</h4>
-                                            <span id="gender">Male</span>
-                                        </div>
-                                        <div class="mt-4">
+                    <h4>Awaiting documentation</h4>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Time</th>
+                                    <th>Doctor</th>
+                                    <th>Options</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>11.10.2017</td>
+                                    <td>8:00-8:30</td>
+                                    <td>Patient Patient</td>
+                                    <td>
+                                        <a href="../Dentist/dentistDocumentManipulation.html" class="button button-3d  button-small button-rounded accent-color light-text"> <i class="icon-folder-check"></i>Document Manipulation</a>
 
-                                            <h4>Date of Manipulation: <span id="manipualtionDate">Date.Date.Date</span></h4>
-                                        </div>
+                                    </td>
 
-                                        <div class="topmargin-sm nobottommargin"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                                </tr>
+                                <tr>
+                                    <td>11.10.2017</td>
+                                    <td>8:00-8:30</td>
+                                    <td>Patient Patient</td>
+                                    <td>
+                                        <a href="../Dentist/dentistDocumentManipulation.html" class="button button-3d  button-small button-rounded accent-color light-text"> <i class="icon-folder-check"></i>Document Manipulation</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>11.10.2017</td>
+                                    <td>8:00-8:30</td>
+                                    <td>Patient Patient</td>
+                                    <td>
+                                        <a href="../Dentist/dentistDocumentManipulation.html" class="button button-3d  button-small button-rounded accent-color light-text"> <i class="icon-folder-check"></i>Document Manipulation</a>
 
-                        <div class="divider divider-center"><i class="icon-pencil"></i></div>
-                        <h4>Please provide information about the manipulation:</h4>
-                        <div class="bottommargin-sm">
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="5"></textarea>
-                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="divider divider-center"><i class="icon-time"></i></div>
 
-                        <div class="divider divider-center"><i class="icon-pencil"></i></div>
-                        <h4>Please rate the patient:</h4>
-                        <form action="#" method="post" class="nobottommargin">
-                            <div class="bottommargin-sm">
-                                <label for="">Please select how satisfied you were with the punctuality of your patient</label>
-                                <select id="punctuality" class="select-1 form-control" style="width:100%;">
-                                    <option value= "1">Very dissatisfied</option>
-                                    <option value= "2">Dissatisfied</option>
-                                    <option value= "3">Okay</option>
-                                    <option value= "4">Satisfied</option>
-                                    <option value= "5">Very Satisfied</option>
-                                </select>
-                            </div>
-                            <div class="bottommargin-sm">
-                                <label for="">Please select how satisfied you were with the behaviour of the patient during the examination process</label>
-                                <select id="examination" class="select-1 form-control" style="width:100%;">
-                                    <option value= "1">Very dissatisfied</option>
-                                    <option value= "2">Dissatisfied</option>
-                                    <option value= "3">Okay</option>
-                                    <option value= "4">Satisfied</option>
-                                    <option value= "5">Very Satisfied</option>
-                                </select>
-                            </div>
-                            <div class="bottommargin-sm">
-                                <label for="">Additional Comment</label>
-                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                            </div>
-                        </form>
-                        <h4>Final grade: <span id="finalGrade"></span></h4>
-                        <a href="#" id="submit" class="button button-3d button-rounded accent-background">
-                            <i class="icon-ok"></i>Submit</a>
+
+                    <h4>Past</h4>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Time</th>
+                                    <th>Doctor</th>
+                                    <th>Options</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>11.10.2017</td>
+                                    <td>8:00-8:30</td>
+                                    <td>Patient Patient</td>
+                                    <td>
+                                        <a href="../Dentist/dentistCheckDocument.html" class="button button-3d  button-small button-rounded button-amber"> <i class="icon-line-paper"></i>Check Manipulation Documents</a>
+
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td>11.10.2017</td>
+                                    <td>8:00-8:30</td>
+                                    <td>Patient Patient</td>
+                                    <td>
+                                        <a href="../Dentist/dentistCheckDocument.html" class="button button-3d  button-small button-rounded button-amber"> <i class="icon-line-paper"></i>Check Manipulation Documents</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>11.10.2017</td>
+                                    <td>8:00-8:30</td>
+                                    <td>Patient Patient</td>
+                                    <td>
+                                        <a href="../Dentist/dentistCheckDocument.html" class="button button-3d  button-small button-rounded button-amber"> <i class="icon-line-paper"></i>Check Manipulation Documents</a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
 
-
-                    <div id="sucessMessage" >
-
-                        <h3 class="alert alert-success">Your report has been submittet succesfully!</h3>
-
-                        <a href="../Dentist/dentistMedicalManipulations.html" class="button button-3d button-rounded accent-background">
-                            <i class="icon-line-rewind"></i>Back to your medical manipulations page</a>
-                    </div>
                 </div>
             </div>
         </section>
-
-
         <!-- Go To Top
 ============================================= -->
         <div id="gotoTop" class="icon-angle-up"></div>
@@ -200,39 +214,5 @@
 
         <!-- Star Rating Plugin -->
         <script src="../../js/components/star-rating.js"></script>
-        <script>
-            $(document).ready(function() {
-                var totalGrade=0;
-                var prevPunc=0;
-                var prevExam=0;
-
-                $('#punctuality').on('change', function() {
-                    var value = parseInt($(this).val(),10);
-                    totalGrade-=prevPunc;
-                    totalGrade+=value;
-                    prevPunc=value;
-                    console.log(totalGrade);
-                    $('#finalGrade').text("");
-                    $('#finalGrade').text(totalGrade);
-
-                });
-
-                $('#examination').on('change', function() {
-                    var value = parseInt($(this).val());
-                    totalGrade-=prevExam;
-                    totalGrade+=value;
-                    prevExam=value;
-                    $('#finalGrade').text("");
-                    $('#finalGrade').text(totalGrade);
-                });
-
-                $( "#submit" ).click(function() {
-                    $( "#actualContent" ).hide();
-                    $( "#sucessMessage" ).show();
-
-                });
-
-            });
-        </script>
     </body>
 </html>

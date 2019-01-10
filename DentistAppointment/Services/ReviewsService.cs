@@ -30,23 +30,34 @@ namespace DentistAppointment.Services
             throw new NotImplementedException();
         }
 
+        //public IEnumerable<Review> GetAllByDentist(int dentistId)
+        //{
+        //    var reservations = this.reservationsRepo
+        //        .GetAll()
+        //        .Include(x => x.User)
+        //        .Where(x => x.DentistId == dentistId).ToList();
+        //    var reviewsForDentist = new List<Review>();
+
+        //    foreach (var r in reservations)
+        //    {
+        //        reviewsForDentist.AddRange(reviewsRepo
+        //        .GetAll()
+        //        .Include(x => x.User)
+        //        .Where(c => c.ReservationId == r.Id && c.User.DentistId == null).ToList());
+        //    }
+
+        //    return reviewsForDentist;
+        //}
+
         public IEnumerable<Review> GetAllByDentist(int dentistId)
         {
-            var reservations = this.reservationsRepo
-                .GetAll()
-                .Include(x => x.User)
-                .Where(x => x.DentistId == dentistId).ToList();
-            var reviewsForDentist = new List<Review>();
-
-            foreach (var r in reservations)
+            var reviews =this.reviewsRepo.GetByDentistId(dentistId);
+            foreach (var review in reviews)
             {
-                reviewsForDentist.AddRange(reviewsRepo
-                .GetAll()
-                .Include(x => x.User)
-                .Where(c => c.ReservationId == r.Id && c.User.DentistId == null).ToList());
+                review.User = usersRepo.GetById(review.UserId);
             }
 
-            return reviewsForDentist;
+            return reviews;
         }
 
         public IEnumerable<Review> GetAllReviews()
