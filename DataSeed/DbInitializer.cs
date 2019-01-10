@@ -123,7 +123,7 @@ namespace DataSeed
                     Type = "Orthodontist",
                     WorkTimeStart = new TimeSpan(8, 0, 0),
                     WorkTimeEnd = new TimeSpan(13, 0, 0),
-                    WorkDays = 42
+                    WorkDays = 42 // Monday, Wednesday, Friday
                 },
                 new Dbmodel.Dentist
                 {
@@ -245,14 +245,35 @@ namespace DataSeed
                     User = context.Users.FirstOrDefault(u => u.Email == "george@gmail.com"),
                     Dentist = dentists.FirstOrDefault(u => u.Type == "Orthodontist"),
                     Manipulation = "Extraction of upper left wise tooth",
-                    Date = new DateTime(2018, 10, 15)
+                    Date = new DateTime(2018, 10, 15, 9, 0, 0)
                 },
                 new Dbmodel.Reservation
                 {
                     User = context.Users.FirstOrDefault(u => u.Email == "peter@gmail.com"),
                     Dentist = dentists.FirstOrDefault(u => u.Type == "Surgeon"),
                     Manipulation = "Bridge between the front 2 and 3",
-                    Date = new DateTime(2018, 11, 2)
+                    Date = new DateTime(2018, 11, 2, 11, 30, 0)
+                },
+                new Dbmodel.Reservation
+                {
+                    User = context.Users.FirstOrDefault(u => u.Email == "george@gmail.com"),
+                    Dentist = dentists.FirstOrDefault(u => u.Type == "Orthodontist"),
+                    Manipulation = "Bridge between the front 2 and 3",
+                    Date = new DateTime(2019, 1, 7, 8, 0, 0)
+                },
+                new Dbmodel.Reservation
+                {
+                    User = context.Users.FirstOrDefault(u => u.Email == "george@gmail.com"),
+                    Dentist = dentists.FirstOrDefault(u => u.Type == "Orthodontist"),
+                    Manipulation = "Bridge between the front 2 and 3",
+                    Date = new DateTime(2019, 1, 9, 11, 30, 0)
+                },
+                new Dbmodel.Reservation
+                {
+                    User = context.Users.FirstOrDefault(u => u.Email == "george@gmail.com"),
+                    Dentist = dentists.FirstOrDefault(u => u.Type == "Orthodontist"),
+                    Manipulation = "Bridge between the front 2 and 3",
+                    Date = new DateTime(2019, 1, 9, 8, 30, 0)
                 }
             };
 

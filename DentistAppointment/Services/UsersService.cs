@@ -12,12 +12,18 @@ namespace DentistAppointment.Services
 {
     public class UsersService : IUsersService
     {
-        private readonly IRepository<DentistAppointment.Data.Models.User, string> usersRepo;
+        private readonly IRepository<Dentist, int> dentistsRepo;
+        private readonly IRepository<User, string> usersRepo;
+        private readonly IRepository<Reservation, int> reservationsRepo;
         private readonly IMapper mapper;
 
-        public UsersService(IRepository<User, string> usersRepo, IMapper mapper)
+        public UsersService(IRepository<Dentist, int> dentistsRepo,
+            IRepository<User, string> usersRepo,
+            IRepository<Reservation, int> reservationsRepo, IMapper mapper)
         {
+            this.dentistsRepo = dentistsRepo;
             this.usersRepo = usersRepo;
+            this.reservationsRepo = reservationsRepo;
             this.mapper = mapper;
         }
 
@@ -35,33 +41,42 @@ namespace DentistAppointment.Services
             return users;
         }
 
-        
+
         public User GetUserById(string userId)
         {
-            return this.usersRepo
-                .GetById(userId);
-
-            //return this.mapper.Map<UserDTO>(userFromDb);
+            return usersRepo.GetById(userId);
         }
 
         public IEnumerable<User> GetAllUsers()
         {
-            return usersRepo.GetAll().Include(user => user.Dentist);
+            return usersRepo.GetAll();
         }
+       
 
         public IEnumerable<UserDTO> GetUserInfo(string userId)
         {
+            
             var user = this.usersRepo.GetAll()
                 .Include(model => model.FirstName)
                 .Include(model => model.LastName)
                 .Include(model => model.Email)
                 .Include(model => model.Gender)
                 .Include(model => model.EGN)
-               // .Include(model => model.Address)
                 .FirstOrDefault(u => u.Id == userId);
             var userInfo = user.FirstName;
 
             return this.mapper.Map<List<UserDTO>>(user);
+        }
+        public void Edit(User user)
+        {
+            usersRepo.Update(user);
+            usersRepo.Save();
+        }
+        public IEnumerable<Reservation> GetAllReservationsOfDentist(int dentistId)
+        {
+            return new List<Reservation>(reservationsRepo.GetAll()
+                .Include(dentist => dentist.Dentist)
+                .Where(d => d.DentistId == dentistId));
         }
     }
 }

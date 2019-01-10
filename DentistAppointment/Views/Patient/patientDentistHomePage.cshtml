@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@model DentistAppointment.Models.PatientViewModel.PatientDentistHomePageViewModel
+<!DOCTYPE html>
 <html dir="ltr" lang="en-US">
 <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
@@ -59,7 +60,7 @@
                                 <a href="/Patient/patientMedicalManipulationsHistory"><div>Medical Manipulations History</div></a>
                             </li>
                             <li class="current">
-                                <a href="/Patient/loggedOut"><div><i class="icon-line2-logout"></i>Log Out</div></a>
+                                <a asp-area="Identity" asp-page="/Account/Logout"><div><i class="icon-line2-logout"></i>Log Out</div></a>
                             </li>
                         </ul>
                     </nav><!-- #primary-menu end -->
@@ -83,14 +84,14 @@
                             </div>
                             <div class="team-desc col-sm-12 col-md-6 col-lg-6">
                                 <div class="user-names">
-                                    <h4 class="pr-2" id="firstName">FirstNameDoctor</h4>
-                                    <h4 id="lastName">LastNameDoctor</h4>
-                                    <span id="gender">Female</span>
-                                    <h5 id="typeOfDentist">Ortodonth</h5>
+                                    <h4 class="pr-2" id="firstName">@Model.Dentist.User.FirstName</h4>
+                                    <h4 id="lastName">@Model.Dentist.User.LastName</h4>
+                                    <span id="gender">@Model.Dentist.User.Gender</span>
+                                    <h5 id="typeOfDentist">@Model.Dentist.Type</h5>
                                 </div>
                                 <div class="user-email">
                                     <h4 class="inlineBlock-elements"><i class="icon-email3"></i> Email:</h4>
-                                    <span>somethingsomethingDoctor@gmail.com</span>
+                                    <span>@Model.Dentist.User.Email</span>
                                 </div>
                                 <div class="user-egn">
                                     <h4 class="inlineBlock-elements"><i class="icon-phone3"></i> Telephone:</h4>
@@ -98,7 +99,7 @@
                                 </div>
                                 <div class="user-address">
                                     <h4 class="inlineBlock-elements"><i class="icon-map-marker"></i> Address:</h4>
-                                    <span>In the middle of nowhere, Nowhere, Earth</span>
+                                    <span>@Model.Dentist.Address</span>
                                 </div>
                                 <div class="topmargin-sm nobottommargin"></div>
                             </div>
@@ -116,74 +117,81 @@
                     <div class="col-lg-12 bottommargin-sm center">
                         <div class="white-section">
                             <h2 class="accent-color">Rating of Dentist</h2>
-                            <input id="input-1" value="4.5" type="number" class="rating" max="5" data-step="0.1" data-size="sm" data-disabled="true" , data-readonly="true">
+                            <input id="input-1" value=@Model.Rating type="number" class="rating" max="5" data-step="0.1" data-size="sm" data-disabled="true" , data-readonly="true">
                         </div>
                     </div>
                     <div class="col-12 line"></div>
                 </div>
                 <div class="clear"></div>
 
-
                 <div class="row">
                     <!-- Comments
                     ============================================= -->
                     <div id="comments" class="clearfix">
-                        <h3 id="comments-title"><span>2</span> Comments</h3>
+                        @foreach (var comment in Model.Comments)
+                        {
+                            <div>@comment.Content</div>
+                        }
+                        <h3 id="comments-title"><span>@Model.Comments.Count()</span> Comments</h3>
                         <!-- Comments List
-                        ============================================= -->
+    ============================================= -->
                         <ol class="commentlist clearfix">
-                            <li class="comment even thread-even depth-1" id="li-comment-1">
-                                <div id="comment-1" class="comment-wrap clearfix">
-                                    <div class="comment-meta">
-                                        <div class="comment-author vcard">
-                                            <span class="comment-avatar clearfix">
-                                                <img alt='' src='~/FrontEnd/images/icons/female-user.png' class='avatar avatar-60 photo avatar-default' height='60' width='60' />
-                                            </span>
-                                        </div>
-                                    </div>
-                                    <div class="comment-content clearfix">
-                                        <div class="comment-author"><a href="#">Joahna Doe</a><span>April 24, 2012 at 10:46 am</span></div>
-                                        <p>Donec sed odio dui. Nulla vitae elit libero, a pharetra augue. Nullam id dolor id nibh ultricies vehicula ut id elit. Integer posuere erat a ante venenatis dapibus posuere velit aliquet.</p>
-                                        <div class="col-lg-12 bottommargin-sm mt-3 ml-0">
-                                            <div class="white-section">
-                                                <h5 class="accent-color">Rating of Dentist</h5>
-                                                <input id="input-1" value="5" type="number" class="rating" max="5" data-step="0.1" data-size="sm" data-disabled="true" , data-readonly="true">
+                            @for (int comment = 0; Model.Comments.Count() < 0; comment++)
+                            {
+                                <li class="comment even thread-even depth-1" id="li-comment-1">
+                                    <div id="comment-1" class="comment-wrap clearfix">
+                                        <div class="comment-meta">
+                                            <div class="comment-author vcard">
+                                                <span class="comment-avatar clearfix">
+                                                    <img alt='' src='~/FrontEnd/images/icons/female-user.png' class='avatar avatar-60 photo avatar-default' height='60' width='60' />
+                                                </span>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="clear"></div>
-                                </div>
-                            </li>
-                            <li class="comment byuser comment-author-_smcl_admin even thread-odd thread-alt depth-1" id="li-comment-2">
-                                <div id="comment-2" class="comment-wrap clearfix">
-                                    <div class="comment-meta">
-                                        <div class="comment-author vcard">
-                                            <span class="comment-avatar clearfix">
-                                                <img alt='' src="~/FrontEnd/images/icons/male-user.png" class='avatar avatar-60 photo' height='60' width='60' />
-                                            </span>
-                                        </div>
-                                    </div>
-                                    <div class="comment-content clearfix">
-                                        <div class="comment-author"><a href='#' rel='external nofollow'>SemiColon</a><span>April 25, 2012 at 1:03 am</span></div>
-                                        <p>Integer posuere erat a ante venenatis dapibus posuere velit aliquet.</p>
-                                        <div class="col-lg-12 bottommargin-sm mt-3 ml-0">
-                                            <div class="white-section">
-                                                <h5 class="accent-color">Rating of Dentist</h5>
-                                                <input id="input-1" value="4" type="number" class="rating" max="5" data-step="0.1" data-size="sm" data-disabled="true" , data-readonly="true">
+                                        <div class="comment-content clearfix">
+                                            <div class="comment-author">
+                                            
+                                                <a href="#">@Model.Comments.ElementAt(comment).User.FirstName @Model.Comments.ElementAt(comment).User.LastName</a>
+                                                <span>DATE???</span></div>
+                                            <p>@Model.Comments.ElementAtOrDefault(comment).Content</p>
+                                            <div class="col-lg-12 bottommargin-sm mt-3 ml-0">
+                                                <div class="white-section">
+                                                    <h5 class="accent-color">Rating of Dentist</h5>
+                                                    <input id="input-1" value=@Model.User. type="number" class="rating" max="5" data-step="0.1" data-size="sm" data-disabled="true" , data-readonly="true">
+                                                </div>
                                             </div>
                                         </div>
+                                        <div class="clear"></div>
                                     </div>
-                                    <div class="clear"></div>
-                                </div>
-                            </li>
-                        </ol><!-- .commentlist end -->
+                                </li>}
+                                <li class="comment byuser comment-author-_smcl_admin even thread-odd thread-alt depth-1" id="li-comment-2">
+                                    <div id="comment-2" class="comment-wrap clearfix">
+                                        <div class="comment-meta">
+                                            <div class="comment-author vcard">
+                                                <span class="comment-avatar clearfix">
+                                                    <img alt='' src="~/FrontEnd/images/icons/male-user.png" class='avatar avatar-60 photo' height='60' width='60' />
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="comment-content clearfix">
+                                            <div class="comment-author"><a href='#' rel='external nofollow'>SemiColon</a><span>April 25, 2012 at 1:03 am</span></div>
+                                            <p>Integer posuere erat a ante venenatis dapibus posuere velit aliquet.</p>
+                                            <div class="col-lg-12 bottommargin-sm mt-3 ml-0">
+                                                <div class="white-section">
+                                                    <h5 class="accent-color">Rating of Dentist</h5>
+                                                    <input id="input-1" value="4" type="number" class="rating" max="5" data-step="0.1" data-size="sm" data-disabled="true" , data-readonly="true">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="clear"></div>
+                                    </div>
+                                </li>
+                            </ol><!-- .commentlist end -->
                         <div class="clear"></div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-
     <!-- Go To Top
     ============================================= -->
     <div id="gotoTop" class="icon-angle-up"></div>
@@ -196,6 +204,5 @@
     <script src="~/FrontEnd/js/functions.js"></script>
     <!-- Star Rating Plugin -->
     <script src="~/FrontEnd/js/components/star-rating.js"></script>
-
 </body>
 </html>

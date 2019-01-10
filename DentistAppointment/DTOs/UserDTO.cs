@@ -15,9 +15,10 @@ namespace DentistAppointment.DTOs
 
         public string Email { get; set; }
 
-        public string EGN { get; set; }
+        public long EGN { get; set; }
 
         public string Address { get; set; }
         public IEnumerable<UserDTO> User { get; set; }
+        public Guid Id { get; internal set; }
     }
 }

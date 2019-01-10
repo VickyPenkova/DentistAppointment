@@ -1,236 +1,225 @@
-﻿@using Microsoft.AspNetCore.Identity
-
-@inject SignInManager<DentistAppointment.Data.Models.User> SignInManager
-@inject UserManager<DentistAppointment.Data.Models.User> UserManager
-@*@model DentistAppointment.Models.PatientHomePageViewModel*@
-@model List<DentistAppointment.Models.PatientHomePageViewModel>
-<!DOCTYPE html>
-<html dir="ltr" lang="en-US">
-<head>
-    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    <meta name="author" content="" />
-    <!-- Document Title
-    ============================================= -->
-    <title>Home Page</title>
-    <!-- Favicon
-    ============================================= -->
-    <link rel="apple-touch-icon" sizes="57x57" href="~/FrontEnd/images/favicon/apple-icon-57x57.png">
-    <link rel="apple-touch-icon" sizes="60x60" href="~/FrontEnd/images/favicon/apple-icon-60x60.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="~/FrontEnd/images/favicon/apple-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="~/FrontEnd/images/favicon/apple-icon-76x76.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="~/FrontEnd/images/favicon/apple-icon-114x114.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="~/FrontEnd/images/favicon/apple-icon-120x120.png">
-    <link rel="apple-touch-icon" sizes="144x144" href="~/FrontEnd/images/favicon/apple-icon-144x144.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="~/FrontEnd/images/favicon/apple-icon-152x152.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="~/FrontEnd/images/favicon/apple-icon-180x180.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="~/FrontEnd/images/favicon/android-icon-192x192.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="~/FrontEnd/images/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="96x96" href="~/FrontEnd/images/favicon/favicon-96x96.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="~/FrontEnd/images/favicon/favicon-16x16.png">
-    <meta name="msapplication-TileColor" content="#ffffff">
-    <meta name="msapplication-TileImage" content="~/FrontEnd/images/favicon/ms-icon-144x144.png">
-    <meta name="theme-color" content="#ffffff">
-</head>
-<body class="stretched sticky-responsive-menu">
-    <!-- Document Wrapper
-    ============================================= -->
-    <div id="wrapper" class="clearfix light-background">
-        <!-- Header
+﻿@model DentistAppointment.Models.PatientViewModel.PatientHomePageViewModel
+    <!DOCTYPE html>
+    <html dir="ltr" lang="en-US">
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+        <meta name="author" content="" />
+        <!-- Document Title
         ============================================= -->
-        <header id="header">
-            <div id="header-wrap">
-                <div class="container clearfix">
-                    <div id="primary-menu-trigger"><i class="icon-reorder"></i></div>
-                    <!-- Logo
-                    ============================================= -->
-                    <div id="logo">
-                        <a href="/Patient/patientHomePage" class="standard-logo"
-                           data-dark-logo="~/FrontEnd/images/icons/molar-inside-a-shield-green.png">
-                            <img src="~/FrontEnd/images/icons/molar-inside-a-shield-green.png" alt="Denstist Logo">
-                        </a>
-                        <a href="/Patient/patientHomePage" class="retina-logo"
-                           data-dark-logo="~/FrontEnd/images/icons/molar-inside-a-shield-green.png">
-                            <img src="~/FrontEnd/images/icons/molar-inside-a-shield-green.png" alt="Denstist Logo">
-                        </a>
-                    </div>
-                    <!-- #logo end -->
-                    <!-- Primary Navigation
-                    ============================================= -->
-                    <nav id="primary-menu">
-                        <ul>
-                            <li class="accent-background">
-                                <a href="/Patient/patientHomePage"><div>My Profile</div></a>
-                            </li>
-                            <li class="current">
-                                <a href="/Patient/patientFindDoctor">
-                                    <div>Find a Doctor</div>
-                                </a>
-                            </li>
-                            <li class="current">
-                                <a href="/Patient/patientAppointments"><div>My Appointments</div></a>
-                            </li>
-                            <li class="current">
-                                <a href="/Patient/patientMedicalManipulationsHistory"><div>Medical Manipulations History</div></a>
-                            </li>
-                            <li class="current">
-                                <a asp-area="Identity" asp-page="/Account/Logout"><div><i class="icon-line2-logout"></i>Log Out</div></a>
-                            </li>
-                        </ul>
-                    </nav><!-- #primary-menu end -->
-                </div>
-            </div>
-        </header><!-- #header end -->
-    </div><!-- #wrapper end -->
-    <!-- Content
-    ============================================= -->
-    <section id="content">
-        <div class="content-wrap">
-            <div class="container clearfix">
-                <div id="section-couple" class="heading-block title-center page-section">
-                    <h2>User Profile</h2>
-                </div>
-                <div class="row">
-                    <div class="col-12 bottommargin">
-                        <div class="row team team-list clearfix">
-                            <div class="team-image col-sm-12 col-md-6 col-lg-6">
-                                <img class="rounded-circle center-image-user" style="width: 150px;"
-                                     src="~/FrontEnd/images/icons/male-user.png" alt="Male User">
-                            </div>
-                            <div class="team-desc col-sm-12 col-md-6 col-lg-6">
-                                <div class="user-names">
-                                    @foreach (var FirstName in Model)
-                                    {
-                                        @Html.DisplayFor(model => FirstName)
-                                    }
-                                    <h4 class="pr-2" id="firstName">@*@Html.DisplayFor(model => model.FirstName)*@</h4>
-                                    <h4 id="lastName">@*@Html.DisplayNameFor(model => model.LastName)*@</h4>
-                                    <span id="gender">@*@Html.DisplayNameFor(model => model.Gender)*@</span>
-                                </div>
-                                <div class="user-email">
-                                    <h4 class="inlineBlock-elements">Email:</h4>
-                                    <span> @UserManager.GetUserName(User)</span>
-                                </div>
-                                <div class="user-egn">
-                                    <h4 class="inlineBlock-elements">EGN:</h4>
-                                    <span>@*@Html.DisplayNameFor(model => model.EGN)*@</span>
-                                </div>
-                                <div class="user-address">
-                                    <h4 class="inlineBlock-elements">Address:</h4>
-                                    <span>@*@Html.DisplayNameFor(model => model.Address)*@</span>
-                                </div>
-                                <div class="user-edit">
-                                    <a class="button button-3d button-black mt-5 ml-0 accent-background"
-                                       href="/Patient/patientEditInfo">
-                                        <i class="icon-edit"></i>
-                                        Edit Information
-                                    </a>
-                                </div>
-                                <div class="topmargin-sm nobottommargin"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="clear"></div>
-                <div class="row">
-                    <div class="col-12 line"></div>
-                    <div class="col-lg-12 bottommargin-sm center">
-                        <div class="white-section">
-                            <h2 class="accent-color">Rating of Patient</h2>
-                            <input id="input-1" value="4" type="number" class="rating" max="5" data-step="0.1"
-                                   data-size="sm" data-disabled="true" , data-readonly="true">
-                        </div>
-                    </div>
-                    <div class="col-12 line"></div>
-                </div>
-                <div class="row">
-                    <!-- Comments
-                    ============================================= -->
-                    <div id="comments" class="clearfix">
-                        <h3 id="comments-title"><span>2</span> Comments</h3>
-                        <!-- Comments List
+        <title>Home Page</title>
+        <!-- Favicon
+        ============================================= -->
+        <link rel="apple-touch-icon" sizes="57x57" href="~/FrontEnd/images/favicon/apple-icon-57x57.png">
+        <link rel="apple-touch-icon" sizes="60x60" href="~/FrontEnd/images/favicon/apple-icon-60x60.png">
+        <link rel="apple-touch-icon" sizes="72x72" href="~/FrontEnd/images/favicon/apple-icon-72x72.png">
+        <link rel="apple-touch-icon" sizes="76x76" href="~/FrontEnd/images/favicon/apple-icon-76x76.png">
+        <link rel="apple-touch-icon" sizes="114x114" href="~/FrontEnd/images/favicon/apple-icon-114x114.png">
+        <link rel="apple-touch-icon" sizes="120x120" href="~/FrontEnd/images/favicon/apple-icon-120x120.png">
+        <link rel="apple-touch-icon" sizes="144x144" href="~/FrontEnd/images/favicon/apple-icon-144x144.png">
+        <link rel="apple-touch-icon" sizes="152x152" href="~/FrontEnd/images/favicon/apple-icon-152x152.png">
+        <link rel="apple-touch-icon" sizes="180x180" href="~/FrontEnd/images/favicon/apple-icon-180x180.png">
+        <link rel="icon" type="image/png" sizes="192x192" href="~/FrontEnd/images/favicon/android-icon-192x192.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="~/FrontEnd/images/favicon/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="96x96" href="~/FrontEnd/images/favicon/favicon-96x96.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="~/FrontEnd/images/favicon/favicon-16x16.png">
+        <meta name="msapplication-TileColor" content="#ffffff">
+        <meta name="msapplication-TileImage" content="~/FrontEnd/images/favicon/ms-icon-144x144.png">
+        <meta name="theme-color" content="#ffffff">
+    </head>
+    <body class="stretched sticky-responsive-menu">
+        <!-- Document Wrapper
+        ============================================= -->
+        <div id="wrapper" class="clearfix light-background">
+            <!-- Header
+            ============================================= -->
+            <header id="header">
+                <div id="header-wrap">
+                    <div class="container clearfix">
+                        <div id="primary-menu-trigger"><i class="icon-reorder"></i></div>
+                        <!-- Logo
                         ============================================= -->
-                        <ol class="commentlist clearfix">
-                            <li class="comment even thread-even depth-1" id="li-comment-1">
-                                <div id="comment-1" class="comment-wrap clearfix">
-                                    <div class="comment-meta">
-                                        <div class="comment-author vcard">
-                                            <span class="comment-avatar clearfix">
-                                                <img alt='' src='~/FrontEnd/images/icons/female-dentist.png'
-                                                     class='avatar avatar-60 photo avatar-default' height='60' width='60' />
-                                            </span>
-                                        </div>
+                        <div id="logo">
+                            <a href="/Patient/patientHomePage" class="standard-logo"
+                               data-dark-logo="~/FrontEnd/images/icons/molar-inside-a-shield-green.png">
+                                <img src="~/FrontEnd/images/icons/molar-inside-a-shield-green.png" alt="Denstist Logo">
+                            </a>
+                            <a href="/Patient/patientHomePage" class="retina-logo"
+                               data-dark-logo="~/FrontEnd/images/icons/molar-inside-a-shield-green.png">
+                                <img src="~/FrontEnd/images/icons/molar-inside-a-shield-green.png" alt="Denstist Logo">
+                            </a>
+                        </div>
+                        <!-- #logo end -->
+                        <!-- Primary Navigation
+                        ============================================= -->
+                        <nav id="primary-menu">
+                            <ul>
+                                <li class="accent-background">
+                                    <a href="/Patient/patientHomePage"><div>My Profile</div></a>
+                                </li>
+                                <li class="current">
+                                    <a href="/Patient/patientFindDoctor">
+                                        <div>Find a Doctor</div>
+                                    </a>
+                                </li>
+                                <li class="current">
+                                    <a href="/Patient/patientAppointments"><div>My Appointments</div></a>
+                                </li>
+                                <li class="current">
+                                    <a href="/Patient/patientMedicalManipulationsHistory"><div>Medical Manipulations History</div></a>
+                                </li>
+                                <li class="current">
+                                    <a asp-area="Identity" asp-page="/Account/Logout"><div><i class="icon-line2-logout"></i>Log Out</div></a>
+                                </li>
+                            </ul>
+                        </nav><!-- #primary-menu end -->
+                    </div>
+                </div>
+            </header><!-- #header end -->
+        </div><!-- #wrapper end -->
+        <!-- Content
+        ============================================= -->
+        <section id="content">
+            <div class="content-wrap">
+                <div class="container clearfix">
+                    <div id="section-couple" class="heading-block title-center page-section">
+                        <h2>User Profile</h2>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 bottommargin">
+                            <div class="row team team-list clearfix">
+                                <div class="team-image col-sm-12 col-md-6 col-lg-6">
+                                    <img class="rounded-circle center-image-user" style="width: 150px;"
+                                         src="~/FrontEnd/images/icons/male-user.png" alt="Male User">
+                                </div>
+                                <div class="team-desc col-sm-12 col-md-6 col-lg-6">
+                                    <div class="user-names">
+                                        <h4 class="pr-2" id="firstName" value=@Model.FirstName>@Html.DisplayFor(model => model.FirstName)</h4>
+                                        <h4 id="lastName" value=@Model.LastName>@Html.DisplayFor(model => model.LastName)</h4>
+                                        <span id="gender" value=@Model.Gender>@Html.DisplayFor(model => model.Gender)</span>
                                     </div>
-                                    <div class="comment-content clearfix">
-                                        <div class="comment-author">
-                                            <a href="#">Joahna Doe</a>
-                                            <span>April 24, 2012 at 10:46 am</span>
-                                        </div>
-                                        <p>
-                                            Donec sed odio dui. Nulla vitae elit libero, a pharetra augue.
-                                            Nullam id dolor id nibh ultricies vehicula ut id elit.
-                                            Integer posuere erat a ante venenatis dapibus posuere velit aliquet.
-                                        </p>
-                                        <div class="col-lg-12 bottommargin-sm mt-3 ml-0">
-                                            <div class="white-section">
-                                                <h5 class="accent-color">Rating of Patient</h5>
-                                                <input id="input-1" value="5" type="number" class="rating" max="5"
-                                                       data-step="0.1" data-size="sm" data-disabled="true" ,
-                                                       data-readonly="true">
+                                    <div class="user-email">
+                                        <h4 class="inlineBlock-elements">Email:</h4>
+                                        <span value=@Model.Email> @Html.DisplayFor(model => model.Email)</span>
+                                    </div>
+                                    <div class="user-egn">
+                                        <h4 class="inlineBlock-elements">EGN:</h4>
+                                        <span value=@Model.EGN>@Html.DisplayFor(model => model.EGN)</span>
+                                    </div>
+                                    <div class="user-edit">
+                                        <a class="button button-3d button-black mt-5 ml-0 accent-background"
+                                           href="/Patient/patientEditInfo">
+                                            <i class="icon-edit"></i>
+                                            Edit Information
+                                        </a>
+                                    </div>
+                                    <div class="topmargin-sm nobottommargin"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="row">
+                        <div class="col-12 line"></div>
+                        <div class="col-lg-12 bottommargin-sm center">
+                            <div class="white-section">
+                                <h2 class="accent-color">Rating of Patient</h2>
+                                <input id="input-1" value=@Model.Rating type="number" class="rating" max="5" data-step="0.1"
+                                       data-size="sm" data-disabled="true" , data-readonly="true">
+                            </div>
+                        </div>
+                        <div class="col-12 line"></div>
+                    </div>
+                    <div class="row">
+                        <!-- Comments
+                        ============================================= -->
+                        <div id="comments" class="clearfix">
+                           @* @foreach (var comment in Model.Comments)
+                            {
+                                <div>@comment.Content</div>
+                            }*@
+                            <h3 id="comments-title"><span>@*@Model.Comments.Count()*@</span> Comments</h3>
+                            <!-- Comments List
+    ============================================= -->
+                            <ol class="commentlist clearfix">
+                                <li class="comment even thread-even depth-1" id="li-comment-1">
+                                    <div id="comment-1" class="comment-wrap clearfix">
+                                        <div class="comment-meta">
+                                            <div class="comment-author vcard">
+                                                <span class="comment-avatar clearfix">
+                                                    <img alt='' src='~/FrontEnd/images/icons/female-dentist.png'
+                                                         class='avatar avatar-60 photo avatar-default' height='60' width='60' />
+                                                </span>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="clear"></div>
-                                </div>
-                            </li>
-                            <li class="comment byuser comment-author-_smcl_admin even thread-odd thread-alt depth-1"
-                                id="li-comment-2">
-                                <div id="comment-2" class="comment-wrap clearfix">
-                                    <div class="comment-meta">
-                                        <div class="comment-author vcard">
-                                            <span class="comment-avatar clearfix">
-                                                <img alt='' src="~/FrontEnd/images/icons/male-dentist.png"
-                                                     class='avatar avatar-60 photo' height='60' width='60' />
-                                            </span>
-                                        </div>
-                                    </div>
-                                    <div class="comment-content clearfix">
-                                        <div class="comment-author">
-                                            <a href='#' rel='external nofollow'>SemiColon</a>
-                                            <span>April 25, 2012 at 1:03 am</span>
-                                        </div>
-                                        <p>Integer posuere erat a ante venenatis dapibus posuere velit aliquet.</p>
-                                        <div class="col-lg-12 bottommargin-sm mt-3 ml-0">
-                                            <div class="white-section">
-                                                <h5 class="accent-color">Rating of Patient</h5>
-                                                <input id="input-1" value="3" type="number" class="rating" max="5"
-                                                       data-step="0.1" data-size="sm" data-disabled="true" ,
-                                                       data-readonly="true">
+                                        <div class="comment-content clearfix">
+                                            <div class="comment-author">
+                                                <a href="#">Joahna Doe</a>
+                                                <span>April 24, 2012 at 10:46 am</span>
+                                            </div>
+                                            <p>
+                                                Donec sed odio dui. Nulla vitae elit libero, a pharetra augue.
+                                                Nullam id dolor id nibh ultricies vehicula ut id elit.
+                                                Integer posuere erat a ante venenatis dapibus posuere velit aliquet.
+                                            </p>
+                                            <div class="col-lg-12 bottommargin-sm mt-3 ml-0">
+                                                <div class="white-section">
+                                                    <h5 class="accent-color">Rating of Patient</h5>
+                                                    <input id="input-1" value="5" type="number" class="rating" max="5"
+                                                           data-step="0.1" data-size="sm" data-disabled="true" ,
+                                                           data-readonly="true">
+                                                </div>
                                             </div>
                                         </div>
+                                        <div class="clear"></div>
                                     </div>
-                                    <div class="clear"></div>
-                                </div>
-                            </li>
-                        </ol><!-- .commentlist end -->
-                        <div class="clear"></div>
+                                </li>
+                                <li class="comment byuser comment-author-_smcl_admin even thread-odd thread-alt depth-1"
+                                    id="li-comment-2">
+                                    <div id="comment-2" class="comment-wrap clearfix">
+                                        <div class="comment-meta">
+                                            <div class="comment-author vcard">
+                                                <span class="comment-avatar clearfix">
+                                                    <img alt='' src="~/FrontEnd/images/icons/male-dentist.png"
+                                                         class='avatar avatar-60 photo' height='60' width='60' />
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="comment-content clearfix">
+                                            <div class="comment-author">
+                                                <a href='#' rel='external nofollow'>SemiColon</a>
+                                                <span>April 25, 2012 at 1:03 am</span>
+                                            </div>
+                                            <p>Integer posuere erat a ante venenatis dapibus posuere velit aliquet.</p>
+                                            <div class="col-lg-12 bottommargin-sm mt-3 ml-0">
+                                                <div class="white-section">
+                                                    <h5 class="accent-color">Rating of Patient</h5>
+                                                    <input id="input-1" value="3" type="number" class="rating" max="5"
+                                                           data-step="0.1" data-size="sm" data-disabled="true" ,
+                                                           data-readonly="true">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="clear"></div>
+                                    </div>
+                                </li>
+                            </ol><!-- .commentlist end -->
+                            <div class="clear"></div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- Go To Top
-    ============================================= -->
-    <div id="gotoTop" class="icon-angle-up"></div>
-    <!-- External JavaScripts
-    ============================================= -->
-    <script src="~/FrontEnd/js/jquery.js"></script>
-    <script src="~/FrontEnd/js/plugins.js"></script>
-    <!-- Footer Scripts
-    ============================================= -->
-    <script src="~/FrontEnd/js/functions.js"></script>
-    <!-- Star Rating Plugin -->
-    <script src="~/FrontEnd/js/components/star-rating.js"></script>
-
-</body>
+        </section>
+        <!-- Go To Top
+        ============================================= -->
+        <div id="gotoTop" class="icon-angle-up"></div>
+        <!-- External JavaScripts
+        ============================================= -->
+        <script src="~/FrontEnd/js/jquery.js"></script>
+        <script src="~/FrontEnd/js/plugins.js"></script>
+        <!-- Footer Scripts
+        ============================================= -->
+        <script src="~/FrontEnd/js/functions.js"></script>
+        <!-- Star Rating Plugin -->
+        <script src="~/FrontEnd/js/components/star-rating.js"></script>
+    </body>
 </html>
