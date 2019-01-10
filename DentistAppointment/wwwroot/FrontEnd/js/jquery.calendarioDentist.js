@@ -53,7 +53,39 @@ $( document ).ready(function() {
         }
 
     }
-    $( ".callendarDates" ).bind( "click", dateSelected);
+    $(".callendarDates").bind("click", dateSelected);
+
+    // Show work days for this day
+    $(".callendarDates").bind("click", function () {
+        var months = {
+            'January': 1,
+            'February': 2,
+            'March': 3,
+            'April': 4,
+            'May': 5,
+            'June': 6,
+            'July': 7,
+            'August': 8,
+            'September': 9,
+            'October': 10,
+            'November': 11,
+            'December': 12
+        }
+
+        var day = $(this).text().split(" ")[0];
+        var month = months[$('#calendar-month').html()];
+        var year = $('#calendar-year').html()
+        $.ajax({
+            url: "/Dentist/dentistAppointmentsList",
+            method: "post",
+            async: false,
+            data: { year: year, month: month, day: day },
+            success: function (data) {
+                $("#appointmentsList").html(data);
+            }
+        })
+    });
+
     $(".aviableBtn").click(function(){
 
         $(this).removeClass("accent-background");
@@ -345,8 +377,38 @@ $( document ).ready(function() {
                 }
 
             }
-            $( ".callendarDates" ).bind( "click", dateSelected);
+            $(".callendarDates").bind("click", dateSelected);
 
+            // Show work days for this day
+            $(".callendarDates").bind("click", function () {
+                var months = {
+                    'January': 1,
+                    'February': 2,
+                    'March': 3,
+                    'April': 4,
+                    'May': 5,
+                    'June': 6,
+                    'July': 7,
+                    'August': 8,
+                    'September': 9,
+                    'October': 10,
+                    'November': 11,
+                    'December': 12
+                }
+
+                var day = $(this).text().split(" ")[0];
+                var month = months[$('#calendar-month').html()];
+                var year = $('#calendar-year').html();
+                $.ajax({
+                    url: "/Dentist/dentistAppointmentsList",
+                    method: "post",
+                    async: false,
+                    data: { year: year, month: month, day: day },
+                    success: function (data) {
+                        $("#appointmentsList").html(data);
+                    }
+                })
+            });
         },
         /*************************
 		******PUBLIC METHODS *****
