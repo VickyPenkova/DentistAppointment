@@ -166,5 +166,10 @@ namespace DentistAppointment.Controllers
         {
             return View();
         }
+
+        public IActionResult dentistAddEvent()
+        {
+            return View();
+        }
     }
 }
