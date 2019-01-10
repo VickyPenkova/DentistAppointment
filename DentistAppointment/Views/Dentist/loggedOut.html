@@ -68,11 +68,12 @@
                             <div class="card divcenter noradius noborder" style="max-width: 400px; background-color: rgba(255,255,255,0.93);">
                                 <div class="card-body text-center" style="padding: 40px;">
                                   
-                                        <div id="formWrapper ">
-                                            <h3>You logged out successfully!</h3>
-                                            <a href="/Dentist/index/" class="button button-3d button-rounded accent-background">
-                                                <i class="icon-line-rewind"></i>Back to the home page</a>
-                                        </div>
+                                    <div id="formWrapper ">
+                                        <h3>You logged out successfully!</h3>
+                                        <a asp-area="Identity" asp-page="/Account/Login" id="dentist" class="button button-3d button-rounded accent-background">
+                                                <i class="icon-line-rewind"></i>Back to the home page
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
 
