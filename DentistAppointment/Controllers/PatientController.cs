@@ -19,12 +19,13 @@ using DentistAppointment.DTOs;
 
 namespace DentistAppointment.Controllers
 {
-   [Authorize]
-    public class PatientController:Controller
+    [Authorize]
+    public class PatientController : Controller
     {
         private readonly IHttpContextAccessor httpaccessor;
         private readonly IUsersService usersService;
         private readonly IDentistsService dentistsService;
+        private readonly IReservationsService reservationsService;
         private readonly UserManager<User> userManager;
         private readonly IMapper mapper;
 
@@ -32,11 +33,13 @@ namespace DentistAppointment.Controllers
             IUsersService usersService,
             IDentistsService dentistsService,
             IHttpContextAccessor httpContextAccessor,
+            IReservationsService reservationsService,
             IMapper mapper,
             UserManager<User> userManager)
         {
             this.usersService = usersService;
             this.dentistsService = dentistsService;
+            this.reservationsService = reservationsService;
             this.httpaccessor = httpContextAccessor;
             this.mapper = mapper;
             this.userManager = userManager;
@@ -60,9 +63,10 @@ namespace DentistAppointment.Controllers
             return View();
         }
         private string GetCurrentUserId() => this.userManager.GetUserId(HttpContext.User);
+        private int GetCurrentDentistId() => 1;
         public IActionResult patientHomePage()
         {
-             string userId = GetCurrentUserId();
+            string userId = GetCurrentUserId();
             var user = this.usersService.GetAllUsers().FirstOrDefault(u => u.Id == userId);
             //var comments = commentsService.GetAllCommentsOfPatient(user.Id).ToList();
 
@@ -71,14 +75,14 @@ namespace DentistAppointment.Controllers
                 FirstName = user.FirstName,
                 LastName = user.LastName,
                 Gender = user.Gender,
-                 Rating = user.Rating,
-                 Email = user.Email,
+                Rating = user.Rating,
+                Email = user.Email,
                 // Comments=comments,
-                 EGN = user.EGN
+                EGN = user.EGN
 
-             };
+            };
 
-             return View(viewModel);
+            return View(viewModel);
         }
 
         public IActionResult patientAppointments()
@@ -87,7 +91,33 @@ namespace DentistAppointment.Controllers
         }
         public IActionResult patientBooking()
         {
-            return View();
+            var model = new PatientBookingModel()
+            {
+                WorkHours = reservationsService.GetDentistWorkHoursForDay(GetCurrentDentistId(), DateTime.Now)
+            };
+            return View(model);
+        }
+        [HttpPost]
+        public IActionResult workHoursForDay(int year, int month, int day)
+        {
+            var model = new PatientBookingModel();
+
+            if (year > 0 && month > 0 && day > 0)
+            {
+                model.WorkHours = reservationsService.GetDentistWorkHoursForDay(GetCurrentDentistId(), new DateTime(year, month, day));
+            }
+            return PartialView(model);
+        }
+        [HttpPost]
+        public IActionResult patientBooking(PatientBookingModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                DateTime date = new DateTime(model.Date.Year, model.Date.Month, model.Date.Day,
+                                             model.Start.Hour, model.Start.Minute, model.Start.Second);
+                reservationsService.MakeReservation(GetCurrentUserId(), GetCurrentDentistId(), date);
+            }
+            return RedirectToAction("patientBooking", "Patient");
         }
         public IActionResult patientCheckDocument()
         {
@@ -105,7 +135,7 @@ namespace DentistAppointment.Controllers
                 Address = dentist.Address,
                 Type = dentist.Type,
                 Rating = dentist.User.Rating
-             
+
             };
 
             return View(viewModel);
@@ -114,18 +144,18 @@ namespace DentistAppointment.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> patientEditInfo(PatientEditInfoViewModel editModel, Guid id)
         {
-             string userId = GetCurrentUserId();
-             var user = this.usersService.GetAllUsers().FirstOrDefault(u => u.Id == userId);
+            string userId = GetCurrentUserId();
+            var user = this.usersService.GetAllUsers().FirstOrDefault(u => u.Id == userId);
 
-             var viewModel = new PatientEditInfoViewModel()
-             {
-                 FirstName = user.FirstName,
-                 LastName = user.LastName,
+            var viewModel = new PatientEditInfoViewModel()
+            {
+                FirstName = user.FirstName,
+                LastName = user.LastName,
                 // Gender = user.Gender,
-                 Email = user.Email,
-                 EGN = user.EGN
+                Email = user.Email,
+                EGN = user.EGN
 
-             };
+            };
 
             if (user == null)
             {
