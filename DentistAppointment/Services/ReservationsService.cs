@@ -97,5 +97,11 @@ namespace DentistAppointment.Services
             return reservations;
         }
 
+        public Reservation GetReservationById(int reservationId)
+        {
+            var reservation = this.reservationsRepo.GetById(reservationId);
+            reservation.User = usersRepo.GetById(reservation.UserId);
+            return reservation;
+        }
     }
 }

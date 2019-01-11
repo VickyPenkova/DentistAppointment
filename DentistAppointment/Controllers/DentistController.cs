@@ -216,12 +216,23 @@ namespace DentistAppointment.Controllers
             return View(model);
         }
 
-        public IActionResult dentistAppointments()
+        public IActionResult dentistCheckDocument(int id)
         {
-            return View();
+            if (id == 0)
+            {
+                return RedirectToAction("dentistMedicalManipulations", "Dentist");
+            }
+
+            var getReservation = this.reservationsService.GetReservationById(id);
+            var result = new DentistCheckDocumentModelView
+            {
+                Reservation = getReservation
+            };
+
+            return View(result);
         }
 
-        public IActionResult dentistCheckDocument()
+        public IActionResult dentistAppointments()
         {
             return View();
         }
