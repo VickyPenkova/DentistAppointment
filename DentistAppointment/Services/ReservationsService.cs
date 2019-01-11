@@ -14,14 +14,16 @@ namespace DentistAppointment.Services
     {
         private readonly IRepository<Reservation, int> reservationsRepo;
         private readonly IRepository<Dentist, int> dentistRepo;
+        private readonly IRepository<User, string> usersRepo;
 
         public ReservationsService(
             IRepository<Reservation, int> reservationsRepo,
-            IRepository<Dentist, int> dentistRepo
-            )
+            IRepository<Dentist, int> dentistRepo,
+            IRepository<User, string> usersRepo)
         {
             this.reservationsRepo = reservationsRepo;
             this.dentistRepo = dentistRepo;
+            this.usersRepo = usersRepo;
         }
         
         public List<DentistWorkHourDTO> GetDentistWorkHoursForDay(int dentistId, DateTime date)
@@ -80,6 +82,19 @@ namespace DentistAppointment.Services
             };
             reservationsRepo.Add(reservation);
             reservationsRepo.Save();
+        }
+
+        // For Madical Manipulations, Viki
+        public IEnumerable<Reservation> GetAllReservationsOfDentist(int dentistId)
+        {
+            var reservations = this.reservationsRepo.GetAll()
+                .Where(r => r.DentistId == dentistId).ToList();
+            foreach (var reservation in reservations)
+            {
+                reservation.User = usersRepo.GetById(reservation.UserId);
+            }
+
+            return reservations;
         }
 
     }

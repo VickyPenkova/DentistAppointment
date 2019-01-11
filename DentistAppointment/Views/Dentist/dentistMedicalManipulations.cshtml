@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@model DentistAppointment.Models.DentistViewModels.DentistMedicalManipulationsViewModel
+<!DOCTYPE html>
 <html dir="ltr" lang="en-US">
     <head>
 
@@ -120,38 +121,44 @@
                                 <tr>
                                     <th>Date</th>
                                     <th>Time</th>
-                                    <th>Doctor</th>
+                                    <th>Patient</th>
                                     <th>Options</th>
                                 </tr>
                             </thead>
                             <tbody>
+                                @foreach(var reservation in Model.Reservations)
+                                {
+                                    if(reservation.Manipulation == null)
+                                    {
+                                    <tr>
+                                        <td>@reservation.Date.ToShortDateString()</td>
+                                        <td>@reservation.Date.Hour : @reservation.Date.Minute-@reservation.Date.AddMinutes(30).ToShortTimeString()</td>
+                                        <td>@reservation.User.FirstName @reservation.User.LastName</td>
+                                        <td>
+                                            <a href="/Dentist/dentistDocumentManipulation" class="button button-3d  button-small button-rounded accent-color light-text"> <i class="icon-folder-check"></i>Document Manipulation</a>
+                                        </td>
+                                    </tr>
+                                    }
+                                    
+                                }
+                                
+                                @*<tr>
+                                    <td>11.10.2017</td>
+                                    <td>8:00-8:30</td>
+                                    <td>Patient Patient</td>
+                                    <td>
+                                        <a href="/Dentist/dentistDocumentManipulation" class="button button-3d  button-small button-rounded accent-color light-text"> <i class="icon-folder-check"></i>Document Manipulation</a>
+                                    </td>
+                                </tr>
                                 <tr>
                                     <td>11.10.2017</td>
                                     <td>8:00-8:30</td>
                                     <td>Patient Patient</td>
                                     <td>
-                                        <a href="/Dentist/dentistDocumentManipulation/dentistDocumentManipulation.cshtml" class="button button-3d  button-small button-rounded accent-color light-text"> <i class="icon-folder-check"></i>Document Manipulation</a>
+                                        <a href="/Dentist/dentistDocumentManipulation" class="button button-3d  button-small button-rounded accent-color light-text"> <i class="icon-folder-check"></i>Document Manipulation</a>
 
                                     </td>
-
-                                </tr>
-                                <tr>
-                                    <td>11.10.2017</td>
-                                    <td>8:00-8:30</td>
-                                    <td>Patient Patient</td>
-                                    <td>
-                                        <a href="/Dentist/dentistDocumentManipulation/dentistDocumentManipulation.cshtml" class="button button-3d  button-small button-rounded accent-color light-text"> <i class="icon-folder-check"></i>Document Manipulation</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>11.10.2017</td>
-                                    <td>8:00-8:30</td>
-                                    <td>Patient Patient</td>
-                                    <td>
-                                        <a href="/Dentist/dentistDocumentManipulation/dentistDocumentManipulation.cshtml" class="button button-3d  button-small button-rounded accent-color light-text"> <i class="icon-folder-check"></i>Document Manipulation</a>
-
-                                    </td>
-                                </tr>
+                                </tr>*@
                             </tbody>
                         </table>
                     </div>
@@ -165,17 +172,33 @@
                                 <tr>
                                     <th>Date</th>
                                     <th>Time</th>
-                                    <th>Doctor</th>
+                                    <th>Patient</th>
                                     <th>Options</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
+                                @foreach(var reservation in Model.Reservations)
+                                {
+                                    if(@reservation.Manipulation != null)
+                                    {
+                                        <tr>
+                                            <td>@reservation.Date.ToShortDateString()</td>
+                                            <td>@reservation.Date.Hour : @reservation.Date.Minute-@reservation.Date.AddMinutes(30).ToShortTimeString()</td>
+                                            <td>@reservation.User.FirstName @reservation.User.LastName</td>
+                                            <td>
+                                                <a href="/Dentist/dentistCheckDocument" class="button button-3d  button-small button-rounded button-amber"> <i class="icon-line-paper"></i>Check Manipulation Documents</a>
+
+                                            </td>
+
+                                        </tr>
+                                    }
+                                }
+                                @*<tr>
                                     <td>11.10.2017</td>
                                     <td>8:00-8:30</td>
                                     <td>Patient Patient</td>
                                     <td>
-                                        <a href="/Dentist/dentistCheckDocument/dentistCheckDocument.cshtml" class="button button-3d  button-small button-rounded button-amber"> <i class="icon-line-paper"></i>Check Manipulation Documents</a>
+                                        <a href="/Dentist/dentistCheckDocument" class="button button-3d  button-small button-rounded button-amber"> <i class="icon-line-paper"></i>Check Manipulation Documents</a>
 
                                     </td>
 
@@ -195,7 +218,7 @@
                                     <td>
                                        <a href="/Dentist/dentistCheckDocument/dentistCheckDocument.cshtml" class="button button-3d  button-small button-rounded button-amber"> <i class="icon-line-paper"></i>Check Manipulation Documents</a>
                                     </td>
-                                </tr>
+                                </tr>*@
                             </tbody>
                         </table>
                     </div>

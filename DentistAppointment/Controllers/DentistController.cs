@@ -21,6 +21,7 @@ namespace DentistAppointment.Controllers
         private readonly IHttpContextAccessor httpaccessor;
         private readonly IUsersService usersService;
         private readonly IDentistsService dentistsService;
+        private readonly IReservationsService reservationsService;
         // marto
         private readonly IReviewsService reviewsService;
         private readonly UserManager<User> userManager;
@@ -29,6 +30,7 @@ namespace DentistAppointment.Controllers
         public DentistController(
             IUsersService usersService,
             IDentistsService dentistsService,
+            IReservationsService reservationsService,
             // marto
             IReviewsService reviewsService,
             IHttpContextAccessor httpContextAccessor,
@@ -38,6 +40,7 @@ namespace DentistAppointment.Controllers
             this.usersService = usersService;
             this.dentistsService = dentistsService;
             this.httpaccessor = httpContextAccessor;
+            this.reservationsService = reservationsService;
             // marto
             this.reviewsService = reviewsService;
             this.mapper = mapper;
@@ -127,7 +130,6 @@ namespace DentistAppointment.Controllers
                 Email = model.Email
             };
             
-
             var patients = new List<User>();
             if (model != null)
             {
@@ -199,6 +201,21 @@ namespace DentistAppointment.Controllers
             }
         }
 
+        public IActionResult dentistMedicalManipulations()
+        {
+            string userId = GetCurrentUserId();
+            var dentist = this.dentistsService
+                .GetAllDentists().FirstOrDefault(user => user.User.Id == userId);
+            var allReservations = this.reservationsService.GetAllReservationsOfDentist(dentist.Id);
+
+            var model = new DentistMedicalManipulationsViewModel()
+            {
+                Reservations = allReservations.ToList()
+            };
+
+            return View(model);
+        }
+
         public IActionResult dentistAppointments()
         {
             return View();
@@ -217,12 +234,7 @@ namespace DentistAppointment.Controllers
         public IActionResult dentistForgottenPass()
         {
             return View();
-        }
-
-        public IActionResult dentistMedicalManipulations()
-        {
-            return View();
-        }
+        }   
 
         public IActionResult dentistOnFirstLogIn()
         {
