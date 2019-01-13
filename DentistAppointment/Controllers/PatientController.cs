@@ -154,9 +154,73 @@ namespace DentistAppointment.Controllers
 
             return this.RedirectToAction("patientHomePage", "Patient");
         }
-        public IActionResult patientFindDoctor()
+       
+        [HttpGet]
+        public IActionResult patientFindDoctor(PatientFindDentistViewModel model)
         {
-            return View();
+            // Save input data into the model
+            PatientFindDentistViewModel inputModel = new PatientFindDentistViewModel()
+            {
+                City = model.City,
+                Type = model.Type,
+                LastName = model.LastName,
+                Rating = model.Rating
+            };
+
+            var dentists = new List<Dentist>();
+            if (model != null)
+            {
+                if (!String.IsNullOrEmpty(inputModel.LastName))
+                {
+                    dentists = dentistsService.GetAllDentists().Where(d => d.User.LastName == inputModel.LastName).ToList();
+                }
+                else if (!String.IsNullOrEmpty(model.Type))
+                {
+                    dentists = dentistsService.GetAllDentists().Where(d => d.Type == inputModel.Type).ToList();
+                }
+                else if (!String.IsNullOrEmpty(inputModel.City))
+                {
+                    dentists = dentistsService.GetAllDentists().Where(d => d.City == inputModel.City).ToList();
+                }
+                /* else if (!String.IsNullOrEmpty(inputModel.Rating))
+                 {
+                     dentists = dentistsService.GetAllDentists().Where(d => d.User.Rating == inputModel.Rating).ToList();
+                 }*/
+                if (!String.IsNullOrEmpty(inputModel.City) && !String.IsNullOrEmpty(inputModel.Type))
+                    {
+                    dentists = dentistsService.GetAllDentists()
+                    .Where(d => d.City == inputModel.City && d.Type == inputModel.Type).ToList();
+                }
+               if (!String.IsNullOrEmpty(inputModel.City) && !String.IsNullOrEmpty(inputModel.LastName))
+                {
+                    dentists = dentistsService.GetAllDentists()
+                    .Where(d => d.City == inputModel.City && d.User.LastName == inputModel.LastName).ToList();
+                }
+                else if (!String.IsNullOrEmpty(inputModel.LastName) && !String.IsNullOrEmpty(inputModel.Type))
+                {
+                    dentists = dentistsService.GetAllDentists()
+                        .Where(d => d.User.LastName == inputModel.LastName && d.Type == inputModel.Type).ToList();
+                }
+
+               
+            }
+
+            // If there is no input the list is empty (No dentists are found)
+            if (dentists == null)
+            {
+                return View(inputModel);
+            }
+            else
+            {
+                return View(new PatientFindDentistViewModel()
+                {
+                    City = model.City,
+                    Type = model.Type,
+                    LastName = model.LastName,
+                    Rating = model.Rating,
+                    Dentists = dentists
+                });
+            }
         }
 
         public IActionResult patientMedicalManipulationsHistory()
@@ -197,12 +261,7 @@ namespace DentistAppointment.Controllers
         {
             return View();
         }
-        [AllowAnonymous]
-        public IActionResult registerPatient()
-        {
-            return View();
-        }
-
+      
         public IActionResult Privacy()
         {
             return View();
