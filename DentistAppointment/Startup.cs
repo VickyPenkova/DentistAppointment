@@ -60,6 +60,10 @@ namespace DentistAppointment
                 options.SlidingExpiration = true;
                 
             });
+            //Removing Home folder
+            services.AddMvc().AddRazorPagesOptions(options => {
+                options.Conventions.AddAreaPageRoute("Identity", "/Account/Login", "");
+            }).SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             // Application services are registered into the DI container here
             services.AddScoped<DentistAppointmentDbContext>();
@@ -97,7 +101,7 @@ namespace DentistAppointment
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=index}/{id?}");
+                    template: "{controller=Login}/{action=Login}/{id?}");
             });
         }
     }
