@@ -6,6 +6,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="Views\Admin\adminUsersList.cshtml" />
+    <Content Remove="Views\Admin\registerDentist.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Views\Admin\adminUsersList.cshtml" />
+    <None Include="Views\Admin\registerDentist.cshtml" />
     <None Include="wwwroot\FrontEnd\css\animate.css" />
     <None Include="wwwroot\FrontEnd\css\bootstrap.css" />
     <None Include="wwwroot\FrontEnd\css\calendar.css" />

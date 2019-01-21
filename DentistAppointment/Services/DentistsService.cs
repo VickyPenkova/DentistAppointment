@@ -65,5 +65,12 @@ namespace DentistAppointment.Services
             this.usersRepo.Update(user);
             this.usersRepo.Save();
         }
+
+        public void Save(Dentist dentist)
+        {
+           // TODO: Create new viewModel to pass to Save() that initializes both User and Dentist
+            this.usersRepo.Save();
+
+        }
     }
 }

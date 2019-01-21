@@ -42,6 +42,7 @@ namespace DentistAppointment
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddDefaultIdentity<DentistAppointment.Data.Models.User>()
+                .AddRoles<IdentityRole>()
                     .AddEntityFrameworkStores<DentistAppointmentDbContext>();
 
             /*services.AddIdentity<DentistAppointment.Data.Models.User, IdentityRole>(options =>
@@ -64,6 +65,9 @@ namespace DentistAppointment
             services.AddScoped<IReservationsService, ReservationsService>();
             services.AddAutoMapper();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddMvc().AddRazorPagesOptions(options => {
+                options.Conventions.AddAreaPageRoute("Identity", "/Account/Login", "/Account/Login");
+            }).SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

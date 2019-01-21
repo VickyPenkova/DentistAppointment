@@ -83,7 +83,7 @@ namespace DentistAppointment.Areas.Identity.Pages.Account
                         _logger.LogInformation("Dentist logged in.");
                         return LocalRedirect("~/Dentist/dentistHomePage");
                     }
-                    else if (user.DentistId == null)
+                    else if (user.DentistId == null && await _signInManager.UserManager.IsInRoleAsync(user, GlobalConstants.UserRole))
                     {
                         _logger.LogInformation("User logged in.");
                         return LocalRedirect("~/Patient/patientHomePage");
@@ -91,7 +91,7 @@ namespace DentistAppointment.Areas.Identity.Pages.Account
                     else if (await _signInManager.UserManager.IsInRoleAsync(user, 
                         GlobalConstants.AdminRole))
                     {
-                        return LocalRedirect("~/Home/index");
+                        return LocalRedirect("~/Admin/registerDentist");
                     }
                 }
                 if (result.IsLockedOut)
