@@ -1,4 +1,5 @@
 ﻿using DentistAppointment.Data.Models;
+using DentistAppointment.Models.AdminViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,5 +15,6 @@ namespace DentistAppointment.Services.Abstraction
         IEnumerable<Reservation> GetAllReservationsOfDentist(int dentistId);
         User GetDentistByUserId(string userId);
         void Edit(User user);
+        void Save(AddDentistViewModel addDentistViewModel);
     }
 }

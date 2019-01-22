@@ -1,5 +1,6 @@
 ﻿using DentistAppointment.Data;
 using DentistAppointment.Data.Models;
+using DentistAppointment.Models.AdminViewModels;
 using DentistAppointment.Services.Abstraction;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
@@ -66,11 +67,30 @@ namespace DentistAppointment.Services
             this.usersRepo.Save();
         }
 
-        public void Save(Dentist dentist)
+        public void Save(AddDentistViewModel addDentistViewModel)
         {
-           // TODO: Create new viewModel to pass to Save() that initializes both User and Dentist
+            // TODO: Create new viewModel to pass to Save() that initializes both User and Dentist
+            User user = new User()
+            {
+                FirstName = addDentistViewModel.FirstName,
+                LastName = addDentistViewModel.LastName,
+                UserName = addDentistViewModel.EmailAndUserName,
+                Email = addDentistViewModel.EmailAndUserName,
+                PhoneNumber = addDentistViewModel.PhoneNumber             
+            };
+
+            Dentist dentist = new Dentist()
+            {
+                Address = addDentistViewModel.Address,
+                City = addDentistViewModel.City,
+                User = user
+            };
+
+            this.usersRepo.Add(user);
             this.usersRepo.Save();
 
+            this.dentistsRepo.Add(dentist);
+            this.dentistsRepo.Save();
         }
     }
 }

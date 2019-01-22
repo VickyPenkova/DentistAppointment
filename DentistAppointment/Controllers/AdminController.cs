@@ -1,4 +1,7 @@
 ﻿using DentistAppointment.Data.Models;
+using DentistAppointment.Models.AdminViewModels;
+using DentistAppointment.Services.Abstraction;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -9,6 +12,20 @@ namespace DentistAppointment.Controllers
 {
     public class AdminController : Controller
     {
+        private readonly IHttpContextAccessor httpaccessor;
+        private readonly IUsersService usersService;
+        private readonly IDentistsService dentistsService;
+
+        public AdminController(
+            IHttpContextAccessor httpaccessor,
+            IUsersService usersService,
+            IDentistsService dentistsService)
+        {
+            this.httpaccessor = httpaccessor;
+            this.usersService = usersService;
+            this.dentistsService = dentistsService;
+        }
+
         public IActionResult index()
         {
             return View();
@@ -19,18 +36,26 @@ namespace DentistAppointment.Controllers
             return View();
         }
 
-        [HttpGet]
-        public IActionResult registerDentist()
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult registerDentist(AddDentistViewModel model, string returnUrl = null)
         {
+            this.ViewData["ReturnUrl"] = returnUrl;
+            var resultModel = new AddDentistViewModel();
+            if (this.ModelState.IsValid)
+            {
+                this.dentistsService.Save(model);
+                ViewData["Message"] = "SUCCESS!";
+            }
 
             return View();
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult registerDentist(User newDentist)
+        [HttpGet]
+        public IActionResult registerDentist(string returnUrl = null)
         {
-            return View();
+            this.ViewData["ReturnUrl"] = returnUrl;
+            return View(new AddDentistViewModel());
         }
     }
 }
