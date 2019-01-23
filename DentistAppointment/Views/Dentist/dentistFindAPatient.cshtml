@@ -4,7 +4,7 @@
     <head>
 
         <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-        <meta name="author" content="" />
+        <meta name="CSCB024" content="Dentist find a patient" />
 
         <!-- Stylesheets
 ============================================= -->
@@ -148,11 +148,11 @@
                                             <span class="comment-avatar clearfix">
                                                 @if (@patient.Gender == "female")
                                                 {
-                                                     <img alt='' src='/FrontEnd/images/icons/female-user.png' class='avatar avatar-60 photo avatar-default' height='60' width='60' />
+                                                <img alt='' src='/FrontEnd/images/icons/female-user.png' class='avatar avatar-60 photo avatar-default' height='60' width='60' />
                                                 }else{
-                                                    <img alt='' src="/FrontEnd/images/icons/male-user.png" class='avatar avatar-60 photo' height='60' width='60' />
+                                                <img alt='' src="/FrontEnd/images/icons/male-user.png" class='avatar avatar-60 photo' height='60' width='60' />
                                                 }
-                                               
+
                                             </span>
                                         </div>
 
@@ -167,11 +167,11 @@
                                         <h5>Phone number: <span>@patient.PhoneNumber</span></h5>
                                         <h5>Manipulations: </h5>
                                         <ol>
-                                        @foreach(var manipulation in @patient.Reservations)
-                                        {
+                                            @foreach(var manipulation in @patient.Reservations)
+                                            {
                                             <li><h6>@manipulation.Manipulation</h6></li>
 
-                                        }
+                                            }
                                         </ol> 
                                     </div>
 
