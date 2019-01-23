@@ -182,9 +182,7 @@
                         <h4>
                             Final grade:
                             <span id="finalGrade">
-                            <script>
-                                sum();
-                            </script>
+                                <input asp-for="@Model.Rating" type="hidden" value="finalGradeInput" name="finalGrade" id="finalGradeInput" class="form-control" id="exampleFormControlTextarea1" rows="3" />
                             </span>
                             @*<input asp-for="@Model.Rating" id="finalGrade" disabled/>*@
                         </h4>
@@ -251,17 +249,13 @@
                 prevExam = value;
                 $('#finalGrade').text("");
                 $('#finalGrade').text(totalGrade);
+                $('#finalGradeInput').val(totalGrade);
             });
 
             $("#submit").click(function () {
                 $("#actualContent").hide();
                 $("#sucessMessage").show();
             });
-
-            function sum() {
-               @Model.Rating = totalGrade/2;
-
-            }
 
         });
     </script>
