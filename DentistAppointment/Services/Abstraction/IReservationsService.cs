@@ -11,5 +11,7 @@ namespace DentistAppointment.Services.Abstraction
     {
         List<DentistWorkHourDTO> GetDentistWorkHoursForDay(int dentistId, DateTime date);
         void MakeReservation(string userId, int dentistId, DateTime date);
+        IEnumerable<Reservation> GetAllReservationsOfDentist(int dentistId);
+        Reservation GetReservationById(int reservationId);
     }
 }

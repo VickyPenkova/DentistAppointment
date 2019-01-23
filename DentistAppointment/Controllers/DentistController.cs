@@ -121,12 +121,120 @@ namespace DentistAppointment.Controllers
            // return View(viewModel);
         }
 
-        public IActionResult dentistAppointments()
+        [HttpGet]
+        public IActionResult dentistFindAPatient(DentistFindAPatientViewModel model)
         {
-            return View();
+            // Save input data into the model
+            DentistFindAPatientViewModel inputModel = new DentistFindAPatientViewModel()
+            {
+                LastName = model.LastName,
+                EGN = model.EGN,
+                Email = model.Email
+            };
+            
+            var patients = new List<User>();
+            if (model != null)
+            {
+                if (!String.IsNullOrEmpty(inputModel.LastName))
+                {
+                    patients = usersService.GetAllUsersWithReservations().Where(u => u.LastName == inputModel.LastName).ToList();
+                }
+                else if (!String.IsNullOrEmpty(inputModel.Email))
+                {
+                    patients = usersService.GetAllUsersWithReservations().Where(u => u.Email == inputModel.Email).ToList();
+                }
+                else if (inputModel.EGN != 0)
+                {
+                    patients = usersService.GetAllUsersWithReservations().Where(u => u.EGN == inputModel.EGN).ToList();
+                }
+                else if(!String.IsNullOrEmpty(inputModel.LastName) && !String.IsNullOrEmpty(inputModel.Email))
+                {
+                    patients = usersService.GetAllUsersWithReservations()
+                        .Where(u => u.LastName == inputModel.LastName && u.Email == inputModel.Email).ToList();
+                }
+                else if (!String.IsNullOrEmpty(inputModel.LastName) && inputModel.EGN != 0)
+                {
+                    patients = usersService.GetAllUsersWithReservations()
+                        .Where(u => u.LastName == inputModel.LastName && u.EGN == inputModel.EGN).ToList();
+                }
+                else if (inputModel.EGN != 0 && !String.IsNullOrEmpty(inputModel.Email))
+                {
+                    patients = usersService.GetAllUsersWithReservations()
+                        .Where(u => u.EGN == inputModel.EGN && u.Email == inputModel.Email).ToList();
+                }
+                else if (inputModel.EGN != 0 && !String.IsNullOrEmpty(inputModel.Email) && !String.IsNullOrEmpty(inputModel.LastName))
+                {
+                    patients = usersService.GetAllUsersWithReservations()
+                        .Where(u => u.EGN == inputModel.EGN && u.Email == inputModel.Email && u.LastName == inputModel.LastName).ToList();
+                }
+                else
+                {
+                    if(String.IsNullOrEmpty(inputModel.LastName) || String.IsNullOrEmpty(inputModel.Email))
+                    {
+                        patients = usersService.GetAllUsersWithReservations().Where(u => u.EGN ==  inputModel.EGN).ToList();
+                    }
+                    else if(String.IsNullOrEmpty(inputModel.LastName) || inputModel.EGN == 0)
+                    {
+                        patients = usersService.GetAllUsersWithReservations().Where(u => u.Email == inputModel.Email).ToList();
+                    }
+                    else if (inputModel.EGN == 0 || String.IsNullOrEmpty(inputModel.Email))
+                    {
+                        patients = usersService.GetAllUsersWithReservations().Where(u => u.LastName == inputModel.LastName).ToList();
+                    }
+
+
+                }    
+            }
+
+            // If there is no input the list is empty (No patients are found)
+            if(patients == null)
+            {
+                return View(inputModel);
+            }
+            else
+            {
+                return View(new DentistFindAPatientViewModel()
+                {
+                    LastName = model.LastName,
+                    EGN = model.EGN,
+                    Email = model.Email,
+                    Patients = patients
+                });
+            }
         }
 
-        public IActionResult dentistCheckDocument()
+        public IActionResult dentistMedicalManipulations()
+        {
+            string userId = GetCurrentUserId();
+            var dentist = this.dentistsService
+                .GetAllDentists().FirstOrDefault(user => user.User.Id == userId);
+            var allReservations = this.reservationsService.GetAllReservationsOfDentist(dentist.Id);
+
+            var model = new DentistMedicalManipulationsViewModel()
+            {
+                Reservations = allReservations.ToList()
+            };
+
+            return View(model);
+        }
+
+        public IActionResult dentistCheckDocument(int id)
+        {
+            if (id == 0)
+            {
+                return RedirectToAction("dentistMedicalManipulations", "Dentist");
+            }
+
+            var getReservation = this.reservationsService.GetReservationById(id);
+            var result = new DentistCheckDocumentModelView
+            {
+                Reservation = getReservation
+            };
+
+            return View(result);
+        }
+
+        public IActionResult dentistAppointments()
         {
             return View();
         }
@@ -136,20 +244,10 @@ namespace DentistAppointment.Controllers
             return View();
         }
 
-        public IActionResult dentistFindAPatient()
-        {
-            return View();
-        }
-
         public IActionResult dentistForgottenPass()
         {
             return View();
-        }
-
-        public IActionResult dentistMedicalManipulations()
-        {
-            return View();
-        }
+        }   
 
         public IActionResult dentistOnFirstLogIn()
         {
