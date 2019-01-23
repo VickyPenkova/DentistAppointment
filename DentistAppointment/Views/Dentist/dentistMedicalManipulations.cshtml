@@ -135,7 +135,7 @@
                                         <td>@reservation.Date.Hour : @reservation.Date.Minute-@reservation.Date.AddMinutes(30).ToShortTimeString()</td>
                                         <td>@reservation.User.FirstName @reservation.User.LastName</td>
                                         <td>
-                                            <a href="/Dentist/dentistDocumentManipulation" class="button button-3d  button-small button-rounded accent-color light-text"> <i class="icon-folder-check"></i>Document Manipulation</a>
+                                            <a href="/Dentist/dentistDocumentManipulation/@reservation.Id" class="button button-3d  button-small button-rounded accent-color light-text"> <i class="icon-folder-check"></i>Document Manipulation</a>
                                         </td>
                                     </tr>
                                     }

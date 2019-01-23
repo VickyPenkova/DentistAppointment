@@ -232,15 +232,48 @@ namespace DentistAppointment.Controllers
             return View(result);
         }
 
+        [HttpGet]
+        public IActionResult dentistDocumentManipulation(int id)
+        {
+        if (id == 0)
+        {
+            return RedirectToAction("dentistMedicalManipulations", "Dentist");
+        }
+
+        var getReservation = this.reservationsService.GetReservationById(id);
+        return View(
+            new DentistDocumentManipulationViewModel()
+            {
+                Reservation = getReservation
+            }
+            );
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult dentistDocumentManipulation(DentistDocumentManipulationViewModel model, int id, string returnUrl = null)
+        {
+            this.ViewData["ReturnUrl"] = returnUrl;
+            if (id == 0)
+            {
+                return RedirectToAction("dentistMedicalManipulations", "Dentist");
+            }
+            model.Reservation = this.reservationsService.editReservationManimulation(id, model);
+            //var user = this.usersService.GetAllUsers().FirstOrDefault(x => x.Id == GetCurrentUserId());
+
+
+            if (this.ModelState.IsValid)
+            {
+                this.dentistsService.editDocumentManipulation(model, id);
+            }
+            return View(model);
+        }
+
         public IActionResult dentistAppointments()
         {
             return View();
         }
 
-        public IActionResult dentistDocumentManipulation()
-        {
-            return View();
-        }
 
         public IActionResult dentistForgottenPass()
         {

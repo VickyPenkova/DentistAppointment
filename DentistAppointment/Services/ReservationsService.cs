@@ -6,6 +6,7 @@ using DentistAppointment.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using DentistAppointment.Models.DentistViewModels;
 
 namespace DentistAppointment.Services
 {
@@ -100,6 +101,17 @@ namespace DentistAppointment.Services
         {
             var reservation = this.reservationsRepo.GetById(reservationId);
             reservation.User = usersRepo.GetById(reservation.UserId);
+            reservation.Dentist = dentistRepo.GetById(reservation.DentistId);
+
+            return reservation;
+        }
+
+        public Reservation editReservationManimulation(int reservationId, DentistDocumentManipulationViewModel model)
+        {
+            var reservation = this.reservationsRepo.GetById(reservationId);
+            reservation.User = usersRepo.GetById(reservation.UserId);
+            reservation.Dentist = dentistRepo.GetById(reservation.DentistId);
+            reservation.Manipulation = model.Reservation.Manipulation;
             return reservation;
         }
     }

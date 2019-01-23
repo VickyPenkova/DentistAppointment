@@ -1,6 +1,7 @@
 ﻿using DentistAppointment.Data;
 using DentistAppointment.Data.Models;
 using DentistAppointment.Models.AdminViewModels;
+using DentistAppointment.Models.DentistViewModels;
 using DentistAppointment.Services.Abstraction;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
@@ -91,6 +92,21 @@ namespace DentistAppointment.Services
 
             this.dentistsRepo.Add(dentist);
             this.dentistsRepo.Save();
+        }
+
+        public void editDocumentManipulation(DentistDocumentManipulationViewModel dentistDocument, int reservationId)
+        {
+            //var reservation = this.reservationsRepo.GetById(dentistDocument.Reservation.Id);
+            var reservation = this.reservationsRepo.GetAll()
+                .Include(x => x.User)
+                .FirstOrDefault(x => x.Id == reservationId);
+            var userToRate = this.usersRepo.GetById(reservation.User.Id);
+
+            reservation.Manipulation = dentistDocument.Reservation.Manipulation;
+            this.reservationsRepo.Save();
+
+            userToRate.Rating = dentistDocument.Reservation.User.Rating;
+            this.usersRepo.Save();
         }
     }
 }

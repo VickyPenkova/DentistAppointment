@@ -1,5 +1,6 @@
 ﻿using DentistAppointment.Data.Models;
 using DentistAppointment.Models.AdminViewModels;
+using DentistAppointment.Models.DentistViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,5 +17,6 @@ namespace DentistAppointment.Services.Abstraction
         User GetDentistByUserId(string userId);
         void Edit(User user);
         void Save(AddDentistViewModel addDentistViewModel);
+        void editDocumentManipulation(DentistDocumentManipulationViewModel dentistDocument, int reservationId);
     }
 }
