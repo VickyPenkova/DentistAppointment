@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@model DentistAppointment.Models.PatientViewModels.PatientBookingModel
+<!DOCTYPE html>
 <html dir="ltr" lang="en-US">
     <head>
 
@@ -8,14 +9,14 @@
         <!-- Stylesheets
 ============================================= -->
         <link href="https://fonts.googleapis.com/css?family=Lato:300,400,400i,700|Raleway:300,400,500,600,700|Crete+Round:400i" rel="stylesheet" type="text/css" />
-        <link rel="stylesheet" href="/FrontEnd/css/bootstrap.css" type="text/css" />
-        <link rel="stylesheet" href="/FrontEnd/dentistStyle.css" type="text/css" />
-        <link rel="stylesheet" href="/FrontEnd/css/font-icons.css" type="text/css" />
-        <link rel="stylesheet" href="/FrontEnd/css/animate.css" type="text/css" />
+        <link rel="stylesheet" href="~/FrontEnd/css/bootstrap.css" type="text/css" />
+        <link rel="stylesheet" href="~/FrontEnd/dentistStyle.css" type="text/css" />
+        <link rel="stylesheet" href="~/FrontEnd/css/font-icons.css" type="text/css" />
+        <link rel="stylesheet" href="~/FrontEnd/css/animate.css" type="text/css" />
 
-        <link rel="stylesheet" href="/FrontEnd/css/calendarDentist.css" type="text/css" />
+        <link rel="stylesheet" href="~/FrontEnd/css/calendarDentist.css" type="text/css" />
 
-        <link rel="stylesheet" href="/FrontEnd/css/responsive.css" type="text/css" />
+        <link rel="stylesheet" href="~/FrontEnd/css/responsive.css" type="text/css" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
 
         <!-- Document Title
@@ -63,7 +64,7 @@
     ============================================= -->
                         <div id="logo">
                             <a href="/Dentist/dentistHomePage" class="standard-logo" data-dark-logo="/FrontEnd/images/icons/molar-inside-a-shield-orange.png"><img src="/FrontEnd/images/icons/molar-inside-a-shield-orange.png" alt="Denstist Logo"></a>
-                            <a href="/Dentist/dentistHomePage" class="retina-logo" data-dark-logo="/FrontEnd/images/icons/molar-inside-a-shield-orange.png"><img src="/FrontEnd/images/icons/molar-inside-a-shield-orange.png" alt="Denstist Logo"></a>
+                            <a href="/Dentist/dentistHomePage"  class="retina-logo" data-dark-logo="/FrontEnd/images/icons/molar-inside-a-shield-orange.png"><img src="/FrontEnd/images/icons/molar-inside-a-shield-orange.png" alt="Denstist Logo"></a>
                         </div>
                         <!-- #logo end -->
                         <!-- Primary Navigation
@@ -77,6 +78,7 @@
                                 <li class="current">
                                     <a href="/Dentist/dentistFindAPatient"><div>Find a Patient</div></a>
                                 </li>
+
                                 <li class="current"><a href="/Dentist/dentistEvents">Events</a></li>
                                 <li class="accent-background">
                                     <a href="/Dentist/dentistAppointments"><div>My Appointments</div></a>
@@ -141,145 +143,8 @@
                                         <th>Availability</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>8:00-8:30</td>
-                                        <td>Name Of Patient</td>
-                                        <td>
-                                            <button class="btn accent-background light-text aviableBtn" data-toggle="modal" data-target=".bs-example-modal-sm"><i class="icon-line-circle-cross"></i><span> Cancel</span></button>
-
-                                            <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-                                                <div class="modal-dialog modal-sm">
-                                                    <div class="modal-body">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <h4 class="modal-title" id="myModalLabel">You canceled this appointment!</h4>
-                                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                                            </div>
-                                                            <div class="modal-body">
-                                                                <p class="nobottommargin">The appointment you selected has been canceled!You can see all your upcomming appointments in the "My appointments section"!</p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>8:30-9:00</td>
-                                        <td>Name Of Patient</td>
-                                        <td>
-                                            <button class="btn accent-background light-text aviableBtn" data-toggle="modal" data-target=".bs-example-modal-sm"><i class="icon-line-circle-cross"></i><span> Cancel</span></button>
-
-                                            <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-                                                <div class="modal-dialog modal-sm">
-                                                    <div class="modal-body">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <h4 class="modal-title" id="myModalLabel">You canceled this appointment!</h4>
-                                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                                            </div>
-                                                            <div class="modal-body">
-                                                                <p class="nobottommargin">The appointment you selected has been canceled!You can see all your upcomming appointments in the "My appointments section"!</p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div></td>
-                                    </tr>
-                                    <tr>
-                                        <td>9:00-9:30</td>
-                                        <td>Name Of Patient</td>
-                                        <td>
-                                            <button class="btn accent-background light-text aviableBtn" data-toggle="modal" data-target=".bs-example-modal-sm"><i class="icon-line-circle-cross"></i><span> Cancel</span></button>
-
-
-                                            <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-                                                <div class="modal-dialog modal-sm">
-                                                    <div class="modal-body">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <h4 class="modal-title" id="myModalLabel">You canceled this appointment!</h4>
-                                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                                            </div>
-                                                            <div class="modal-body">
-                                                                <p class="nobottommargin">The appointment you selected has been canceled!You can see all your upcomming appointments in the "My appointments section"!</p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div></td>
-                                    </tr>
-                                    <tr>
-                                        <td>9:30-10:00</td>
-                                        <td>Name Of Patient</td>
-                                        <td>
-                                            <button class="btn accent-background light-text aviableBtn" data-toggle="modal" data-target=".bs-example-modal-sm"><i class="icon-line-circle-cross"></i><span> Cancel</span></button>
-
-                                            <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-                                                <div class="modal-dialog modal-sm">
-                                                    <div class="modal-body">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <h4 class="modal-title" id="myModalLabel">You canceled this appointment!</h4>
-                                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                                            </div>
-                                                            <div class="modal-body">
-                                                                <p class="nobottommargin">The appointment you selected has been canceled!You can see all your upcomming appointments in the "My appointments section"!</p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div></td>
-                                    </tr>
-                                    <tr>
-                                        <td>10:00-10:30</td>
-                                        <td>Name Of Patient</td>
-                                        <td>
-                                            <button class="btn accent-background light-text aviableBtn" data-toggle="modal" data-target=".bs-example-modal-sm"><i class="icon-line-circle-cross"></i><span> Cancel</span></button>
-
-
-                                            <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-                                                <div class="modal-dialog modal-sm">
-                                                    <div class="modal-body">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <h4 class="modal-title" id="myModalLabel">You canceled this appointment!</h4>
-                                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                                            </div>
-                                                            <div class="modal-body">
-                                                                <p class="nobottommargin">The appointment you selected has been canceled!You can see all your upcomming appointments in the "My appointments section"!</p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div></td>
-                                    </tr>
-                                    <tr>
-                                        <td>10:30-11:00</td>
-                                        <td></td>
-                                        <td><button class="btn button-green light-text aviableBtn" ><i class="icon-line-play"></i><span>Aviable</span></button>
-
-                                            <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-                                                <div class="modal-dialog modal-sm">
-                                                    <div class="modal-body">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <h4 class="modal-title" id="myModalLabel">You canceled this appointment!</h4>
-                                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                                            </div>
-                                                            <div class="modal-body">
-                                                                <p class="nobottommargin">The appointment you selected has been canceled!You can see all your upcomming appointments in the "My appointments section"!</p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                        </td>
-                                    </tr>
-
+                                <tbody id="appointmentsList">
+                                     @Html.Partial("dentistAppointmentsList")
                                 </tbody>
                             </table>
 
@@ -290,7 +155,7 @@
                         <div class="divider divider-center"><i class="icon-circle-blank"></i></div>
                         <div class="center">
 
-                            <a class="button button-3d button-black mt-4 mb-4 ml-0 accent-background" href="/FrontEnd/pages/Dentist/dentistAddEvent.html"><i class="icon-line-circle-plus"></i>Add Event</a>
+                            <a class="button button-3d button-black mt-4 mb-4 ml-0 accent-background" href="/Dentist/dentistAddEvent"><i class="icon-line-circle-plus"></i>Add Event</a>
                         </div>
 
 
@@ -389,17 +254,15 @@
 
         <!-- External JavaScripts
 ============================================= -->
-        <script src="/FrontEnd/js/jquery.js"></script>
-        <script src="/FrontEnd/js/plugins.js"></script>
+        <script src="~/FrontEnd/js/jquery.js"></script>
+        <script src="~/FrontEnd/js/plugins.js"></script>
 
-        <script src="/FrontEnd/js/events-data.js"></script>
-        <script src="/FrontEnd/js/jquery.calendarioDentist.js"></script>
+        <script src="~/FrontEnd/js/events-data.js"></script>
+        <script src="~/FrontEnd/js/jquery.calendarioDentist.js"></script>
 
         <!-- Footer Scripts
 ============================================= -->
-        <script src="/FrontEnd/js/functions.js"></script>
-
-
+        <script src="~/FrontEnd/js/functions.js"></script>
 
     </body>
 </html>
