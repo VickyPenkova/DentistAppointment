@@ -30,14 +30,14 @@ namespace DentistAppointment.Models.PatientViewModel
             new SelectListItem { Value = "Periodontist", Text = "Periodontist"},
         };
         public string LastName { get; set; }
-        public string Rating { get; set; }
+        public double Rating { get; set; }
         public List<SelectListItem> NumberOfStars { get; } = new List<SelectListItem>
         {
-            new SelectListItem { Value = "None", Text = "None"},
-            new SelectListItem { Value = "Above one star", Text = "Above one star"},
-            new SelectListItem { Value = "Above two stars", Text = "Above two stars"},
-            new SelectListItem { Value = "Above tree stars", Text = "Above tree stars"},
-            new SelectListItem { Value = "Above four stars", Text = "Above four stars"},
+            new SelectListItem { Value = "0", Text = "None"},
+            new SelectListItem { Value = "1", Text = "Above one star"},
+            new SelectListItem { Value = "2", Text = "Above two stars"},
+            new SelectListItem { Value = "3", Text = "Above tree stars"},
+            new SelectListItem { Value = "4", Text = "Above four stars"},
         };
         public List<Dentist> Dentists { get; internal set; }
     }

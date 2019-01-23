@@ -1,35 +1,48 @@
-﻿<!DOCTYPE html>
+﻿@model DentistAppointment.Models.DentistViewModels.DentistFindAPatientViewModel
+<!DOCTYPE html>
 <html dir="ltr" lang="en-US">
     <head>
 
         <meta http-equiv="content-type" content="text/html; charset=utf-8" />
         <meta name="author" content="" />
 
-       
+        <!-- Stylesheets
+============================================= -->
+        <link href="https://fonts.googleapis.com/css?family=Lato:300,400,400i,700|Raleway:300,400,500,600,700|Crete+Round:400i" rel="stylesheet" type="text/css" />
+        <link rel="stylesheet" href="/FrontEnd/css/bootstrap.css" type="text/css" />
+        <link rel="stylesheet" href="/FrontEnd/dentistStyle.css" type="text/css" />
+        <link rel="stylesheet" href="/FrontEnd/css/font-icons.css" type="text/css" />
+        <link rel="stylesheet" href="/FrontEnd/css/animate.css" type="text/css" />
+
+        <!-- Select-Boxes CSS -->
+        <link rel="stylesheet" href="/FrontEnd/css/components/select-boxes.css" type="text/css" />
+
+
+        <link rel="stylesheet" href="/FrontEnd/css/responsive.css" type="text/css" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
 
         <!-- Document Title
 ============================================= -->
-        <title>Find a doctor</title>
+        <title>Find a patient</title>
 
         <!-- Favicon
 ============================================= -->
 
-        <link rel="apple-touch-icon" sizes="57x57" href="~/FrontEnd/images/favicon/apple-icon-57x57.png">
-        <link rel="apple-touch-icon" sizes="60x60" href="~/FrontEnd/images/favicon/apple-icon-60x60.png">
-        <link rel="apple-touch-icon" sizes="72x72" href="~/FrontEnd/images/favicon/apple-icon-72x72.png">
-        <link rel="apple-touch-icon" sizes="76x76" href="~/FrontEnd/images/favicon/apple-icon-76x76.png">
-        <link rel="apple-touch-icon" sizes="114x114" href="~/FrontEnd/images/favicon/apple-icon-114x114.png">
-        <link rel="apple-touch-icon" sizes="120x120" href="~/FrontEnd/images/favicon/apple-icon-120x120.png">
-        <link rel="apple-touch-icon" sizes="144x144" href="~/FrontEnd/images/favicon/apple-icon-144x144.png">
-        <link rel="apple-touch-icon" sizes="152x152" href="~/FrontEnd/images/favicon/apple-icon-152x152.png">
-        <link rel="apple-touch-icon" sizes="180x180" href="~/FrontEnd/images/favicon/apple-icon-180x180.png">
-        <link rel="icon" type="image/png" sizes="192x192"  href="~/FrontEnd/images/favicon/android-icon-192x192.png">
-        <link rel="icon" type="image/png" sizes="32x32" href="~/FrontEnd/images/favicon/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="96x96" href="~/FrontEnd/images/favicon/favicon-96x96.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="~/FrontEnd/images/favicon/favicon-16x16.png">
+        <link rel="apple-touch-icon" sizes="57x57" href="/FrontEnd/images/favicon/apple-icon-57x57.png">
+        <link rel="apple-touch-icon" sizes="60x60" href="/FrontEnd/images/favicon/apple-icon-60x60.png">
+        <link rel="apple-touch-icon" sizes="72x72" href="/FrontEnd/images/favicon/apple-icon-72x72.png">
+        <link rel="apple-touch-icon" sizes="76x76" href="/FrontEnd/images/favicon/apple-icon-76x76.png">
+        <link rel="apple-touch-icon" sizes="114x114" href="/FrontEnd/images/favicon/apple-icon-114x114.png">
+        <link rel="apple-touch-icon" sizes="120x120" href="/FrontEnd/images/favicon/apple-icon-120x120.png">
+        <link rel="apple-touch-icon" sizes="144x144" href="/FrontEnd/images/favicon/apple-icon-144x144.png">
+        <link rel="apple-touch-icon" sizes="152x152" href="/FrontEnd/images/favicon/apple-icon-152x152.png">
+        <link rel="apple-touch-icon" sizes="180x180" href="/FrontEnd/images/favicon/apple-icon-180x180.png">
+        <link rel="icon" type="image/png" sizes="192x192"  href="/FrontEnd/images/favicon/android-icon-192x192.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/FrontEnd/images/favicon/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="96x96" href="/FrontEnd/images/favicon/favicon-96x96.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/FrontEnd/images/favicon/favicon-16x16.png">
         <meta name="msapplication-TileColor" content="#ffffff">
-        <meta name="msapplication-TileImage" content="~/FrontEnd/images/favicon/ms-icon-144x144.png">
+        <meta name="msapplication-TileImage" content="/FrontEnd/images/favicon/ms-icon-144x144.png">
         <meta name="theme-color" content="#ffffff">
     </head>
 
@@ -52,8 +65,8 @@
                         <!-- Logo
 ============================================= -->
                         <div id="logo">
-                            <a href="/Dentist/dentistHomePage" class="standard-logo" data-dark-logo="~/FrontEnd/images/icons/molar-inside-a-shield-orange.png"><img src="~/FrontEnd/images/icons/molar-inside-a-shield-orange.png" alt="Denstist Logo"></a>
-                            <a href="/Dentist/dentistHomePage"  class="retina-logo" data-dark-logo="~/FrontEnd/images/icons/molar-inside-a-shield-orange.png"><img src="~/FrontEnd/images/icons/molar-inside-a-shield-orange.png" alt="Denstist Logo"></a>
+                            <a href="/Dentist/dentistHomePage" class="standard-logo" data-dark-logo="/FrontEnd/images/icons/molar-inside-a-shield-orange.png"><img src="/FrontEnd/images/icons/molar-inside-a-shield-orange.png" alt="Denstist Logo"></a>
+                            <a href="/Dentist/dentistHomePage"  class="retina-logo" data-dark-logo="/FrontEnd/images/icons/molar-inside-a-shield-orange.png"><img src="/FrontEnd/images/icons/molar-inside-a-shield-orange.png" alt="Denstist Logo"></a>
                         </div>
                         <!-- #logo end -->
 
@@ -69,9 +82,10 @@
                                 <li class="current"><a href="/Dentist/dentistEvents">Events</a></li>
                                 <li class="current"><a href="/Dentist/dentistAppointments"><div>My Appointments</div></a>
                                 </li>
-                                <li class="current"><a href="/Dentist/dentistDocumentManipulation"><div>Medical Manipulations History</div></a>
+                                <li class="current"><a href="/Dentist/dentistMedicalManipulations"><div>Medical Manipulations History</div></a>
                                 </li>
-                                <li class="current"><a href="loggedOut.html"><div><i class="icon-line2-logout"></i>Log Out</div></a>
+                                <li class="current">
+                                    <a asp-area="Identity" asp-page="/Account/Logout"><div><i class="icon-line2-logout"></i>Log Out</div></a>
                                 </li>
                             </ul>
 
@@ -92,59 +106,73 @@
             <div class="container clearfix .bg-transparent">
                 <div class="content-wrap">
                     <div class="light-background p-3 m-3" style="border-radius: 10px;">
-                        <form action="#" method="post" class="nobottommargin">
-                            <div class="bottommargin-sm">
-                                <label for="">Please select a city</label>
-                                <select class="select-1 form-control" style="width:100%;">
-                                    <option value= "Sofia">Sofia</option>
-                                    <option value= "Plovdiv">Plovdiv</option>
-                                    <option value= "Sofia">Varna</option>
-                                    <option value= "Burgas">Burgas</option>
-                                    <option value= "Veliko Tarnovo">Veliko Tarnovo</option>
-                                </select>
-                            </div>
-
-                            <div class="bottommargin-sm">
+                        <form asp-route-returnUrl="@ViewData["ReturnUrl"]" class="nobottommargin" method="get">
+                            <div class="form-group bottommargin-sm">
                                 <label for="">Enter the EGN of the patient</label>
-                                <input style = "width:100%" type="text"/>
-                            </div>
-                            <div class="bottommargin-sm">
-                                <label for="">Enter the name of the patient</label>
-                                <input style = "width:100%" type="text"/>
+                                <input asp-for="@Model.EGN" class="form-control" style="width:100%" type="text" />
+                                <span asp-validation-for="@Model.EGN" class="text-danger"></span>
                             </div>
 
-                            <a href="#" id="btnSearch" class="button button-3d button-rounded button-white accent-color"><i class="icon-search"></i>Search</a>
+                            <div class="form-group bottommargin-sm">
+                                <label for="">Enter the Email of the patient</label>
+                                <input asp-for="@Model.Email" class="form-control" style="width:100%" type="text" />
+                                <span asp-validation-for="@Model.Email" class="text-danger"></span>
+                            </div>
+                            <div class="bottommargin-sm">
+                                <label for="">Enter the last name of the patient</label>
+                                <input asp-for="@Model.LastName" class="form-control" style="width:100%" type="text" />
+                                <span asp-validation-for="@Model.LastName" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" id="btnSearch" class="button button-3d button-rounded button-white accent-color"><i class="icon-search"></i>Search</button>
+                            </div>
                         </form>
                     </div>
-                    <div class="search-reults mt-5" style="display: none;">
+
+                    <div class="search-reults mt-5">
 
                         <!-- Comments List
 ============================================= -->
                         <ol class="commentlist clearfix">
 
-                            <li class="comment even thread-even depth-1" id="li-comment-1">
+                            @foreach (var patient in Model.Patients)
+                            {
+                            <li class="comment even thread-even depth-1">
 
-                                <div id="comment-1" class="comment-wrap clearfix">
+                                <div id="comment" class="comment-wrap clearfix">
 
                                     <div class="comment-meta">
 
                                         <div class="comment-author vcard">
 
                                             <span class="comment-avatar clearfix">
-                                                <img alt='' src='~/FrontEnd/images/icons/female-user.png' class='avatar avatar-60 photo avatar-default' height='60' width='60' /></span>
-
+                                                @if (@patient.Gender == "female")
+                                                {
+                                                     <img alt='' src='/FrontEnd/images/icons/female-user.png' class='avatar avatar-60 photo avatar-default' height='60' width='60' />
+                                                }else{
+                                                    <img alt='' src="/FrontEnd/images/icons/male-user.png" class='avatar avatar-60 photo' height='60' width='60' />
+                                                }
+                                               
+                                            </span>
                                         </div>
 
                                     </div>
 
                                     <div class="comment-content clearfix">
 
-                                        <div class="comment-author mb-4"><a href="#">Joahna Doe</a></div>
+                                        <div class="comment-author mb-4">@patient.FirstName @patient.LastName</div>
+                                        <h5>EGN: <span>@patient.EGN</span></h5>
+                                        <h5>Rating of patient: <span>@patient.Rating</span></h5>
+                                        <h5>Email: <span>@patient.Email</span></h5>
+                                        <h5>Phone number: <span>@patient.PhoneNumber</span></h5>
+                                        <h5>Manipulations: </h5>
+                                        <ol>
+                                        @foreach(var manipulation in @patient.Reservations)
+                                        {
+                                            <li><h6>@manipulation.Manipulation</h6></li>
 
-                                        <h5>City: <span>City</span></h5>
-                                        <h5>Rating of patient: <span>RatingOfPatient</span></h5>
-
-                                        <a href="/Dentist/dentistPatientHomePage" id="btnSearch" class="button button-3d button-rounded accent-background"><i class="icon-forward"></i>More Information</a>
+                                        }
+                                        </ol> 
                                     </div>
 
                                     <div class="clear"></div>
@@ -153,131 +181,9 @@
 
                             </li>
 
-                            <li class="comment byuser comment-author-_smcl_admin even thread-odd thread-alt depth-1" id="li-comment-2">
-
-                                <div id="comment-2" class="comment-wrap clearfix">
-
-                                    <div class="comment-meta">
-
-                                        <div class="comment-author vcard">
-
-                                            <span class="comment-avatar clearfix">
-                                                <img alt='' src="~/FrontEnd/images/icons/male-user.png" class='avatar avatar-60 photo' height='60' width='60' /></span>
-
-                                        </div>
-
-                                    </div>
-
-                                    <div class="comment-content clearfix">
-
-                                        <div class="comment-author mb-4"><a href='#' rel='external nofollow'>SemiColon</a></div>
-
-                                        <h5>City: <span>City</span></h5>
-                                        <h5>Rating of patient: <span>RatingOfPatient</span></h5>
-
-                                        <a href="#" id="btnSearch" class="button button-3d button-rounded accent-background"><i class="icon-forward"></i>More Information</a>
-                                    </div>
-
-                                    <div class="clear"></div>
-
-                                </div>
-
-                            </li> 
-
-                            <li class="comment even thread-even depth-1" id="li-comment-1">
-
-                                <div id="comment-1" class="comment-wrap clearfix">
-
-                                    <div class="comment-meta">
-
-                                        <div class="comment-author vcard">
-
-                                            <span class="comment-avatar clearfix">
-                                                <img alt='' src='~/FrontEnd/images/icons/female-user.png' class='avatar avatar-60 photo avatar-default' height='60' width='60' /></span>
-
-                                        </div>
-
-                                    </div>
-
-                                    <div class="comment-content clearfix">
-
-                                        <div class="comment-author mb-4"><a href="#">Joahna Doe</a></div>
-                                        <h5>City: <span>City</span></h5>
-                                        <h5>Rating of patient: <span>RatingOfPatient</span></h5>
-                                        <a href="#" id="btnSearch" class="button button-3d button-rounded accent-background"><i class="icon-forward"></i>More Information</a>
-
-                                    </div>
-
-                                    <div class="clear"></div>
-
-                                </div>
-
-                            </li> 
-                            <li class="comment byuser comment-author-_smcl_admin even thread-odd thread-alt depth-1" id="li-comment-2">
-
-                                <div id="comment-2" class="comment-wrap clearfix">
-
-                                    <div class="comment-meta">
-
-                                        <div class="comment-author vcard">
-
-                                            <span class="comment-avatar clearfix">
-                                                <img alt='' src="~/FrontEnd/images/icons/male-user.png" class='avatar avatar-60 photo' height='60' width='60' /></span>
-
-                                        </div>
-
-                                    </div>
-
-                                    <div class="comment-content clearfix">
-
-                                        <div class="comment-author mb-4"><a href='#' rel='external nofollow'>SemiColon</a></div>
-
-
-                                        <h5>City: <span>City</span></h5>
-                                        <h5>Rating of patient: <span>RatingOfPatient</span></h5>
-                                        <a href="#" id="btnSearch" class="button button-3d button-rounded accent-background"><i class="icon-forward"></i>More Information</a>
-                                    </div>
-
-                                    <div class="clear"></div>
-
-                                </div>
-
-                            </li> 
-                            <li class="comment even thread-even depth-1" id="li-comment-1">
-
-                                <div id="comment-1" class="comment-wrap clearfix">
-
-                                    <div class="comment-meta">
-
-                                        <div class="comment-author vcard">
-
-                                            <span class="comment-avatar clearfix">
-                                                <img alt='' src='~/FrontEnd/images/icons/female-user.png' class='avatar avatar-60 photo avatar-default' height='60' width='60' /></span>
-
-                                        </div>
-
-                                    </div>
-
-                                    <div class="comment-content clearfix">
-
-                                        <div class="comment-author mb-4"><a href="#">Joahna Doe</a></div>
-                                        <h5>City: <span>City</span></h5>
-                                        <h5>Rating of patient: <span>RatingOfPatient</span></h5>
-
-                                        <a href="#" id="btnSearch" class="button button-3d button-rounded accent-background"><i class="icon-forward"></i>More Information</a>
-                                    </div>
-
-                                    <div class="clear"></div>
-
-                                </div>
-
-                            </li>
-
+                            }
 
                         </ol><!-- .commentlist end -->
-
-
-
                     </div>
                 </div>
             </div>
@@ -290,18 +196,18 @@
 
         <!-- External JavaScripts
 ============================================= -->
-        <script src="~/FrontEnd/js/jquery.js"></script>
-        <script src="~/FrontEnd/js/plugins.js"></script>
+        <script src="/FrontEnd/js/jquery.js"></script>
+        <script src="/FrontEnd/js/plugins.js"></script>
 
         <!-- Footer Scripts
 ============================================= -->
-        <script src="~/FrontEnd/js/functions.js"></script>
+        <script src="/FrontEnd/js/functions.js"></script>
 
         <!-- Select-Boxes Plugin -->
-        <script src="~/FrontEnd/js/components/select-boxes.js"></script>
+        <script src="/FrontEnd/js/components/select-boxes.js"></script>
 
         <!-- Select-Splitter Plugin -->
-        <script src="~/FrontEnd/js/components/selectsplitter.js"></script>
+        <script src="/FrontEnd/js/components/selectsplitter.js"></script>
         <script>
             jQuery(document).ready( function($){
 
@@ -351,7 +257,7 @@
             });
         </script>
         <!-- Star Rating Plugin -->
-        <script src="~/FrontEnd/js/components/bs-select.js"></script>
+        <script src="/FrontEnd/js/components/bs-select.js"></script>
 
     </body>
 </html>

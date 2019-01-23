@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@model DentistAppointment.Models.PatientViewModels.PatientCheckDocumentViewModel
+<!DOCTYPE html>
 <html dir="ltr" lang="en-US">
 <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
@@ -33,45 +34,45 @@
         ============================================= -->
         <header id="header">
             <div id="header-wrap">
-				<div class="container clearfix">
-					<div id="primary-menu-trigger"><i class="icon-reorder"></i></div>
-					<!-- Logo
-	============================================= -->
-					<div id="logo">
-						<a href="/Patient/patientHomePage" class="standard-logo"
-						   data-dark-logo="~/FrontEnd/images/icons/molar-inside-a-shield-green.png">
-							<img src="~/FrontEnd/images/icons/molar-inside-a-shield-green.png" alt="Denstist Logo">
-						</a>
-						<a href="/Patient/patientHomePage" class="retina-logo"
-						   data-dark-logo="~/FrontEnd/images/icons/molar-inside-a-shield-green.png">
-							<img src="~/FrontEnd/images/icons/molar-inside-a-shield-green.png" alt="Denstist Logo">
-						</a>
-					</div>
-					<!-- #logo end -->
-					<!-- Primary Navigation
-					============================================= -->
-					<nav id="primary-menu">
-						<ul>
-							<li class="current">
-								<a href="/Patient/patientHomePage"><div>My Profile</div></a>
-							</li>
-							<li class="current">
-								<a href="/Patient/patientFindDoctor"><div>Find a Doctor</div></a>
-							</li>
-							<li class="current">
-								<a href="/Patient/patientAppointments"><div>My Appointments</div></a>
-							</li>
-							<li class="accent-background">
-								<a href="/Patient/patientMedicalManipulationsHistory">
-									<div>Medical Manipulations History</div>
-								</a>
-							</li>
-							<li class="current">
-								<a asp-area="Identity" asp-page="/Account/Logout"><div><i class="icon-line2-logout"></i>Log Out</div></a>
-							</li>
-						</ul>
-					</nav><!-- #primary-menu end -->
-				</div>
+                <div class="container clearfix">
+                    <div id="primary-menu-trigger"><i class="icon-reorder"></i></div>
+                    <!-- Logo
+                    ============================================= -->
+                    <div id="logo">
+                        <a href="/Patient/patientHomePage" class="standard-logo"
+                           data-dark-logo="~/FrontEnd/images/icons/molar-inside-a-shield-green.png">
+                            <img src="~/FrontEnd/images/icons/molar-inside-a-shield-green.png" alt="Denstist Logo">
+                        </a>
+                        <a href="/Patient/patientHomePage" class="retina-logo"
+                           data-dark-logo="~/FrontEnd/images/icons/molar-inside-a-shield-green.png">
+                            <img src="~/FrontEnd/images/icons/molar-inside-a-shield-green.png" alt="Denstist Logo">
+                        </a>
+                    </div>
+                    <!-- #logo end -->
+                    <!-- Primary Navigation
+                    ============================================= -->
+                    <nav id="primary-menu">
+                        <ul>
+                            <li class="current">
+                                <a href="/Patient/patientHomePage"><div>My Profile</div></a>
+                            </li>
+                            <li class="current">
+                                <a href="/Patient/patientFindDoctor"><div>Find a Doctor</div></a>
+                            </li>
+                            <li class="current">
+                                <a href="/Patient/patientAppointments"><div>My Appointments</div></a>
+                            </li>
+                            <li class="accent-background">
+                                <a href="/Patient/patientMedicalManipulationsHistory">
+                                    <div>Medical Manipulations History</div>
+                                </a>
+                            </li>
+                            <li class="current">
+                                <a asp-area="Identity" asp-page="/Account/Logout"><div><i class="icon-line2-logout"></i>Log Out</div></a>
+                            </li>
+                        </ul>
+                    </nav><!-- #primary-menu end -->
+                </div>
             </div>
         </header><!-- #header end -->
     </div><!-- #wrapper end -->
@@ -85,17 +86,25 @@
                         <div class="col-12 bottommargin">
                             <div class="row team team-list clearfix">
                                 <div class="team-image col-sm-12 col-md-6 col-lg-6">
-                                    <img class="rounded-circle center-image-user" style="width: 150px;" 
-										 src="~/FrontEnd/images/icons/female-dentist.png" alt="Male User">
+                                    @if (@Model.Reservation.User.Gender == "Female")
+                                    {
+                                        <img class="rounded-circle center-image-user" style="width: 150px;"
+                                             src="~/FrontEnd/images/icons/female-dentist.png" alt="Female Dentist">
+                                    }
+                                    else
+                                    {
+                                        <img class="rounded-circle center-image-user" style="width: 150px;"
+                                             src="~/FrontEnd/images/icons/male-dentist.png" alt="Male Dentist">
+                                    }
                                 </div>
                                 <div class="team-desc col-sm-12 col-md-6 col-lg-6">
                                     <div class="user-names">
-                                        <h4 class="pr-2" id="firstName">FirstNameDoctor</h4>
-                                        <h4 id="lastName">LastNameDoctor</h4>
-                                        <span id="gender">Female</span>
+                                        <h4 class="pr-2" id="firstName">@Model.Reservation.User.FirstName</h4>
+                                        <h4 id="lastName">@Model.Reservation.User.LastName</h4>
+                                        <span id="gender">@Model.Reservation.User.Gender</span>
                                     </div>
                                     <div class="mt-4">
-                                        <h4>Date of Manipulation: <span id="manipualtionDate">Date.Date.Date</span></h4>
+                                        <h4>Date of Manipulation: <span id="manipualtionDate">@Model.Reservation.Date.ToShortDateString()</span></h4>
                                     </div>
                                     <div class="topmargin-sm nobottommargin"></div>
                                 </div>
@@ -106,18 +115,13 @@
                     <h4>Information about the manipulation:</h4>
                     <div class="bottommargin-sm">
                         <div id="manipulationInformation">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis voluptatum, ipsa laborum nobis quasi doloremque perspiciatis qui sunt sed soluta quis provident incidunt, est ut accusamus placeat inventore sit numquam? Similique, inventore voluptatem enim consectetur optio explicabo porro consequatur tempora necessitatibus, hic reiciendis aperiam quis exercitationem atque libero doloremque suscipit.
+                            @Model.Reservation.Manipulation
                         </div>
                     </div>
                     <div class="divider divider-center"><i class="icon-line-clipboard"></i></div>
-                    <h4>Rating the dentist:</h4>
-                    <h4>Final grade: <span id="finalGrade">SomethingSomething</span></h4>
-                    <h4>Comment:</h4>
-                    <div id="commentOnPatient" class="mb-4">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis autem dolorem ducimus possimus dolor ipsa sunt, est quaerat deleniti corporis.
-                    </div>
-                    <a href="/Patient/patientMedicalManipulationsHistory" id="submit" 
-					   class="button button-3d button-rounded accent-background">
+                    <h4>Rating the dentist: @Model.Reservation.User.Rating</h4>
+                    <a href="/Patient/patientMedicalManipulationsHistory" id="submit"
+                       class="button button-3d button-rounded accent-background">
                         <i class="icon-line-reply"></i>Back
                     </a>
                 </div>

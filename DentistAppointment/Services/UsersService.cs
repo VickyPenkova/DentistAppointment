@@ -36,6 +36,12 @@ namespace DentistAppointment.Services
         {
             return usersRepo.GetAll();
         }
+
+        public IEnumerable<User> GetAllUsersWithReservations()
+        {
+            return usersRepo.GetAll().Include(x => x.Reservations).Where(p => p.DentistId == null && p.Email != "admin@gmail.com");
+        }
+
         public void Edit(User user)
         {
             usersRepo.Update(user);

@@ -1,4 +1,4 @@
-﻿@model DentistAppointment.Models.DentistViewModel.DentistHomePageViewModel
+﻿@model DentistAppointment.Models.DentistViewModels.DentistHomePageViewModel
 
 <!DOCTYPE html>
 <html dir="ltr" lang="en-US">
@@ -106,15 +106,14 @@
                     <div class="col-12 bottommargin">
                         <div class="row team team-list clearfix">
                             <div class="team-image col-sm-12 col-md-6 col-lg-6">
-                                @if (Model.User.Gender == "Female")
+                                @if (@Model.User.Gender == "male")
                                 {
-                                    <img class="rounded-circle center-image-user" style="width: 150px;" src="~/FrontEnd/images/icons/female-dentist.png" alt="Male User">
+                                    <img class="rounded-circle center-image-user" style="width: 150px;" src="/FrontEnd/images/icons/male-dentist.png" alt="Male User">
                                 }
                                 else
                                 {
-                                    <img class="rounded-circle center-image-user" style="width: 150px;" src="~/FrontEnd/images/icons/male-dentist.png" alt="Male User">
+                                    <img class="rounded-circle center-image-user" style="width: 150px;" src="/FrontEnd/images/icons/female-dentist.png" alt="Female User">
                                 }
-
                             </div>
                             <div class="team-desc col-sm-12 col-md-6 col-lg-6">
                                 <div class="user-names">
@@ -160,6 +159,9 @@
                     </div>
                     <div class="col-12 line"></div>
                 </div>
+
+
+
                 <div class="row">
                     <!-- Comments
                     ============================================= -->
@@ -185,16 +187,7 @@
                                             <div class="comment-author vcard">
 
                                                 <span class="comment-avatar clearfix">
-                                                    @if (@review.User.Gender == "Female")
-                                                    {
-                                                        <img alt='' src='~/FrontEnd/images/icons/female-user.png' class='avatar avatar-60 photo avatar-default' height='60' width='60' />
-
-                                                    }
-                                                    else
-                                                    {
-                                                        <img alt='' src='~/FrontEnd/images/icons/male-user.png' class='avatar avatar-60 photo avatar-default' height='60' width='60' />
-                                                    }
-
+                                                    <img alt='' src='~/FrontEnd/images/icons/female-user.png' class='avatar avatar-60 photo avatar-default' height='60' width='60' />
                                                 </span>
 
                                             </div>
@@ -244,20 +237,17 @@
 
     <!-- External JavaScripts
     ============================================= -->
-    <script src="~/FrontEnd/js/jquery.js"></script>
-    <script src="~/FrontEnd/js/plugins.js"></script>
+    <script src="/FrontEnd/js/jquery.js"></script>
+    <script src="/FrontEnd/js/plugins.js"></script>
 
     <!-- Footer Scripts
     ============================================= -->
-    <script src="~/FrontEnd/js/functions.js"></script>
+    <script src="/FrontEnd/js/functions.js"></script>
 
     <!-- Date & Time Picker JS -->
-    <script src="~/FrontEnd/js/components/moment.js"></script>
-    <script src="~/FrontEnd/js/components/datepicker.js"></script>
-    <script src="~/FrontEnd/js/components/timepicker.js"></script>
-
-    <!-- Include Date Range Picker -->
-    <script src="~/FrontEnd/js/components/daterangepicker.js"></script>
+    <script src="/FrontEnd/js/components/moment.js"></script>
+    <script src="/FrontEnd/js/components/datepicker.js"></script>
+    <script src="/FrontEnd/js/components/timepicker.js"></script>
     <!-- Star Rating Plugin -->
     <script src="~/FrontEnd/js/components/star-rating.js"></script>
 

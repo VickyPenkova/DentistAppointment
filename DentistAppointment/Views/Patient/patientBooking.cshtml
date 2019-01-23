@@ -1,28 +1,45 @@
 ﻿<!DOCTYPE html>
+@model DentistAppointment.Models.PatientViewModel.PatientBookingModel
 <html dir="ltr" lang="en-US">
 <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <meta name="author" content="DinBot Solutions" />
+
+    <!-- Stylesheets
+    ============================================= -->
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,400i,700|Raleway:300,400,500,600,700|Crete+Round:400i" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="~/FrontEnd/css/bootstrap.css" type="text/css" />
+    <link rel="stylesheet" href="~/FrontEnd/style.css" type="text/css" />
+    <link rel="stylesheet" href="~/FrontEnd/css/font-icons.css" type="text/css" />
+    <link rel="stylesheet" href="~/FrontEnd/css/animate.css" type="text/css" />
+
+
+    <link rel="stylesheet" href="~/FrontEnd/css/calendar.css" type="text/css" />
+
+
+    <link rel="stylesheet" href="~/FrontEnd/css/responsive.css" type="text/css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
     <!-- Document Title
     ============================================= -->
     <title>Book Appointment</title>
     <!-- Favicon
     ============================================= -->
-    <link rel="apple-touch-icon" sizes="57x57" href="~/FrontEnd/images/favicon/apple-icon-57x57.png">
-    <link rel="apple-touch-icon" sizes="60x60" href="~/FrontEnd/images/favicon/apple-icon-60x60.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="~/FrontEnd/images/favicon/apple-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="~/FrontEnd/images/favicon/apple-icon-76x76.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="~/FrontEnd/images/favicon/apple-icon-114x114.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="~/FrontEnd/images/favicon/apple-icon-120x120.png">
-    <link rel="apple-touch-icon" sizes="144x144" href="~/FrontEnd/images/favicon/apple-icon-144x144.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="~/FrontEnd/images/favicon/apple-icon-152x152.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="~/FrontEnd/images/favicon/apple-icon-180x180.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="~/FrontEnd/images/favicon/android-icon-192x192.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="~/FrontEnd/images/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="96x96" href="~/FrontEnd/images/favicon/favicon-96x96.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="~/FrontEnd/images/favicon/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="57x57" href="/FrontEnd/images/favicon/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/FrontEnd/images/favicon/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/FrontEnd/images/favicon/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/FrontEnd/images/favicon/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/FrontEnd/images/favicon/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/FrontEnd/images/favicon/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/FrontEnd/images/favicon/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/FrontEnd/images/favicon/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/FrontEnd/images/favicon/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/FrontEnd/images/favicon/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/FrontEnd/images/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/FrontEnd/images/favicon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/FrontEnd/images/favicon/favicon-16x16.png">
     <meta name="msapplication-TileColor" content="#ffffff">
-    <meta name="msapplication-TileImage" content="~/FrontEnd/images/favicon/ms-icon-144x144.png">
+    <meta name="msapplication-TileImage" content="/FrontEnd/images/favicon/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
 </head>
 <body class="stretched sticky-responsive-menu">
@@ -37,16 +54,15 @@
                     <div id="primary-menu-trigger"><i class="icon-reorder"></i></div>
                     <!-- Logo
                     ============================================= -->
-
                     <div id="logo">
-                        <a href="/Patient/patientHomePage" class="standard-logo" 
-						   data-dark-logo="~/FrontEnd/images/icons/molar-inside-a-shield-green.png">
-							<img src="~/FrontEnd/images/icons/molar-inside-a-shield-green.png" alt="Denstist Logo">
-						</a>
-                        <a href="/Patient/patientHomePage" class="retina-logo" 
-						   data-dark-logo="~/FrontEnd/images/icons/molar-inside-a-shield-green.png">
-						<img src="~/FrontEnd/images/icons/molar-inside-a-shield-green.png" alt="Denstist Logo">
-						</a>
+                        <a href="/Patient/patientHomePage" class="standard-logo"
+                           data-dark-logo="/FrontEnd/images/icons/molar-inside-a-shield-green.png">
+                            <img src="/FrontEnd/images/icons/molar-inside-a-shield-green.png" alt="Denstist Logo">
+                        </a>
+                        <a href="/Patient/patientHomePage" class="retina-logo"
+                           data-dark-logo="/FrontEnd/images/icons/molar-inside-a-shield-green.png">
+                            <img src="/FrontEnd/images/icons/molar-inside-a-shield-green.png" alt="Denstist Logo">
+                        </a>
                     </div>
                     <!-- #logo end -->
                     <!-- Primary Navigation
@@ -78,7 +94,7 @@
     ============================================= -->
     <section id="content">
         <div class="content-wrap">
-            <div class="parallax header-stick bottommargin-lg" style="padding: 60px 0; background-image: url('~/FrontEnd/images/eventBackground.jpg'); height: auto;" data-bottom-top="background-position:0px 0px;" data-top-bottom="background-position:0px -500px;">
+            <div class="parallax header-stick bottommargin-lg" style="padding: 60px 0; background-image: url('/FrontEnd/images/eventBackground.jpg'); height: auto;" data-bottom-top="background-position:0px 0px;" data-top-bottom="background-position:0px -500px;">
                 <div class="container clearfix">
                     <div class="events-calendar">
                         <div class="events-calendar-header clearfix">
@@ -95,7 +111,6 @@
                         </div>
                         <div id="calendar" class="fc-calendar-container"></div>
                     </div>
-
                 </div>
             </div>
             <div class="container clearfix">
@@ -109,134 +124,8 @@
                                 <th>Availability</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <td>8:00-8:30</td>
-                                <td>
-                                    <button class="btn accent-background light-text aviableBtn" data-toggle="modal" data-target=".bs-example-modal-sm"><i class="icon-line-play"></i><span>Aviable</span></button>
-                                    <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog modal-sm">
-                                            <div class="modal-body">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h4 class="modal-title" id="myModalLabel">Your booking has been made!</h4>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <p class="nobottommargin">You booked an appointment! You can cancel your appointments up to one hour before the booked hour. In order to macke changes to your current bookings, see the menu "My appointments".</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>8:30-9:00</td>
-                                <td>
-                                    <button class="btn accent-background light-text aviableBtn" data-toggle="modal" data-target=".bs-example-modal-sm"><i class="icon-line-play"></i><span>Aviable</span></button>
-                                    <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog modal-sm">
-                                            <div class="modal-body">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h4 class="modal-title" id="myModalLabel">Your booking has been made!</h4>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <p class="nobottommargin">You booked an appointment! You can cancel your appointments up to one hour before the booked hour. In order to macke changes to your current bookings, see the menu "My appointments".</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>9:00-9:30</td>
-                                <td>
-                                    <button class="btn accent-background light-text aviableBtn" data-toggle="modal" data-target=".bs-example-modal-sm"><i class="icon-line-play"></i><span>Aviable</span></button>
-                                    <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog modal-sm">
-                                            <div class="modal-body">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h4 class="modal-title" id="myModalLabel">Your booking has been made!</h4>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <p class="nobottommargin">You booked an appointment! You can cancel your appointments up to one hour before the booked hour. In order to macke changes to your current bookings, see the menu "My appointments".</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>9:30-10:00</td>
-                                <td>
-                                    <button class="btn accent-background light-text aviableBtn" data-toggle="modal" data-target=".bs-example-modal-sm"><i class="icon-line-play"></i><span>Aviable</span></button>
-                                    <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog modal-sm">
-                                            <div class="modal-body">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h4 class="modal-title" id="myModalLabel">Your booking has been made!</h4>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <p class="nobottommargin">You booked an appointment! You can cancel your appointments up to one hour before the booked hour. In order to macke changes to your current bookings, see the menu "My appointments".</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>10:00-10:30</td>
-                                <td>
-                                    <button class="btn accent-background light-text aviableBtn" data-toggle="modal" data-target=".bs-example-modal-sm"><i class="icon-line-play"></i><span>Aviable</span></button>
-                                    <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog modal-sm">
-                                            <div class="modal-body">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h4 class="modal-title" id="myModalLabel">Your booking has been made!</h4>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <p class="nobottommargin">You booked an appointment! You can cancel your appointments up to one hour before the booked hour. In order to macke changes to your current bookings, see the menu "My appointments".</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>10:30-11:00</td>
-                                <td>
-                                    <button class="btn accent-background light-text aviableBtn" data-toggle="modal" data-target=".bs-example-modal-sm"><i class="icon-line-play"></i><span>Aviable</span></button>
-                                    <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog modal-sm">
-                                            <div class="modal-body">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h4 class="modal-title" id="myModalLabel">Your booking has been made!</h4>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <p class="nobottommargin">You booked an appointment! You can cancel your appointments up to one hour before the booked hour. In order to macke changes to your current bookings, see the menu "My appointments".</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
+                        <tbody id="workHours">
+                            @Html.Partial("workHoursForDay")
                         </tbody>
                     </table>
                 </div>
@@ -255,8 +144,5 @@
     <script src="~/FrontEnd/js/functions.js"></script>
     <script src="~/FrontEnd/js/events-data.js"></script>
     <script src="~/FrontEnd/js/jquery.calendario.js"></script>
-    <script>
-    </script>
-
 </body>
 </html>

@@ -16,16 +16,18 @@ using AutoMapper;
 using DentistAppointment.Data.Models;
 using DentistAppointment.Models.PatientViewModel;
 using DentistAppointment.DTOs;
+using DentistAppointment.Models.PatientViewModels;
 
 namespace DentistAppointment.Controllers
 {
-   [Authorize]
-    public class PatientController:Controller
+    [Authorize]
+    public class PatientController : Controller
     {
         private readonly IHttpContextAccessor httpaccessor;
         private readonly IUsersService usersService;
         private readonly IDentistsService dentistsService;
         private readonly IReviewsService reviewsService;
+        private readonly IReservationsService reservationsService;
         private readonly UserManager<User> userManager;
         private readonly IMapper mapper;
 
@@ -34,30 +36,28 @@ namespace DentistAppointment.Controllers
             IDentistsService dentistsService,
              IReviewsService reviewsService,
             IHttpContextAccessor httpContextAccessor,
+            IReservationsService reservationsService,
             IMapper mapper,
             UserManager<User> userManager)
         {
             this.usersService = usersService;
             this.dentistsService = dentistsService;
             this.reviewsService = reviewsService;
+            this.reservationsService = reservationsService;
             this.httpaccessor = httpContextAccessor;
             this.mapper = mapper;
             this.userManager = userManager;
         }
 
-        // Default page fot patient log in
-        [AllowAnonymous]
-        public IActionResult index()
-        {
-            return View();
-        }
-
         private string GetCurrentUserId() => this.userManager.GetUserId(HttpContext.User);
+        private int GetCurrentDentistId() => 1;
         public IActionResult patientHomePage()
         {
             string userId = GetCurrentUserId();
             var user = this.usersService.GetAllUsers().FirstOrDefault(u => u.Id == userId);
-            var reviews = reviewsService.GetAllByUser(user.Id).ToList();
+            var dentist = this.dentistsService.GetAllDentists().FirstOrDefault();
+            //var reviews = this.reviewsService.GetAllByUser(user.Id);
+            var reviews = reviewsService.GetAllByUser(user.Id, dentist.Id).ToList();
             float rating = 0;
             foreach (Review r in reviews)
             {
@@ -70,54 +70,114 @@ namespace DentistAppointment.Controllers
                 FirstName = user.FirstName,
                 LastName = user.LastName,
                 Gender = user.Gender,
-                 Email = user.Email,
-                 EGN = user.EGN,
+                Email = user.Email,
+                EGN = user.EGN,
                 Rating = rating,
                 Reviews = reviews
 
             };
             Console.WriteLine(reviews);
-            
+
             return View(viewModel);
 
         }
 
         public IActionResult patientAppointments()
         {
-            return View();
+            string userId = GetCurrentUserId();
+            var user = this.usersService.GetAllUsers().FirstOrDefault(x => x.Id == GetCurrentUserId());
+            var dentist = this.dentistsService.GetAllDentists().FirstOrDefault();
+            var allReservations = this.reservationsService.GetAllReservationsOfUser(user.Id,dentist.Id);
+
+            var model = new PatientAppointmentsViewModel()
+            {
+                Reservations = allReservations.ToList()
+            };
+
+            return View(model);
         }
         public IActionResult patientBooking()
         {
-            return View();
-        }
-        public IActionResult patientCheckDocument()
-        {
-            return View();
-        }
-        public IActionResult patientDentistHomePage()
-        {
-            string userId = GetCurrentUserId();
-            var dentist = this.dentistsService
-                .GetAllDentists().FirstOrDefault(user => user.User.Id == userId);
-            var reviews = reviewsService.GetAllByDentist(dentist.Id).ToList();
-            float rating = 0;
-            foreach (Review r in reviews)
+            var model = new PatientBookingModel()
             {
-                rating += r.Rating / reviews.Count;
+                WorkHours = reservationsService.GetDentistWorkHoursForDay(GetCurrentDentistId(), DateTime.Now)
+            };
+            return View(model);
+        }
+        [HttpPost]
+        public IActionResult workHoursForDay(int year, int month, int day)
+        {
+            var model = new PatientBookingModel();
+
+            if (year > 0 && month > 0 && day > 0)
+            {
+                model.WorkHours = reservationsService.GetDentistWorkHoursForDay(GetCurrentDentistId(), new DateTime(year, month, day));
+            }
+            return PartialView(model);
+        }
+        [HttpPost]
+        public IActionResult patientBooking(PatientBookingModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                DateTime date = new DateTime(model.Date.Year, model.Date.Month, model.Date.Day,
+                                             model.Start.Hour, model.Start.Minute, model.Start.Second);
+                reservationsService.MakeReservation(GetCurrentUserId(), GetCurrentDentistId(), date);
+            }
+            return RedirectToAction("patientBooking", "Patient");
+        }
+        public IActionResult patientCheckDocument(int id)
+        {
+            if (id == 0)
+            {
+                return RedirectToAction("patientMedicalManipulationsHistory", "Patient");
             }
 
-            var viewModel = new PatientDentistHomePageViewModel()
+            var getReservation = this.reservationsService.GetReservationById(id);
+            var result = new PatientCheckDocumentViewModel
             {
-                User = this.usersService.GetAllUsers().FirstOrDefault(x => x.Dentist == dentist),
-                Address = dentist.Address,
-                Type = dentist.Type,
-                Rating = rating,
-                Reviews = reviews
+                Reservation = getReservation
             };
-            Console.WriteLine(reviews);
+            return View(result);
+        }
+        public IActionResult patientDentistHomePage(int id)
+        {
+            if (id == 0)
+            {
+                return RedirectToAction("patientFindDoctor", "Patient");
+            }
+            string userId = GetCurrentUserId();
+            var getDentistId = this.dentistsService
+                 .GetAllDentists().FirstOrDefault(user => user.User.Id == userId);
+            var result = new PatientDentistHomePageViewModel
+            {
+                Dentist = getDentistId
+               
+            };
+            return View(result);
+            /*  string userId = GetCurrentUserId();
+             int dentistId = GetCurrentDentistId();
+             var dentist = this.dentistsService
+                 .GetAllDentists().FirstOrDefault(user => user.User.Id == userId);
+               var reviews = reviewsService.GetAllByDentist(dentist.Id).ToList();
+              float rating = 0;
+              foreach (Review r in reviews)
+              {
+                  rating += r.Rating / reviews.Count;
+              }
 
-            return View(viewModel);
-            
+              var viewModel = new PatientDentistHomePageViewModel()
+              {
+                  User = this.usersService.GetAllUsers().FirstOrDefault(x => x.Dentist == dentist),
+                  Address = dentist.Address,
+                  Type = dentist.Type
+                 // Rating = rating,
+                 // Reviews = reviews
+              };
+              //Console.WriteLine(reviews);
+
+              return View(viewModel);*/
+            //return View(); 
         }
         [HttpGet]
         public IActionResult patientEditInfo(string returnUrl = null)
@@ -154,7 +214,7 @@ namespace DentistAppointment.Controllers
 
             return this.RedirectToAction("patientHomePage", "Patient");
         }
-       
+
         [HttpGet]
         public IActionResult patientFindDoctor(PatientFindDentistViewModel model)
         {
@@ -182,27 +242,30 @@ namespace DentistAppointment.Controllers
                 {
                     dentists = dentistsService.GetAllDentists().Where(d => d.City == inputModel.City).ToList();
                 }
-                /* else if (!String.IsNullOrEmpty(inputModel.Rating))
-                 {
-                     dentists = dentistsService.GetAllDentists().Where(d => d.User.Rating == inputModel.Rating).ToList();
-                 }*/
+                else if (!double.IsNormal(inputModel.Rating))
+                {
+                    dentists = dentistsService.GetAllDentists().Where(d => d.User.Rating == inputModel.Rating).ToList();
+                }
                 if (!String.IsNullOrEmpty(inputModel.City) && !String.IsNullOrEmpty(inputModel.Type))
-                    {
+                {
                     dentists = dentistsService.GetAllDentists()
                     .Where(d => d.City == inputModel.City && d.Type == inputModel.Type).ToList();
                 }
-               if (!String.IsNullOrEmpty(inputModel.City) && !String.IsNullOrEmpty(inputModel.LastName))
+                if (!String.IsNullOrEmpty(inputModel.City) && !String.IsNullOrEmpty(inputModel.LastName))
                 {
                     dentists = dentistsService.GetAllDentists()
                     .Where(d => d.City == inputModel.City && d.User.LastName == inputModel.LastName).ToList();
                 }
-                else if (!String.IsNullOrEmpty(inputModel.LastName) && !String.IsNullOrEmpty(inputModel.Type))
+                if (!String.IsNullOrEmpty(inputModel.LastName) && !String.IsNullOrEmpty(inputModel.Type))
                 {
                     dentists = dentistsService.GetAllDentists()
                         .Where(d => d.User.LastName == inputModel.LastName && d.Type == inputModel.Type).ToList();
                 }
-
-               
+                else if (!String.IsNullOrEmpty(inputModel.LastName) && !String.IsNullOrEmpty(inputModel.Type) && !String.IsNullOrEmpty(inputModel.City))
+                {
+                    dentistsService.GetAllDentists()
+                        .Where(d => d.User.LastName == inputModel.LastName && d.Type == inputModel.Type && d.City == inputModel.City).ToList();
+                }
             }
 
             // If there is no input the list is empty (No dentists are found)
@@ -212,21 +275,40 @@ namespace DentistAppointment.Controllers
             }
             else
             {
+                string userId = GetCurrentUserId();
+                var user = this.usersService.GetAllUsers().FirstOrDefault(u => u.Id == userId);
+                var dentist = this.dentistsService.GetAllDentists().FirstOrDefault();
+                //var reviews = this.reviewsService.GetAllByUser(user.Id);
+                var reviews = reviewsService.GetAllByUser(user.Id,dentist.Id).ToList();
+                float rating = 0;
+                foreach (Review r in reviews)
+                {
+                    rating += r.Rating / reviews.Count;
+                }
                 return View(new PatientFindDentistViewModel()
                 {
                     City = model.City,
                     Type = model.Type,
                     LastName = model.LastName,
-                    Rating = model.Rating,
+                    Rating = rating,
                     Dentists = dentists
                 });
             }
         }
+         public IActionResult patientMedicalManipulationsHistory()
+         {
+              string userId = GetCurrentUserId();
+             var user = this.usersService.GetAllUsers().FirstOrDefault(x => x.Id == GetCurrentUserId());
+             var dentist = this.dentistsService.GetAllDentists().FirstOrDefault();
+             var allReservations = this.reservationsService.GetAllReservationsOfUser(user.Id,dentist.Id);
 
-        public IActionResult patientMedicalManipulationsHistory()
-        {
-            return View();
-        }
+             var model = new PatientMedicalManipulationsHistoryViewModel()
+             {
+                 Reservations = allReservations.ToList()
+             };
+
+             return View(model);
+         }
         [HttpGet]
         public IActionResult patientOnFirstLogIn(String returnurl = null)
         {
