@@ -4658,26 +4658,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Viki\\.nuget\\packages\\": {},
+    "C:\\Users\\Marto\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
-    "restoreSettings": {
-      "hideWarningsAndErrors": true
-    },
     "restore": {
-      "projectUniqueName": "D:\\Vicky\\DentistAppointment\\DataSeed\\DataSeed.csproj",
+      "projectUniqueName": "C:\\Users\\Marto\\nbu_dentist\\DentistAppointment\\DataSeed\\DataSeed.csproj",
       "projectName": "DataSeed",
-      "projectPath": "D:\\Vicky\\DentistAppointment\\DataSeed\\DataSeed.csproj",
-      "packagesPath": "C:\\Users\\Viki\\.nuget\\packages\\",
-      "outputPath": "D:\\Vicky\\DentistAppointment\\DataSeed\\obj\\",
+      "projectPath": "C:\\Users\\Marto\\nbu_dentist\\DentistAppointment\\DataSeed\\DataSeed.csproj",
+      "packagesPath": "C:\\Users\\Marto\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Marto\\nbu_dentist\\DentistAppointment\\DataSeed\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\Viki\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Marto\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -4690,8 +4687,8 @@
       "frameworks": {
         "netcoreapp2.1": {
           "projectReferences": {
-            "D:\\Vicky\\DentistAppointment\\DentistAppointment\\DentistAppointment.csproj": {
-              "projectPath": "D:\\Vicky\\DentistAppointment\\DentistAppointment\\DentistAppointment.csproj"
+            "C:\\Users\\Marto\\nbu_dentist\\DentistAppointment\\DentistAppointment\\DentistAppointment.csproj": {
+              "projectPath": "C:\\Users\\Marto\\nbu_dentist\\DentistAppointment\\DentistAppointment\\DentistAppointment.csproj"
             }
           }
         }

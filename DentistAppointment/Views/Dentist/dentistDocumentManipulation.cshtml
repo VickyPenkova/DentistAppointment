@@ -176,19 +176,18 @@
                         </div>
                         <div class="bottommargin-sm">
                             <label for="">Additional Comment</label>
-                            <input asp-for="@Model.Reservation.Manipulation" class="form-control"  id="exampleFormControlTextarea1" rows="3"/>
+                            <input asp-for="@Model.Reservation.Manipulation" class="form-control" id="exampleFormControlTextarea1" rows="3" />
                             <span asp-validation-for="@Model.Reservation.Manipulation" class="text-danger"></span>
                         </div>
+                        <input asp-for="@Model.Rating" type="hidden" id="finalGradeInput" class="form-control" rows="3" />
                         <h4>
                             Final grade:
                             <span id="finalGrade">
-                                <input asp-for="@Model.Rating" type="hidden" value="finalGradeInput" name="finalGrade" id="finalGradeInput" class="form-control" id="exampleFormControlTextarea1" rows="3" />
                             </span>
                             @*<input asp-for="@Model.Rating" id="finalGrade" disabled/>*@
                         </h4>
                         <button type="submit" id="submit" class="button button-3d button-rounded accent-background">
                             <i class="icon-ok">Submit</i>
-
                         </button>
                     </form>
                     
@@ -239,7 +238,7 @@
                 console.log(totalGrade);
                 $('#finalGrade').text("");
                 $('#finalGrade').text(totalGrade);
-
+                $('#finalGradeInput').val(totalGrade);
             });
 
             $('#examination').on('change', function () {
