@@ -11,5 +11,6 @@ namespace DentistAppointment.Models.PatientViewModel
         public List<DentistWorkHourDTO> WorkHours { get; set; }
         public DateTime Start { get; set; }
         public DateTime Date { get; set; }
+        public DateTime Now { get; set; }
     }
 }

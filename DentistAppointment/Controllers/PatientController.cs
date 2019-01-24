@@ -51,7 +51,20 @@ namespace DentistAppointment.Controllers
         }
 
         private string GetCurrentUserId() => this.userManager.GetUserId(HttpContext.User);
-        private int GetCurrentDentistId() => 1;
+        private static string DentistIdKey = "DentistId";
+        private void SetCurrentDentistId(int id)
+        {
+            HttpContext.Session.SetInt32(DentistIdKey, id);
+        }
+        private int GetCurrentDentistId()
+        {
+            var id = HttpContext.Session.GetInt32(DentistIdKey);
+            if (id.HasValue)
+            {
+                return id.Value;
+            }
+            return 0;
+        }
         public IActionResult patientHomePage()
         {
             string userId = GetCurrentUserId();
@@ -98,11 +111,23 @@ namespace DentistAppointment.Controllers
 
             return View(model);
         }
-        public IActionResult patientBooking()
+        public IActionResult patientBooking(int id)
         {
+            if (id < 1 && GetCurrentDentistId() < 1)
+            {
+                return RedirectToAction("patientFindDoctor", "Patient");
+            }
+            else if (id > 0)
+            {
+                SetCurrentDentistId(id);
+            }
+
+            var now = DateTime.Now;
             var model = new PatientBookingModel()
             {
-                WorkHours = reservationsService.GetDentistWorkHoursForDay(GetCurrentDentistId(), DateTime.Now)
+                Now = now,
+                Date = now,
+                WorkHours = reservationsService.GetDentistWorkHoursForDay(GetCurrentDentistId(), now)
             };
             return View(model);
         }
@@ -113,7 +138,9 @@ namespace DentistAppointment.Controllers
 
             if (year > 0 && month > 0 && day > 0)
             {
-                model.WorkHours = reservationsService.GetDentistWorkHoursForDay(GetCurrentDentistId(), new DateTime(year, month, day));
+                model.Date = new DateTime(year, month, day);
+                model.WorkHours = reservationsService.GetDentistWorkHoursForDay(GetCurrentDentistId(), model.Date);
+                model.Now = DateTime.Now;
             }
             return PartialView(model);
         }

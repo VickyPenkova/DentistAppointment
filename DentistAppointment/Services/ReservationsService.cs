@@ -50,7 +50,7 @@ namespace DentistAppointment.Services
         private List<DayOfWeek> GetDentistWorkDays(Dentist dentist)
         {
             List<DayOfWeek> workDays = new List<DayOfWeek>();
-
+            
             string bitmask = new string(Convert.ToString(dentist.WorkDays, 2).Reverse().ToArray());
             for (int i = 0, s = bitmask.Length; i < s; i++)
             {
