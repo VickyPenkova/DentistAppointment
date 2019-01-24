@@ -136,7 +136,8 @@
                     <div class="divider divider-center"><i class="icon-pencil"></i></div>
                     <h4>Please provide information about the manipulation:</h4>
                     <div class="bottommargin-sm">
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="5"></textarea>
+                        <input asp-for="@Model.Reservation.Manipulation" class="form-control" id="exampleFormControlTextarea1" rows="5" />
+                        <span asp-validation-for="@Model.Reservation.Manipulation" class="text-danger"></span>
                     </div>
 
                     <div class="divider divider-center"><i class="icon-pencil"></i></div>
@@ -176,8 +177,7 @@
                         </div>
                         <div class="bottommargin-sm">
                             <label for="">Additional Comment</label>
-                            <input asp-for="@Model.Reservation.Manipulation" class="form-control" id="exampleFormControlTextarea1" rows="3" />
-                            <span asp-validation-for="@Model.Reservation.Manipulation" class="text-danger"></span>
+                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="5"></textarea>                    
                         </div>
                         <input asp-for="@Model.Rating" type="hidden" id="finalGradeInput" class="form-control" rows="3" />
                         <h4>

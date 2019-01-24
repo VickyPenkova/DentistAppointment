@@ -110,6 +110,7 @@ namespace DentistAppointment.Services
         {
             var reservation = this.reservationsRepo.GetById(reservationId);
             reservation.User = usersRepo.GetById(reservation.UserId);
+            reservation.User.Rating = model.Rating;
             reservation.Dentist = dentistRepo.GetById(reservation.DentistId);
             reservation.Manipulation = model.Reservation.Manipulation;
             return reservation;
