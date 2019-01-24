@@ -83,5 +83,12 @@ namespace DentistAppointment.Services
                 .Include(dentist => dentist.Dentist)
                 .Where(d => d.DentistId == dentistId));
         }
+
+        // To be used only by Admin!
+        public void Delete(User user)
+        {
+            usersRepo.Delete(user);
+            usersRepo.Save();
+        }
     }
 }

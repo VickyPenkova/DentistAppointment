@@ -10,7 +10,6 @@ namespace DentistAppointment.Models.DentistViewModels
 {
     public class DentistEditInfoViewModel
     {
-        //public User User { get; set; }
         [StringLength(60, MinimumLength = 1, ErrorMessage = "Please enter first name longer than than {1}")]
         public string FirstName { get; set; }
         [StringLength(60, MinimumLength = 1, ErrorMessage = "Please enter last name longer than than {1}")]
@@ -27,7 +26,8 @@ namespace DentistAppointment.Models.DentistViewModels
         [StringLength(60, MinimumLength = 1, ErrorMessage = "Please enter last name longer than than {1}")]
         public string Email { get; set; }
 
-        [StringLength(10, MinimumLength = 10, ErrorMessage = "The {0} must be at least {2} and must be at max {1} characters long.")]
+        [StringLength(60, MinimumLength = 10, ErrorMessage = "The {0} must be at least {2} and must be at max {1} characters long.")]
         public string EGN { get; set; }
+
     }
 }

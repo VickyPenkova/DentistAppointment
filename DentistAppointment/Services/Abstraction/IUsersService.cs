@@ -13,5 +13,6 @@ namespace DentistAppointment.Services.Abstraction
         void Edit(User user);
         User GetUserById(string userId);
         IEnumerable<User> GetAllUsersWithReservations();
+        void Delete(User user);
     }
 }
