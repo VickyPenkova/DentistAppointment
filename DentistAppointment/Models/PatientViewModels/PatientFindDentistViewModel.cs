@@ -19,6 +19,7 @@ namespace DentistAppointment.Models.PatientViewModel
             new SelectListItem { Value = "Varna", Text = "Varna"},
             new SelectListItem { Value = "Burgas", Text = "Burgas"},
             new SelectListItem { Value = "Veliko Tarnovo", Text = "Veliko Tarnovo"},
+            new SelectListItem { Value = "", Text = "Not specified"}
         };
         public string Type { get; set; }
         public List<SelectListItem> DentistTypes { get; } = new List<SelectListItem>
@@ -28,6 +29,7 @@ namespace DentistAppointment.Models.PatientViewModel
             new SelectListItem { Value = "Pediatric dentist", Text = "Pediatric dentist"},
             new SelectListItem { Value = "Surgeon", Text = "Surgeon"},
             new SelectListItem { Value = "Periodontist", Text = "Periodontist"},
+            new SelectListItem { Value = "", Text = "Not specified"}
         };
         public string LastName { get; set; }
         public double Rating { get; set; }

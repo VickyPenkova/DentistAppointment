@@ -63,6 +63,9 @@ namespace DentistAppointment.Controllers
             {
                 rating += r.Rating / reviews.Count;
             }
+            // Save rating to database
+            user.Rating = rating;
+            usersService.Edit(user);
 
             var viewModel = new PatientHomePageViewModel()
             {
@@ -229,42 +232,19 @@ namespace DentistAppointment.Controllers
             var dentists = new List<Dentist>();
             if (model != null)
             {
-                if (!String.IsNullOrEmpty(inputModel.LastName))
-                {
-                    dentists = dentistsService.GetAllDentists().Where(d => d.User.LastName == inputModel.LastName).ToList();
-                }
-                else if (!String.IsNullOrEmpty(model.Type))
-                {
-                    dentists = dentistsService.GetAllDentists().Where(d => d.Type == inputModel.Type).ToList();
-                }
-                else if (!String.IsNullOrEmpty(inputModel.City))
-                {
-                    dentists = dentistsService.GetAllDentists().Where(d => d.City == inputModel.City).ToList();
-                }
-                else if (!double.IsNormal(inputModel.Rating))
-                {
-                    dentists = dentistsService.GetAllDentists().Where(d => d.User.Rating == inputModel.Rating).ToList();
-                }
-                if (!String.IsNullOrEmpty(inputModel.City) && !String.IsNullOrEmpty(inputModel.Type))
-                {
-                    dentists = dentistsService.GetAllDentists()
-                    .Where(d => d.City == inputModel.City && d.Type == inputModel.Type).ToList();
-                }
-                if (!String.IsNullOrEmpty(inputModel.City) && !String.IsNullOrEmpty(inputModel.LastName))
-                {
-                    dentists = dentistsService.GetAllDentists()
-                    .Where(d => d.City == inputModel.City && d.User.LastName == inputModel.LastName).ToList();
-                }
-                if (!String.IsNullOrEmpty(inputModel.LastName) && !String.IsNullOrEmpty(inputModel.Type))
-                {
-                    dentists = dentistsService.GetAllDentists()
-                        .Where(d => d.User.LastName == inputModel.LastName && d.Type == inputModel.Type).ToList();
-                }
-                else if (!String.IsNullOrEmpty(inputModel.LastName) && !String.IsNullOrEmpty(inputModel.Type) && !String.IsNullOrEmpty(inputModel.City))
-                {
-                    dentistsService.GetAllDentists()
-                        .Where(d => d.User.LastName == inputModel.LastName && d.Type == inputModel.Type && d.City == inputModel.City).ToList();
-                }
+                bool city = !String.IsNullOrEmpty(inputModel.City);
+                bool type = !String.IsNullOrEmpty(inputModel.Type);
+                bool lastName = !String.IsNullOrEmpty(inputModel.LastName);
+
+                dentists = dentistsService.GetAllDentists().ToList();
+                if (city)
+                    dentists = dentists.Where(d => d.City == inputModel.City).ToList();
+                if (type)
+                    dentists = dentists.Where(d => d.Type == inputModel.Type).ToList();
+                if (lastName)
+                    dentists = dentists.Where(d => d.User.LastName == inputModel.LastName).ToList();
+                if (inputModel.Rating > 0)
+                    dentists = dentists.Where(d => d.User.Rating > inputModel.Rating).ToList();
             }
 
             // If there is no input the list is empty (No dentists are found)

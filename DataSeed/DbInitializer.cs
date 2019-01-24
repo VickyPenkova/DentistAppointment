@@ -133,6 +133,15 @@ namespace DataSeed
                     WorkTimeStart = new TimeSpan(13, 0, 0),
                     WorkTimeEnd = new TimeSpan(18, 0, 0),
                     WorkDays = 84
+                },
+                new Dbmodel.Dentist
+                {
+                    City = "Sofia",
+                    Address = "Mladost",
+                    Type = "Orthodontist",
+                    WorkTimeStart = new TimeSpan(13, 0, 0),
+                    WorkTimeEnd = new TimeSpan(18, 0, 0),
+                    WorkDays = 84
                 }
             };
             context.Dentists.AddRange(dentists);
@@ -164,6 +173,15 @@ namespace DataSeed
                     LastName = "Stoilov",
                     SecurityStamp = Guid.NewGuid().ToString(),
                     DentistId = ids[1]
+                },
+                new Dbmodel.User
+                {
+                    UserName = "desi@gmail.com",
+                    Email = "desi@gmail.com",
+                    FirstName = "Desi",
+                    LastName = "Radkova",
+                    SecurityStamp = Guid.NewGuid().ToString(),
+                    DentistId = ids[2]
                 }
             };
 
