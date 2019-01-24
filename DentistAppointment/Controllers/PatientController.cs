@@ -16,6 +16,7 @@ using AutoMapper;
 using DentistAppointment.Data.Models;
 using DentistAppointment.Models.PatientViewModel;
 using DentistAppointment.DTOs;
+using DentistAppointment.Models.PatientViewModels;
 
 namespace DentistAppointment.Controllers
 {

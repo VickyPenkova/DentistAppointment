@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
 using DentistAppointment.Data.Models;
 using DentistAppointment.Models.CommentsViewModel;
+using DentistAppointment.Models.DentistViewModel;
 using DentistAppointment.Models.DentistViewModels;
+using DentistAppointment.Models.PatientViewModels;
 using DentistAppointment.Services;
 using DentistAppointment.Services.Abstraction;
 using Microsoft.AspNetCore.Http;
@@ -22,7 +24,6 @@ namespace DentistAppointment.Controllers
         private readonly IUsersService usersService;
         private readonly IDentistsService dentistsService;
         private readonly IReservationsService reservationsService;
-        // marto
         private readonly IReviewsService reviewsService;
         private readonly UserManager<User> userManager;
         private readonly IMapper mapper;
@@ -31,7 +32,6 @@ namespace DentistAppointment.Controllers
             IUsersService usersService,
             IDentistsService dentistsService,
             IReservationsService reservationsService,
-            // marto
             IReviewsService reviewsService,
             IHttpContextAccessor httpContextAccessor,
             IMapper mapper,
@@ -41,7 +41,6 @@ namespace DentistAppointment.Controllers
             this.dentistsService = dentistsService;
             this.httpaccessor = httpContextAccessor;
             this.reservationsService = reservationsService;
-            // marto
             this.reviewsService = reviewsService;
             this.mapper = mapper;
             this.userManager = userManager;
@@ -53,6 +52,9 @@ namespace DentistAppointment.Controllers
         }
 
         private string GetCurrentUserId() => this.userManager.GetUserId(HttpContext.User);
+
+        // TODO 
+        private int GetCurrentDentistId() => 1;
 
         public IActionResult dentistHomePage()
         {
@@ -296,6 +298,27 @@ namespace DentistAppointment.Controllers
         }
 
         public IActionResult dentistEvents()
+        {
+            var model = new PatientBookingModel()
+            {
+                WorkHours = reservationsService.GetDentistWorkHoursForDay(GetCurrentDentistId(), DateTime.Now)
+            };
+            return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult dentistAppointmentsList(int year, int month, int day)
+        {
+            var model = new PatientBookingModel();
+
+            if (year > 0 && month > 0 && day > 0)
+            {
+                model.WorkHours = reservationsService.GetDentistWorkHoursForDay(GetCurrentDentistId(), new DateTime(year, month, day));
+            }
+            return PartialView(model);
+        }
+
+        public IActionResult dentistAddEvent()
         {
             return View();
         }
