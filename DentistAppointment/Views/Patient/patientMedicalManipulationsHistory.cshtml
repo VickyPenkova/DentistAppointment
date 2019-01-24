@@ -95,25 +95,26 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach (var reservation in Model.Reservations)
+                            @foreach (var reservation in Model.PastReservationsRate)
                             {
                                 if (reservation.Manipulation == null)
                                 {
                                     <tr>
                                         <td>@reservation.Date.ToShortDateString()</td>
-                                        <td>@reservation.Date.Hour : @reservation.Date.Minute-@reservation.Date.AddMinutes(30).ToShortTimeString()</td>
-                                        <td>@reservation.User.FirstName @reservation.User.LastName</td>
+                                        <td>@reservation.Date.ToString(@"HH\:mm") - @reservation.Date.AddMinutes(30).ToString(@"HH\:mm")</td>
+                                        <td>@reservation.Dentist.User.FirstName @reservation.Dentist.User.LastName</td>
                                         <td>
-                                            <a href="/Patient/patientRateAppointment" id="submit"
-                                               class="btn aviableBtn button-rounded m-0 accent-background light-text button-mini">
-                                                <i class="icon-line-open"></i><span>Rate appointment</span>
-                                            </a>
-                                        </td>
-                                    </tr>
+                                            
+                                                    <a href="/Patient/patientRateAppointment/@reservation.Id" id="submit"
+                                                       class="btn aviableBtn button-rounded m-0 accent-background light-text button-mini">
+                                                        <i class="icon-line-open"></i><span>Rate appointment</span>
+                                                    </a>
+                                            </td>
+                                        </tr>
+
                                 }
                             }
-                            
-                        </tbody>
+                                        </tbody>
                     </table>
                 </div>
                 <div class="divider divider-center"><i class="icon-time"></i></div>
@@ -130,24 +131,22 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach (var reservation in Model.Reservations)
+                            @foreach (var reservation in Model.PastReservations)
                             {
-                                if (@reservation.Manipulation != null)
-                                {
-                                    <tr>
-                                        <td>@reservation.Date.ToShortDateString()</td>
-                                        <td>@reservation.Date.Hour : @reservation.Date.Minute-@reservation.Date.AddMinutes(30).ToShortTimeString()</td>
-                                        <td>@reservation.User.FirstName @reservation.User.LastName</td>
-                                        <td>
-                                            <a href="/Patient/patientCheckDocument/@reservation.Id"
-                                               class="button button-3d  button-small button-rounded button-dirtygreen">
-                                                <i class="icon-folder-check"></i> Check Manipulation Document
-                                            </a>
-                                        </td>
-                                    </tr>
-                                }
+                                <tr>
+                                    <td>@reservation.Date.ToShortDateString()</td>
+                                    <td>@reservation.Date.ToString(@"HH\:mm") - @reservation.Date.AddMinutes(30).ToString(@"HH\:mm")</td>
+                                    <td>@reservation.Dentist.User.FirstName @reservation.Dentist.User.LastName</td>
+                                    <td>
+                                        <a href="/Patient/patientCheckDocument/@reservation.Id"
+                                           class="button button-3d  button-small button-rounded button-dirtygreen">
+                                            <i class="icon-folder-check"></i> Check Manipulation Document
+                                        </a>
+                                    </td>
+                                </tr>
                             }
-                           
+                        
+
                         </tbody>
                     </table>
                 </div>

@@ -303,9 +303,11 @@ namespace DentistAppointment.Controllers
 
             var model = new PatientMedicalManipulationsHistoryViewModel()
             {
-                IncomingReservations = allReservations.Where(r => r.Date >= DateTime.Now).ToList()
+                
+                PastReservationsRate=allReservations.Where(r=>r.Manipulation==null).ToList()
             };
-            model.PastReservations = allReservations.Except(model.IncomingReservations).ToList();
+            model.IncomingReservations = allReservations.Where(r => r.Date >= DateTime.Now).ToList();
+            model.PastReservations = allReservations.Except(model.IncomingReservations).Where(r => r.Manipulation != null).ToList();
 
             return View(model);
         }

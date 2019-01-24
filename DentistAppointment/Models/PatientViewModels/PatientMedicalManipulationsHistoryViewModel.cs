@@ -6,6 +6,9 @@ namespace DentistAppointment.Models.PatientViewModels
 {
     public class PatientMedicalManipulationsHistoryViewModel
     {
-        public List<Reservation> Reservations { get; set; }
+        public List<Reservation> IncomingReservations { get; set; }
+        public List<Reservation> PastReservations { get; set; }
+        public List<Reservation> PastReservationsRate { get; set; }
+
     }
 }
