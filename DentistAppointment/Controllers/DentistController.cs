@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using DentistAppointment.Data.Models;
 using DentistAppointment.Models.CommentsViewModel;
-using DentistAppointment.Models.DentistViewModel;
 using DentistAppointment.Models.DentistViewModels;
 using DentistAppointment.Models.PatientViewModels;
 using DentistAppointment.Services;
