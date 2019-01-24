@@ -1,179 +1,141 @@
 ﻿<!DOCTYPE html>
 <html dir="ltr" lang="en-US">
-    <head>
-
-        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-        <meta name="CSCB024" content="Dentist add event page" />
-
-
-        <!-- Stylesheets
-============================================= -->
-        <link href="https://fonts.googleapis.com/css?family=Lato:300,400,400i,700|Raleway:300,400,500,600,700|Crete+Round:400i" rel="stylesheet" type="text/css" />
-        <link rel="stylesheet" href="../../css/bootstrap.css" type="text/css" />
-        <link rel="stylesheet" href="../../dentistStyle.css" type="text/css" />
-        <link rel="stylesheet" href="../../css/font-icons.css" type="text/css" />
-        <link rel="stylesheet" href="../../css/animate.css" type="text/css" />
-
-        <!-- Date & Time Picker CSS -->
-        <link rel="stylesheet" href="../../css/components/datepicker.css" type="text/css" />
-        <link rel="stylesheet" href="../../css/components/timepicker.css" type="text/css" />
-
-        <link rel="stylesheet" href="../../css/responsive.css" type="text/css" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-        <!-- Document Title
-============================================= -->
-        <title>Add event</title>
-
-        <!-- Favicon
-============================================= -->
-
-        <link rel="apple-touch-icon" sizes="57x57" href="../../images/favicon/apple-icon-57x57.png">
-        <link rel="apple-touch-icon" sizes="60x60" href="../../images/favicon/apple-icon-60x60.png">
-        <link rel="apple-touch-icon" sizes="72x72" href="../../images/favicon/apple-icon-72x72.png">
-        <link rel="apple-touch-icon" sizes="76x76" href="../../images/favicon/apple-icon-76x76.png">
-        <link rel="apple-touch-icon" sizes="114x114" href="../../images/favicon/apple-icon-114x114.png">
-        <link rel="apple-touch-icon" sizes="120x120" href="../../images/favicon/apple-icon-120x120.png">
-        <link rel="apple-touch-icon" sizes="144x144" href="../../images/favicon/apple-icon-144x144.png">
-        <link rel="apple-touch-icon" sizes="152x152" href="../../images/favicon/apple-icon-152x152.png">
-        <link rel="apple-touch-icon" sizes="180x180" href="../../images/favicon/apple-icon-180x180.png">
-        <link rel="icon" type="image/png" sizes="192x192"  href="../../images/favicon/android-icon-192x192.png">
-        <link rel="icon" type="image/png" sizes="32x32" href="../../images/favicon/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="96x96" href="../../images/favicon/favicon-96x96.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="../../images/favicon/favicon-16x16.png">
-        <meta name="msapplication-TileColor" content="#ffffff">
-        <meta name="msapplication-TileImage" content="../../images/favicon/ms-icon-144x144.png">
-        <meta name="theme-color" content="#ffffff">
-    </head>
-
-    <body class="stretched sticky-responsive-menu">
-
-        <!-- Document Wrapper
-============================================= -->
-        <div id="wrapper" class="clearfix light-background">
-
-            <!-- Header
-============================================= -->
-            <header id="header">
-
-                <div id="header-wrap">
-
-                    <div class="container clearfix">
-
-                        <div id="primary-menu-trigger"><i class="icon-reorder"></i></div>
-
-                        <!-- Logo
-============================================= -->
-                        <div id="logo">
-                            <a href="../Dentist/dentistHomePage.html" class="standard-logo" data-dark-logo="../../images/icons/molar-inside-a-shield-orange.png"><img src="../../images/icons/molar-inside-a-shield-orange.png" alt="Denstist Logo"></a>
-                            <a href="../Dentist/dentistHomePage.html"  class="retina-logo" data-dark-logo="../../images/icons/molar-inside-a-shield-orange.png"><img src="../../images/icons/molar-inside-a-shield-orange.png" alt="Denstist Logo"></a>
-                        </div>
-                        <!-- #logo end -->
-
-                        <!-- Primary Navigation
-============================================= -->
-                        <nav id="primary-menu">
-
-                            <ul>
-                                <li class="current">
-                                    <a href="../Dentist/dentistHomePage.html"><div>My Profile</div></a>
-                                </li>
-                                <li class="current">
-                                    <a href="../Dentist/dentistFindAPatient.html"><div>Find a Patient</div></a>
-                                </li>
-                                <li class="accent-background"><a href="../Dentist/dentistEvents.html">Events</a></li>
-                                <li class="current">
-                                    <a href="../Dentist/dentistAppointments.html"><div>My Appointments</div></a>
-                                </li>
-                                <li class="current">
-                                    <a href="../Dentist/dentistDocumentManipulation.html"><div>Medical Manipulations History</div></a>
-                                </li>
-                                <li class="current">
-                                    <a asp-area="Identity" asp-page="/Account/Logout"><div><i class="icon-line2-logout"></i>Log Out</div></a>
-                                </li>
-                            </ul>
-
-                        </nav><!-- #primary-menu end -->
-
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="author" content="" />
+    <!-- Stylesheets
+    ============================================= -->
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,400i,700|Raleway:300,400,500,600,700|Crete+Round:400i" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="~/FrontEnd/css/bootstrap.css" type="text/css" />
+    <link rel="stylesheet" href="~/FrontEnd/dentistStyle.css" type="text/css" />
+    <link rel="stylesheet" href="~/FrontEnd/css/font-icons.css" type="text/css" />
+    <link rel="stylesheet" href="~/FrontEnd/css/animate.css" type="text/css" />
+    <!-- Date & Time Picker CSS -->
+    <link rel="stylesheet" href="~/FrontEnd/css/components/datepicker.css" type="text/css" />
+    <link rel="stylesheet" href="~/FrontEnd/css/components/timepicker.css" type="text/css" />
+    <link rel="stylesheet" href="~/FrontEnd/css/responsive.css" type="text/css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Document Title
+    ============================================= -->
+    <title>Add event</title>
+    <!-- Favicon
+    ============================================= -->
+    <link rel="apple-touch-icon" sizes="57x57" href="/FrontEnd/images/favicon/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/FrontEnd/images/favicon/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/FrontEnd/images/favicon/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/FrontEnd/images/favicon/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/FrontEnd/images/favicon/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/FrontEnd/images/favicon/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/FrontEnd/images/favicon/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/FrontEnd/images/favicon/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/FrontEnd/images/favicon/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/FrontEnd/images/favicon/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/FrontEnd/images/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/FrontEnd/images/favicon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/FrontEnd/images/favicon/favicon-16x16.png">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/FrontEnd/images/favicon/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
+<body class="stretched sticky-responsive-menu">
+    <!-- Document Wrapper
+    ============================================= -->
+    <div id="wrapper" class="clearfix light-background">
+        <!-- Header
+        ============================================= -->
+        <header id="header">
+            <div id="header-wrap">
+                <div class="container clearfix">
+                    <div id="primary-menu-trigger"><i class="icon-reorder"></i></div>
+                    <!-- Logo
+                    ============================================= -->
+                    <div id="logo">
+                        <a href="/Dentist/dentistHomePage.html" class="standard-logo" data-dark-logo="/FrontEnd/images/icons/molar-inside-a-shield-orange.png"><img src="/FrontEnd/images/icons/molar-inside-a-shield-orange.png" alt="Denstist Logo"></a>
+                        <a href="/Dentist/dentistHomePage.html" class="retina-logo" data-dark-logo="/FrontEnd/images/icons/molar-inside-a-shield-orange.png"><img src="/FrontEnd/images/icons/molar-inside-a-shield-orange.png" alt="Denstist Logo"></a>
                     </div>
-
+                    <!-- #logo end -->
+                    <!-- Primary Navigation
+                    ============================================= -->
+                    <nav id="primary-menu">
+                        <ul>
+                            <li class="current">
+                                <a href="/Dentist/dentistHomePage"><div>My Profile</div></a>
+                            </li>
+                            <li class="current">
+                                <a href="/Dentist/dentistFindAPatient"><div>Find a Patient</div></a>
+                            </li>
+                            <li class="accent-background"><a href="/Dentist/dentistEvents">Events</a></li>
+                            <li class="current">
+                                <a href="/Dentist/dentistAppointments"><div>My Appointments</div></a>
+                            </li>
+                            <li class="current">
+                                <a href="/Dentist/dentistDocumentManipulation"><div>Medical Manipulations History</div></a>
+                            </li>
+                            <li class="current">
+                                <a href="/Account/Logout"><div><i class="icon-line2-logout"></i>Log Out</div></a>
+                            </li>
+                        </ul>
+                    </nav><!-- #primary-menu end -->
                 </div>
+            </div>
+        </header><!-- #header end -->
 
-            </header><!-- #header end -->
-
-
-            <section id="content">
-
-                <div class="content-wrap">
-
-                    <div class="container clearfix">
-
-                        <div id="actualContent">
-                            <label for="">Pick a date</label>
-                            <div class="form-group mb-3">
-                                <div class="input-group tleft" data-target-input="nearest" data-target=".datetimepicker">
-                                    <input type="text" class="form-control datetimepicker-input datetimepicker" data-target=".datetimepicker" placeholder="MM/DD/YYYY 00:00 AM/PM"/>
-                                    <div class="input-group-append" data-target=".datetimepicker" data-toggle="datetimepicker">
-                                        <div class="input-group-text"><i class="icon-calendar"></i></div>
-                                    </div>
+        <section id="content">
+            <div class="content-wrap">
+                <div class="container clearfix">
+                    <div id="actualContent">
+                        <label for="">Pick a date</label>
+                        <div class="form-group mb-3">
+                            <div class="input-group tleft" data-target-input="nearest" data-target=".datetimepicker">
+                                <input type="text" class="form-control datetimepicker-input datetimepicker" data-target=".datetimepicker" placeholder="MM/DD/YYYY 00:00 AM/PM" />
+                                <div class="input-group-append" data-target=".datetimepicker" data-toggle="datetimepicker">
+                                    <div class="input-group-text"><i class="icon-calendar"></i></div>
                                 </div>
                             </div>
-
-                            <div>
-
-                                <label for="author">Name of event</label>
-                                <input type="text" name="author" id="author" value="" size="22" tabindex="1" class="sm-form-control">
-
-                                <label class="mt-3" for="comment">Short description</label>
-                                <textarea name="comment" cols="58" rows="7" tabindex="4" class="sm-form-control"></textarea>
-
-                            </div>
-                            <div class="center mt-5">
-                                <a href="#" id="submit" class="button button-3d button-rounded accent-background">
-                                    <i class="icon-ok"></i>Save event</a>
-
-                            </div>
-
                         </div>
-
-                        <div id="sucessMessage" >
-
-                            <h3 class="alert alert-success">The event has been created succesfully!</h3>
-
-                            <a href="../Dentist/dentistEvents.html" class="button button-3d button-rounded accent-background">
-                                <i class="icon-line-rewind"></i>Back to your events page</a>
+                        <div>
+                            <label for="author">Name of event</label>
+                            <input type="text" name="author" id="author" value="" size="22" tabindex="1" class="sm-form-control">
+                            <label class="mt-3" for="comment">Short description</label>
+                            <textarea name="comment" cols="58" rows="7" tabindex="4" class="sm-form-control"></textarea>
+                        </div>
+                        <div class="center mt-5">
+                            <a href="#" id="submit" class="button button-3d button-rounded accent-background">
+                                <i class="icon-ok"></i>Save event
+                            </a>
                         </div>
                     </div>
+                    <div id="sucessMessage">
+                        <h3 class="alert alert-success">The event has been created succesfully!</h3>
+                        <a href="/Dentist/dentistEvents" class="button button-3d button-rounded accent-background">
+                            <i class="icon-line-rewind"></i>Back to your events page
+                        </a>
+                    </div>
                 </div>
-            </section>
+            </div>
+        </section>
 
-
-
-            <!-- Go To Top
-============================================= -->
-            <div id="gotoTop" class="icon-angle-up"></div>
-
-            <!-- External JavaScripts
-============================================= -->
-            <script src="../../js/jquery.js"></script>
-            <script src="../../js/plugins.js"></script>
-
-            <!-- Date & Time Picker JS -->
-            <script src="../../js/components/moment.js"></script>
-            <script src="../../js/components/datepicker.js"></script>
-            <script src="../../js/components/timepicker.js"></script>
-            <!-- Footer Scripts
-============================================= -->
-            <script src="../../js/functions.js"></script>
-            <script>
-                $(document).ready(function() {
-                    $( "#submit" ).click(function() {
-                        $( "#actualContent" ).hide();
-                        $( "#sucessMessage" ).show();
-
-                    });
-
+        <!-- Go To Top
+        ============================================= -->
+        <div id="gotoTop" class="icon-angle-up"></div>
+        <!-- External JavaScripts
+        ============================================= -->
+        <script src="~/FrontEnd/js/jquery.js"></script>
+        <script src="~/FrontEnd/js/plugins.js"></script>
+        <!-- Date & Time Picker JS -->
+        <script src="~/FrontEnd/js/components/moment.js"></script>
+        <script src="~/FrontEnd/js/components/datepicker.js"></script>
+        <script src="~/FrontEnd/js/components/timepicker.js"></script>
+        <!-- Footer Scripts
+        ============================================= -->
+        <script src="~/FrontEnd/js/functions.js"></script>
+        <script>
+            $(document).ready(function () {
+                $("#submit").click(function () {
+                    $("#actualContent").hide();
+                    $("#sucessMessage").show();
                 });
-            </script>
-
-            </body></html>
+            });
+        </script>
+</body>
+</html>
