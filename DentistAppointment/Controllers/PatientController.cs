@@ -302,9 +302,8 @@ namespace DentistAppointment.Controllers
             var allReservations = reservationsService.GetAllReservationsOfUser(GetCurrentUserId());
 
             var model = new PatientMedicalManipulationsHistoryViewModel()
-            {
-                
-                PastReservationsRate=allReservations.Where(r=>r.Manipulation==null).ToList()
+            {       
+                PastReservationsRate=allReservations.Where(r=>r.Manipulation==null).Where(r => r.Date <= DateTime.Now).ToList()
             };
             model.IncomingReservations = allReservations.Where(r => r.Date >= DateTime.Now).ToList();
             model.PastReservations = allReservations.Except(model.IncomingReservations).Where(r => r.Manipulation != null).ToList();
