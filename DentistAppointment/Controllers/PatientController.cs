@@ -99,18 +99,27 @@ namespace DentistAppointment.Controllers
 
         public IActionResult patientAppointments()
         {
-            string userId = GetCurrentUserId();
-            var user = this.usersService.GetAllUsers().FirstOrDefault(x => x.Id == GetCurrentUserId());
-            var dentist = this.dentistsService.GetAllDentists().FirstOrDefault();
-            var allReservations = this.reservationsService.GetAllReservationsOfUser(user.Id, dentist.Id);
+            var allReservations = reservationsService.GetAllReservationsOfUser(GetCurrentUserId());
 
             var model = new PatientAppointmentsViewModel()
             {
-                Reservations = allReservations.ToList()
+                IncomingReservations = allReservations.Where(r => r.Date >= DateTime.Now).ToList()
             };
+            model.PastReservations = allReservations.Except(model.IncomingReservations).ToList();
 
             return View(model);
         }
+
+        [HttpPost]
+        public IActionResult patientCancelAppointment(PatientAppointmentsViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                reservationsService.CancelReservation(model.CancelId);
+            }
+            return RedirectToAction("patientAppointments", "Patient");
+        }
+
         public IActionResult patientBooking(int id)
         {
             if (id < 1 && GetCurrentDentistId() < 1)
@@ -290,15 +299,13 @@ namespace DentistAppointment.Controllers
         }
         public IActionResult patientMedicalManipulationsHistory()
         {
-            string userId = GetCurrentUserId();
-            var user = this.usersService.GetAllUsers().FirstOrDefault(x => x.Id == GetCurrentUserId());
-            var dentist = this.dentistsService.GetAllDentists().FirstOrDefault();
-            var allReservations = this.reservationsService.GetAllReservationsOfUser(user.Id, dentist.Id);
+            var allReservations = reservationsService.GetAllReservationsOfUser(GetCurrentUserId());
 
             var model = new PatientMedicalManipulationsHistoryViewModel()
             {
-                Reservations = allReservations.ToList()
+                IncomingReservations = allReservations.Where(r => r.Date >= DateTime.Now).ToList()
             };
+            model.PastReservations = allReservations.Except(model.IncomingReservations).ToList();
 
             return View(model);
         }

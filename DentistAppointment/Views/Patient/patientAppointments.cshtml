@@ -79,7 +79,6 @@
     <section id="content">
         <div class="content-wrap">
             <div class="container clearfix">
-
                 <h4>Incomming</h4>
                 <div class="table-responsive">
                     <table class="table">
@@ -92,49 +91,58 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach (var reservation in Model.Reservations)
+                            @foreach (var reservation in Model.IncomingReservations)
                             {
                                 if (reservation.Manipulation == null)
                                 {
                                     <tr>
                                         <td>@reservation.Date.ToShortDateString()</td>
-                                        <td>@reservation.Date.Hour : @reservation.Date.Minute-@reservation.Date.AddMinutes(30).ToShortTimeString()</td>
-                                        <td>@reservation.User.FirstName @reservation.User.LastName</td>
+                                        <td>@reservation.Date.ToString(@"HH\:mm") - @reservation.Date.AddMinutes(30).ToString(@"HH\:mm")</td>
+                                        <td>@reservation.Dentist.User.FirstName @reservation.Dentist.User.LastName</td>
                                         <td>
-                                            <button class="btn aviableBtn button-rounded m-0 accent-background light-text button-mini" data-toggle="modal" data-target=".bs-example-modal-sm"><i class="icon-line-play"></i><span>Cancel appointment</span></button>
-                                            <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-                                                <div class="modal-dialog modal-sm">
-                                                    <div class="modal-body">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <h4 class="modal-title" id="myModalLabel">
-                                                                    Your booking has been made!
-                                                                </h4>
-                                                                <button type="button" class="close" data-dismiss="modal"
-                                                                        aria-hidden="true">
-                                                                    &times;
-                                                                </button>
-                                                            </div>
+                                            @if (reservation.Date - new TimeSpan(1, 0, 0) >= DateTime.Now)
+                                            {
+                                                <form asp-action="patientCancelAppointment" method="post">
+                                                    <button class="btn aviableBtn button-rounded m-0 accent-background light-text button-mini" data-toggle="modal" data-target=".bs-example-modal-sm"><i class="icon-line-play"></i><span>Cancel appointment</span></button>
+                                                    <input asp-for="CancelId" value="@reservation.Id" type="hidden" />
+                                                    <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                                                        <div class="modal-dialog modal-sm">
                                                             <div class="modal-body">
-                                                                <p class="nobottommargin">
-                                                                    You booked an appointment!
-                                                                    You can cancel your appointments up to one hour before the booked hour. In order to macke changes to your current bookings, see the menu "My appointments".
-                                                                </p>
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                        <h4 class="modal-title" id="myModalLabel">
+                                                                            Your booking has been made!
+                                                                        </h4>
+                                                                        <button type="button" class="close" data-dismiss="modal"
+                                                                                aria-hidden="true">
+                                                                            &times;
+                                                                        </button>
+                                                                    </div>
+                                                                    <div class="modal-body">
+                                                                        <p class="nobottommargin">
+                                                                            You booked an appointment!
+                                                                            You can cancel your appointments up to one hour before the booked hour. In order to macke changes to your current bookings, see the menu "My appointments".
+                                                                        </p>
+                                                                    </div>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                            </div>
+                                                </form>
+                                            }
+                                            else
+                                            {
+                                                <button class="btn light-text button-red disabled"><i class="icon-line-circle-cross"></i><span> Cannot cancel</span></button>
+                                            }
                                         </td>
                                     </tr>
                                 }
                             }
-                           
+
                         </tbody>
                     </table>
                 </div>
                 <div class="divider divider-center"><i class="icon-time"></i></div>
-
 
                 <h4>Past</h4>
                 <div class="table-responsive">
@@ -148,31 +156,27 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach (var reservation in Model.Reservations)
+                            @foreach (var reservation in Model.PastReservations)
                             {
-                                if (@reservation.Manipulation != null)
-                                {
-                                    <tr>
-                                        <td>@reservation.Date.ToShortDateString()</td>
-                                        <td>@reservation.Date.Hour : @reservation.Date.Minute-@reservation.Date.AddMinutes(30).ToShortTimeString()</td>
-                                        <td>@reservation.User.FirstName @reservation.User.LastName</td>
-                                        <td>
-                                            <a href="/Patient/patientCheckDocument/@reservation.Id"
-                                               class="button button-3d  button-small button-rounded button-dirtygreen">
-                                                <i class="icon-folder-check"></i> Check Manipulation
-                                            </a>
-                                        </td>
-                                    </tr>
-                                }
+                                <tr>
+                                    <td>@reservation.Date.ToShortDateString()</td>
+                                    <td>@reservation.Date.ToString(@"HH\:mm") - @reservation.Date.AddMinutes(30).ToString(@"HH\:mm")</td>
+                                    <td>@reservation.Dentist.User.FirstName @reservation.Dentist.User.LastName</td>
+                                    <td>
+                                        <a href="/Patient/patientCheckDocument/@reservation.Id"
+                                           class="button button-3d  button-small button-rounded button-dirtygreen">
+                                            <i class="icon-folder-check"></i> Check Manipulation
+                                        </a>
+                                    </td>
+                                </tr>
                             }
-                                   
-                                </tbody>
+
+                        </tbody>
                     </table>
                 </div>
             </div>
         </div>
     </section>
-
     <!-- Go To Top
     ============================================= -->
     <div id="gotoTop" class="icon-angle-up"></div>

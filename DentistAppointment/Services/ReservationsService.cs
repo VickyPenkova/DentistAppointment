@@ -83,6 +83,12 @@ namespace DentistAppointment.Services
             reservationsRepo.Save();
         }
 
+        public void CancelReservation(int reservationId)
+        {
+            reservationsRepo.Delete(reservationsRepo.GetById(reservationId));
+            reservationsRepo.Save();
+        }
+
         // For Madical Manipulations, Viki
         public IEnumerable<Reservation> GetAllReservationsOfDentist(int dentistId)
         {
@@ -95,13 +101,14 @@ namespace DentistAppointment.Services
 
             return reservations;
         }
-        public IEnumerable<Reservation> GetAllReservationsOfUser(string userId, int dentistId)
+        public IEnumerable<Reservation> GetAllReservationsOfUser(string userId)
         {
             var reservations = this.reservationsRepo.GetAll()
                 .Where(r => r.UserId == userId).ToList();
             foreach (var reservation in reservations)
             {
-                reservation.User.Dentist = dentistRepo.GetById(reservation.DentistId);
+                reservation.Dentist = dentistRepo.GetById(reservation.DentistId);
+                reservation.Dentist.User = usersRepo.GetAll().First(u => u.DentistId == reservation.DentistId);
             }
 
             return reservations;
