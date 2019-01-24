@@ -115,6 +115,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Update="Views\Dentist\dentistAppointmentsList.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Views\Home\Index.cshtml">
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <Pack>$(IncludeRazorContentInPack)</Pack>
