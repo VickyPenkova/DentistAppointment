@@ -17,6 +17,7 @@ using DentistAppointment.Data.Models;
 using DentistAppointment.Models.PatientViewModel;
 using DentistAppointment.DTOs;
 using DentistAppointment.Models.PatientViewModels;
+using System.Globalization;
 
 namespace DentistAppointment.Controllers
 {
@@ -56,7 +57,6 @@ namespace DentistAppointment.Controllers
             string userId = GetCurrentUserId();
             var user = this.usersService.GetAllUsers().FirstOrDefault(u => u.Id == userId);
             var dentist = this.dentistsService.GetAllDentists().FirstOrDefault();
-            //var reviews = this.reviewsService.GetAllByUser(user.Id);
             var reviews = reviewsService.GetAllByUser(user.Id, dentist.Id).ToList();
             float rating = 0;
             foreach (Review r in reviews)
@@ -72,11 +72,10 @@ namespace DentistAppointment.Controllers
                 Gender = user.Gender,
                 Email = user.Email,
                 EGN = user.EGN,
-                Rating = rating,
+                Rating = rating.ToString(CultureInfo.CreateSpecificCulture("en-GB")),
                 Reviews = reviews
 
             };
-            Console.WriteLine(reviews);
 
             return View(viewModel);
 

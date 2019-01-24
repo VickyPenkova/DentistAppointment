@@ -131,7 +131,7 @@
                         <div class="col-lg-12 bottommargin-sm center">
                             <div class="white-section">
                                 <h2 class="accent-color">Rating of Patient</h2>
-                                <input id="input-1" value=@Model.Rating type="number" class="rating" max="5" data-step="0.1"
+                                <input id="input-1" value="@Model.Rating" type="number" class="rating" max="5" data-step="0.1"
                                        data-size="sm" data-disabled="true" , data-readonly="true">
                             </div>
                         </div>
@@ -156,15 +156,23 @@
 
 
                                                     <span class="comment-avatar clearfix">
-                                                        <img alt='' src='~/FrontEnd/images/icons/female-dentist.png'
-                                                             class='avatar avatar-60 photo avatar-default' height='60' width='60' />
+                                                        @if (@review.User.Gender == "Female")
+                                                        {
+                                                            <img alt='' src='~/FrontEnd/images/icons/female-dentist.png'
+                                                                 class='avatar avatar-60 photo avatar-default' height='60' width='60' />
+                                                        }
+                                                        else
+                                                        {
+                                                            <img alt='' src='~/FrontEnd/images/icons/male-dentist.png'
+                                                                 class='avatar avatar-60 photo avatar-default' height='60' width='60' />
+                                                        }
                                                     </span>
                                                 </div>
                                             </div>
                                             <div class="comment-content clearfix">
                                                 <div class="comment-author">
                                                     <a href="#">@review.User.FirstName @review.User.LastName</a>
-                                                    <span>DATE???</span>
+                                                    <span>@review.Date</span>
 
                                                 </div>
                                                 <p>@review.Content</p>

@@ -22,6 +22,6 @@ namespace DentistAppointment.Models.PatientViewModel
         public Dentist Dentist{ get; set; }
         public IEnumerable<Review> Reviews { get; set; }
 
-        public double Rating { get; set; }
+        public String Rating { get; set; }
     }
 }

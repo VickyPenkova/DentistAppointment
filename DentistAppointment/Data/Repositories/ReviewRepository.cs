@@ -18,7 +18,7 @@ namespace DentistAppointment.Data.Models
         public virtual IQueryable<Review> GetByUserId(string id)
         {
             return Db.Include(x => x.User.Dentist)
-              .Where(review => review.Reservation.UserId == id && review.UserId == null);
+              .Where(review => review.Reservation.UserId == id && review.User.DentistId != null);
         }
     }
 }
