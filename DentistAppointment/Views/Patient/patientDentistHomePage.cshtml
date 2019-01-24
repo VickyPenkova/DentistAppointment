@@ -91,22 +91,22 @@
                             </div>
                             <div class="team-desc col-sm-12 col-md-6 col-lg-6">
                                 <div class="user-names">
-                                    <h4 class="pr-2" id="firstName">@*@Model.Dentist.User.FirstName*@</h4>
-                                    <h4 id="lastName">@*@Model.Dentist.User.LastName*@</h4>
-                                    <span id="gender">@*@Model.Dentist.User.Gender*@</span>
-                                    <h5 id="typeOfDentist">@*@Model.Dentist.Type*@</h5>
+                                    <h4 class="pr-2" id="firstName">@Model.Dentist.User.FirstName</h4>
+                                    <h4 id="lastName">@Model.Dentist.User.LastName</h4>
+                                    <span id="gender">@Model.Dentist.User.Gender</span>
+                                    <h5 id="typeOfDentist">@Model.Dentist.Type</h5>
                                 </div>
                                 <div class="user-email">
                                     <h4 class="inlineBlock-elements"><i class="icon-email3"></i> Email:</h4>
-                                    <span>@*@Model.Dentist.User.Email*@</span>
+                                    <span>@Model.Dentist.User.Email</span>
                                 </div>
                                 <div class="user-egn">
                                     <h4 class="inlineBlock-elements"><i class="icon-phone3"></i> Telephone:</h4>
-                                    <span>@*@Model.Dentist.User.PhoneNumber*@</span>
+                                    <span>@Model.Dentist.User.PhoneNumber</span>
                                 </div>
                                 <div class="user-address">
                                     <h4 class="inlineBlock-elements"><i class="icon-map-marker"></i> Address:</h4>
-                                    <span>@*@Model.Dentist.Address*@</span>
+                                    <span>@Model.Dentist.Address</span>
                                 </div>
                                 <div class="topmargin-sm nobottommargin"></div>
                             </div>
@@ -115,7 +115,7 @@
                 </div>
                 <div class="row">
                     <div class="col-lg-12 bottommargin-sm center">
-                        <a href="/Patient/patientBooking" id="btnSearch" class="button button-desc button-3d button-rounded center accent-background reduceHeight"><p class="icon-calendar3"></p> Book appointment</a>
+                        <a href="/Patient/patientBooking/@Model.Dentist.Id" id="btnSearch" class="button button-desc button-3d button-rounded center accent-background reduceHeight"><p class="icon-calendar3"></p> Book appointment</a>
                     </div>
                 </div>
                 <div class="clear"></div>
@@ -124,62 +124,59 @@
                     <div class="col-lg-12 bottommargin-sm center">
                         <div class="white-section">
                             <h2 class="accent-color">Rating of Dentist</h2>
-                            <!--<input id="input-1" value=@@Model.Rating type="number" class="rating" max="5" data-step="0.1" data-size="sm" data-disabled="true" , data-readonly="true">--->
+                            <input id="input-1" value="@Model.Rating" type="number" class="rating" max="5" data-step="0.1" data-size="sm" data-disabled="true" , data-readonly="true">
                         </div>
                     </div>
                     <div class="col-12 line"></div>
                 </div>
                 <div class="clear"></div>
-
                 <div class="row">
                     <!-- Comments
-    ============================================= -->
-                    <div id="comments" class="clearfix">
-                        @*@foreach (var review in Model.Reviews)
-            {
-               <div>@review.Content</div>
-            }*@
-
-                        <h3 id="comments-title"><span>@*@Model.Reviews.Count()*@</span> Comments</h3>
-
-                        <!-- Comments List
-        ============================================= -->
-                        <ol class="commentlist clearfix">
-                          @*  @foreach (var review in Model.Reviews)
-                            {*@
-                                <li class="comment even thread-even depth-1" id="li-comment-1">
-                                    <div id="comment-1" class="comment-wrap clearfix">
-                                        <div class="comment-meta">
-                                            <div class="comment-author vcard">
-                                                <span class="comment-avatar clearfix">
+                    ============================================= -->
+                    <h3 id="comments-title"><span>@Model.Reviews.Count()</span> Comments</h3>
+                    <!-- Comments List
+                    ============================================= -->
+                    <ol class="commentlist clearfix">
+                        @foreach (var review in Model.Reviews)
+                        {
+                            <li class="comment even thread-even depth-1" id="li-comment-1">
+                                <div id="comment-1" class="comment-wrap clearfix">
+                                    <div class="comment-meta">
+                                        <div class="comment-author vcard">
+                                            <span class="comment-avatar clearfix">
+                                                @if (review.User.Gender == "Female")
+                                                {
                                                     <img alt='' src='~/FrontEnd/images/icons/female-user.png' class='avatar avatar-60 photo avatar-default' height='60' width='60' />
-                                                </span>
-                                            </div>
+                                                }
+                                                else
+                                                {
+                                                    <img alt='' src='~/FrontEnd/images/icons/male-user.png' class='avatar avatar-60 photo avatar-default' height='60' width='60' />
+                                                }
+                                            </span>
                                         </div>
-                                        <div class="comment-content clearfix">
-                                            <div class="comment-author">
-
-                                                <a href="#">@*@review.User.FirstName @review.User.LastName*@</a>
-                                                <span>DATE???</span>
-                                            </div>
-                                            <p>@*@review.Content*@</p>
-                                            <div class="col-lg-12 bottommargin-sm mt-3 ml-0">
-                                                <div class="white-section">
-                                                    <h5 class="accent-color">Rating of Dentist</h5>
-                                                    <!--<input id="input-1" value=@@review.Rating type="number" class="rating" max="5" data-step="0.1" data-size="sm" data-disabled="true" , data-readonly="true">-->
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="clear"></div>
                                     </div>
-                                </li>
-                        @*}*@
-
-                        </ol><!-- .commentlist end -->
-                        <div class="clear"></div>
-                    </div>
+                                    <div class="comment-content clearfix">
+                                        <div class="comment-author">
+                                            <a href="#">@review.User.FirstName @review.User.LastName</a>
+                                            <span>@review.Date</span>
+                                        </div>
+                                        <p>@review.Content</p>
+                                        <div class="col-lg-12 bottommargin-sm mt-3 ml-0">
+                                            <div class="white-section">
+                                                <h5 class="accent-color">Rating of Dentist</h5>
+                                                <input id="input-1" value="@review.Rating" type="number" class="rating" max="5" data-step="0.1" data-size="sm" data-disabled="true" , data-readonly="true">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="clear"></div>
+                                </div>
+                            </li>
+                        }
+                    </ol><!-- .commentlist end -->
+                    <div class="clear"></div>
                 </div>
             </div>
+        </div>
         </div>
     </section>
     <!-- Go To Top

@@ -89,7 +89,7 @@ namespace DentistAppointment.Controllers
             string userId = GetCurrentUserId();
             var user = this.usersService.GetAllUsers().FirstOrDefault(x => x.Id == GetCurrentUserId());
             var dentist = this.dentistsService.GetAllDentists().FirstOrDefault();
-            var allReservations = this.reservationsService.GetAllReservationsOfUser(user.Id,dentist.Id);
+            var allReservations = this.reservationsService.GetAllReservationsOfUser(user.Id, dentist.Id);
 
             var model = new PatientAppointmentsViewModel()
             {
@@ -148,38 +148,25 @@ namespace DentistAppointment.Controllers
             {
                 return RedirectToAction("patientFindDoctor", "Patient");
             }
-            string userId = GetCurrentUserId();
-            var getDentistId = this.dentistsService
-                 .GetAllDentists().FirstOrDefault(user => user.User.Id == userId);
-            var result = new PatientDentistHomePageViewModel
+
+            int dentistId = id;
+            var dentist = dentistsService.GetDentistById(id);
+            dentist.User = usersService.GetAllUsers().FirstOrDefault(x => x.Dentist == dentist);
+            var reviews = reviewsService.GetAllByDentist(dentist.Id).ToList();
+            float rating = 0;
+            foreach (Review r in reviews)
             {
-                Dentist = getDentistId
-               
+                rating += r.Rating / reviews.Count;
+            }
+
+            var viewModel = new PatientDentistHomePageViewModel()
+            {
+                Dentist = dentist,
+                Rating = rating.ToString(CultureInfo.CreateSpecificCulture("en-GB")),
+                Reviews = reviews
             };
-            return View(result);
-            /*  string userId = GetCurrentUserId();
-             int dentistId = GetCurrentDentistId();
-             var dentist = this.dentistsService
-                 .GetAllDentists().FirstOrDefault(user => user.User.Id == userId);
-               var reviews = reviewsService.GetAllByDentist(dentist.Id).ToList();
-              float rating = 0;
-              foreach (Review r in reviews)
-              {
-                  rating += r.Rating / reviews.Count;
-              }
 
-              var viewModel = new PatientDentistHomePageViewModel()
-              {
-                  User = this.usersService.GetAllUsers().FirstOrDefault(x => x.Dentist == dentist),
-                  Address = dentist.Address,
-                  Type = dentist.Type
-                 // Rating = rating,
-                 // Reviews = reviews
-              };
-              //Console.WriteLine(reviews);
-
-              return View(viewModel);*/
-            //return View(); 
+            return View(viewModel);
         }
         [HttpGet]
         public IActionResult patientEditInfo(string returnUrl = null)
@@ -258,7 +245,7 @@ namespace DentistAppointment.Controllers
                 var user = this.usersService.GetAllUsers().FirstOrDefault(u => u.Id == userId);
                 var dentist = this.dentistsService.GetAllDentists().FirstOrDefault();
                 //var reviews = this.reviewsService.GetAllByUser(user.Id);
-                var reviews = reviewsService.GetAllByUser(user.Id,dentist.Id).ToList();
+                var reviews = reviewsService.GetAllByUser(user.Id, dentist.Id).ToList();
                 float rating = 0;
                 foreach (Review r in reviews)
                 {
@@ -274,20 +261,20 @@ namespace DentistAppointment.Controllers
                 });
             }
         }
-         public IActionResult patientMedicalManipulationsHistory()
-         {
-              string userId = GetCurrentUserId();
-             var user = this.usersService.GetAllUsers().FirstOrDefault(x => x.Id == GetCurrentUserId());
-             var dentist = this.dentistsService.GetAllDentists().FirstOrDefault();
-             var allReservations = this.reservationsService.GetAllReservationsOfUser(user.Id,dentist.Id);
+        public IActionResult patientMedicalManipulationsHistory()
+        {
+            string userId = GetCurrentUserId();
+            var user = this.usersService.GetAllUsers().FirstOrDefault(x => x.Id == GetCurrentUserId());
+            var dentist = this.dentistsService.GetAllDentists().FirstOrDefault();
+            var allReservations = this.reservationsService.GetAllReservationsOfUser(user.Id, dentist.Id);
 
-             var model = new PatientMedicalManipulationsHistoryViewModel()
-             {
-                 Reservations = allReservations.ToList()
-             };
+            var model = new PatientMedicalManipulationsHistoryViewModel()
+            {
+                Reservations = allReservations.ToList()
+            };
 
-             return View(model);
-         }
+            return View(model);
+        }
         [HttpGet]
         public IActionResult patientOnFirstLogIn(String returnurl = null)
         {
@@ -322,7 +309,7 @@ namespace DentistAppointment.Controllers
         {
             return View();
         }
-      
+
         public IActionResult Privacy()
         {
             return View();
