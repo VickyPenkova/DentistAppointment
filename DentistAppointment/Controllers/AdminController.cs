@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using static Microsoft.AspNetCore.Hosting.Internal.HostingApplication;
 
 namespace DentistAppointment.Controllers
 {
@@ -31,9 +32,40 @@ namespace DentistAppointment.Controllers
             return View();
         }
 
-        public IActionResult adminUsersList()
+        //[HttpGet]
+        //public IActionResult adminUsersList()
+        //{
+        //    var allUsers = this.usersService.GetAllUsers().Where(u=> u.DentistId != null);
+
+        //    var resultModel = new AdminUsersListViewModel()
+        //    {
+        //        Users = allUsers.ToList()
+        //    };
+
+        //    return View(resultModel);
+        //}
+
+        [HttpGet]
+        public IActionResult adminUsersList(string id = null)
         {
-            return View();
+            var userToBlock = this.usersService.GetAllUsers().
+                FirstOrDefault(u => u.Id == id);
+            if(userToBlock != null)
+            {
+                if (ModelState.IsValid)
+                {
+                    this.usersService.Delete(userToBlock);
+                }
+            }
+            var allUsers = this.usersService.GetAllUsers().Where(u => u.DentistId != null);
+
+            var resultModel = new AdminUsersListViewModel()
+            {
+                Users = allUsers.ToList()
+            };
+
+
+            return View(resultModel);
         }
 
         [HttpPost]
