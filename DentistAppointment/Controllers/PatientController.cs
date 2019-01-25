@@ -170,13 +170,12 @@ namespace DentistAppointment.Controllers
             {
                 return RedirectToAction("patientMedicalManipulationsHistory", "Patient");
             }
-
-            var getReservation = this.reservationsService.GetReservationById(id);
-            var result = new PatientCheckDocumentViewModel
+            
+            var model = new PatientCheckDocumentViewModel
             {
-                Reservation = getReservation
+                Reservation = reservationsService.GetReservationById(id)
             };
-            return View(result);
+            return View(model);
         }
         public IActionResult patientDentistHomePage(int id)
         {

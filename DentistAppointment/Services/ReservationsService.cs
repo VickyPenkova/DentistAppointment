@@ -119,6 +119,8 @@ namespace DentistAppointment.Services
         {
             var reservation = this.reservationsRepo.GetById(reservationId);
             reservation.User = usersRepo.GetById(reservation.UserId);
+            reservation.Dentist = dentistRepo.GetById(reservation.DentistId);
+            reservation.Dentist.User = usersRepo.GetAll().First(u => u.DentistId == reservation.DentistId);
             return reservation;
         }
     }
