@@ -27,21 +27,6 @@ namespace DentistAppointment.Services
             this.mapper = mapper;
         }
 
-        public IEnumerable<UserDTO> GetUsers(int count)
-        {
-            var usersFromDb = this.usersRepo
-                .GetAll()
-                .Take(count)
-                .ToList();
-
-            List<UserDTO> users = new List<UserDTO>();
-
-            users = this.mapper.Map<List<UserDTO>>(usersFromDb);
-
-            return users;
-        }
-
-
         public User GetUserById(string userId)
         {
             return usersRepo.GetById(userId);
@@ -57,31 +42,16 @@ namespace DentistAppointment.Services
             return usersRepo.GetAll().Include(x => x.Reservations).Where(p => p.DentistId == null && p.Email != "admin@gmail.com");
         }
 
-
-        public IEnumerable<UserDTO> GetUserInfo(string userId)
-        {
-            
-            var user = this.usersRepo.GetAll()
-                .Include(model => model.FirstName)
-                .Include(model => model.LastName)
-                .Include(model => model.Email)
-                .Include(model => model.Gender)
-                .Include(model => model.EGN)
-                .FirstOrDefault(u => u.Id == userId);
-            var userInfo = user.FirstName;
-
-            return this.mapper.Map<List<UserDTO>>(user);
-        }
         public void Edit(User user)
         {
             usersRepo.Update(user);
             usersRepo.Save();
         }
-        public IEnumerable<Reservation> GetAllReservationsOfDentist(int dentistId)
+        public IEnumerable<Reservation> GetAllReservationsOfUser(string userId)
         {
             return new List<Reservation>(reservationsRepo.GetAll()
-                .Include(dentist => dentist.Dentist)
-                .Where(d => d.DentistId == dentistId));
+                .Include(user => user.User)
+                .Where(u => u.UserId == userId));
         }
 
         // To be used only by Admin!

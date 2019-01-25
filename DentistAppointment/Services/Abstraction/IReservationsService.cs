@@ -14,6 +14,10 @@ namespace DentistAppointment.Services.Abstraction
         void MakeReservation(string userId, int dentistId, DateTime date);
         IEnumerable<Reservation> GetAllReservationsOfDentist(int dentistId);
         Reservation GetReservationById(int reservationId);
+        void CancelReservation(int reservationId);
+        IEnumerable<Reservation> GetAllReservationsOfUser(string userId);
+        IEnumerable<Reservation> GetAllPastReservationsOfUser(string userId);
+        IEnumerable<Reservation> GetAllReservationWaitingForReview(string userId);
         Reservation editReservationManimulation(int reservationId, DentistDocumentManipulationViewModel model);
     }
 }

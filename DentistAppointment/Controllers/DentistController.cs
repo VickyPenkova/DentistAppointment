@@ -2,6 +2,7 @@
 using DentistAppointment.Data.Models;
 using DentistAppointment.Models.CommentsViewModel;
 using DentistAppointment.Models.DentistViewModels;
+using DentistAppointment.Models.PatientViewModel;
 using DentistAppointment.Models.PatientViewModels;
 using DentistAppointment.Services;
 using DentistAppointment.Services.Abstraction;
@@ -52,8 +53,10 @@ namespace DentistAppointment.Controllers
 
         private string GetCurrentUserId() => this.userManager.GetUserId(HttpContext.User);
 
-        // TODO 
-        private int GetCurrentDentistId() => 1;
+        private int GetCurrentDentistId()
+        {
+            return usersService.GetUserById(GetCurrentUserId()).DentistId.Value;
+        }
 
         public IActionResult dentistHomePage()
         {
@@ -64,9 +67,9 @@ namespace DentistAppointment.Controllers
             var reviews = reviewsService.GetAllByDentist(dentist.Id).ToList();
             float rating = 0;
 
-            foreach(Review r in reviews)
+            foreach (Review r in reviews)
             {
-                rating += r.Rating/reviews.Count;
+                rating += r.Rating / reviews.Count;
             }
 
             var viewModel = new DentistHomePageViewModel()
@@ -117,7 +120,7 @@ namespace DentistAppointment.Controllers
             }
 
             return this.RedirectToAction("dentistHomePage", "Dentist");
-           // return View(viewModel);
+            // return View(viewModel);
         }
 
         [HttpGet]
@@ -130,7 +133,7 @@ namespace DentistAppointment.Controllers
                 EGN = model.EGN,
                 Email = model.Email
             };
-            
+
             var patients = new List<User>();
             if (model != null)
             {
@@ -146,7 +149,7 @@ namespace DentistAppointment.Controllers
                 {
                     patients = usersService.GetAllUsersWithReservations().Where(u => u.EGN == inputModel.EGN).ToList();
                 }
-                else if(!String.IsNullOrEmpty(inputModel.LastName) && !String.IsNullOrEmpty(inputModel.Email))
+                else if (!String.IsNullOrEmpty(inputModel.LastName) && !String.IsNullOrEmpty(inputModel.Email))
                 {
                     patients = usersService.GetAllUsersWithReservations()
                         .Where(u => u.LastName == inputModel.LastName && u.Email == inputModel.Email).ToList();
@@ -168,11 +171,11 @@ namespace DentistAppointment.Controllers
                 }
                 else
                 {
-                    if(String.IsNullOrEmpty(inputModel.LastName) || String.IsNullOrEmpty(inputModel.Email))
+                    if (String.IsNullOrEmpty(inputModel.LastName) || String.IsNullOrEmpty(inputModel.Email))
                     {
-                        patients = usersService.GetAllUsersWithReservations().Where(u => u.EGN ==  inputModel.EGN).ToList();
+                        patients = usersService.GetAllUsersWithReservations().Where(u => u.EGN == inputModel.EGN).ToList();
                     }
-                    else if(String.IsNullOrEmpty(inputModel.LastName) || inputModel.EGN == 0)
+                    else if (String.IsNullOrEmpty(inputModel.LastName) || inputModel.EGN == 0)
                     {
                         patients = usersService.GetAllUsersWithReservations().Where(u => u.Email == inputModel.Email).ToList();
                     }
@@ -182,11 +185,11 @@ namespace DentistAppointment.Controllers
                     }
 
 
-                }    
+                }
             }
 
             // If there is no input the list is empty (No patients are found)
-            if(patients == null)
+            if (patients == null)
             {
                 return View(inputModel);
             }
@@ -236,18 +239,18 @@ namespace DentistAppointment.Controllers
         [HttpGet]
         public IActionResult dentistDocumentManipulation(int id)
         {
-        if (id == 0)
-        {
-            return RedirectToAction("dentistMedicalManipulations", "Dentist");
-        }
-
-        var getReservation = this.reservationsService.GetReservationById(id);
-        return View(
-            new DentistDocumentManipulationViewModel()
+            if (id == 0)
             {
-                Reservation = getReservation
+                return RedirectToAction("dentistMedicalManipulations", "Dentist");
             }
-            );
+
+            var getReservation = this.reservationsService.GetReservationById(id);
+            return View(
+                new DentistDocumentManipulationViewModel()
+                {
+                    Reservation = getReservation
+                }
+                );
         }
 
         [HttpPost]
@@ -279,7 +282,7 @@ namespace DentistAppointment.Controllers
         public IActionResult dentistForgottenPass()
         {
             return View();
-        }   
+        }
 
         public IActionResult dentistOnFirstLogIn()
         {

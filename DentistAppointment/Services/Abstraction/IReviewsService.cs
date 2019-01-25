@@ -9,8 +9,10 @@ namespace DentistAppointment.Services.Abstraction
     public interface IReviewsService
     {
         IEnumerable<Review> GetAllReviews();
-        IEnumerable<Review> GetAllByUser(int dentistId);
         IEnumerable<Review> GetAllByDentist(int dentistId);
+        IEnumerable<Review> GetAllByUser(string userId, int dentistId);
+        Review GetUserReviewForReservation(Reservation reservation);
+        void AddReviewForDentist(Review review);
         string GetContentOfReview(int reviewId);
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using Microsoft.EntityFrameworkCore;
+using System.Linq;
 
 namespace DentistAppointment.Data.Models
 {
@@ -11,7 +12,13 @@ namespace DentistAppointment.Data.Models
 
         public virtual IQueryable<Review> GetByDentistId(int id)
         {
-            return Db.Where(review => review.Reservation.DentistId == id && review.User.DentistId == null);
+            return Db.Include(x => x.User)
+                .Where(review => review.Reservation.DentistId == id && review.User.DentistId == null);
+        }
+        public virtual IQueryable<Review> GetByUserId(string id)
+        {
+            return Db.Include(x => x.User.Dentist)
+              .Where(review => review.Reservation.UserId == id && review.User.DentistId != null);
         }
     }
 }

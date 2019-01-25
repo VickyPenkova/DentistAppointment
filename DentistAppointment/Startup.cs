@@ -44,16 +44,27 @@ namespace DentistAppointment
             services.AddDefaultIdentity<DentistAppointment.Data.Models.User>()
                 .AddRoles<IdentityRole>()
                     .AddEntityFrameworkStores<DentistAppointmentDbContext>();
-
-            /*services.AddIdentity<DentistAppointment.Data.Models.User, IdentityRole>(options =>
+            services.Configure<IdentityOptions>(options =>
+            { 
+                //You can't Login for 10min after 5 fail logs
+                // Lockout settings
+                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(10);
+                options.Lockout.MaxFailedAccessAttempts = 5;
+                options.Lockout.AllowedForNewUsers = true;
+            });
+            services.ConfigureApplicationCookie(options =>
             {
-                options.Password.RequireDigit = false;
-                options.Password.RequireLowercase = false;
-                options.Password.RequireUppercase = false;
-                options.Password.RequiredLength = 6;
-            })
-            .AddEntityFrameworkStores<DentistAppointmentDbContext>()
-            .AddDefaultTokenProviders();*/
+                //Logout after being inactive for 10min
+                // Cookie settings
+                options.ExpireTimeSpan = TimeSpan.FromMinutes(10);
+                options.LoginPath = "/Identity/Account/Login";
+                options.SlidingExpiration = true;
+                
+            });
+            //Removing Home folder
+            services.AddMvc().AddRazorPagesOptions(options => {
+                options.Conventions.AddAreaPageRoute("Identity", "/Account/Login", "");
+            }).SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             // Application services are registered into the DI container here
             services.AddScoped<DentistAppointmentDbContext>();
@@ -68,6 +79,10 @@ namespace DentistAppointment
             services.AddMvc().AddRazorPagesOptions(options => {
                 options.Conventions.AddAreaPageRoute("Identity", "/Account/Login", "/Account/Login");
             }).SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
+            services.AddDistributedMemoryCache();
+            services.AddSession();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -83,18 +98,20 @@ namespace DentistAppointment
                 app.UseExceptionHandler("/Home/Error");
                 app.UseHsts();
             }
-
+            
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
 
             app.UseAuthentication();
 
+            app.UseSession();
+
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=index}/{id?}");
+                    template: "{controller=Login}/{action=Login}/{id?}");
             });
         }
     }

@@ -13,19 +13,22 @@ namespace DentistAppointment.Services
     public class ReservationsService : IReservationsService
     {
         private readonly IRepository<Reservation, int> reservationsRepo;
+        private readonly IRepository<Review, int> reviewsRepo;
         private readonly IRepository<Dentist, int> dentistRepo;
         private readonly IRepository<User, string> usersRepo;
 
         public ReservationsService(
             IRepository<Reservation, int> reservationsRepo,
+            IRepository<Review, int> reviewsRepo,
             IRepository<Dentist, int> dentistRepo,
             IRepository<User, string> usersRepo)
         {
             this.reservationsRepo = reservationsRepo;
+            this.reviewsRepo = reviewsRepo;
             this.dentistRepo = dentistRepo;
             this.usersRepo = usersRepo;
         }
-        
+
         public List<DentistWorkHourDTO> GetDentistWorkHoursForDay(int dentistId, DateTime date)
         {
             Dentist dentist = dentistRepo.GetById(dentistId);
@@ -108,8 +111,32 @@ namespace DentistAppointment.Services
             var reservation = this.reservationsRepo.GetById(reservationId);
             reservation.User = usersRepo.GetById(reservation.UserId);
             reservation.Dentist = dentistRepo.GetById(reservation.DentistId);
-
+            reservation.Dentist.User = usersRepo.GetAll().First(u => u.DentistId == reservation.DentistId);
             return reservation;
+        }
+
+        public IEnumerable<Reservation> GetAllReservationsOfUser(string userId)
+        {
+            var reservations = this.reservationsRepo.GetAll()
+                .Where(r => r.UserId == userId).ToList();
+            foreach (var reservation in reservations)
+            {
+                reservation.Dentist = dentistRepo.GetById(reservation.DentistId);
+                reservation.Dentist.User = usersRepo.GetAll().First(u => u.DentistId == reservation.DentistId);
+            }
+
+            return reservations;
+        }
+
+        public IEnumerable<Reservation> GetAllPastReservationsOfUser(string userId)
+        {
+            return GetAllReservationsOfUser(userId).Where(r => r.Date < DateTime.Now);
+        }
+
+        public IEnumerable<Reservation> GetAllReservationWaitingForReview(string userId)
+        {
+            var reviews = reviewsRepo.GetAll();
+            return GetAllPastReservationsOfUser(userId).Where(res => reviews.Where(rev => rev.ReservationId == res.Id).Count() == 0);
         }
 
         public Reservation editReservationManimulation(int reservationId, DentistDocumentManipulationViewModel model)
@@ -120,6 +147,12 @@ namespace DentistAppointment.Services
             reservation.Dentist = dentistRepo.GetById(reservation.DentistId);
             reservation.Manipulation = model.Reservation.Manipulation;
             return reservation;
+        }
+
+        public void CancelReservation(int reservationId)
+        {
+            reservationsRepo.Delete(reservationsRepo.GetById(reservationId));
+            reservationsRepo.Save();
         }
     }
 }

@@ -7,7 +7,7 @@
     <tr>
         <td>@workHour.Start.ToString(@"hh\:mm") - @workHour.End.ToString(@"hh\:mm")</td>
         <td>
-            @if (workHour.Available)
+            @if (Model.Date.Date >= Model.Now.Date && (workHour.Start > Model.Now.TimeOfDay || Model.Date.Date > Model.Now.Date) && workHour.Available)
             {
                 <form asp-action="patientBooking" method="post" style="margin-bottom:0">
                     <input asp-for="Date" value="@workHour.Date" type="hidden" />
@@ -28,7 +28,7 @@
                             </div>
                         </div>
                     </div>
-            </form>
+                </form>
             }
             else
             {
