@@ -6,13 +6,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Areas\Identity\Services\**" />
-    <Content Remove="Areas\Identity\Services\**" />
-    <EmbeddedResource Remove="Areas\Identity\Services\**" />
-    <None Remove="Areas\Identity\Services\**" />
+    <Content Remove="Views\Admin\adminUsersList.cshtml" />
+    <Content Remove="Views\Admin\registerDentist.cshtml" />
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="Views\Admin\adminUsersList.cshtml" />
+    <None Include="Views\Admin\registerDentist.cshtml" />
     <None Include="wwwroot\FrontEnd\css\animate.css" />
     <None Include="wwwroot\FrontEnd\css\bootstrap.css" />
     <None Include="wwwroot\FrontEnd\css\calendar.css" />
@@ -115,6 +115,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Update="Views\Dentist\dentistAppointmentsList.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Views\Home\Index.cshtml">
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <Pack>$(IncludeRazorContentInPack)</Pack>

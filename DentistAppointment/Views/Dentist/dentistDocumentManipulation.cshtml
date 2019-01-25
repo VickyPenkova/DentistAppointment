@@ -1,237 +1,262 @@
-﻿<!DOCTYPE html>
+﻿@model DentistAppointment.Models.DentistViewModels.DentistDocumentManipulationViewModel
+
+<!DOCTYPE html>
 <html dir="ltr" lang="en-US">
-    <head>
+<head>
 
-        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-        <meta name="author" content="" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="author" content="" />
 
-        <!-- Stylesheets
-============================================= -->
-        <link href="https://fonts.googleapis.com/css?family=Lato:300,400,400i,700|Raleway:300,400,500,600,700|Crete+Round:400i" rel="stylesheet" type="text/css" />
-        <link rel="stylesheet" href="/FrontEnd/css/bootstrap.css" type="text/css" />
-        <link rel="stylesheet" href="/FrontEnd/dentistStyle.css" type="text/css" />
-        <link rel="stylesheet" href="/FrontEnd/css/font-icons.css" type="text/css" />
-        <link rel="stylesheet" href="/FrontEnd/css/animate.css" type="text/css" />
-        <!-- Star Rating CSS -->
-        <link rel="stylesheet" href="/FrontEnd/css/components/bs-rating.css" type="text/css" />
-
-
-        <link rel="stylesheet" href="/FrontEnd/css/responsive.css" type="text/css" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-        <!-- Document Title
-============================================= -->
-        <title>Document Manipulation</title>
-
-        <!-- Favicon
-============================================= -->
-
-        <link rel="apple-touch-icon" sizes="57x57" href="/FrontEnd/images/favicon/apple-icon-57x57.png">
-        <link rel="apple-touch-icon" sizes="60x60" href="/FrontEnd/images/favicon/apple-icon-60x60.png">
-        <link rel="apple-touch-icon" sizes="72x72" href="/FrontEnd/images/favicon/apple-icon-72x72.png">
-        <link rel="apple-touch-icon" sizes="76x76" href="/FrontEnd/images/favicon/apple-icon-76x76.png">
-        <link rel="apple-touch-icon" sizes="114x114" href="/FrontEnd/images/favicon/apple-icon-114x114.png">
-        <link rel="apple-touch-icon" sizes="120x120" href="/FrontEnd/images/favicon/apple-icon-120x120.png">
-        <link rel="apple-touch-icon" sizes="144x144" href="/FrontEnd/images/favicon/apple-icon-144x144.png">
-        <link rel="apple-touch-icon" sizes="152x152" href="/FrontEnd/images/favicon/apple-icon-152x152.png">
-        <link rel="apple-touch-icon" sizes="180x180" href="/FrontEnd/images/favicon/apple-icon-180x180.png">
-        <link rel="icon" type="image/png" sizes="192x192"  href="/FrontEnd/images/favicon/android-icon-192x192.png">
-        <link rel="icon" type="image/png" sizes="32x32" href="/FrontEnd/images/favicon/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="96x96" href="/FrontEnd/images/favicon/favicon-96x96.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/FrontEnd/images/favicon/favicon-16x16.png">
-        <meta name="msapplication-TileColor" content="#ffffff">
-        <meta name="msapplication-TileImage" content="/FrontEnd/images/favicon/ms-icon-144x144.png">
-        <meta name="theme-color" content="#ffffff">
-    </head>
-
-    <body class="stretched sticky-responsive-menu">
-
-        <!-- Document Wrapper
-============================================= -->
-        <div id="wrapper" class="clearfix light-background">
-
-            <!-- Header
-============================================= -->
-            <header id="header">
-
-                <div id="header-wrap">
-
-                    <div class="container clearfix">
-
-                        <div id="primary-menu-trigger"><i class="icon-reorder"></i></div>
-
-                        <!-- Logo
+    <!-- Stylesheets
     ============================================= -->
-                        <div id="logo">
-                            <a href="/Dentist/dentistHomePage" class="standard-logo" data-dark-logo="/FrontEnd/images/icons/molar-inside-a-shield-orange.png"><img src="/FrontEnd/images/icons/molar-inside-a-shield-orange.png" alt="Denstist Logo"></a>
-                            <a href="/Dentist/dentistHomePage" class="retina-logo" data-dark-logo="/FrontEnd/images/icons/molar-inside-a-shield-orange.png"><img src="/FrontEnd/images/icons/molar-inside-a-shield-orange.png" alt="Denstist Logo"></a>
-                        </div>
-                        <!-- #logo end -->
-                        <!-- Primary Navigation
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,400i,700|Raleway:300,400,500,600,700|Crete+Round:400i" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="/FrontEnd/css/bootstrap.css" type="text/css" />
+    <link rel="stylesheet" href="/FrontEnd/dentistStyle.css" type="text/css" />
+    <link rel="stylesheet" href="/FrontEnd/css/font-icons.css" type="text/css" />
+    <link rel="stylesheet" href="/FrontEnd/css/animate.css" type="text/css" />
+    <!-- Star Rating CSS -->
+    <link rel="stylesheet" href="/FrontEnd/css/components/bs-rating.css" type="text/css" />
+
+
+    <link rel="stylesheet" href="/FrontEnd/css/responsive.css" type="text/css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Document Title
     ============================================= -->
-                        <nav id="primary-menu">
+    <title>Document Manipulation</title>
 
-                            <ul>
-                                <li class="current">
-                                    <a href="/Dentist/dentistHomePage"><div>My Profile</div></a>
-                                </li>
-                                <li class="current">
-                                    <a href="/Dentist/dentistFindAPatient"><div>Find a Patient</div></a>
-                                </li>
-                                <li class="current"><a href="/Dentist/dentistEvents">Events</a></li>
-                                <li class="accent-background">
-                                    <a href="/Dentist/dentistAppointments"><div>My Appointments</div></a>
-                                </li>
-                                <li class="current">
-                                    <a href="/Dentist/dentistMedicalManipulations"><div>Medical Manipulations History</div></a>
-                                </li>
-                                <li class="current">
-                                    <a asp-area="Identity" asp-page="/Account/Logout"><div><i class="icon-line2-logout"></i>Log Out</div></a>
-                                </li>
-                            </ul>
+    <!-- Favicon
+    ============================================= -->
 
-                        </nav><!-- #primary-menu end -->
+    <link rel="apple-touch-icon" sizes="57x57" href="/FrontEnd/images/favicon/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/FrontEnd/images/favicon/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/FrontEnd/images/favicon/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/FrontEnd/images/favicon/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/FrontEnd/images/favicon/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/FrontEnd/images/favicon/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/FrontEnd/images/favicon/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/FrontEnd/images/favicon/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/FrontEnd/images/favicon/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/FrontEnd/images/favicon/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/FrontEnd/images/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/FrontEnd/images/favicon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/FrontEnd/images/favicon/favicon-16x16.png">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/FrontEnd/images/favicon/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
 
-                    </div>
+<body class="stretched sticky-responsive-menu">
 
-                </div>
+    <!-- Document Wrapper
+    ============================================= -->
+    <div id="wrapper" class="clearfix light-background">
 
-            </header><!-- #header end -->
+        <!-- Header
+        ============================================= -->
+        <header id="header">
 
-        </div><!-- #wrapper end -->
-
-        <!-- Content
-============================================= -->
-        <section id="content">
-
-            <div class="content-wrap">
+            <div id="header-wrap">
 
                 <div class="container clearfix">
 
-                    <div id="actualContent">
-                        <div class="row">
-                            <div class="col-12 bottommargin">
-                                <div class="row team team-list clearfix">
-                                    <div class="team-image col-sm-12 col-md-6 col-lg-6">
-                                        <img class="rounded-circle center-image-user" style="width: 150px;" src="/FrontEnd/images/icons/male-user.png" alt="Male User">
-                                    </div>
-                                    <div class="team-desc col-sm-12 col-md-6 col-lg-6">
-                                        <div class="user-names">
-                                            <h4 class="pr-2" id="firstName">FirstNamePatient</h4>
-                                            <h4 id="lastName">LastNamePatient</h4>
-                                            <span id="gender">Male</span>
-                                        </div>
-                                        <div class="mt-4">
+                    <div id="primary-menu-trigger"><i class="icon-reorder"></i></div>
 
-                                            <h4>Date of Manipulation: <span id="manipualtionDate">Date.Date.Date</span></h4>
-                                        </div>
+                    <!-- Logo
+                    ============================================= -->
+                    <div id="logo">
+                        <a href="/Dentist/dentistHomePage" class="standard-logo" data-dark-logo="/FrontEnd/images/icons/molar-inside-a-shield-orange.png"><img src="/FrontEnd/images/icons/molar-inside-a-shield-orange.png" alt="Denstist Logo"></a>
+                        <a href="/Dentist/dentistHomePage" class="retina-logo" data-dark-logo="/FrontEnd/images/icons/molar-inside-a-shield-orange.png"><img src="/FrontEnd/images/icons/molar-inside-a-shield-orange.png" alt="Denstist Logo"></a>
+                    </div>
+                    <!-- #logo end -->
+                    <!-- Primary Navigation
+                    ============================================= -->
+                    <nav id="primary-menu">
 
-                                        <div class="topmargin-sm nobottommargin"></div>
+                        <ul>
+                            <li class="current">
+                                <a href="/Dentist/dentistHomePage"><div>My Profile</div></a>
+                            </li>
+                            <li class="current">
+                                <a href="/Dentist/dentistFindAPatient"><div>Find a Patient</div></a>
+                            </li>
+                            <li class="current"><a href="/Dentist/dentistEvents">Events</a></li>
+                            <li class="accent-background">
+                                <a href="/Dentist/dentistAppointments"><div>My Appointments</div></a>
+                            </li>
+                            <li class="current">
+                                <a href="/Dentist/dentistMedicalManipulations"><div>Medical Manipulations History</div></a>
+                            </li>
+                            <li class="current">
+                                <a asp-area="Identity" asp-page="/Account/Logout"><div><i class="icon-line2-logout"></i>Log Out</div></a>
+                            </li>
+                        </ul>
+
+                    </nav><!-- #primary-menu end -->
+
+                </div>
+
+            </div>
+
+        </header><!-- #header end -->
+
+    </div><!-- #wrapper end -->
+    <!-- Content
+    ============================================= -->
+    <section id="content">
+
+        <div class="content-wrap">
+
+            <div class="container clearfix">
+
+                <div id="actualContent">
+                    <div class="row">
+                        <div class="col-12 bottommargin">
+                            <div class="row team team-list clearfix">
+                                <div class="team-image col-sm-12 col-md-6 col-lg-6">
+                                    <img class="rounded-circle center-image-user" style="width: 150px;" src="/FrontEnd/images/icons/male-user.png" alt="Male User">
+                                </div>
+                                <div class="team-desc col-sm-12 col-md-6 col-lg-6">
+                                    <div class="user-names">
+                                        <h4 class="pr-2" id="firstName">@Model.Reservation.User.FirstName</h4>
+                                        <h4 id="lastName">@Model.Reservation.User.LastName</h4>
+                                        <span id="gender">@Model.Reservation.User.Gender</span>
                                     </div>
+                                    <div class="mt-4">
+
+                                        <h4>Date of Manipulation: <span id="manipualtionDate">@Model.Reservation.Date.ToShortDateString()</span></h4>
+                                    </div>
+
+                                    <div class="topmargin-sm nobottommargin"></div>
                                 </div>
                             </div>
                         </div>
-
-                        <div class="divider divider-center"><i class="icon-pencil"></i></div>
-                        <h4>Please provide information about the manipulation:</h4>
-                        <div class="bottommargin-sm">
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="5"></textarea>
-                        </div>
-
-                        <div class="divider divider-center"><i class="icon-pencil"></i></div>
-                        <h4>Please rate the patient:</h4>
-                        <form action="#" method="post" class="nobottommargin">
-                            <div class="bottommargin-sm">
-                                <label for="">Please select how satisfied you were with the punctuality of your patient</label>
-                                <select id="punctuality" class="select-1 form-control" style="width:100%;">
-                                    <option value= "1">Very dissatisfied</option>
-                                    <option value= "2">Dissatisfied</option>
-                                    <option value= "3">Okay</option>
-                                    <option value= "4">Satisfied</option>
-                                    <option value= "5">Very Satisfied</option>
-                                </select>
-                            </div>
-                            <div class="bottommargin-sm">
-                                <label for="">Please select how satisfied you were with the behaviour of the patient during the examination process</label>
-                                <select id="examination" class="select-1 form-control" style="width:100%;">
-                                    <option value= "1">Very dissatisfied</option>
-                                    <option value= "2">Dissatisfied</option>
-                                    <option value= "3">Okay</option>
-                                    <option value= "4">Satisfied</option>
-                                    <option value= "5">Very Satisfied</option>
-                                </select>
-                            </div>
-                            <div class="bottommargin-sm">
-                                <label for="">Additional Comment</label>
-                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                            </div>
-                        </form>
-                        <h4>Final grade: <span id="finalGrade"></span></h4>
-                        <a href="#" id="submit" class="button button-3d button-rounded accent-background">
-                            <i class="icon-ok"></i>Submit</a>
                     </div>
 
+                    <div class="divider divider-center"><i class="icon-pencil"></i></div>
+                    <h4>Please provide information about the manipulation:</h4>
+                    <div class="bottommargin-sm">
+                        <input asp-for="@Model.Reservation.Manipulation" class="form-control" id="exampleFormControlTextarea1" rows="5" />
+                        <span asp-validation-for="@Model.Reservation.Manipulation" class="text-danger"></span>
+                    </div>
 
-                    <div id="sucessMessage" >
+                    <div class="divider divider-center"><i class="icon-pencil"></i></div>
+                    <h4>Please rate the patient:</h4>
+                    <form asp-route-returnUrl="@ViewData["ReturnUrl"]" method="post" class="nobottommargin">
+                        <div class="bottommargin-sm">
+                            <label for="">Please select how satisfied you were with the punctuality of your patient</label>
+                            @Html.DropDownListFor(model => model.Punctuality, Model.punctualityList, new
+                       {
+                           @class = "select-1 form-control",
+                           @id = "punctuality",
+                           style = "width:100%; "
+                       })
+                            @*<select id="punctuality" class="select-1 form-control" style="width:100%;">
+                <option value="1">Very dissatisfied</option>
+                <option value="2">Dissatisfied</option>
+                <option value="3">Okay</option>
+                <option value="4">Satisfied</option>
+                <option value="5">Very Satisfied</option>
+            </select>*@
+                        </div>
+                        <div class="bottommargin-sm">
+                            <label for="">Please select how satisfied you were with the behaviour of the patient during the examination process</label>
+                            @Html.DropDownListFor(model => model.Examination, Model.examinationList, new
+                       {
+                           @class = "select-1 form-control",
+                           @id = "examination",
+                           style = "width:100%; "
+                       })
+                            @*<select id="examination" class="select-1 form-control" style="width:100%;">
+                <option value="1">Very dissatisfied</option>
+                <option value="2">Dissatisfied</option>
+                <option value="3">Okay</option>
+                <option value="4">Satisfied</option>
+                <option value="5">Very Satisfied</option>
+            </select>*@
+                        </div>
+                        <div class="bottommargin-sm">
+                            <label for="">Additional Comment</label>
+                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="5"></textarea>                    
+                        </div>
+                        <input asp-for="@Model.Rating" type="hidden" id="finalGradeInput" class="form-control" rows="3" />
+                        <h4>
+                            Final grade:
+                            <span id="finalGrade">
+                            </span>
+                            @*<input asp-for="@Model.Rating" id="finalGrade" disabled/>*@
+                        </h4>
+                        <button type="submit" id="submit" class="button button-3d button-rounded accent-background">
+                            <i class="icon-ok">Submit</i>
+                        </button>
+                    </form>
+                    
+                </div>
 
-                        <h3 class="alert alert-success">Your report has been submittet succesfully!</h3>
+                 @if (ViewData.ModelState.IsValid)
+                {
+                    <div id="sucessMessage">
+                        <h3 class="" alert alert-success"">Your report has been submittet succesfully!</h3>
 
                         <a href="/Dentist/dentistMedicalManipulations" class="button button-3d button-rounded accent-background">
-                            <i class="icon-line-rewind"></i>Back to your medical manipulations page</a>
+                            <i class="icon-line-rewind"></i>Back to your medical manipulations page
+                        </a>
                     </div>
-                </div>
+                }
+                
             </div>
-        </section>
+        </div>
+    </section>
 
 
-        <!-- Go To Top
-============================================= -->
-        <div id="gotoTop" class="icon-angle-up"></div>
+    <!-- Go To Top
+    ============================================= -->
+    <div id="gotoTop" class="icon-angle-up"></div>
 
-        <!-- External JavaScripts
-============================================= -->
-        <script src="/FrontEnd/js/jquery.js"></script>
-        <script src="/FrontEnd/js/plugins.js"></script>
+    <!-- External JavaScripts
+    ============================================= -->
+    <script src="/FrontEnd/js/jquery.js"></script>
+    <script src="/FrontEnd/js/plugins.js"></script>
 
-        <!-- Footer Scripts
-============================================= -->
-        <script src="/FrontEnd/js/functions.js"></script>
+    <!-- Footer Scripts
+    ============================================= -->
+    <script src="/FrontEnd/js/functions.js"></script>
 
-        <!-- Star Rating Plugin -->
-        <script src="/FrontEnd/js/components/star-rating.js"></script>
-        <script>
-            $(document).ready(function() {
-                var totalGrade=0;
-                var prevPunc=0;
-                var prevExam=0;
+    <!-- Star Rating Plugin -->
+    <script src="/FrontEnd/js/components/star-rating.js"></script>
+    <script>
+        $(document).ready(function () {
+            var totalGrade = 0;
+            var prevPunc = 0;
+            var prevExam = 0;
 
-                $('#punctuality').on('change', function() {
-                    var value = parseInt($(this).val(),10);
-                    totalGrade-=prevPunc;
-                    totalGrade+=value;
-                    prevPunc=value;
-                    console.log(totalGrade);
-                    $('#finalGrade').text("");
-                    $('#finalGrade').text(totalGrade);
-
-                });
-
-                $('#examination').on('change', function() {
-                    var value = parseInt($(this).val());
-                    totalGrade-=prevExam;
-                    totalGrade+=value;
-                    prevExam=value;
-                    $('#finalGrade').text("");
-                    $('#finalGrade').text(totalGrade);
-                });
-
-                $( "#submit" ).click(function() {
-                    $( "#actualContent" ).hide();
-                    $( "#sucessMessage" ).show();
-
-                });
-
+            $('#punctuality').on('change', function () {
+                var value = parseInt($(this).val(), 10);
+                totalGrade -= prevPunc;
+                totalGrade += value;
+                prevPunc = value;
+                console.log(totalGrade);
+                $('#finalGrade').text("");
+                $('#finalGrade').text(totalGrade);
+                $('#finalGradeInput').val(totalGrade);
             });
-        </script>
-    </body>
+
+            $('#examination').on('change', function () {
+                var value = parseInt($(this).val());
+                totalGrade -= prevExam;
+                totalGrade += value;
+                prevExam = value;
+                $('#finalGrade').text("");
+                $('#finalGrade').text(totalGrade);
+                $('#finalGradeInput').val(totalGrade);
+            });
+
+            $("#submit").click(function () {
+                $("#actualContent").hide();
+                $("#sucessMessage").show();
+            });
+
+        });
+    </script>
+</body>
 </html>

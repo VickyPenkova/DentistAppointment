@@ -6,6 +6,7 @@ using DentistAppointment.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using DentistAppointment.Models.DentistViewModels;
 
 namespace DentistAppointment.Services
 {
@@ -34,7 +35,9 @@ namespace DentistAppointment.Services
             List<DayOfWeek> workDays = GetDentistWorkDays(dentist);
 
             List<DentistWorkHourDTO> workHours = new List<DentistWorkHourDTO>();
-            
+            List<Reservation> reservations;
+            User patient = null;
+
             if (workDays.Contains(date.DayOfWeek))
             {
                 DateTime currDateTime;
@@ -42,9 +45,13 @@ namespace DentistAppointment.Services
                 for (TimeSpan start = dentist.WorkTimeStart; start < dentist.WorkTimeEnd; start += GlobalConstants.DentistAppointmentLength)
                 {
                     currDateTime = new DateTime(date.Year, date.Month, date.Day, start.Hours, start.Minutes, start.Seconds);
+                    reservations = reservationsRepo.GetAll().Where(r => r.Date == currDateTime && r.DentistId == dentistId).ToList();
                     // If reservations count for current datetime is 0, hour is available
-                    available = reservationsRepo.GetAll().Where(r => r.Date == currDateTime && r.DentistId == dentistId).Count() == 0;
-                    workHours.Add(new DentistWorkHourDTO(start, start + GlobalConstants.DentistAppointmentLength, date, available));
+                    available = reservations.Count() == 0;
+                    // If hour is reserved get the patient
+                    if (!available)
+                        patient = reservations[0].User;
+                    workHours.Add(new DentistWorkHourDTO(start, start + GlobalConstants.DentistAppointmentLength, date, available, patient));
                 }
             }
             return workHours;
@@ -53,7 +60,7 @@ namespace DentistAppointment.Services
         private List<DayOfWeek> GetDentistWorkDays(Dentist dentist)
         {
             List<DayOfWeek> workDays = new List<DayOfWeek>();
-            
+
             string bitmask = new string(Convert.ToString(dentist.WorkDays, 2).Reverse().ToArray());
             for (int i = 0, s = bitmask.Length; i < s; i++)
             {
@@ -86,12 +93,6 @@ namespace DentistAppointment.Services
             reservationsRepo.Save();
         }
 
-        public void CancelReservation(int reservationId)
-        {
-            reservationsRepo.Delete(reservationsRepo.GetById(reservationId));
-            reservationsRepo.Save();
-        }
-
         // For Madical Manipulations, Viki
         public IEnumerable<Reservation> GetAllReservationsOfDentist(int dentistId)
         {
@@ -104,19 +105,6 @@ namespace DentistAppointment.Services
 
             return reservations;
         }
-        public IEnumerable<Reservation> GetAllReservationsOfUser(string userId)
-        {
-            var reservations = this.reservationsRepo.GetAll()
-                .Where(r => r.UserId == userId).ToList();
-            foreach (var reservation in reservations)
-            {
-                reservation.Dentist = dentistRepo.GetById(reservation.DentistId);
-                reservation.Dentist.User = usersRepo.GetAll().First(u => u.DentistId == reservation.DentistId);
-            }
-
-            return reservations;
-        }
-
 
         public Reservation GetReservationById(int reservationId)
         {
@@ -138,5 +126,14 @@ namespace DentistAppointment.Services
             return GetAllPastReservationsOfUser(userId).Where(res => reviews.Where(rev => rev.ReservationId == res.Id).Count() == 0);
         }
 
+        public Reservation editReservationManimulation(int reservationId, DentistDocumentManipulationViewModel model)
+        {
+            var reservation = this.reservationsRepo.GetById(reservationId);
+            reservation.User = usersRepo.GetById(reservation.UserId);
+            reservation.User.Rating = model.Rating;
+            reservation.Dentist = dentistRepo.GetById(reservation.DentistId);
+            reservation.Manipulation = model.Reservation.Manipulation;
+            return reservation;
+        }
     }
 }

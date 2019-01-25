@@ -1,0 +1,190 @@
+﻿@model DentistAppointment.Models.AdminViewModels.AddDentistViewModel
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+<head>
+
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="author" content="DinBot Solutions" />
+
+    <!-- Stylesheets
+    ============================================= -->
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,400i,700|Raleway:300,400,500,600,700|Crete+Round:400i" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="/FrontEnd/css/bootstrap.css" type="text/css" />
+    <link rel="stylesheet" href="/FrontEnd/adminStyle.css" type="text/css" />
+    <link rel="stylesheet" href="/FrontEnd/css/font-icons.css" type="text/css" />
+    <link rel="stylesheet" href="/FrontEnd/css/animate.css" type="text/css" />
+
+    <link rel="stylesheet" href="/FrontEnd/css/responsive.css" type="text/css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Document Title
+    ============================================= -->
+    <title>Admin</title>
+
+    <!-- Favicon
+    ============================================= -->
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/FrontEnd/images/favicon/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/FrontEnd/images/favicon/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/FrontEnd/images/favicon/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/FrontEnd/images/favicon/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/FrontEnd/images/favicon/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/FrontEnd/images/favicon/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/FrontEnd/images/favicon/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/FrontEnd/images/favicon/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/FrontEnd/images/favicon/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/FrontEnd/images/favicon/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/FrontEnd/images/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/FrontEnd/images/favicon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/FrontEnd/images/favicon/favicon-16x16.png">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/FrontEnd/images/favicon/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
+
+<body class="stretched sticky-responsive-menu">
+
+    <!-- Document Wrapper
+    ============================================= -->
+    <div id="wrapper" class="clearfix light-background">
+
+        <!-- Header
+        ============================================= -->
+        <header id="header">
+
+            <div id="header-wrap">
+
+                <div class="container clearfix">
+
+                    <div id="primary-menu-trigger"><i class="icon-reorder"></i></div>
+
+                    <!-- Logo
+                    ============================================= -->
+                    <div id="logo">
+                        <a href="/Admin/adminUsersList" class="standard-logo" data-dark-logo="/FrontEnd/images/icons/admin.png"><img src="/FrontEnd/images/icons/admin.png" alt="Admin Logo"></a>
+                        <a href="/Admin/adminUsersList" class="retina-logo" data-dark-logo="/FrontEnd/images/icons/admin.png"><img src="/FrontEnd/images/icons/admin.png" alt="Admin Logo"></a>
+                    </div>
+                    <!-- #logo end -->
+                    <!-- Primary Navigation
+                    ============================================= -->
+                    <nav id="primary-menu">
+
+                        <ul>
+                            <li class="current">
+                                <a href="/Admin/adminUsersList"><div>Users List</div></a>
+                            </li>
+                            <li class="accent-background">
+                                <a href="/Admin/registerDentist"><div>Register A Dentist</div></a>
+                            </li>
+                            <li class="current">
+                                <a asp-area="Identity" asp-page="/Account/Logout"><div><i class="icon-line2-logout"></i>Log Out</div></a>
+                            </li>
+                        </ul>
+
+                    </nav><!-- #primary-menu end -->
+
+                </div>
+
+            </div>
+
+        </header><!-- #header end -->
+
+    </div><!-- #wrapper end -->
+    <!-- Content
+    ============================================= -->
+    <section id="content">
+
+        <div class="content-wrap">
+
+            <div class="container clearfix">
+
+                @if (ViewData.ModelState.IsValid)
+                {
+                    <h2 class="text-success">@ViewData["Message"]</h2>
+                    <button class="btn button-light" onclick="cleanFormFields()">Clean fields</button>
+
+                }
+                <h1>Register a dentist</h1>
+                <form asp-route-returnUrl="@ViewData["ReturnUrl"]" method="post" name="register_dentist_submission_form">
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="inputEmail4">Username</label>
+                            <input asp-for="@Model.EmailAndUserName" class="form-control" />
+                            <span asp-validation-for="@Model.EmailAndUserName" class="text-danger" id="username" placeholder="Username"></span>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="password">Password</label>
+                            <input asp-for="@Model.Password" class="form-control" />
+                            <span asp-validation-for="@Model.Password" class="text-danger" id="inputPassword4" placeholder="Password"></span>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="firstName">First name</label>
+                            <input asp-for="@Model.FirstName" class="form-control" />
+                            <span asp-validation-for="@Model.FirstName" class="text-danger" placeholder="First Name"></span>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="lastName">Last name</label>
+                            <input asp-for="@Model.LastName" class="form-control" />
+                            <span asp-validation-for="@Model.LastName" class="text-danger" placeholder="Last Name"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputAddress">Address</label>
+                        <input asp-for="@Model.Address" class="form-control" />
+                        <span asp-validation-for="@Model.Address" class="text-danger" id="inputAddress" placeholder="1234 Main St"></span>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="city">City</label>
+                            <input asp-for="@Model.City" class="form-control" />
+                            <span asp-validation-for="@Model.City" class="text-danger" id="city"></span>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="type">Specialist type</label>
+                            <input asp-for="@Model.Type" class="form-control" />
+                            <span asp-validation-for="@Model.Type" class="text-danger" id="type"></span>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="inputState">Telephone</label>
+                            <input asp-for="@Model.PhoneNumber" class="form-control" />
+                            <span asp-validation-for="@Model.PhoneNumber" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn button-green">Register</button>
+                </form>
+            </div>
+        </div>
+    </section><!-- #content end -->
+    <!-- Go To Top
+    ============================================= -->
+    <div id="gotoTop" class="icon-angle-up"></div>
+
+    <!-- External JavaScripts
+    ============================================= -->
+    <script src="/FrontEnd/js/jquery.js"></script>
+    <script src="/FrontEnd/js/plugins.js"></script>
+
+    <!-- Footer Scripts
+    ============================================= -->
+    <script src="/FrontEnd/js/functions.js"></script>
+    @section Scripts {
+        @await Html.PartialAsync("_ValidationScriptsPartial")
+    }
+
+</body>
+</html>
+<script>
+    function cleanFormFields() {
+        // Get the first form with the name
+        // Usually the form name is not repeated
+        // but duplicate names are possible in HTML
+        // Therefore to work around the issue, enforce the correct index
+        var frm = document.getElementsByName('register_dentist_submission_form')[0];
+        frm.reset();  // Reset all form data
+        return false; // Prevent page refresh
+    }
+</script>
