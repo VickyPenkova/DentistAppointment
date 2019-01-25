@@ -275,9 +275,26 @@ namespace DentistAppointment.Controllers
 
         public IActionResult dentistAppointments()
         {
-            return View();
+            var allReservations = reservationsService.GetAllReservationsOfDentist(GetCurrentDentistId());
+
+            var model = new DentistAppointmentsViewModel()
+            {
+                IncomingReservations = allReservations.Where(r => r.Date >= DateTime.Now).ToList()
+            };
+            model.PastReservations = allReservations.Except(model.IncomingReservations).ToList();
+
+            return View(model);
         }
 
+        [HttpPost]
+        public IActionResult dentistCancelAppointment(DentistBookingViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                reservationsService.CancelReservation(model.CancelId);
+            }
+            return RedirectToAction("dentistEvents", "Dentist");
+        }
 
         public IActionResult dentistForgottenPass()
         {
@@ -301,7 +318,7 @@ namespace DentistAppointment.Controllers
 
         public IActionResult dentistEvents()
         {
-            var model = new PatientBookingModel()
+            var model = new DentistBookingViewModel()
             {
                 WorkHours = reservationsService.GetDentistWorkHoursForDay(GetCurrentDentistId(), DateTime.Now)
             };
@@ -311,7 +328,7 @@ namespace DentistAppointment.Controllers
         [HttpPost]
         public IActionResult dentistAppointmentsList(int year, int month, int day)
         {
-            var model = new PatientBookingModel();
+            var model = new DentistBookingViewModel();
 
             if (year > 0 && month > 0 && day > 0)
             {

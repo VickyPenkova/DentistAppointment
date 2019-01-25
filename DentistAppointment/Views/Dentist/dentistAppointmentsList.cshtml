@@ -1,7 +1,7 @@
 ﻿@*
     Partial view for showing appointments. Below calendar.
 *@
-@model DentistAppointment.Models.PatientViewModels.PatientBookingModel
+@model DentistAppointment.Models.DentistViewModels.DentistBookingViewModel
 @foreach (var workHour in Model.WorkHours)
 {
     <tr>
@@ -18,23 +18,25 @@
         @if (!workHour.Available)
         {
             <td>
-                <button class="btn accent-background light-text aviableBtn" data-toggle="modal" data-target=".bs-example-modal-sm"><i class="icon-line-circle-cross"></i><span> Cancel</span></button>
-
-                <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-sm">
-                        <div class="modal-body">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h4 class="modal-title" id="myModalLabel">You canceled this appointment!</h4>
-                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                </div>
-                                <div class="modal-body">
-                                    <p class="nobottommargin">The appointment you selected has been canceled!You can see all your upcomming appointments in the "My appointments section"!</p>
+                <form asp-action="dentistCancelAppointment" method="post">
+                    <input asp-for="CancelId" value="@workHour.ReservationId" type="hidden" />
+                    <button class="btn accent-background light-text aviableBtn disabled" data-toggle="modal" data-target=".bs-example-modal-sm"><i class="icon-line-circle-cross"></i><span> Cancel</span></button>
+                    <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-sm">
+                            <div class="modal-body">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4 class="modal-title" id="myModalLabel">You canceled this appointment!</h4>
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p class="nobottommargin">The appointment you selected has been canceled!You can see all your upcomming appointments in the "My appointments section"!</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </form>
             </td>
         }
         else

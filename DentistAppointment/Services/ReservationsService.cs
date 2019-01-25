@@ -37,6 +37,7 @@ namespace DentistAppointment.Services
             List<DentistWorkHourDTO> workHours = new List<DentistWorkHourDTO>();
             List<Reservation> reservations;
             User patient = null;
+            int reservationId = 0;
 
             if (workDays.Contains(date.DayOfWeek))
             {
@@ -50,8 +51,11 @@ namespace DentistAppointment.Services
                     available = reservations.Count() == 0;
                     // If hour is reserved get the patient
                     if (!available)
-                        patient = reservations[0].User;
-                    workHours.Add(new DentistWorkHourDTO(start, start + GlobalConstants.DentistAppointmentLength, date, available, patient));
+                    {
+                        patient = usersRepo.GetById(reservations[0].UserId);
+                        reservationId = reservations[0].Id;
+                    }
+                    workHours.Add(new DentistWorkHourDTO(start, start + GlobalConstants.DentistAppointmentLength, date, available, patient, reservationId));
                 }
             }
             return workHours;
