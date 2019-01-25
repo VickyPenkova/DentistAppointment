@@ -1,3 +1,4 @@
+﻿@model DentistAppointment.Models.DentistViewModels.DentistEventViewModel
 <!DOCTYPE html>
 <html dir="ltr" lang="en-US">
 <head>
@@ -85,25 +86,29 @@
                 <div class="container clearfix">
                     <div id="actualContent">
                         <label for="">Pick a date</label>
-                        <div class="form-group mb-3">
-                            <div class="input-group tleft" data-target-input="nearest" data-target=".datetimepicker">
-                                <input type="text" class="form-control datetimepicker-input datetimepicker" data-target=".datetimepicker" placeholder="MM/DD/YYYY 00:00 AM/PM" />
-                                <div class="input-group-append" data-target=".datetimepicker" data-toggle="datetimepicker">
-                                    <div class="input-group-text"><i class="icon-calendar"></i></div>
+                        <form action="" method="post">
+                            <div class="form-group mb-3">
+                                <div class="input-group tleft" data-target-input="nearest" data-target=".datetimepicker">
+                                    <input asp-for="@Model.Start" type="text" class="form-control datetimepicker-input datetimepicker" data-target=".datetimepicker" placeholder="MM/DD/YYYY 00:00 AM/PM" />
+                                    <div class="input-group-append" data-target=".datetimepicker" data-toggle="datetimepicker">
+                                        <div class="input-group-text"><i class="icon-calendar"></i></div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div>
-                            <label for="author">Name of event</label>
-                            <input type="text" name="author" id="author" value="" size="22" tabindex="1" class="sm-form-control">
-                            <label class="mt-3" for="comment">Short description</label>
-                            <textarea name="comment" cols="58" rows="7" tabindex="4" class="sm-form-control"></textarea>
-                        </div>
-                        <div class="center mt-5">
-                            <a href="#" id="submit" class="button button-3d button-rounded accent-background">
-                                <i class="icon-ok"></i>Save event
-                            </a>
-                        </div>
+                            <div>
+                                <!--
+                                <label for="author">Name of event</label>
+                                <input type="text" name="author" id="author" value="" size="22" tabindex="1" class="sm-form-control">
+                                -->
+                                <label class="mt-3" for="comment">Short description</label>
+                                <input asp-for="@Model.Description" type="text" cols="58" rows="3" tabindex="4" class="sm-form-control" />
+                            </div>
+                            <div class="center mt-5">
+                                <button type="submit" href="#" id="submit" class="button button-3d button-rounded accent-background">
+                                    <i class="icon-ok"></i>Save event
+                                </button>
+                            </div>
+                        </form>
                     </div>
                     <div id="sucessMessage">
                         <h3 class="alert alert-success">The event has been created succesfully!</h3>

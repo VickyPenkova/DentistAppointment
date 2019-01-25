@@ -129,78 +129,28 @@
                     <div class="divider divider-center"><i class="icon-circle-blank"></i></div>
                     <h3>Upcoming Events</h3>
                     <div id="posts" class="events small-thumbs">
-                        <div class="entry clearfix">
-                            <div class="entry-image">
-                                <img src="/FrontEnd/images/forgottenPassBackground.jpg" alt="Inventore voluptates velit totam ipsa tenetur">
-                                <div class="entry-date">10<span>Apr</span></div>
-                            </div>
-                            <div class="entry-c">
-                                <div class="entry-title">
-                                    <h2><a href="#">Event Title</a></h2>
+                        @foreach (var ev in Model.Events)
+                        {
+                            <div class="entry clearfix">
+                                <div class="entry-image">
+                                    <img src="/FrontEnd/images/forgottenPassBackground.jpg" alt="Inventore voluptates velit totam ipsa tenetur">
+                                    <div class="entry-date">@ev.StartDate.ToString(@"d-M-y")</div>
                                 </div>
-                                <ul class="entry-meta clearfix">
-                                    <li><a href="#"><i class="icon-time"></i> 11:00 - 19:00</a></li>
-                                    <li><a href="#"><i class="icon-map-marker2"></i> Melbourne, Australia</a></li>
-                                </ul>
-                                <div class="entry-content">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione, voluptatem, dolorem animi nisi autem blanditiis enim culpa reiciendis et explicabo tenetur voluptate rerum molestiae eaque possimus exercitationem eligendi fuga.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="entry clearfix">
-                            <div class="entry-image">
-                                <img src="/FrontEnd/images/forgottenPassBackground.jpg" alt="Inventore voluptates velit totam ipsa tenetur">
-                                <div class="entry-date">10<span>Apr</span></div>
-                            </div>
-                            <div class="entry-c">
-                                <div class="entry-title">
-                                    <h2><a href="#">Event Title</a></h2>
-                                </div>
-                                <ul class="entry-meta clearfix">
-                                    <li><a href="#"><i class="icon-time"></i> 11:00 - 19:00</a></li>
-                                    <li><a href="#"><i class="icon-map-marker2"></i> Melbourne, Australia</a></li>
-                                </ul>
-                                <div class="entry-content">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione, voluptatem, dolorem animi nisi autem blanditiis enim culpa reiciendis et explicabo tenetur voluptate rerum molestiae eaque possimus exercitationem eligendi fuga.</p>
+                                <div class="entry-c">
+                                    <div class="entry-title">
+                                        <h2><a href="#">@ev.Description</a></h2>
+                                    </div>
+                                    <ul class="entry-meta clearfix">
+                                        <li><a href="#"><i class="icon-time"></i>@ev.StartDate.ToString(@"hh\:mm") - @ev.EndDate.ToString(@"hh\:mm")</a></li>
+                                        <!--<li><a href="#"><i class="icon-map-marker2"></i> Melbourne, Australia</a></li>-->
+                                    </ul>
+                                    <div class="entry-content">
+                                        <p></p>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="entry clearfix">
-                            <div class="entry-image">
-                                <img src="/FrontEnd/images/forgottenPassBackground.jpg" alt="Inventore voluptates velit totam ipsa tenetur">
-                                <div class="entry-date">10<span>Apr</span></div>
-                            </div>
-                            <div class="entry-c">
-                                <div class="entry-title">
-                                    <h2><a href="#">Event Title</a></h2>
-                                </div>
-                                <ul class="entry-meta clearfix">
-                                    <li><a href="#"><i class="icon-time"></i> 11:00 - 19:00</a></li>
-                                    <li><a href="#"><i class="icon-map-marker2"></i> Melbourne, Australia</a></li>
-                                </ul>
-                                <div class="entry-content">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione, voluptatem, dolorem animi nisi autem blanditiis enim culpa reiciendis et explicabo tenetur voluptate rerum molestiae eaque possimus exercitationem eligendi fuga.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="entry clearfix">
-                            <div class="entry-image">
-                                <img src="/FrontEnd/images/forgottenPassBackground.jpg" alt="Inventore voluptates velit totam ipsa tenetur">
-                                <div class="entry-date">10<span>Apr</span></div>
-                            </div>
-                            <div class="entry-c">
-                                <div class="entry-title">
-                                    <h2><a href="#">Event Title</a></h2>
-                                </div>
-                                <ul class="entry-meta clearfix">
-                                    <li><a href="#"><i class="icon-time"></i> 11:00 - 19:00</a></li>
-                                    <li><a href="#"><i class="icon-map-marker2"></i> Melbourne, Australia</a></li>
-                                </ul>
-                                <div class="entry-content">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione, voluptatem, dolorem animi nisi autem blanditiis enim culpa reiciendis et explicabo tenetur voluptate rerum molestiae eaque possimus exercitationem eligendi fuga.</p>
-                                </div>
-                            </div>
-                        </div>
+                            <br /><br />
+                        }
                     </div>
                 </div>
             </div>

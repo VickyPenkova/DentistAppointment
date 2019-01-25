@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -25,6 +26,7 @@ namespace DentistAppointment.Controllers
         private readonly IDentistsService dentistsService;
         private readonly IReservationsService reservationsService;
         private readonly IReviewsService reviewsService;
+        private readonly IEventsService eventsService;
         private readonly UserManager<User> userManager;
         private readonly IMapper mapper;
 
@@ -33,6 +35,7 @@ namespace DentistAppointment.Controllers
             IDentistsService dentistsService,
             IReservationsService reservationsService,
             IReviewsService reviewsService,
+            IEventsService eventsService,
             IHttpContextAccessor httpContextAccessor,
             IMapper mapper,
             UserManager<User> userManager)
@@ -42,6 +45,7 @@ namespace DentistAppointment.Controllers
             this.httpaccessor = httpContextAccessor;
             this.reservationsService = reservationsService;
             this.reviewsService = reviewsService;
+            this.eventsService = eventsService;
             this.mapper = mapper;
             this.userManager = userManager;
         }
@@ -320,7 +324,8 @@ namespace DentistAppointment.Controllers
         {
             var model = new DentistBookingViewModel()
             {
-                WorkHours = reservationsService.GetDentistWorkHoursForDay(GetCurrentDentistId(), DateTime.Now)
+                WorkHours = reservationsService.GetDentistWorkHoursForDay(GetCurrentDentistId(), DateTime.Now),
+                Events = eventsService.GetDentistAllEvents(GetCurrentDentistId())
             };
             return View(model);
         }
@@ -340,6 +345,26 @@ namespace DentistAppointment.Controllers
         public IActionResult dentistAddEvent()
         {
             return View();
+        }
+
+        [HttpPost]
+        public IActionResult dentistAddEvent(DentistEventViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                Event ev = new Event()
+                {
+                    Description = model.Description,
+                    StartDate = DateTime.ParseExact(model.Start, "MM/dd/yyyy h:mm tt", CultureInfo.InvariantCulture),
+                    DentistId = GetCurrentDentistId()
+                };
+                // One day
+                ev.EndDate = new DateTime(ev.StartDate.Year, ev.StartDate.Month, ev.StartDate.Day,
+                                          23, 59, 59);
+               
+                eventsService.AddEvent(ev);
+            }
+            return RedirectToAction("dentistEvents", "Dentist");
         }
     }
 }
