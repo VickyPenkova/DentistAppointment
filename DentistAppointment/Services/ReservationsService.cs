@@ -28,7 +28,7 @@ namespace DentistAppointment.Services
             this.dentistRepo = dentistRepo;
             this.usersRepo = usersRepo;
         }
-        
+
         public List<DentistWorkHourDTO> GetDentistWorkHoursForDay(int dentistId, DateTime date)
         {
             Dentist dentist = dentistRepo.GetById(dentistId);
@@ -115,6 +115,19 @@ namespace DentistAppointment.Services
             return reservation;
         }
 
+        public IEnumerable<Reservation> GetAllReservationsOfUser(string userId)
+        {
+            var reservations = this.reservationsRepo.GetAll()
+                .Where(r => r.UserId == userId).ToList();
+            foreach (var reservation in reservations)
+            {
+                reservation.Dentist = dentistRepo.GetById(reservation.DentistId);
+                reservation.Dentist.User = usersRepo.GetAll().First(u => u.DentistId == reservation.DentistId);
+            }
+
+            return reservations;
+        }
+
         public IEnumerable<Reservation> GetAllPastReservationsOfUser(string userId)
         {
             return GetAllReservationsOfUser(userId).Where(r => r.Date < DateTime.Now);
@@ -134,6 +147,12 @@ namespace DentistAppointment.Services
             reservation.Dentist = dentistRepo.GetById(reservation.DentistId);
             reservation.Manipulation = model.Reservation.Manipulation;
             return reservation;
+        }
+
+        public void CancelReservation(int reservationId)
+        {
+            reservationsRepo.Delete(reservationsRepo.GetById(reservationId));
+            reservationsRepo.Save();
         }
     }
 }
