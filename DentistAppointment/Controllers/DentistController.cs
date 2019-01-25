@@ -325,7 +325,7 @@ namespace DentistAppointment.Controllers
             var model = new DentistBookingViewModel()
             {
                 WorkHours = reservationsService.GetDentistWorkHoursForDay(GetCurrentDentistId(), DateTime.Now),
-                Events = eventsService.GetDentistAllEvents(GetCurrentDentistId())
+                Events = eventsService.GetDentistAllEvents(GetCurrentDentistId()).Where(e => e.StartDate > DateTime.Now).ToList()
             };
             return View(model);
         }

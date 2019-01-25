@@ -1,4 +1,5 @@
-﻿using DentistAppointment.DTOs;
+﻿using DentistAppointment.Data.Models;
+using DentistAppointment.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,5 +13,6 @@ namespace DentistAppointment.Models.PatientViewModels
         public DateTime Start { get; set; }
         public DateTime Date { get; set; }
         public DateTime Now { get; set; }
+        public List<Event> Events { get; set; }
     }
 }

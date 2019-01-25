@@ -29,13 +29,15 @@ namespace DentistAppointment.Controllers
         private readonly IDentistsService dentistsService;
         private readonly IReviewsService reviewsService;
         private readonly IReservationsService reservationsService;
+        private readonly IEventsService eventsService;
         private readonly UserManager<User> userManager;
         private readonly IMapper mapper;
 
         public PatientController(
             IUsersService usersService,
             IDentistsService dentistsService,
-             IReviewsService reviewsService,
+            IReviewsService reviewsService,
+            IEventsService eventsService,
             IHttpContextAccessor httpContextAccessor,
             IReservationsService reservationsService,
             IMapper mapper,
@@ -45,6 +47,7 @@ namespace DentistAppointment.Controllers
             this.dentistsService = dentistsService;
             this.reviewsService = reviewsService;
             this.reservationsService = reservationsService;
+            this.eventsService = eventsService;
             this.httpaccessor = httpContextAccessor;
             this.mapper = mapper;
             this.userManager = userManager;
@@ -136,7 +139,8 @@ namespace DentistAppointment.Controllers
             {
                 Now = now,
                 Date = now,
-                WorkHours = reservationsService.GetDentistWorkHoursForDay(GetCurrentDentistId(), now)
+                WorkHours = reservationsService.GetDentistWorkHoursForDay(GetCurrentDentistId(), now),
+                Events = eventsService.GetDentistAllEvents(GetCurrentDentistId())
             };
             return View(model);
         }
