@@ -144,5 +144,15 @@
     <script src="~/FrontEnd/js/functions.js"></script>
     <script src="~/FrontEnd/js/events-data.js"></script>
     <script src="~/FrontEnd/js/jquery.calendario.js"></script>
+
+    <script>
+        @foreach (var ev in Model.Events)
+        {
+            <text>
+            canvasEvents['@ev.StartDate.ToString(@"MM-dd-yyyy")'] = '<a>@ev.Description</a>';
+            </text>
+        }
+
+    </script>
 </body>
 </html>

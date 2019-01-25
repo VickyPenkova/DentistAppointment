@@ -1,268 +1,182 @@
-﻿@model DentistAppointment.Models.PatientViewModels.PatientBookingModel
+﻿@model DentistAppointment.Models.DentistViewModels.DentistBookingViewModel
 <!DOCTYPE html>
 <html dir="ltr" lang="en-US">
-    <head>
-
-        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-        <meta name="CSCB024" content="Dentist check events page" />
-
-        <!-- Stylesheets
-============================================= -->
-        <link href="https://fonts.googleapis.com/css?family=Lato:300,400,400i,700|Raleway:300,400,500,600,700|Crete+Round:400i" rel="stylesheet" type="text/css" />
-        <link rel="stylesheet" href="~/FrontEnd/css/bootstrap.css" type="text/css" />
-        <link rel="stylesheet" href="~/FrontEnd/dentistStyle.css" type="text/css" />
-        <link rel="stylesheet" href="~/FrontEnd/css/font-icons.css" type="text/css" />
-        <link rel="stylesheet" href="~/FrontEnd/css/animate.css" type="text/css" />
-
-        <link rel="stylesheet" href="~/FrontEnd/css/calendarDentist.css" type="text/css" />
-
-        <link rel="stylesheet" href="~/FrontEnd/css/responsive.css" type="text/css" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-        <!-- Document Title
-============================================= -->
-        <title>Events</title>
-
-        <!-- Favicon
-============================================= -->
-
-        <link rel="apple-touch-icon" sizes="57x57" href="/FrontEnd/images/favicon/apple-icon-57x57.png">
-        <link rel="apple-touch-icon" sizes="60x60" href="/FrontEnd/images/favicon/apple-icon-60x60.png">
-        <link rel="apple-touch-icon" sizes="72x72" href="/FrontEnd/images/favicon/apple-icon-72x72.png">
-        <link rel="apple-touch-icon" sizes="76x76" href="/FrontEnd/images/favicon/apple-icon-76x76.png">
-        <link rel="apple-touch-icon" sizes="114x114" href="/FrontEnd/images/favicon/apple-icon-114x114.png">
-        <link rel="apple-touch-icon" sizes="120x120" href="/FrontEnd/images/favicon/apple-icon-120x120.png">
-        <link rel="apple-touch-icon" sizes="144x144" href="/FrontEnd/images/favicon/apple-icon-144x144.png">
-        <link rel="apple-touch-icon" sizes="152x152" href="/FrontEnd/images/favicon/apple-icon-152x152.png">
-        <link rel="apple-touch-icon" sizes="180x180" href="/FrontEnd/images/favicon/apple-icon-180x180.png">
-        <link rel="icon" type="image/png" sizes="192x192"  href="/FrontEnd/images/favicon/android-icon-192x192.png">
-        <link rel="icon" type="image/png" sizes="32x32" href="/FrontEnd/images/favicon/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="96x96" href="/FrontEnd/images/favicon/favicon-96x96.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/FrontEnd/images/favicon/favicon-16x16.png">
-        <meta name="msapplication-TileColor" content="#ffffff">
-        <meta name="msapplication-TileImage" content="/FrontEnd/images/favicon/ms-icon-144x144.png">
-        <meta name="theme-color" content="#ffffff">
-    </head>
-
-    <body class="stretched sticky-responsive-menu">
-
-        <!-- Document Wrapper
-============================================= -->
-        <div id="wrapper" class="clearfix light-background">
-
-            <!-- Header
-============================================= -->
-            <header id="header">
-
-                <div id="header-wrap">
-
-                    <div class="container clearfix">
-
-                        <div id="primary-menu-trigger"><i class="icon-reorder"></i></div>
-
-                        <!-- Logo
-============================================= -->
-                        <div id="logo">
-                            <a href="/Dentist/dentistHomePage" class="standard-logo" data-dark-logo="/FrontEnd/images/icons/molar-inside-a-shield-orange.png"><img src="/FrontEnd/images/icons/molar-inside-a-shield-orange.png" alt="Denstist Logo"></a>
-                            <a href="/Dentist/dentistHomePage"  class="retina-logo" data-dark-logo="/FrontEnd/images/icons/molar-inside-a-shield-orange.png"><img src="/FrontEnd/images/icons/molar-inside-a-shield-orange.png" alt="Denstist Logo"></a>
-                        </div>
-                        <!-- #logo end -->
-                        <!-- Primary Navigation
-============================================= -->
-                        <nav id="primary-menu">
-
-                            <ul>
-                                <li class="current">
-                                    <a href="/Dentist/dentistHomePage"><div>My Profile</div></a>
-                                </li>
-                                <li class="current">
-                                    <a href="/Dentist/dentistFindAPatient"><div>Find a Patient</div></a>
-                                </li>
-
-                                <li class="current"><a href="/Dentist/dentistEvents">Events</a></li>
-                                <li class="accent-background">
-                                    <a href="/Dentist/dentistAppointments"><div>My Appointments</div></a>
-                                </li>
-                                <li class="current">
-                                    <a href="/Dentist/dentistMedicalManipulations"><div>Medical Manipulations History</div></a>
-                                </li>
-                                <li class="current">
-                                    <a asp-area="Identity" asp-page="/Account/Logout"><div><i class="icon-line2-logout"></i>Log Out</div></a>
-                                </li>
-                            </ul>
-
-                        </nav><!-- #primary-menu end -->
-
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="author" content="" />
+    <!-- Stylesheets
+    ============================================= -->
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,400i,700|Raleway:300,400,500,600,700|Crete+Round:400i" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="~/FrontEnd/css/bootstrap.css" type="text/css" />
+    <link rel="stylesheet" href="~/FrontEnd/dentistStyle.css" type="text/css" />
+    <link rel="stylesheet" href="~/FrontEnd/css/font-icons.css" type="text/css" />
+    <link rel="stylesheet" href="~/FrontEnd/css/animate.css" type="text/css" />
+    <link rel="stylesheet" href="~/FrontEnd/css/calendarDentist.css" type="text/css" />
+    <link rel="stylesheet" href="~/FrontEnd/css/responsive.css" type="text/css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Document Title
+    ============================================= -->
+    <title>Events</title>
+    <!-- Favicon
+    ============================================= -->
+    <link rel="apple-touch-icon" sizes="57x57" href="/FrontEnd/images/favicon/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/FrontEnd/images/favicon/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/FrontEnd/images/favicon/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/FrontEnd/images/favicon/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/FrontEnd/images/favicon/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/FrontEnd/images/favicon/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/FrontEnd/images/favicon/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/FrontEnd/images/favicon/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/FrontEnd/images/favicon/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/FrontEnd/images/favicon/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/FrontEnd/images/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/FrontEnd/images/favicon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/FrontEnd/images/favicon/favicon-16x16.png">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/FrontEnd/images/favicon/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
+<body class="stretched sticky-responsive-menu">
+    <!-- Document Wrapper
+    ============================================= -->
+    <div id="wrapper" class="clearfix light-background">
+        <!-- Header
+        ============================================= -->
+        <header id="header">
+            <div id="header-wrap">
+                <div class="container clearfix">
+                    <div id="primary-menu-trigger"><i class="icon-reorder"></i></div>
+                    <!-- Logo
+                    ============================================= -->
+                    <div id="logo">
+                        <a href="/Dentist/dentistHomePage" class="standard-logo" data-dark-logo="/FrontEnd/images/icons/molar-inside-a-shield-orange.png"><img src="/FrontEnd/images/icons/molar-inside-a-shield-orange.png" alt="Denstist Logo"></a>
+                        <a href="/Dentist/dentistHomePage" class="retina-logo" data-dark-logo="/FrontEnd/images/icons/molar-inside-a-shield-orange.png"><img src="/FrontEnd/images/icons/molar-inside-a-shield-orange.png" alt="Denstist Logo"></a>
                     </div>
-
+                    <!-- #logo end -->
+                    <!-- Primary Navigation
+                    ============================================= -->
+                    <nav id="primary-menu">
+                        <ul>
+                            <li class="current">
+                                <a href="/Dentist/dentistHomePage"><div>My Profile</div></a>
+                            </li>
+                            <li class="current">
+                                <a href="/Dentist/dentistFindAPatient"><div>Find a Patient</div></a>
+                            </li>
+                            <li class="accent-background"><a href="/Dentist/dentistEvents">Events</a></li>
+                            <li class="current">
+                                <a href="/Dentist/dentistAppointments"><div>My Appointments</div></a>
+                            </li>
+                            <li class="current">
+                                <a href="/Dentist/dentistDocumentManipulation"><div>Medical Manipulations History</div></a>
+                            </li>
+                            <li class="current">
+                                <a asp-area="Identity" asp-page="/Account/Logout"><div><i class="icon-line2-logout"></i>Log Out</div></a>
+                            </li>
+                        </ul>
+                    </nav><!-- #primary-menu end -->
                 </div>
-
-            </header><!-- #header end -->
-
-            <!-- Content
-============================================= -->
-
-            <section id="content">
-
-                <div class="content-wrap">
-
-                    <div class="parallax header-stick bottommargin-lg" style="padding: 60px 0; background-image: url('/FrontEnd/images/dentistCalendar.jpg'); height: auto;" data-bottom-top="background-position:0px 0px;" data-top-bottom="background-position:0px -500px;">
-
-                        <div class="container clearfix">
-
-                            <div class="events-calendar">
-                                <div class="events-calendar-header clearfix">
-                                    <h2 class="light-text">Events Overview</h2>
-                                    <h3 class="calendar-month-year light-text">
-                                        <span id="calendar-month" class="calendar-month light-text"></span>
-                                        <span id="calendar-year" class="calendar-year light-text"></span>
-                                        <nav>
-                                            <span id="calendar-prev" class="calendar-prev"><i class="icon-chevron-left"></i></span>
-                                            <span id="calendar-next" class="calendar-next"><i class="icon-chevron-right"></i></span>
-                                            <span id="calendar-current" class="calendar-current" title="Got to current date"><i class="icon-reload"></i></span>
-                                        </nav>
-                                    </h3>
-                                </div>
-                                <div id="calendar" class="fc-calendar-container"></div>
-                            </div>
-
-
-                        </div>
-
-                    </div>
-
+            </div>
+        </header><!-- #header end -->
+        <!-- Content
+        ============================================= -->
+        <section id="content">
+            <div class="content-wrap">
+                <div class="parallax header-stick bottommargin-lg" style="padding: 60px 0; background-image: url('/FrontEnd/images/dentistCalendar.jpg'); height: auto;" data-bottom-top="background-position:0px 0px;" data-top-bottom="background-position:0px -500px;">
                     <div class="container clearfix">
-
-                        <div id="timeTable">
-                            <h5>Date: <span id="selectedDate">Text</span></h5>
-                            <h5>Time Table</h5>
-                            <table class="table table-hover">
-                                <thead>
-                                    <tr>
-                                        <th>Hours</th>
-                                        <th>Availability</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="appointmentsList">
-                                     @Html.Partial("dentistAppointmentsList")
-                                </tbody>
-                            </table>
-
+                        <div class="events-calendar">
+                            <div class="events-calendar-header clearfix">
+                                <h2 class="light-text">Events Overview</h2>
+                                <h3 class="calendar-month-year light-text">
+                                    <span id="calendar-month" class="calendar-month light-text"></span>
+                                    <span id="calendar-year" class="calendar-year light-text"></span>
+                                    <nav>
+                                        <span id="calendar-prev" class="calendar-prev"><i class="icon-chevron-left"></i></span>
+                                        <span id="calendar-next" class="calendar-next"><i class="icon-chevron-right"></i></span>
+                                        <span id="calendar-current" class="calendar-current" title="Got to current date"><i class="icon-reload"></i></span>
+                                    </nav>
+                                </h3>
+                            </div>
+                            <div id="calendar" class="fc-calendar-container"></div>
                         </div>
 
                     </div>
-                    <div class="container clearfix">
-                        <div class="divider divider-center"><i class="icon-circle-blank"></i></div>
-                        <div class="center">
-
-                            <a class="button button-3d button-black mt-4 mb-4 ml-0 accent-background" href="/Dentist/dentistAddEvent"><i class="icon-line-circle-plus"></i>Add Event</a>
-                        </div>
-
-
-                        <div class="divider divider-center"><i class="icon-circle-blank"></i></div>
-
-                        <h3>Upcoming Events</h3>
-
-                        <div id="posts" class="events small-thumbs">
-
-                            <div class="entry clearfix">
-                                <div class="entry-image">
-                                    <img src="/FrontEnd/images/forgottenPassBackground.jpg" alt="Inventore voluptates velit totam ipsa tenetur">
-                                    <div class="entry-date">10<span>Apr</span></div>
-                                </div>
-                                <div class="entry-c">
-                                    <div class="entry-title">
-                                        <h2><a href="#">Event Title</a></h2>
-                                    </div>
-                                    <ul class="entry-meta clearfix">
-                                        <li><a href="#"><i class="icon-time"></i> 11:00 - 19:00</a></li>
-                                        <li><a href="#"><i class="icon-map-marker2"></i> Melbourne, Australia</a></li>
-                                    </ul>
-                                    <div class="entry-content">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione, voluptatem, dolorem animi nisi autem blanditiis enim culpa reiciendis et explicabo tenetur voluptate rerum molestiae eaque possimus exercitationem eligendi fuga.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="entry clearfix">
-                                <div class="entry-image">
-                                    <img src="/FrontEnd/images/forgottenPassBackground.jpg" alt="Inventore voluptates velit totam ipsa tenetur">
-                                    <div class="entry-date">10<span>Apr</span></div>
-                                </div>
-                                <div class="entry-c">
-                                    <div class="entry-title">
-                                        <h2><a href="#">Event Title</a></h2>
-                                    </div>
-                                    <ul class="entry-meta clearfix">
-                                        <li><a href="#"><i class="icon-time"></i> 11:00 - 19:00</a></li>
-                                        <li><a href="#"><i class="icon-map-marker2"></i> Melbourne, Australia</a></li>
-                                    </ul>
-                                    <div class="entry-content">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione, voluptatem, dolorem animi nisi autem blanditiis enim culpa reiciendis et explicabo tenetur voluptate rerum molestiae eaque possimus exercitationem eligendi fuga.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="entry clearfix">
-                                <div class="entry-image">
-                                    <img src="/FrontEnd/images/forgottenPassBackground.jpg" alt="Inventore voluptates velit totam ipsa tenetur">
-                                    <div class="entry-date">10<span>Apr</span></div>
-                                </div>
-                                <div class="entry-c">
-                                    <div class="entry-title">
-                                        <h2><a href="#">Event Title</a></h2>
-                                    </div>
-                                    <ul class="entry-meta clearfix">
-                                        <li><a href="#"><i class="icon-time"></i> 11:00 - 19:00</a></li>
-                                        <li><a href="#"><i class="icon-map-marker2"></i> Melbourne, Australia</a></li>
-                                    </ul>
-                                    <div class="entry-content">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione, voluptatem, dolorem animi nisi autem blanditiis enim culpa reiciendis et explicabo tenetur voluptate rerum molestiae eaque possimus exercitationem eligendi fuga.</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="entry clearfix">
-                                <div class="entry-image">
-                                    <img src="/FrontEnd/images/forgottenPassBackground.jpg" alt="Inventore voluptates velit totam ipsa tenetur">
-                                    <div class="entry-date">10<span>Apr</span></div>
-                                </div>
-                                <div class="entry-c">
-                                    <div class="entry-title">
-                                        <h2><a href="#">Event Title</a></h2>
-                                    </div>
-                                    <ul class="entry-meta clearfix">
-                                        <li><a href="#"><i class="icon-time"></i> 11:00 - 19:00</a></li>
-                                        <li><a href="#"><i class="icon-map-marker2"></i> Melbourne, Australia</a></li>
-                                    </ul>
-                                    <div class="entry-content">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione, voluptatem, dolorem animi nisi autem blanditiis enim culpa reiciendis et explicabo tenetur voluptate rerum molestiae eaque possimus exercitationem eligendi fuga.</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-
-                    </div>
-
                 </div>
+                <div class="container clearfix">
+                    <div id="timeTable">
+                        <h5>Date: <span id="selectedDate">Text</span></h5>
+                        <h5>Time Table</h5>
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Hours</th>
+                                    <th></th>
+                                    <th>Availability</th>
+                                </tr>
+                            </thead>
+                            <tbody id="appointmentsList">
+                                @Html.Partial("dentistAppointmentsList")
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="container clearfix">
+                    <div class="divider divider-center"><i class="icon-circle-blank"></i></div>
+                    <div class="center">
+                        <a class="button button-3d button-black mt-4 mb-4 ml-0 accent-background" href="/Dentist/dentistAddEvent"><i class="icon-line-circle-plus"></i>Add Event</a>
+                    </div>
 
-            </section><!-- #content end -->
+                    <div class="divider divider-center"><i class="icon-circle-blank"></i></div>
+                    <h3>Upcoming Events</h3>
+                    <div id="posts" class="events small-thumbs">
+                        @foreach (var ev in Model.Events)
+                        {
+                            <div class="entry clearfix">
+                                <div class="entry-image">
+                                    <img src="/FrontEnd/images/forgottenPassBackground.jpg" alt="Inventore voluptates velit totam ipsa tenetur">
+                                    <div class="entry-date">@ev.StartDate.ToString(@"d-M-y")</div>
+                                </div>
+                                <div class="entry-c">
+                                    <div class="entry-title">
+                                        <h2><a href="#">@ev.Description</a></h2>
+                                    </div>
+                                    <ul class="entry-meta clearfix">
+                                        <li><a href="#"><i class="icon-time"></i>@ev.StartDate.ToString(@"hh\:mm") - @ev.EndDate.ToString(@"hh\:mm")</a></li>
+                                        <!--<li><a href="#"><i class="icon-map-marker2"></i> Melbourne, Australia</a></li>-->
+                                    </ul>
+                                    <div class="entry-content">
+                                        <p></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <br /><br />
+                        }
+                    </div>
+                </div>
+            </div>
+        </section><!-- #content end -->
+    </div><!-- #wrapper end -->
+    <!-- Go To Top
+    ============================================= -->
+    <div id="gotoTop" class="icon-angle-up"></div>
+    <!-- External JavaScripts
+    ============================================= -->
+    <script src="~/FrontEnd/js/jquery.js"></script>
+    <script src="~/FrontEnd/js/plugins.js"></script>
+    <script src="~/FrontEnd/js/events-data.js"></script>
+    <script src="~/FrontEnd/js/jquery.calendarioDentist.js"></script>
+    <!-- Footer Scripts
+    ============================================= -->
+    <script src="~/FrontEnd/js/functions.js"></script>
 
-        </div><!-- #wrapper end -->
-        <!-- Go To Top
-============================================= -->
-        <div id="gotoTop" class="icon-angle-up"></div>
+    <script>
+        @foreach (var ev in Model.Events)
+        {
+            <text>
+            canvasEvents['@ev.StartDate.ToString(@"MM-dd-yyyy")'] = '<a>@ev.Description</a>';
+            </text>
+        }
 
-        <!-- External JavaScripts
-============================================= -->
-        <script src="~/FrontEnd/js/jquery.js"></script>
-        <script src="~/FrontEnd/js/plugins.js"></script>
-
-        <script src="~/FrontEnd/js/events-data.js"></script>
-        <script src="~/FrontEnd/js/jquery.calendarioDentist.js"></script>
-
-        <!-- Footer Scripts
-============================================= -->
-        <script src="~/FrontEnd/js/functions.js"></script>
-
-    </body>
+    </script>
+</body>
 </html>

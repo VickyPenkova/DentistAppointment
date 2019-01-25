@@ -5,14 +5,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace DentistAppointment.Models.PatientViewModels
+namespace DentistAppointment.Models.DentistViewModels
 {
-    public class PatientBookingModel
+    public class DentistBookingViewModel
     {
         public List<DentistWorkHourDTO> WorkHours { get; set; }
-        public DateTime Start { get; set; }
-        public DateTime Date { get; set; }
-        public DateTime Now { get; set; }
+        public int CancelId { get; set; }
         public List<Event> Events { get; set; }
     }
 }
