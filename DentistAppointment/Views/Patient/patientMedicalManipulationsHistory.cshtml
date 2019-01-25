@@ -4,7 +4,6 @@
 <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <meta name="author" content="" />
-
     <!-- Document Title
     ============================================= -->
     <title>Medical Manipulations</title>
@@ -82,7 +81,6 @@
     <section id="content">
         <div class="content-wrap">
             <div class="container clearfix">
-
                 <h4>To be rated</h4>
                 <div class="table-responsive">
                     <table class="table">
@@ -95,30 +93,24 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach (var reservation in Model.PastReservationsRate)
+                            @foreach (var reservation in Model.ReservationsToRate)
                             {
-                                if (reservation.Manipulation == null)
-                                {
-                                    <tr>
-                                        <td>@reservation.Date.ToShortDateString()</td>
-                                        <td>@reservation.Date.ToString(@"HH\:mm") - @reservation.Date.AddMinutes(30).ToString(@"HH\:mm")</td>
-                                        <td>@reservation.Dentist.User.FirstName @reservation.Dentist.User.LastName</td>
-                                        <td>
-                                            
-                                                    <a href="/Patient/patientRateAppointment/@reservation.Id" id="submit"
-                                                       class="btn aviableBtn button-rounded m-0 accent-background light-text button-mini">
-                                                        <i class="icon-line-open"></i><span>Rate appointment</span>
-                                                    </a>
-                                            </td>
-                                        </tr>
-
-                                }
+                                <tr>
+                                    <td>@reservation.Date.ToShortDateString()</td>
+                                    <td>@reservation.Date.ToString(@"HH\:mm") - @reservation.Date.AddMinutes(30).ToString(@"HH\:mm")</td>
+                                    <td>@reservation.Dentist.User.FirstName @reservation.Dentist.User.LastName</td>
+                                    <td>
+                                        <a href="/Patient/patientRateAppointment/@reservation.Id" id="submit"
+                                           class="btn aviableBtn button-rounded m-0 accent-background light-text button-mini">
+                                            <i class="icon-line-open"></i><span>Rate appointment</span>
+                                        </a>
+                                    </td>
+                                </tr>
                             }
-                                        </tbody>
+                        </tbody>
                     </table>
                 </div>
                 <div class="divider divider-center"><i class="icon-time"></i></div>
-
                 <h4>Past</h4>
                 <div class="table-responsive">
                     <table class="table">
@@ -145,7 +137,6 @@
                                     </td>
                                 </tr>
                             }
-                        
 
                         </tbody>
                     </table>
@@ -153,7 +144,6 @@
             </div>
         </div>
     </section>
-
     <!-- Go To Top
     ============================================= -->
     <div id="gotoTop" class="icon-angle-up"></div>

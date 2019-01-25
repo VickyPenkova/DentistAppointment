@@ -170,11 +170,13 @@ namespace DentistAppointment.Controllers
             {
                 return RedirectToAction("patientMedicalManipulationsHistory", "Patient");
             }
-            
+
             var model = new PatientCheckDocumentViewModel
             {
-                Reservation = reservationsService.GetReservationById(id)
+                Reservation = reservationsService.GetReservationById(id),
             };
+            model.Review = reviewsService.GetUserReviewForReservation(model.Reservation);
+
             return View(model);
         }
         public IActionResult patientDentistHomePage(int id)
@@ -298,14 +300,11 @@ namespace DentistAppointment.Controllers
         }
         public IActionResult patientMedicalManipulationsHistory()
         {
-            var allReservations = reservationsService.GetAllReservationsOfUser(GetCurrentUserId());
-
             var model = new PatientMedicalManipulationsHistoryViewModel()
-            {       
-                PastReservationsRate=allReservations.Where(r=>r.Manipulation==null).Where(r => r.Date <= DateTime.Now).ToList()
+            {
+                ReservationsToRate = reservationsService.GetAllReservationWaitingForReview(GetCurrentUserId()).ToList(),
+                PastReservations = reservationsService.GetAllPastReservationsOfUser(GetCurrentUserId()).ToList()
             };
-            model.IncomingReservations = allReservations.Where(r => r.Date >= DateTime.Now).ToList();
-            model.PastReservations = allReservations.Except(model.IncomingReservations).Where(r => r.Manipulation != null).ToList();
 
             return View(model);
         }
@@ -339,9 +338,35 @@ namespace DentistAppointment.Controllers
             }
             return View(model);
         }
-        public IActionResult patientRateAppointment()
+        public IActionResult patientRateAppointment(int id)
         {
-            return View();
+            if (id < 1)
+            {
+                return RedirectToAction("patientMedicalManipulationsHistory", "Patient");
+            }
+            var reservationId = id;
+
+            var model = new PatientRateAppointmentViewModel
+            {
+                Reservation = reservationsService.GetReservationById(reservationId),
+                Review = new Review()
+            };
+            return View(model);
+        }
+        [HttpPost]
+        public IActionResult patientRateAppointment(PatientRateAppointmentViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                model.Review.Date = DateTime.Now;
+                model.Review.UserId = GetCurrentUserId();
+                model.Review.Rating = model.Review.Rating / 2;
+
+                reviewsService.AddReviewForDentist(model.Review);
+
+                return RedirectToAction("patientHomePage", "Patient");
+            }
+            return View(model);
         }
 
         public IActionResult Privacy()

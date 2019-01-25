@@ -9,5 +9,6 @@ namespace DentistAppointment.Models.PatientViewModels
     public class PatientCheckDocumentViewModel
     {
         public Reservation Reservation { get; set; }
+        public Review Review { get; set; }
     }
 }

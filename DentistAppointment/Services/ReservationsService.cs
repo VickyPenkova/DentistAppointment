@@ -12,15 +12,18 @@ namespace DentistAppointment.Services
     public class ReservationsService : IReservationsService
     {
         private readonly IRepository<Reservation, int> reservationsRepo;
+        private readonly IRepository<Review, int> reviewsRepo;
         private readonly IRepository<Dentist, int> dentistRepo;
         private readonly IRepository<User, string> usersRepo;
 
         public ReservationsService(
             IRepository<Reservation, int> reservationsRepo,
+            IRepository<Review, int> reviewsRepo,
             IRepository<Dentist, int> dentistRepo,
             IRepository<User, string> usersRepo)
         {
             this.reservationsRepo = reservationsRepo;
+            this.reviewsRepo = reviewsRepo;
             this.dentistRepo = dentistRepo;
             this.usersRepo = usersRepo;
         }
@@ -123,5 +126,17 @@ namespace DentistAppointment.Services
             reservation.Dentist.User = usersRepo.GetAll().First(u => u.DentistId == reservation.DentistId);
             return reservation;
         }
+
+        public IEnumerable<Reservation> GetAllPastReservationsOfUser(string userId)
+        {
+            return GetAllReservationsOfUser(userId).Where(r => r.Date < DateTime.Now);
+        }
+
+        public IEnumerable<Reservation> GetAllReservationWaitingForReview(string userId)
+        {
+            var reviews = reviewsRepo.GetAll();
+            return GetAllPastReservationsOfUser(userId).Where(res => reviews.Where(rev => rev.ReservationId == res.Id).Count() == 0);
+        }
+
     }
 }

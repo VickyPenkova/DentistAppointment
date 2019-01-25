@@ -14,6 +14,8 @@ namespace DentistAppointment.Services.Abstraction
         void CancelReservation(int reservationId);
         IEnumerable<Reservation> GetAllReservationsOfDentist(int dentistId);
         IEnumerable<Reservation> GetAllReservationsOfUser(string userId);
+        IEnumerable<Reservation> GetAllPastReservationsOfUser(string userId);
+        IEnumerable<Reservation> GetAllReservationWaitingForReview(string userId);
         Reservation GetReservationById(int reservationId);
     }
 }
