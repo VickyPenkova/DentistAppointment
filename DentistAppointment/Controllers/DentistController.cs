@@ -293,7 +293,7 @@ namespace DentistAppointment.Controllers
             {
                 reservationsService.CancelReservation(model.CancelId);
             }
-            return RedirectToAction("dentistEvents", "Dentist");
+            return RedirectToAction("dentistAppointments", "Dentist");
         }
 
         public IActionResult dentistForgottenPass()

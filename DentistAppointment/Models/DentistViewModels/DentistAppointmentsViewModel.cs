@@ -10,5 +10,6 @@ namespace DentistAppointment.Models.DentistViewModels
     {
         public List<Reservation> IncomingReservations { get; set; }
         public List<Reservation> PastReservations { get; set; }
+        public int CancelId { get; set; }
     }
 }
