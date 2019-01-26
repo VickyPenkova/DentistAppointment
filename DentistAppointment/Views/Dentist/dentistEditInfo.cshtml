@@ -153,6 +153,10 @@
                                         <span asp-validation-for="@Model.EGN" class="text-danger"></span>
                                     </div>
                                 </div>
+                                <div class="white-section pt-4">
+                                    <h4 class="inlineBlock-elements">Work days (Multiple values can be selected):</h4>
+                                    @Html.ListBoxFor(x => x.SelectedWorkDays, Model.WorkDays, new { @class = "select - 1 form - control", style = "width:100%; " })
+                                </div>
                                 <div class="form-group">
                                     <div class="user-edit">
                                         <button type="submit" class="button button-3d button-black mt-5 ml-0 accent-background">Save Changes</button>

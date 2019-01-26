@@ -76,13 +76,17 @@ namespace DentistAppointment.Controllers
                 rating += r.Rating / reviews.Count;
             }
 
+            var workDays = this.reservationsService.GetDentistWorkDays(dentist);
+
+
             var viewModel = new DentistHomePageViewModel()
             {
                 User = this.usersService.GetAllUsers().FirstOrDefault(x => x.Dentist == dentist),
                 Address = dentist.Address,
                 Type = dentist.Type,
                 Rating = rating,
-                Reviews = reviews
+                Reviews = reviews,
+                WorkDays = workDays
             };
 
             Console.WriteLine(reviews);
@@ -100,8 +104,9 @@ namespace DentistAppointment.Controllers
                 LastName = user.LastName,
                 EGN = user.EGN.ToString(),
                 Email = user.Email,
-                Gender = user.Gender
-            };
+                Gender = user.Gender,
+                SelectedWorkDays = new[] { 2, 4 }
+        };
 
             return View(viewModel);
         }
@@ -111,7 +116,14 @@ namespace DentistAppointment.Controllers
         public IActionResult dentistEditInfo(DentistEditInfoViewModel model)
         {
             var user = this.usersService.GetAllUsers().FirstOrDefault(x => x.Id == GetCurrentUserId());
+            var dentist = this.dentistsService
+               .GetAllDentists().FirstOrDefault(u => u.User.Id == user.Id);
 
+            var selectedWorkDaysSum = 0;
+            foreach(var selectedWorkDay in model.SelectedWorkDays)
+            {
+                selectedWorkDaysSum += selectedWorkDay;
+            }
             if (this.ModelState.IsValid)
             {
                 user.FirstName = model.FirstName;
@@ -119,12 +131,12 @@ namespace DentistAppointment.Controllers
                 user.Email = model.Email;
                 user.EGN = Int64.Parse(model.EGN);
                 user.Gender = model.Gender;
-
+                dentist.WorkDays = selectedWorkDaysSum;
                 this.dentistsService.Edit(user);
+                this.dentistsService.Edit(dentist);
             }
 
             return this.RedirectToAction("dentistHomePage", "Dentist");
-            // return View(viewModel);
         }
 
         [HttpGet]

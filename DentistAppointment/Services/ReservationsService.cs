@@ -61,7 +61,7 @@ namespace DentistAppointment.Services
             return workHours;
         }
 
-        private List<DayOfWeek> GetDentistWorkDays(Dentist dentist)
+        public List<DayOfWeek> GetDentistWorkDays(Dentist dentist)
         {
             List<DayOfWeek> workDays = new List<DayOfWeek>();
 

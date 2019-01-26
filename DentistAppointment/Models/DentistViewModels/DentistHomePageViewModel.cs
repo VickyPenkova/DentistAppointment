@@ -14,5 +14,6 @@ namespace DentistAppointment.Models.DentistViewModels
         public string Address { get; set; }
         public IEnumerable<Review> Reviews { get; set; }
         public double Rating { get; set; }
+        public List<DayOfWeek> WorkDays { get; set; }
     }
 }

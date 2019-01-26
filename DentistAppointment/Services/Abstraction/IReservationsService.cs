@@ -19,5 +19,6 @@ namespace DentistAppointment.Services.Abstraction
         IEnumerable<Reservation> GetAllPastReservationsOfUser(string userId);
         IEnumerable<Reservation> GetAllReservationWaitingForReview(string userId);
         Reservation editReservationManimulation(int reservationId, DentistDocumentManipulationViewModel model);
+        List<DayOfWeek> GetDentistWorkDays(Dentist dentist);
     }
 }

@@ -138,6 +138,21 @@
                                         <h4 class="inlineBlock-elements"><i class="icon-map-marker"></i> Address:</h4>
                                         <span>@Model.User.Dentist.Address</span>
                                     </div>
+                                    <div class="user-workdays">
+                                        <h4 class="inlineBlock-elements"><i class="icon-map-marker"></i> Work days:</h4>
+                                        @foreach(var workday in Model.WorkDays)
+                                        {                                            
+                                            if (@workday.Equals(Model.WorkDays.Last()))
+                                            {
+                                                <span>@workday</span>
+                                            }
+                                            else
+                                            {
+                                                <span>@workday ,</span>
+                                            }
+                                        }
+                                        
+                                    </div>
                                     <div class="user-edit">
                                         <a class="button button-3d button-black mt-5 ml-0 accent-background" href="/Dentist/dentistEditInfo"><i class="icon-edit"></i>Edit Information</a>
                                     </div>
