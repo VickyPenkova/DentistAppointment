@@ -159,7 +159,7 @@
                                     <td>@reservation.Date.ToString(@"HH\:mm") - @reservation.Date.AddMinutes(30).ToString(@"HH\:mm")</td>
                                     <td>@reservation.User.FirstName @reservation.User.LastName</td>
                                     <td>
-                                        <a href="/Dentist/dentistDocumentManipulation/@reservation.Id" class="button button-3d  button-small button-rounded button-amber"> <i class="icon-folder-check"></i>Document Manipulation</a>
+                                        <a href="/Dentist/dentistCheckDocument/@reservation.Id" class="button button-3d  button-small button-rounded button-amber"> <i class="icon-folder-check"></i>Document Manipulation</a>
                                     </td>
                                 </tr>
                             }

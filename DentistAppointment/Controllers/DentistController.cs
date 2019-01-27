@@ -153,54 +153,109 @@ namespace DentistAppointment.Controllers
             var patients = new List<User>();
             if (model != null)
             {
-                if (!String.IsNullOrEmpty(inputModel.LastName))
+                if(!String.IsNullOrEmpty(inputModel.LastName) &&
+                    !String.IsNullOrEmpty(inputModel.Email) &&
+                    inputModel.EGN != 0)
                 {
-                    patients = usersService.GetAllUsersWithReservations().Where(u => u.LastName == inputModel.LastName).ToList();
+                    patients = usersService
+                        .GetAllUsersWithReservations()
+                        .Where(u => u.LastName == inputModel.LastName &&
+                        u.LastName == inputModel.LastName &&
+                        u.EGN == inputModel.EGN)
+                        .ToList();
+                    if(patients == null)
+                    {
+                        ViewData["message"] = "No such patient!";
+                    }
                 }
-                else if (!String.IsNullOrEmpty(inputModel.Email))
+                // Make all variations otherwise
+                if (!String.IsNullOrEmpty(inputModel.LastName)
+                    && String.IsNullOrEmpty(inputModel.Email) &&
+                    inputModel.EGN == 0)
                 {
-                    patients = usersService.GetAllUsersWithReservations().Where(u => u.Email == inputModel.Email).ToList();
+                    patients = usersService.GetAllUsersWithReservations()
+                        .Where(u => u.LastName == inputModel.LastName).ToList();
+                    if (patients == null)
+                    {
+                        ViewData["message"] = "No such Last Name for Patient!";
+                    }
+
                 }
-                else if (inputModel.EGN != 0)
+                else if (!String.IsNullOrEmpty(inputModel.Email)
+                    && String.IsNullOrEmpty(inputModel.LastName)
+                    && inputModel.EGN == 0)
                 {
-                    patients = usersService.GetAllUsersWithReservations().Where(u => u.EGN == inputModel.EGN).ToList();
+                    patients = usersService.GetAllUsersWithReservations()
+                        .Where(u => u.Email == inputModel.Email).ToList();
+                    if (patients == null)
+                    {
+                        ViewData["message"] = "No such Email of Patient!";
+                    }
+                }
+                else if (inputModel.EGN != 0
+                        && String.IsNullOrEmpty(inputModel.LastName)
+                        && String.IsNullOrEmpty(inputModel.Email))
+                {
+                    patients = usersService.GetAllUsersWithReservations()
+                        .Where(u => u.EGN == inputModel.EGN).ToList();
+                    if (patients == null)
+                    {
+                        ViewData["message"] = "No such EGN of Patient!";
+                    }
                 }
                 else if (!String.IsNullOrEmpty(inputModel.LastName) && !String.IsNullOrEmpty(inputModel.Email))
                 {
                     patients = usersService.GetAllUsersWithReservations()
                         .Where(u => u.LastName == inputModel.LastName && u.Email == inputModel.Email).ToList();
+                    if (patients == null)
+                    {
+                        ViewData["message"] = "No such Last Name and Email of Patient!";
+                    }
                 }
                 else if (!String.IsNullOrEmpty(inputModel.LastName) && inputModel.EGN != 0)
                 {
                     patients = usersService.GetAllUsersWithReservations()
                         .Where(u => u.LastName == inputModel.LastName && u.EGN == inputModel.EGN).ToList();
+                    if (patients == null)
+                    {
+                        ViewData["message"] = "No such Last Name and EGN of Patient!";
+                    }
                 }
                 else if (inputModel.EGN != 0 && !String.IsNullOrEmpty(inputModel.Email))
                 {
                     patients = usersService.GetAllUsersWithReservations()
                         .Where(u => u.EGN == inputModel.EGN && u.Email == inputModel.Email).ToList();
+                    if (patients == null)
+                    {
+                        ViewData["message"] = "No such EGN and Email of Patient!";
+                    }
                 }
-                else if (inputModel.EGN != 0 && !String.IsNullOrEmpty(inputModel.Email) && !String.IsNullOrEmpty(inputModel.LastName))
+                else if (String.IsNullOrEmpty(inputModel.LastName) || String.IsNullOrEmpty(inputModel.Email))
                 {
                     patients = usersService.GetAllUsersWithReservations()
-                        .Where(u => u.EGN == inputModel.EGN && u.Email == inputModel.Email && u.LastName == inputModel.LastName).ToList();
+                    .Where(u => u.EGN == inputModel.EGN).ToList();
+                    if (patients == null)
+                    {
+                        ViewData["message"] = "No such EGN for Patient!";
+                    }
                 }
-                else
+                else if (String.IsNullOrEmpty(inputModel.LastName) || inputModel.EGN == 0)
                 {
-                    if (String.IsNullOrEmpty(inputModel.LastName) || String.IsNullOrEmpty(inputModel.Email))
+                    patients = usersService.GetAllUsersWithReservations()
+                    .Where(u => u.Email == inputModel.Email).ToList();
+                    if (patients == null)
                     {
-                        patients = usersService.GetAllUsersWithReservations().Where(u => u.EGN == inputModel.EGN).ToList();
+                        ViewData["message"] = "No such Email for Patient!";
                     }
-                    else if (String.IsNullOrEmpty(inputModel.LastName) || inputModel.EGN == 0)
+                }
+                else if (inputModel.EGN == 0 || String.IsNullOrEmpty(inputModel.Email))
+                {
+                    patients = usersService.GetAllUsersWithReservations()
+                        .Where(u => u.LastName == inputModel.LastName).ToList();
+                    if (patients == null)
                     {
-                        patients = usersService.GetAllUsersWithReservations().Where(u => u.Email == inputModel.Email).ToList();
+                        ViewData["message"] = "No such Last Name for Patient!";
                     }
-                    else if (inputModel.EGN == 0 || String.IsNullOrEmpty(inputModel.Email))
-                    {
-                        patients = usersService.GetAllUsersWithReservations().Where(u => u.LastName == inputModel.LastName).ToList();
-                    }
-
-
                 }
             }
 
@@ -281,12 +336,11 @@ namespace DentistAppointment.Controllers
             model.Reservation = this.reservationsService.editReservationManimulation(id, model);
             //var user = this.usersService.GetAllUsers().FirstOrDefault(x => x.Id == GetCurrentUserId());
 
-
             if (this.ModelState.IsValid)
             {
                 this.dentistsService.editDocumentManipulation(model, id);
             }
-            return View(model);
+            return RedirectToAction("dentistCheckDocument", "Dentist", id);
         }
 
         public IActionResult dentistAppointments()

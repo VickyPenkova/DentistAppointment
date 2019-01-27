@@ -110,7 +110,7 @@
                             <div class="form-group bottommargin-sm">
                                 <label for="">Enter the EGN of the patient</label>
                                 <input asp-for="@Model.EGN" class="form-control" style="width:100%" type="text" />
-                                <span asp-validation-for="@Model.EGN" class="text-danger"></span>
+                                @*<span asp-validation-for="@Model.EGN" class="text-danger"></span>*@
                             </div>
 
                             <div class="form-group bottommargin-sm">
@@ -127,6 +127,7 @@
                                 <button type="submit" id="btnSearch" class="button button-3d button-rounded button-white accent-color"><i class="icon-search"></i>Search</button>
                             </div>
                         </form>
+                        <span class="text-danger">@ViewData["message"]</span>
                     </div>
 
                     <div class="search-reults mt-5">

@@ -134,61 +134,47 @@
                     </div>
 
                     <div class="divider divider-center"><i class="icon-pencil"></i></div>
-                    <h4>Please provide information about the manipulation:</h4>
-                    <div class="bottommargin-sm">
-                        <input asp-for="@Model.Reservation.Manipulation" class="form-control" id="exampleFormControlTextarea1" rows="5" />
-                        <span asp-validation-for="@Model.Reservation.Manipulation" class="text-danger"></span>
-                    </div>
-
-                    <div class="divider divider-center"><i class="icon-pencil"></i></div>
+                    
                     <h4>Please rate the patient:</h4>
                     <form asp-route-returnUrl="@ViewData["ReturnUrl"]" method="post" class="nobottommargin">
+                        <h4>Please provide information about the manipulation:</h4>
+                        <div class="bottommargin-sm">
+                            <input asp-for="@Model.Reservation.Manipulation" class="form-control" id="exampleFormControlTextarea1" rows="5" />
+                            <span asp-validation-for="@Model.Reservation.Manipulation" class="text-danger"></span>
+                        </div>
                         <div class="bottommargin-sm">
                             <label for="">Please select how satisfied you were with the punctuality of your patient</label>
                             @Html.DropDownListFor(model => model.Punctuality, Model.punctualityList, new
-                       {
-                           @class = "select-1 form-control",
-                           @id = "punctuality",
-                           style = "width:100%; "
-                       })
-                            @*<select id="punctuality" class="select-1 form-control" style="width:100%;">
-                <option value="1">Very dissatisfied</option>
-                <option value="2">Dissatisfied</option>
-                <option value="3">Okay</option>
-                <option value="4">Satisfied</option>
-                <option value="5">Very Satisfied</option>
-            </select>*@
+                            {
+                                @class = "select-1 form-control",
+                                @id = "punctuality",
+                                style = "width:100%; "
+                            })
+               
                         </div>
+                        <div class="divider divider-center"><i class="icon-pencil"></i></div>
+                        
                         <div class="bottommargin-sm">
                             <label for="">Please select how satisfied you were with the behaviour of the patient during the examination process</label>
                             @Html.DropDownListFor(model => model.Examination, Model.examinationList, new
-                       {
-                           @class = "select-1 form-control",
-                           @id = "examination",
-                           style = "width:100%; "
-                       })
-                            @*<select id="examination" class="select-1 form-control" style="width:100%;">
-                <option value="1">Very dissatisfied</option>
-                <option value="2">Dissatisfied</option>
-                <option value="3">Okay</option>
-                <option value="4">Satisfied</option>
-                <option value="5">Very Satisfied</option>
-            </select>*@
+                            {
+                                @class = "select-1 form-control",
+                                @id = "examination",
+                                style = "width:100%; "
+                            })
                         </div>
                         <div class="bottommargin-sm">
                             <label for="">Additional Comment</label>
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="5"></textarea>                    
+                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="5"></textarea>
                         </div>
                         <input asp-for="@Model.Rating" type="hidden" id="finalGradeInput" class="form-control" rows="3" />
-                        <h4>
-                            Final grade:
-                            <span id="finalGrade">
-                            </span>
-                            @*<input asp-for="@Model.Rating" id="finalGrade" disabled/>*@
-                        </h4>
-                        <button type="submit" id="submit" class="button button-3d button-rounded accent-background">
-                            <i class="icon-ok">Submit</i>
-                        </button>
+                        <div class="bottommargin-sm">
+
+                            <h4>Final grade: <span id="finalGrade"></span></h4>
+                            <button id="submit" type="submit" class="button button-3d button-rounded accent-background">
+                                <i class="icon-ok"></i>Submit
+                            </button>
+                        </div>
                     </form>
                     
                 </div>
@@ -196,7 +182,7 @@
                  @if (ViewData.ModelState.IsValid)
                 {
                     <div id="sucessMessage">
-                        <h3 class="" alert alert-success"">Your report has been submittet succesfully!</h3>
+                        <h3 class="alert alert-success">Your report has been submittet succesfully!</h3>
 
                         <a href="/Dentist/dentistMedicalManipulations" class="button button-3d button-rounded accent-background">
                             <i class="icon-line-rewind"></i>Back to your medical manipulations page

@@ -32,19 +32,6 @@ namespace DentistAppointment.Controllers
             return View();
         }
 
-        //[HttpGet]
-        //public IActionResult adminUsersList()
-        //{
-        //    var allUsers = this.usersService.GetAllUsers().Where(u=> u.DentistId != null);
-
-        //    var resultModel = new AdminUsersListViewModel()
-        //    {
-        //        Users = allUsers.ToList()
-        //    };
-
-        //    return View(resultModel);
-        //}
-
         [HttpGet]
         public IActionResult adminUsersList(string id = null)
         {

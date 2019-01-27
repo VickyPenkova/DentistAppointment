@@ -1,0 +1,24 @@
+{
+  "name": "Dentist Appointment System",
+  "description": "",
+  "logo": "https://raw.githubusercontent.com/herokumx/herokumxnet/master/NETChatterGroup.png",
+  "keywords": ["dentistappointmentsystem", "asp.net-core"],
+  "env": {
+    "PUBLISH_APP_DIR": {
+      "description": "The relative path to main published project",
+      "value" : "/src/WebApp"
+    },
+    "LAUNCH_ASSEMBLY_NAME": {
+      "description": "The assembly name, that will be used to run app using Kestrel",
+      "value": "bin/Any CPU/Release/netcoreapp2.1"
+    }
+  },
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    },
+    {
+      "url": "https://github.com/ORuban/aspnetcore-buildpack.git"
+    }
+  ]
+}
