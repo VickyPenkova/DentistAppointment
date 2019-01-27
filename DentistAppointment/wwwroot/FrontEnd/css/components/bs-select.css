@@ -55,7 +55,7 @@ select.selectpicker {
 }
 /* line 86, bootstrap-select.scss */
 .bootstrap-select:not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
-    width: 220px;
+    width: 100%;
 }
 /* line 90, bootstrap-select.scss */
 .bootstrap-select .dropdown-toggle:focus {
