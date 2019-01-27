@@ -12,7 +12,8 @@
         <link rel="stylesheet" href="~/FrontEnd/style.css" type="text/css" />
         <link rel="stylesheet" href="~/FrontEnd/css/font-icons.css" type="text/css" />
         <link rel="stylesheet" href="~/FrontEnd/css/animate.css" type="text/css" />
-        <!-- Star Rating CSS -->
+
+        @*<!-- Star Rating CSS -->
         <link rel="stylesheet" href="~/FrontEnd/css/components/bs-rating.css" type="text/css" />
 
         <link rel="stylesheet" href="~/FrontEnd/css/responsive.css" type="text/css" />
@@ -26,16 +27,19 @@
         <!-- Select-Boxes CSS -->
         <link rel="stylesheet" href="~/FrontEnd/css/components/select-boxes.css" type="text/css" />
         <link rel="stylesheet" href="~/FrontEnd/css/responsive.css" type="text/css" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />*@
     </environment>
 </head>
 <body>
-    <partial name="_CookieConsentPartial" />
+	<partial name="_CookieConsentPartial" />
 
-    <div class="container body-content">
-        @RenderBody()
-    </div>
+	@RenderBody()
 
-    @RenderSection("Scripts", required: false)
+	@*WHY IS THIS HERE??????*@
+	@*<div class="container body-content">
+		@RenderBody()
+	</div>*@
+	 
+	@RenderSection("Scripts", required: false)
 </body>
 </html>

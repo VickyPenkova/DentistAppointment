@@ -64,8 +64,8 @@
                     <!-- Logo
                     ============================================= -->
                     <div id="logo">
-                        <a href="/Patient/patientHomePage" class="standard-logo" data-dark-logo="/FrontEnd/images/icons/molar-inside-a-shield-orange.png"><img src="~/FrontEnd/images/icons/molar-inside-a-shield-orange.png" alt="Denstist Logo"></a>
-                        <a href="/Patient/patientHomePage" class="retina-logo" data-dark-logo="/FrontEnd/images/icons/molar-inside-a-shield-orange.png"><img src="~/FrontEnd/images/icons/molar-inside-a-shield-orange.png" alt="Denstist Logo"></a>
+                        <a href="/Dentist/dentistHomePage" class="standard-logo" data-dark-logo="/FrontEnd/images/icons/molar-inside-a-shield-orange.png"><img src="~/FrontEnd/images/icons/molar-inside-a-shield-orange.png" alt="Denstist Logo"></a>
+                        <a href="/Dentist/dentistHomePage" class="retina-logo" data-dark-logo="/FrontEnd/images/icons/molar-inside-a-shield-orange.png"><img src="~/FrontEnd/images/icons/molar-inside-a-shield-orange.png" alt="Denstist Logo"></a>
                     </div>
                     <!-- #logo end -->
                     <!-- Primary Navigation
@@ -115,9 +115,20 @@
                 <div class="row">
                     <div class="col-12 bottommargin">
                         <div class="row team team-list clearfix">
-                            <div class="team-image col-sm-12 col-md-6 col-lg-6">
-                                <img class="rounded-circle center-image-user" style="width: 150px;" src="~/FrontEnd/images/icons/female-dentist.png" alt="Male User">
-                            </div>
+							<div class="team-image col-sm-12 col-md-6 col-lg-6">
+								@if (@Model.Gender == "male")
+								{
+									<img class="rounded-circle center-image-user" style="width: 150px;" src="/FrontEnd/images/icons/male-dentist.png" alt="Male User">
+								}
+								else if (@Model.Gender == "female")
+								{
+									<img class="rounded-circle center-image-user" style="width: 150px;" src="/FrontEnd/images/icons/female-dentist.png" alt="Female User">
+								}
+								else
+								{
+									<img class="rounded-circle center-image-user" style="width: 150px;" src="~/FrontEnd/images/icons/other.png" alt="Other User">
+								}
+							</div>
 
                             <form asp-route-returnUrl="@ViewData["ReturnUrl"]" class="form-horizontal team-desc col-sm-12 col-md-6 col-lg-6" method="post">
                                 <div class="form-group">
@@ -131,7 +142,7 @@
                                     <span asp-validation-for="@Model.LastName" class="text-danger"></span>
                                 </div>
 
-                                <div class="white-section pt-4">
+                                <div class="white-section pt-4 mb-3">
                                     <h4 class="inlineBlock-elements">Gender:</h4>
                                     @Html.DropDownListFor(model => model.Gender, Model.GenderTypes, new
                                     {
