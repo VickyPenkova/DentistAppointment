@@ -61,8 +61,8 @@
                     <!-- Logo
                     ============================================= -->
                     <div id="logo">
-                        <a href="/Admin/adminUsersList" class="standard-logo" data-dark-logo="/FrontEnd/images/icons/admin.png"><img src="/FrontEnd/images/icons/admin.png" alt="Admin Logo"></a>
-                        <a href="/Admin/adminUsersList" class="retina-logo" data-dark-logo="/FrontEnd/images/icons/admin.png"><img src="/FrontEnd/images/icons/admin.png" alt="Admin Logo"></a>
+                        <a href="/Admin/adminUsersList" class="standard-logo" data-dark-logo="~/FrontEnd/images/admin.png"><img src="~/FrontEnd/images/admin.png" alt="Admin Logo"></a>
+                        <a href="/Admin/adminUsersList" class="retina-logo" data-dark-logo="~/FrontEnd/images/admin.png"><img src="~/FrontEnd/images/admin.png" alt="Admin Logo"></a>
                     </div>
                     <!-- #logo end -->
                     <!-- Primary Navigation
@@ -96,67 +96,66 @@
 
         <div class="content-wrap">
 
-            <div class="container clearfix">
+			<div class="container clearfix">
+				<h1>Register a dentist</h1>
+				<form asp-route-returnUrl="@ViewData["ReturnUrl"]" method="post" name="register_dentist_submission_form">
+					<div class="form-row">
+						<div class="form-group col-md-6">
+							<label for="inputEmail4">Username</label>
+							<input asp-for="@Model.EmailAndUserName" class="form-control" />
+							<span asp-validation-for="@Model.EmailAndUserName" class="text-danger" id="username" placeholder="Username"></span>
+						</div>
+						<div class="form-group col-md-6">
+							<label for="password">Password</label>
+							<input asp-for="@Model.Password" class="form-control" />
+							<span asp-validation-for="@Model.Password" class="text-danger" id="inputPassword4" placeholder="Password"></span>
+						</div>
+					</div>
+					<div class="form-row">
+						<div class="form-group col-md-6">
+							<label for="firstName">First name</label>
+							<input asp-for="@Model.FirstName" class="form-control" />
+							<span asp-validation-for="@Model.FirstName" class="text-danger" placeholder="First Name"></span>
+						</div>
+						<div class="form-group col-md-6">
+							<label for="lastName">Last name</label>
+							<input asp-for="@Model.LastName" class="form-control" />
+							<span asp-validation-for="@Model.LastName" class="text-danger" placeholder="Last Name"></span>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="inputAddress">Address</label>
+						<input asp-for="@Model.Address" class="form-control" />
+						<span asp-validation-for="@Model.Address" class="text-danger" id="inputAddress" placeholder="1234 Main St"></span>
+					</div>
+					<div class="form-row">
+						<div class="form-group col-md-12">
+							<label for="city">City</label>
+							<input asp-for="@Model.City" class="form-control" />
+							<span asp-validation-for="@Model.City" class="text-danger" id="city"></span>
+						</div>
+					</div>
+					<div class="form-row">
+						<div class="form-group col-md-6">
+							<label for="type">Specialist type</label>
+							<input asp-for="@Model.Type" class="form-control" />
+							<span asp-validation-for="@Model.Type" class="text-danger" id="type"></span>
+						</div>
+						<div class="form-group col-md-6">
+							<label for="inputState">Telephone</label>
+							<input asp-for="@Model.PhoneNumber" class="form-control" />
+							<span asp-validation-for="@Model.PhoneNumber" class="text-danger"></span>
+						</div>
+					</div>
+					<button type="submit" class="btn button-green">Register</button>
+				</form>
+				@if (ViewData.ModelState.IsValid)
+				{
+					<h2 class="text-success">@ViewData["Message"]</h2>
+					<button class="btn button-light" onclick="cleanFormFields()">Clean fields</button>
 
-                @if (ViewData.ModelState.IsValid)
-                {
-                    <h2 class="text-success">@ViewData["Message"]</h2>
-                    <button class="btn button-light" onclick="cleanFormFields()">Clean fields</button>
-
-                }
-                <h1>Register a dentist</h1>
-                <form asp-route-returnUrl="@ViewData["ReturnUrl"]" method="post" name="register_dentist_submission_form">
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <label for="inputEmail4">Username</label>
-                            <input asp-for="@Model.EmailAndUserName" class="form-control" />
-                            <span asp-validation-for="@Model.EmailAndUserName" class="text-danger" id="username" placeholder="Username"></span>
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="password">Password</label>
-                            <input asp-for="@Model.Password" class="form-control" />
-                            <span asp-validation-for="@Model.Password" class="text-danger" id="inputPassword4" placeholder="Password"></span>
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <label for="firstName">First name</label>
-                            <input asp-for="@Model.FirstName" class="form-control" />
-                            <span asp-validation-for="@Model.FirstName" class="text-danger" placeholder="First Name"></span>
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="lastName">Last name</label>
-                            <input asp-for="@Model.LastName" class="form-control" />
-                            <span asp-validation-for="@Model.LastName" class="text-danger" placeholder="Last Name"></span>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="inputAddress">Address</label>
-                        <input asp-for="@Model.Address" class="form-control" />
-                        <span asp-validation-for="@Model.Address" class="text-danger" id="inputAddress" placeholder="1234 Main St"></span>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <label for="city">City</label>
-                            <input asp-for="@Model.City" class="form-control" />
-                            <span asp-validation-for="@Model.City" class="text-danger" id="city"></span>
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <label for="type">Specialist type</label>
-                            <input asp-for="@Model.Type" class="form-control" />
-                            <span asp-validation-for="@Model.Type" class="text-danger" id="type"></span>
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="inputState">Telephone</label>
-                            <input asp-for="@Model.PhoneNumber" class="form-control" />
-                            <span asp-validation-for="@Model.PhoneNumber" class="text-danger"></span>
-                        </div>
-                    </div>
-                    <button type="submit" class="btn button-green">Register</button>
-                </form>
-            </div>
+				}
+			</div>
         </div>
     </section><!-- #content end -->
     <!-- Go To Top
