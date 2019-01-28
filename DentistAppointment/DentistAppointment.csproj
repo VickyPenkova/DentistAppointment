@@ -6,6 +6,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="wwwroot\FrontEnd\inspiration\**" />
+    <Content Remove="wwwroot\FrontEnd\inspiration\**" />
+    <EmbeddedResource Remove="wwwroot\FrontEnd\inspiration\**" />
+    <None Remove="wwwroot\FrontEnd\inspiration\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Remove="Views\Admin\adminUsersList.cshtml" />
     <Content Remove="Views\Admin\registerDentist.cshtml" />
   </ItemGroup>
@@ -92,8 +99,6 @@
     <None Include="wwwroot\FrontEnd\images\icons\submenu.png" />
     <None Include="wwwroot\FrontEnd\images\logOutBackground.jpg" />
     <None Include="wwwroot\FrontEnd\images\registerBackground.jpg" />
-    <None Include="wwwroot\FrontEnd\inspiration\824bc335090143.56e944ab5d34c.jpg" />
-    <None Include="wwwroot\FrontEnd\inspiration\CUBE_dental_clinic_logo_final-02.jpg" />
     <None Include="wwwroot\FrontEnd\js\components\bs-select.js" />
     <None Include="wwwroot\FrontEnd\js\components\select-boxes.js" />
     <None Include="wwwroot\FrontEnd\js\components\selectsplitter.js" />
