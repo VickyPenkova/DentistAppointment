@@ -1,0 +1,24 @@
+version: '3.4'
+
+services:
+  dataseed:
+    image: ${DOCKER_REGISTRY-}dataseed
+    build:
+      context: .
+      dockerfile: DataSeed\Dockerfile
+  dentistappointment:
+    image: ${DOCKER_REGISTRY-}dentistappointment
+    build:
+      context: .
+      dockerfile: DentistAppointment\Dockerfile
+  web:
+      build: .
+      ports:
+          - "8000:80"
+      depends_on:
+          - db
+  db:
+      image: "mcr.microsoft.com/mssql/server"
+      environment:
+          SA_PASSWORD: "Your_password123"
+          ACCEPT_EULA: "Y"

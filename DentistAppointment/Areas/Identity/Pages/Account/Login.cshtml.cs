@@ -85,7 +85,8 @@ namespace DentistAppointment.Areas.Identity.Pages.Account
                         _logger.LogInformation("Dentist logged in.");
                         return LocalRedirect("~/Dentist/dentistHomePage");
                     }
-                    else if (user.DentistId == null)
+                    else if (user.DentistId == null && await _signInManager.UserManager.IsInRoleAsync(user,
+                        GlobalConstants.UserRole))
                     {
                         _logger.LogInformation("User logged in.");
                         return LocalRedirect("~/Patient/patientHomePage/" + user.Id);
