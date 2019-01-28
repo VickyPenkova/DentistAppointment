@@ -71,14 +71,17 @@
                     ============================================= -->
                     <nav id="primary-menu">
 
-                        <ul>
-                            <li class="accent-background">
-                                <a href="/Admin/adminUsersList"><div>Users List</div></a>
-                            </li>
-                            <li class="current">
-                                <a href="/Admin/registerDentist"><div>Register A Dentist</div></a>
-                            </li>
-                        </ul>
+						<ul>
+							<li class="accent-background">
+								<a href="/Admin/adminUsersList"><div>Users List</div></a>
+							</li>
+							<li class="current">
+								<a href="/Admin/registerDentist"><div>Register A Dentist</div></a>
+							</li>
+							<li class="current">
+								<a asp-area="Identity" asp-page="/Account/Logout"><div><i class="icon-line2-logout"></i>Log Out</div></a>
+							</li>
+						</ul>
 
                     </nav><!-- #primary-menu end -->
 
