@@ -109,3 +109,6 @@ body:not(.top-search-open) #top-account {
 #header.sticky-header.sticky-style-2 #primary-menu {
 	border-top: 0;
 }
+#primary-menu ul.mobile-primary-menu {
+	display: none;
+}

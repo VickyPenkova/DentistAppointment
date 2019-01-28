@@ -691,7 +691,7 @@ Responsive CSS
     .responsive-sticky-header #primary-menu > ul,
     .responsive-sticky-header #primary-menu > .container > ul {
         max-height: 300px;
-        overflow-y: scroll;
+        /*overflow-y: scroll;*/
     }
 
     .responsive-sticky-header #primary-menu > ul,
