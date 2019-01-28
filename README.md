@@ -19,7 +19,7 @@ Data Seed:
 
 
 Deploy:
-<a href="https://dashboard.heroku.com/new?template=<link to your repo>">
+<a href="https://dashboard.heroku.com/new?template=https://dashboard.heroku.com/apps/dentistappointment/">
   <img src="https://www.herokucdn.com/deploy/button.svg" alt="Deploy">
 </a>
 
