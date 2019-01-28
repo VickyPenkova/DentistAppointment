@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
+using DentistAppointment.Common;
 
 namespace DentistAppointment.Areas.Identity.Pages.Account
 {
@@ -66,9 +67,8 @@ namespace DentistAppointment.Areas.Identity.Pages.Account
             ReturnUrl = returnUrl;
         }
 
-        public async Task<IActionResult> OnPostAsync(string returnUrl = null)
+        public async Task<IActionResult> OnPostAsync()
         {
-            returnUrl = returnUrl ?? Url.Content("~/Patient/patientOnFirstLogIn");
 
             if (ModelState.IsValid)
             {
@@ -80,9 +80,12 @@ namespace DentistAppointment.Areas.Identity.Pages.Account
                 LastName = Input.LastName,
                 DentistId = null
                 };
+
                 var result = await _userManager.CreateAsync(user, Input.Password);
+               
                 if (result.Succeeded)
                 {
+                    _userManager.AddToRoleAsync(user, GlobalConstants.UserRole).Wait();
                     _logger.LogInformation("User created a new account with password.");
 
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
@@ -96,7 +99,12 @@ namespace DentistAppointment.Areas.Identity.Pages.Account
                         $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
 
                     await _signInManager.SignInAsync(user, isPersistent: false);
-                    return LocalRedirect(returnUrl);
+
+                    if (user.DentistId == null && await _signInManager.UserManager.IsInRoleAsync(user, GlobalConstants.UserRole))
+                    {
+                        _logger.LogInformation("User logged in.");
+                        return LocalRedirect("/Patient/patientOnFirstLogin");
+                    }
                 }
                 foreach (var error in result.Errors)
                 {

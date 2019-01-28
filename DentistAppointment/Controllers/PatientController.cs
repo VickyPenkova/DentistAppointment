@@ -68,7 +68,7 @@ namespace DentistAppointment.Controllers
             }
             return 0;
         }
-        public IActionResult patientHomePage()
+        public IActionResult patientHomePage(string id)
         {
             string userId = GetCurrentUserId();
             var user = this.usersService.GetAllUsers().FirstOrDefault(u => u.Id == userId);
@@ -338,7 +338,7 @@ namespace DentistAppointment.Controllers
                 user.Gender = model.Gender;
                 usersService.Edit(user);
 
-                return RedirectToAction("patientHomePage", "Patient");
+                return RedirectToAction("patientHomePage", "Patient", userId);
             }
             return View(model);
         }

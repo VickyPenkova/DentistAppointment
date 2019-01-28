@@ -17,9 +17,6 @@ namespace DentistAppointment.Services
         private readonly IRepository<User, string> usersRepo;
         private readonly IRepository<Reservation, int> reservationsRepo;
 
-        // To be used in Dentist Controller 
-        // For ex: For the Dentist Profile
-
         // Constructor DI
         public DentistsService(
             IRepository<Dentist,int> dentistsRepo,

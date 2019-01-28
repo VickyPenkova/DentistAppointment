@@ -52,17 +52,17 @@ namespace DentistAppointment.Areas.Identity.Pages.Account
 
         public async Task OnGetAsync(string returnUrl = null)
         {
-            if (!string.IsNullOrEmpty(ErrorMessage))
-            {
-                ModelState.AddModelError(string.Empty, ErrorMessage);
-            }
+            //if (!string.IsNullOrEmpty(ErrorMessage))
+            //{
+            //    ModelState.AddModelError(string.Empty, ErrorMessage);
+            //}
 
-            returnUrl = returnUrl ?? Url.Content("~/Patient/patientOnFirstLogIn");
+            //returnUrl = returnUrl ?? Url.Content("/Accont/Login");
 
-            // Clear the existing external cookie to ensure a clean login process
-            await this.HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
+            //// Clear the existing external cookie to ensure a clean login process
+            //await this.HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
 
-            ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
+            //ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
 
             ReturnUrl = returnUrl;
         }
@@ -73,20 +73,22 @@ namespace DentistAppointment.Areas.Identity.Pages.Account
             {
                 // This doesn't count login failures towards account lockout
                 // To enable password failures to trigger account lockout, set lockoutOnFailure: true
+                var user = await _signInManager.UserManager.FindByEmailAsync(Input.Email.ToUpper());
+
                 var result = await _signInManager.PasswordSignInAsync(Input.Email, Input.Password, Input.RememberMe, lockoutOnFailure: true);
-                var user = await _signInManager.UserManager.FindByEmailAsync(Input.Email);
-               
-                if(result.Succeeded)
+
+
+                if (result.Succeeded)
                 {
                     if (user.DentistId != null)
                     {
                         _logger.LogInformation("Dentist logged in.");
                         return LocalRedirect("~/Dentist/dentistHomePage");
                     }
-                    else if (user.DentistId == null && await _signInManager.UserManager.IsInRoleAsync(user, GlobalConstants.UserRole))
+                    else if (user.DentistId == null)
                     {
                         _logger.LogInformation("User logged in.");
-                        return LocalRedirect("~/Patient/patientHomePage");
+                        return LocalRedirect("~/Patient/patientHomePage/" + user.Id);
                     }
                     else if (await _signInManager.UserManager.IsInRoleAsync(user, 
                         GlobalConstants.AdminRole))
