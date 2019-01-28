@@ -2,31 +2,37 @@
 <!DOCTYPE html>
 <html dir="ltr" lang="en-US">
 <head>
-	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-	<meta name="author" content="" />
-	<link rel="stylesheet" href="~/FrontEnd/css/components/bs-select.css" type="text/css" />
-	<link rel="stylesheet" href="~/FrontEnd/css/responsive.css" type="text/css" />
-	<!-- Document Title
-	============================================= -->
-	<title>Find a doctor</title>
-	<!-- Favicon
-	============================================= -->
-	<link rel="apple-touch-icon" sizes="57x57" href="~/FrontEnd/images/favicon/apple-icon-57x57.png">
-	<link rel="apple-touch-icon" sizes="60x60" href="~/FrontEnd/images/favicon/apple-icon-60x60.png">
-	<link rel="apple-touch-icon" sizes="72x72" href="~/FrontEnd/images/favicon/apple-icon-72x72.png">
-	<link rel="apple-touch-icon" sizes="76x76" href="~/FrontEnd/images/favicon/apple-icon-76x76.png">
-	<link rel="apple-touch-icon" sizes="114x114" href="~/FrontEnd/images/favicon/apple-icon-114x114.png">
-	<link rel="apple-touch-icon" sizes="120x120" href="~/FrontEnd/images/favicon/apple-icon-120x120.png">
-	<link rel="apple-touch-icon" sizes="144x144" href="~/FrontEnd/images/favicon/apple-icon-144x144.png">
-	<link rel="apple-touch-icon" sizes="152x152" href="~/FrontEnd/images/favicon/apple-icon-152x152.png">
-	<link rel="apple-touch-icon" sizes="180x180" href="~/FrontEnd/images/favicon/apple-icon-180x180.png">
-	<link rel="icon" type="image/png" sizes="192x192" href="~/FrontEnd/images/favicon/android-icon-192x192.png">
-	<link rel="icon" type="image/png" sizes="32x32" href="~/FrontEnd/images/favicon/favicon-32x32.png">
-	<link rel="icon" type="image/png" sizes="96x96" href="~/FrontEnd/images/favicon/favicon-96x96.png">
-	<link rel="icon" type="image/png" sizes="16x16" href="~/FrontEnd/images/favicon/favicon-16x16.png">
-	<meta name="msapplication-TileColor" content="#ffffff">
-	<meta name="msapplication-TileImage" content="~/FrontEnd/images/favicon/ms-icon-144x144.png">
-	<meta name="theme-color" content="#ffffff">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="author" content="" />
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,400i,700|Raleway:300,400,500,600,700|Crete+Round:400i"
+          rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="~/FrontEnd/css/bootstrap.css" type="text/css" />
+    <link rel="stylesheet" href="~/FrontEnd/style.css" type="text/css" />
+    <link rel="stylesheet" href="~/FrontEnd/css/font-icons.css" type="text/css" />
+    <link rel="stylesheet" href="~/FrontEnd/css/animate.css" type="text/css" />
+    <link rel="stylesheet" href="~/FrontEnd/css/components/bs-rating.css" type="text/css" />
+    <link rel="stylesheet" href="~/FrontEnd/css/responsive.css" type="text/css" />
+    <!-- Document Title
+    ============================================= -->
+    <title>Find a doctor</title>
+    <!-- Favicon
+    ============================================= -->
+    <link rel="apple-touch-icon" sizes="57x57" href="~/FrontEnd/images/favicon/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="~/FrontEnd/images/favicon/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="~/FrontEnd/images/favicon/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="~/FrontEnd/images/favicon/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="~/FrontEnd/images/favicon/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="~/FrontEnd/images/favicon/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="~/FrontEnd/images/favicon/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="~/FrontEnd/images/favicon/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="~/FrontEnd/images/favicon/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="~/FrontEnd/images/favicon/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="~/FrontEnd/images/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="~/FrontEnd/images/favicon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="~/FrontEnd/images/favicon/favicon-16x16.png">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="~/FrontEnd/images/favicon/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
 </head>
 <body class="stretched sticky-responsive-menu">
     <!-- Document Wrapper
@@ -87,13 +93,13 @@
                     <form asp-route-returnUrl="@ViewData["ReturnUrl"]" class="nobottommargin" method="get">
                         <div class="bottommargin-sm">
                             <label>Please select a city</label>
-                            @Html.DropDownListFor(model => model.City, Model.NameOfCity, new { @class= "selectpicker col-12 ",
+                            @Html.DropDownListFor(model => model.City, Model.NameOfCity, new { @class= "select-1 col-12 ",
                                            style = "height: calc(2.25rem + 2px); border - radius: 3px; margin - bottom:10px; ", @title= "Please choose"})
 
                         </div>
                         <div class="bottommargin-sm">
                             <label for="">Choose the type of doctor</label>
-                            @Html.DropDownListFor(model => model.Type, Model.DentistTypes, new{ @class = "selectpicker col-12 ",
+                            @Html.DropDownListFor(model => model.Type, Model.DentistTypes, new{ @class = "select-1 col-12 ",
                            style = "height: calc(2.25rem + 2px); border - radius: 3px; margin - bottom:10px; ", @title = "Please choose"})
                         </div>
                         <div class="bottommargin-sm">
@@ -102,7 +108,7 @@
                         </div>
                         <div class="bottommargin-sm">
                             <label for="">Select preferred rating of dentist</label>
-                            @Html.DropDownListFor(model => model.Rating, Model.NumberOfStars, new { @class= "selectpicker col-12 ",
+                            @Html.DropDownListFor(model => model.Rating, Model.NumberOfStars, new { @class= "select-1 col-12 ",
                                            style = "height: calc(2.25rem + 2px); border - radius: 3px; margin - bottom:10px; ", @title= "Please choose"})
                         </div>
                         <div class="form-group">

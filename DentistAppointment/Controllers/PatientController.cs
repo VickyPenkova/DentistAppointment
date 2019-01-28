@@ -33,6 +33,8 @@ namespace DentistAppointment.Controllers
         private readonly UserManager<User> userManager;
         private readonly IMapper mapper;
 
+        private static int dentistId;
+
         public PatientController(
             IUsersService usersService,
             IDentistsService dentistsService,
@@ -54,19 +56,14 @@ namespace DentistAppointment.Controllers
         }
 
         private string GetCurrentUserId() => this.userManager.GetUserId(HttpContext.User);
-        private static string DentistIdKey = "DentistId";
+
         private void SetCurrentDentistId(int id)
         {
-            HttpContext.Session.SetInt32(DentistIdKey, id);
+            dentistId = id;
         }
         private int GetCurrentDentistId()
         {
-            var id = HttpContext.Session.GetInt32(DentistIdKey);
-            if (id.HasValue)
-            {
-                return id.Value;
-            }
-            return 0;
+            return dentistId;
         }
         public IActionResult patientHomePage(string id)
         {
